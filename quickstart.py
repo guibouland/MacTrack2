@@ -13,7 +13,7 @@ Through this file, you can find all the information you need to make this projec
 # --------------------------------
 # Dataset
 # +++++++++++++++
-# First, you need a dataset to create your model and a **models** folder to store it. 
+# First, you need a dataset to create your model and a **models** folder to store it.
 
 if False:
     import os
@@ -31,27 +31,27 @@ if False:
     ]
 
     for d in dirs:
-        os.makedirs(d, exist_ok=True)  
+        os.makedirs(d, exist_ok=True)
 
-# This dataset is essential to create your model, you need to add the following :  
+# This dataset is essential to create your model, you need to add the following :
 # * ``train_x`` : a training set of images that you hand-cut yourself using `Fiji <https://imagej.net/software/fiji/downloads>`_ and more specifically `ImageJ <https://imagej.net/software/imagej>`_.
 # * ``train_y`` : the masks for each segmented frame in a zip file containing all the ROI files
 # * ``test_x`` and ``test_y`` : you should do the same, it will serve to test the model that has been trained on the training set.
 
-# Here is an example of an image that will be placed in the **x** sets (wether it is the training or the test set) on the left. And on the right, each yellow lining represent a ROI (region of interest). Those are saved in a zip file and in the **y** sets.  
+# Here is an example of an image that will be placed in the **x** sets (wether it is the training or the test set) on the left. And on the right, each yellow lining represent a ROI (region of interest). Those are saved in a zip file and in the **y** sets.
 # .. raw:: html
-# 
+#
 #    <p align="center">
 #      <img src="images/example_frame.jpg" alt="frame_ex" width="45%"/>
 #      <img src="images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
 #    </p>
-# 
+#
 # .. note::
 # Documentation on Fiji can be found `here <https://imagej.net/ij/docs/index.html>`_.
 #
 # Next, the `kartezio` package that will help us build the model need two other files : `META.json` and `dataset.csv`.
 #
-# The META file is here to help the package recognize the formats of the different objects in the dataset folder.  
+# The META file is here to help the package recognize the formats of the different objects in the dataset folder.
 
 import os
 import json
@@ -65,14 +65,8 @@ meta_data = {
     "scale": 1.0,
     "label_name": "macrophage",
     "mode": "dataframe",
-    "input": {
-        "type": "image",
-        "format": "hsv"
-    },
-    "label": {
-        "type": "roi",
-        "format": "polygon"
-    }
+    "input": {"type": "image", "format": "hsv"},
+    "label": {"type": "roi", "format": "polygon"},
 }
 
 # Create the JSON file with the content in it
@@ -85,13 +79,14 @@ print(f"Fichier {meta_path} créé avec succès !")
 # The csv file is here to help kartezio read your dataset.
 
 from Set_up.dataset_csv import create_dataset_csv
-create_dataset_csv(input_folder='model/dataset', output_csv='model/dataset/dataset.csv')
+
+create_dataset_csv(input_folder="model/dataset", output_csv="model/dataset/dataset.csv")
 
 ########################################################
 # Your two files are now created and located in the `model/dataset` folder. We can now train our model.
 #
 #
-# Training 
+# Training
 # +++++++++++++++
 # Now that we have the structure kartezio needs to function correctly, we can create and train a model using the `create_segmentation_model` function of the kartezio package. You can find the following code in the `Set_up/train_model.py` file.
 
@@ -100,8 +95,9 @@ from kartezio.endpoint import EndpointThreshold
 from kartezio.dataset import read_dataset
 from kartezio.training import train_model
 
-import time 
+import time
 from datetime import timedelta
+
 t0_train = time.time()
 
 DATASET = "model/dataset"
@@ -121,7 +117,7 @@ model = create_segmentation_model(
     output_mutation_rate=rate,
     outputs=1,
     fitness="IOU",
-    endpoint=EndpointThreshold(threshold=4)
+    endpoint=EndpointThreshold(threshold=4),
 )
 
 dataset = read_dataset(DATASET)
@@ -130,7 +126,7 @@ elite, a = train_model(model, dataset, OUTPUT, callback_frequency=frequency)
 t1_train = time.time()
 elapsed_train = int(t1_train - t0_train)
 #########################################
-# Testing 
+# Testing
 # +++++++++++++++
 # Now that you trained your model, you can test it to see if it gives good prediction.
 
@@ -176,7 +172,7 @@ for i, model in enumerate(pool.models):
 
 # the only downside is that the loop computes scores of models you've already tested
 # and you don't need to compute them again, but it's to have a csv file later that summarizes
-# all your models 
+# all your models
 
 t1_test = time.time()
 elapsed_test = int(t1_test - t0_test)
@@ -187,8 +183,8 @@ print(scores_test)
 
 scores_all[f"training"] = scores_training
 scores_all[f"test"] = scores_test
-#print_stats(scores_training, "IOU", "training set")    # WRONG USAGE
-#print_stats(scores_test, "IOU", "test set")            # WRONG USAGE
+# print_stats(scores_training, "IOU", "training set")    # WRONG USAGE
+# print_stats(scores_test, "IOU", "test set")            # WRONG USAGE
 
 pd.DataFrame(scores_all).to_csv("model/scores.csv", index=False)
 
@@ -203,10 +199,10 @@ print(f"Testing time : {timedelta(seconds=elapsed_test)}")
 
 from Set_up.explain_model import summary_model
 
-summaries = summary_model('model')
+summaries = summary_model("model")
 
 ###########################################
-#You can create a ``csv`` file for the nodes that will help you understand your model.
+# You can create a ``csv`` file for the nodes that will help you understand your model.
 
 for summary in summaries:
     print(summary.to_csv())
@@ -221,3 +217,17 @@ print(summaries[0].keys())
 
 print(summaries[0].endpoint)
 
+#################################################
+# Model visualization
+# +++++++++++++++
+# You can visualize the model you've just created and tested by running the following code.
+
+from mactrack.visualisation.viz_model import comp_model
+
+comp_model("./model", train=False)
+
+#################################################
+# You have two options to visualize your model :
+# if you put `train=False`, it will compare the test set with the predictions on the test set.
+# if you put `train=True`, it will compare the training set with the predictions on the training set.
+# You can then find the results in the `output` folder.
