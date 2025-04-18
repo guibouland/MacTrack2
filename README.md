@@ -1,18 +1,23 @@
-# Stage_LPHI_2024
+# MacTrack2
 
-Made by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. You can follow the submodule link to see what he has done. Our work aims at simplifying its use and providing an example dataset that matches the structures that the subsequent libraries oblige you to follow.
+Derived from the work by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. Our work aims at simplifying its use and providing an example dataset that matches the structures that the subsequent libraries oblige you to follow.
 
 ---
 
-First, all the videos and frames we used for analysis and segmentation were taken using a spinning disk confocal microscope, which illuminates macrophages in red and calcium flashes in green. We cut the caudal fin fold of a zebrafish in order to study if there is a correlation between the macrophage polarization and calcium flashes.
+First, all the videos and frames we used for analysis and segmentation were taken using a spinning disk confocal microscope, which illuminates macrophages in red and calcium flashes in green, thanks to a zebrafish transgenic lineage. We cut the caudal fin fold of a zebrafish in order to study if there is a correlation between the macrophage polarization and calcium flashes.
 
 The goal of this project is then to accurately segment the macrophages. This segmentation will allow us to superimpose it on the green channel video to analyse the calcium flashes of the macrophages we have tracked.
 
 ## Installation
 
-As my internship was following his work, I had to be acostumed to what he did during his time at LPHI. This folder consists of upgrades of the original work available via this [link](https://github.com/Axeldmont/Stage-LPHI-2024). The `mactrack` folder is almost the same, as I only modified the `gettingstarted.py` file in order to run the example we'll talk about later.
+As my internship was following his work, I had to be acostumed to what he did during his time at LPHI. This repository consists of upgrades of the original work available via this [link](https://github.com/Axeldmont/Stage-LPHI-2024). We recommend you to clone this repository more than the other, as we worked on improving it. 
 
-First, the packages you need in order to run this project are available in the `requirements.txt` file. For the `numena` library, you need to add this class in the  `/home/gbouland/micromamba/envs/sam-env/lib/python3.12/site-packages/numena/io/json.py` file. If you haven't set up an environment, find out where your `site-packages` folder is stored and add the class to the above file.
+
+```bash
+git clone https://github.com/guibouland/MacTrack2.git
+```
+
+First, the packages you need in order to run this project are available in the `requirements.txt` file. For the `numena` library, you need to add this class in the  `/home/gbouland/micromamba/envs/sam-env/lib/python3.12/site-packages/numena/io/json.py` file (or wherever your *numena* module files is located). If you haven't set up an environment, find out where your `site-packages` folder is stored and add the class to the above file.
 
 ```python
 class Serializable(ABC):
@@ -40,7 +45,7 @@ input/yourdatafolder/
   └── redchannelvideo.mp4
 ```
 
-As you may have seen, an `input/Example` folder already exists in this repository. It is an sample input folder to help you understand how it should look and what to put in it.
+As you may have seen, an `examples/input` folder already exists in this repository. It is an sample input folder to help you understand how it should look and what to put in it.
 
 Now let's talk about what's inside of these folders.
 
@@ -62,7 +67,7 @@ dataset
 
 The `train` folder consists of `train_x` which is a folder containing all the frames that served to train the model. They must be from the red channel (so macrophages). The `train_y` folder contains the "masks". Each frame in the `train_x` folder must be hand-cut in the ImageJ program. You must add "Regions of Interest" on each frame and then save it as a `.zip` file containing all the ROIs in a single frame. You must do it for all frames in the `train_x` folder. Thanks to the `kartezio` module and the methods it is using, you don't need a lot of frame to make a good `train` dataset. For instance, Axel used only 26 frames, which is a very small number for a learning set.
 
-Then comes the `test` folder. You don't have to worry about the `test_x` folder, it will be added when you run the `gettingstarted_example` file. It contains the frames of your red channel video. The `test_y` is a bit special. It is only here for structure. In fact, the one we provided in the `Example` folder consists of empty `.zip` files. The number depends on the length of your video (number of frames). The `Set_up/empty_zip.py` helps you create these files.
+Then comes the `test` folder. You don't have to worry about the `test_x` folder, it will be added when you run the `gettingstarted_example` file. It contains the frames of your red channel video. The `test_y` is a bit special. It is only here for structure. In fact, the one we provided in the `examples/imput` folder consists of empty `.zip` files. The number depends on the length of your video (number of frames). The `Set_up/empty_zip.py` helps you create these files.
 
 The `dataset.csv` file is a summary of the different paths of your dataset. It is possible to make it by running the `dataset_csv.py` file. Finally, the `META.json` file is linked to the `dataset.csv` file as you can see input and label. Input is an image with format hsv and label are ROI files with format polygon (this `META.json` file was made to match functions from the kartezio library).
 
@@ -86,6 +91,8 @@ You can execute the `convert.py` file in the `Set_up` folder to convert AVI file
 
 ---
 
-The `Example` folder contains a full, ready to use, example dataset that you can use to execute Axel's **Mactrack** by running the `gettingstarted_example` file in the `mactrack` folder.
+The `input` subfolder (in the `examples` folder) contains a full, ready to use, example dataset that you can use to execute Axel's **Mactrack** by running the `gettingstarted_example` file in the `mactrack` folder.
 
 * [ ] Link to an ImageJ (Fiji) tuto to hand-cut frames.
+* [ ] update readme fully
+* [ ] update requirments
