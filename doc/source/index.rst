@@ -20,8 +20,7 @@ Table of Contents
 
    quickstart
    Set_up
-   mactrack
-   set_up 
+   mactrack/
    
 
 * :ref:`genindex`
