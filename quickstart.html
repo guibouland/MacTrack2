@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quickstart &mdash; MacTrack2 0.1 documentation</title>
+  <title>Quickstart for MacTrack2 &mdash; MacTrack2 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -43,7 +43,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart for MacTrack2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-create-your-own-model">How to create your own model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training">Training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-summary">Model summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-visualization">Model visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-iou">Calculate IOU</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mactrack.html">mactrack</a></li>
 </ul>
@@ -62,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Quickstart</li>
+      <li class="breadcrumb-item active">Quickstart for MacTrack2</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,8 +83,233 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="quickstart">
-<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
+  <section id="quickstart-for-mactrack2">
+<h1>Quickstart for MacTrack2<a class="headerlink" href="#quickstart-for-mactrack2" title="Link to this heading"></a></h1>
+<p>Through this file, you can find all the information you need to make this project your own. Don’t forget to create your Python environment with the packages available in the <cite>requirements.txt</cite> file.</p>
+<section id="how-to-create-your-own-model">
+<h2>How to create your own model<a class="headerlink" href="#how-to-create-your-own-model" title="Link to this heading"></a></h2>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading"></a></h3>
+<p>First, you need a dataset to create your model and a <strong>models</strong> folder to store it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">dirs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/train&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/train/train_x&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/train/train_y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/test/test_x&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/dataset/test/test_y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model/models&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This dataset is essential to create your model, you need to add the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">train_x</span></code>: a training set of images that you hand-cut yourself using <a class="reference external" href="https://imagej.net/software/fiji/downloads">Fiji</a> and more specifically <a class="reference external" href="https://imagej.net/software/imagej">ImageJ</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_y</span></code>: the masks for each segmented frame in a zip file containing all the ROI files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_x</span></code> and <code class="docutils literal notranslate"><span class="pre">test_y</span></code>: you should do the same, it will serve to test the model that has been trained on the training set.</p></li>
+</ul>
+<p>Here is an example of an image that will be placed in the <strong>x</strong> sets (whether it is the training or the test set) on the left. And on the right, each yellow lining represents a ROI (region of interest). Those are saved in a zip file and in the <strong>y</strong> sets.</p>
+<p align="center">
+  <img src="./doc/souce/images/example_frame.jpg" alt="frame_ex" width="45%"/>
+  <img src="./doc/source/images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
+</p><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Documentation on Fiji can be found <a class="reference external" href="https://imagej.net/ij/docs/index.html">here</a>.</p>
+</div>
+<p>Next, the <cite>kartezio</cite> package that will help us build the model needs two other files: <cite>META.json</cite> and <cite>dataset.csv</cite>.</p>
+<p>The META file is here to help the package recognize the formats of the different objects in the dataset folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Path to the JSON file</span>
+<span class="n">meta_path</span> <span class="o">=</span> <span class="s2">&quot;model/dataset/META.json&quot;</span>
+
+<span class="c1"># Content of the JSON file</span>
+<span class="n">meta_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Macrophage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;label_name&quot;</span><span class="p">:</span> <span class="s2">&quot;macrophage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;dataframe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;hsv&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;roi&quot;</span><span class="p">,</span> <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;polygon&quot;</span><span class="p">},</span>
+<span class="p">}</span>
+
+<span class="c1"># Create the JSON file with the content in it</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">meta_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">meta_path</span><span class="si">}</span><span class="s2"> created successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The CSV file is here to help kartezio read your dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.dataset_csv</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_dataset_csv</span>
+
+<span class="n">create_dataset_csv</span><span class="p">(</span><span class="n">input_folder</span><span class="o">=</span><span class="s2">&quot;model/dataset&quot;</span><span class="p">,</span> <span class="n">output_csv</span><span class="o">=</span><span class="s2">&quot;model/dataset/dataset.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Your two files are now created and located in the <cite>model/dataset</cite> folder. We can now train our model.</p>
+</section>
+<section id="training">
+<h3>Training<a class="headerlink" href="#training" title="Link to this heading"></a></h3>
+<p>Now that we have the structure kartezio needs to function correctly, we can create and train a model using the <cite>create_segmentation_model</cite> function of the kartezio package. You can find the following code in the <cite>Set_up/train_model.py</cite> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.apps.segmentation</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_segmentation_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.endpoint</span><span class="w"> </span><span class="kn">import</span> <span class="n">EndpointThreshold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_model</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="n">t0_train</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">DATASET</span> <span class="o">=</span> <span class="s2">&quot;model/dataset&quot;</span>
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;model/models&quot;</span>
+
+<span class="n">generations</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">_lambda</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">frequency</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_segmentation_model</span><span class="p">(</span>
+    <span class="n">generations</span><span class="p">,</span>
+    <span class="n">_lambda</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">node_mutation_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span>
+    <span class="n">output_mutation_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span>
+    <span class="n">outputs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">fitness</span><span class="o">=</span><span class="s2">&quot;IOU&quot;</span><span class="p">,</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="n">EndpointThreshold</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">read_dataset</span><span class="p">(</span><span class="n">DATASET</span><span class="p">)</span>
+<span class="n">elite</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">,</span> <span class="n">callback_frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
+
+<span class="n">t1_train</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t1_train</span> <span class="o">-</span> <span class="n">t0_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h3>
+<p>Now that you trained your model, you can test it to see if it gives good predictions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.easy</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.fitness</span><span class="w"> </span><span class="kn">import</span> <span class="n">FitnessIOU</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelPool</span>
+
+<span class="n">t0_test</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">scores_all</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">ModelPool</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model/models&quot;</span><span class="p">,</span> <span class="n">FitnessIOU</span><span class="p">(),</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;*/elite.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_ensemble</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">read_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model/dataset&quot;</span><span class="p">,</span> <span class="n">counting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">annotations_test</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">annotations_training</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">roi_pixel_areas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_y</span><span class="p">:</span>
+    <span class="n">n_annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">annotations_training</span> <span class="o">+=</span> <span class="n">n_annotations</span>
+<span class="k">for</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">test_y</span><span class="p">:</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">annotations_test</span> <span class="o">+=</span> <span class="n">n_annotations</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_annotations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">roi_pixel_areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">annotations</span> <span class="o">==</span> <span class="n">i</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total annotations for training set: </span><span class="si">{</span><span class="n">annotations_training</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total annotations for test set: </span><span class="si">{</span><span class="n">annotations_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean pixel area for test set: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">roi_pixel_areas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">scores_test</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">scores_training</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">models</span><span class="p">):</span>
+    <span class="c1"># Test set</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="n">scores_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fitness</span><span class="p">)</span>
+
+    <span class="c1"># Training set</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="n">scores_training</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fitness</span><span class="p">)</span>
+
+<span class="n">t1_test</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t1_test</span> <span class="o">-</span> <span class="n">t0_test</span><span class="p">)</span>
+<span class="n">elapsed_total</span> <span class="o">=</span> <span class="n">elapsed_train</span> <span class="o">+</span> <span class="n">elapsed_test</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">scores_training</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores_test</span><span class="p">)</span>
+
+<span class="n">scores_all</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_training</span>
+<span class="n">scores_all</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_test</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores_all</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;model/scores.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total runtime : </span><span class="si">{</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">elapsed_total</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training time : </span><span class="si">{</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">elapsed_train</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing time : </span><span class="si">{</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">elapsed_test</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-summary">
+<h3>Model summary<a class="headerlink" href="#model-summary" title="Link to this heading"></a></h3>
+<p>You can get a summary of your model by running the following.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.explain_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">summary_model</span>
+
+<span class="n">summaries</span> <span class="o">=</span> <span class="n">summary_model</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can create a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file for the nodes that will help you understand your model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">summary</span> <span class="ow">in</span> <span class="n">summaries</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>You can also access other parameters that are not displayed in the summary, for instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">summaries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>And you can extract any object from that list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">summaries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-visualization">
+<h3>Model visualization<a class="headerlink" href="#model-visualization" title="Link to this heading"></a></h3>
+<p>You can visualize the model you’ve just created and tested by running the following code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.visualisation.viz_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">comp_model</span>
+
+<span class="n">comp_model</span><span class="p">(</span><span class="s2">&quot;./model&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You have two options to visualize your model:</p>
+<ul class="simple">
+<li><p>If you put <cite>train=False</cite>, it will compare the test set with the predictions on the test set.</p></li>
+<li><p>If you put <cite>train=True</cite>, it will compare the training set with the predictions on the training set.</p></li>
+</ul>
+<p>You can then find the results in the <cite>output</cite> folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comp_model</span><span class="p">(</span><span class="s2">&quot;./model&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="calculate-iou">
+<h3>Calculate IOU<a class="headerlink" href="#calculate-iou" title="Link to this heading"></a></h3>
+<p>You have to be careful with the second argument. If you’ve put <cite>train=False</cite> (default), you will have to use the test set. If you’ve put <cite>train=True</cite>, you will have to use the training set, which means that your second argument will be <cite>./model/dataset/train/train_y/</cite> and not <cite>./model/dataset/test/test_y/</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.visualisation.iou</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_global_iou</span>
+
+<span class="n">mean_global_iou</span><span class="p">(</span>
+    <span class="s2">&quot;./model_output/test_def/ROIs_pred_def/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;./model/dataset/test/test_y/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;./model_output/comparison/&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
