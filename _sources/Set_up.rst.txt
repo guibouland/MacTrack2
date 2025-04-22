@@ -1,83 +1,72 @@
-Set\_up package
-===============
+Set\_up
+=======
 
-Submodules
-----------
-
-Set\_up.Structure module
-------------------------
+structure
+---------
 
 .. automodule:: Set_up.Structure
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.convert module
-----------------------
+convert
+-------
 
 .. automodule:: Set_up.convert
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.count module
---------------------
+count
+-----
 
 .. automodule:: Set_up.count
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.dataset\_csv module
----------------------------
+dataset\_csv
+------------
 
 .. automodule:: Set_up.dataset_csv
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.empty\_zip module
--------------------------
+empty\_zip
+----------
 
 .. automodule:: Set_up.empty_zip
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.eval\_models module
----------------------------
+eval\_models
+------------
 
 .. literalinclude:: ../../Set_up/eval_models.py
    :language: python
    :linenos:
 
-Set\_up.explain\_model module
------------------------------
+explain\_model
+--------------
 
 .. automodule:: Set_up.explain_model
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.extract\_frames module
-------------------------------
+extract\_frames
+---------------
 
 .. automodule:: Set_up.extract_frames
    :members:
    :show-inheritance:
    :undoc-members:
 
-Set\_up.train\_model module
----------------------------
+train\_model
+------------
 
 .. literalinclude:: ../../Set_up/train_model.py
    :language: python
    :linenos:
-
-Module contents
----------------
-
-.. automodule:: Set_up
-   :members:
-   :show-inheritance:
-   :undoc-members:

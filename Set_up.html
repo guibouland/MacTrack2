@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Set_up package &mdash; MacTrack2 0.1 documentation</title>
+  <title>Set_up &mdash; MacTrack2 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="mactrack package" href="mactrack.html" />
-    <link rel="prev" title="Quickstart API" href="quickstart.html" /> 
+    <link rel="next" title="mactrack" href="mactrack.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,53 +44,45 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Set_up package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-Set_up.Structure">Set_up.Structure module</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Set_up</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-Set_up.Structure">structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Set_up.Structure.copy_zip_files"><code class="docutils literal notranslate"><span class="pre">copy_zip_files()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-convert-module">Set_up.convert module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-count-module">Set_up.count module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-Set_up.dataset_csv">Set_up.dataset_csv module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#convert">convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#count">count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Set_up.dataset_csv">dataset_csv</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Set_up.dataset_csv.create_dataset_csv"><code class="docutils literal notranslate"><span class="pre">create_dataset_csv()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Set_up.dataset_csv.create_meta_file"><code class="docutils literal notranslate"><span class="pre">create_meta_file()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-empty-zip-module">Set_up.empty_zip module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-eval-models-module">Set_up.eval_models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-explain-model-module">Set_up.explain_model module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-extract-frames-module">Set_up.extract_frames module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-train-model-module">Set_up.train_model module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-Set_up">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#empty-zip">empty_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eval-models">eval_models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#explain-model">explain_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-frames">extract_frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#train-model">train_model</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.html">mactrack package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.locate.html">mactrack.locate package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.track.html">mactrack.track package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.video.html">mactrack.video package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.visualisation.html">mactrack.visualisation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mactrack.html">mactrack</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Set_up</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Set_up package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.Structure">Set_up.Structure module</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Set_up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.Structure">structure</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Set_up.Structure.copy_zip_files"><code class="docutils literal notranslate"><span class="pre">copy_zip_files()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-convert-module">Set_up.convert module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-count-module">Set_up.count module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.dataset_csv">Set_up.dataset_csv module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#convert">convert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#count">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.dataset_csv">dataset_csv</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Set_up.dataset_csv.create_dataset_csv"><code class="docutils literal notranslate"><span class="pre">create_dataset_csv()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Set_up.dataset_csv.create_meta_file"><code class="docutils literal notranslate"><span class="pre">create_meta_file()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-empty-zip-module">Set_up.empty_zip module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-eval-models-module">Set_up.eval_models module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-explain-model-module">Set_up.explain_model module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-extract-frames-module">Set_up.extract_frames module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-train-model-module">Set_up.train_model module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Set_up">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#empty-zip">empty_zip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eval-models">eval_models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explain-model">explain_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-frames">extract_frames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#train-model">train_model</a></li>
 </ul>
 </li>
 </ul>
@@ -111,7 +103,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Set_up package</li>
+      <li class="breadcrumb-item active">Set_up</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Set_up.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,27 +113,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="set-up-package">
-<h1>Set_up package<a class="headerlink" href="#set-up-package" title="Link to this heading"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
-</section>
+  <section id="set-up">
+<h1>Set_up<a class="headerlink" href="#set-up" title="Link to this heading"></a></h1>
 <section id="module-Set_up.Structure">
-<span id="set-up-structure-module"></span><h2>Set_up.Structure module<a class="headerlink" href="#module-Set_up.Structure" title="Link to this heading"></a></h2>
+<span id="structure"></span><h2>structure<a class="headerlink" href="#module-Set_up.Structure" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.Structure.copy_zip_files">
 <span class="sig-prename descclassname"><span class="pre">Set_up.Structure.</span></span><span class="sig-name descname"><span class="pre">copy_zip_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/Structure.html#copy_zip_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.Structure.copy_zip_files" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
-<section id="set-up-convert-module">
-<h2>Set_up.convert module<a class="headerlink" href="#set-up-convert-module" title="Link to this heading"></a></h2>
+<section id="convert">
+<h2>convert<a class="headerlink" href="#convert" title="Link to this heading"></a></h2>
 </section>
-<section id="set-up-count-module">
-<h2>Set_up.count module<a class="headerlink" href="#set-up-count-module" title="Link to this heading"></a></h2>
+<section id="count">
+<h2>count<a class="headerlink" href="#count" title="Link to this heading"></a></h2>
 </section>
 <section id="module-Set_up.dataset_csv">
-<span id="set-up-dataset-csv-module"></span><h2>Set_up.dataset_csv module<a class="headerlink" href="#module-Set_up.dataset_csv" title="Link to this heading"></a></h2>
+<span id="dataset-csv"></span><h2>dataset_csv<a class="headerlink" href="#module-Set_up.dataset_csv" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.dataset_csv.create_dataset_csv">
 <span class="sig-prename descclassname"><span class="pre">Set_up.dataset_csv.</span></span><span class="sig-name descname"><span class="pre">create_dataset_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/dataset_csv.html#create_dataset_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.dataset_csv.create_dataset_csv" title="Link to this definition"></a></dt>
@@ -159,11 +148,11 @@
 </dd></dl>
 
 </section>
-<section id="set-up-empty-zip-module">
-<h2>Set_up.empty_zip module<a class="headerlink" href="#set-up-empty-zip-module" title="Link to this heading"></a></h2>
+<section id="empty-zip">
+<h2>empty_zip<a class="headerlink" href="#empty-zip" title="Link to this heading"></a></h2>
 </section>
-<section id="set-up-eval-models-module">
-<h2>Set_up.eval_models module<a class="headerlink" href="#set-up-eval-models-module" title="Link to this heading"></a></h2>
+<section id="eval-models">
+<h2>eval_models<a class="headerlink" href="#eval-models" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Source code for model testing</span>
 <span class="linenos"> 2</span><span class="c1"># ########################################################</span>
 <span class="linenos"> 3</span>
@@ -216,14 +205,14 @@
 </pre></div>
 </div>
 </section>
-<section id="set-up-explain-model-module">
-<h2>Set_up.explain_model module<a class="headerlink" href="#set-up-explain-model-module" title="Link to this heading"></a></h2>
+<section id="explain-model">
+<h2>explain_model<a class="headerlink" href="#explain-model" title="Link to this heading"></a></h2>
 </section>
-<section id="set-up-extract-frames-module">
-<h2>Set_up.extract_frames module<a class="headerlink" href="#set-up-extract-frames-module" title="Link to this heading"></a></h2>
+<section id="extract-frames">
+<h2>extract_frames<a class="headerlink" href="#extract-frames" title="Link to this heading"></a></h2>
 </section>
-<section id="set-up-train-model-module">
-<h2>Set_up.train_model module<a class="headerlink" href="#set-up-train-model-module" title="Link to this heading"></a></h2>
+<section id="train-model">
+<h2>train_model<a class="headerlink" href="#train-model" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Source code for model training</span>
 <span class="linenos"> 2</span><span class="c1"># ########################################################</span>
 <span class="linenos"> 3</span>
@@ -259,17 +248,14 @@
 </pre></div>
 </div>
 </section>
-<section id="module-Set_up">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Set_up" title="Link to this heading"></a></h2>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="mactrack.html" class="btn btn-neutral float-right" title="mactrack package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mactrack.html" class="btn btn-neutral float-right" title="mactrack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -13,9 +13,5 @@ Welcome to MacTrack2's documentation!
    quickstart
    Set_up
    mactrack
-   mactrack.locate
-   mactrack.track
-   mactrack.video
-   mactrack.visualisation
    modules
 
