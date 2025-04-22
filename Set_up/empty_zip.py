@@ -24,12 +24,6 @@ def empty_dataset_testy_zip(testy_folder, video_path):
             pass
 
 
-empty_dataset_testy_zip(
-    "input/norma_testy_empty/dataset/test/test_y",
-    "/home/gbouland/Stage-LPHI-2024/input/norma_testy_empty/250210-Norma-GC-cut-3hpA-red channel_Fish_1.mp4",
-)
-
-
 # same but for a unique frame in the test_x folder and not a video
 def empty_dataset_testy_zip_single_frame(testy_folder, frame_path):
     """

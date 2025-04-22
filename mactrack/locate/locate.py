@@ -111,12 +111,13 @@ def locate(input_folder):
     return p_test
 
 
-def locate_frame(input_image_path, model_path):
+def locate_frame(input_image_path, model_path, output_name):
     """Same function as locate but for a single frame. Used for model building or to test the performences of the model.
 
     Args:
         input_image_path (str): Path to the input image.
         model_path (str): Path to the model you want to use. Should contain a 'models' folder with the model in it and a dataset folder with the dataset used to train the model.
+        output_name (str): Name of the output folder where the results will be saved.
 
     Returns:
         list: p_test, the prediction on the input frame
@@ -125,7 +126,7 @@ def locate_frame(input_image_path, model_path):
     caller_file = caller_frame.filename
     caller_dir = os.path.dirname(os.path.abspath(caller_file))
 
-    output_dir = os.path.join(caller_dir, "output")
+    output_dir = os.path.join(caller_dir, output_name)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
 

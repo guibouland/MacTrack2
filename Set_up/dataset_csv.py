@@ -48,12 +48,6 @@ def create_dataset_csv(input_folder, output_csv):
             )
 
 
-# Example usage
-input_folder = "/home/gbouland/Stage-LPHI-2024/input/norma/dataset"
-output_csv = "/home/gbouland/Stage-LPHI-2024/input/norma/dataset/dataset.csv"
-create_dataset_csv(input_folder, output_csv)
-
-
 def create_meta_file(meta_path):
     """Create a META.json file for 'dataset' structure.
 

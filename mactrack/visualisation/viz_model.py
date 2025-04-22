@@ -11,8 +11,6 @@ import shutil
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from locate.locate import locate_frame
 
-# from visualisation.iou import mean_global_iou
-
 
 def visualize_roi(image_path, roi_path, output_folder, color="red"):
     """Visualize the region of interest (ROI) on the image without white borders.
@@ -51,26 +49,6 @@ def visualize_roi(image_path, roi_path, output_folder, color="red"):
         output_folder, f"{os.path.splitext(os.path.basename(image_path))[0]}_roi.png"
     )
     image.save(output_path, "PNG")
-
-
-# Example usage
-
-# image_path = "/home/gbouland/warm/run_models2/model/dataset/test/test_x/001_frame.png"
-# roi_path = "/home/gbouland/warm/run_models2/model/dataset/test/test_y/001_masks.zip"
-# visualize_roi(
-#    image_path, roi_path, "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/"
-# )
-# input_image = (
-#    "/home/gbouland/warm/run_models1/model_crop/dataset/test/test_x/001_frame_crop.png"
-# )
-# roi_path = (
-#    "/home/gbouland/warm/run_models1/model_crop/dataset/test/test_y/001_masks_crop.zip"
-# )
-# visualize_roi(
-#    image_path=input_image,
-#    roi_path=roi_path,
-#    output_folder="/home/gbouland/Stage-LPHI-2024/mactrack/visualisation",
-# )
 
 
 def pred_to_rois(pred, min_length):
@@ -175,10 +153,10 @@ def comp_model_frame(frame, model_path, roi_frame):
     # Get the caller script's directory
     caller_path = os.path.dirname(os.path.abspath(__file__))
     # Define the output directory
-    ouptut_dir = os.path.join(caller_path, "output")
+    ouptut_dir = os.path.join(caller_path, "model_output")
 
     # Locate objects in the frame using the model
-    loc = locate_frame(frame, model_path)
+    loc = locate_frame(frame, model_path, "model_output")
     # Convert model predictions to ROIs
     rois_pred = pred_to_rois(loc, min_length=1)
     # Define the folder to save predicted ROIs
@@ -238,20 +216,6 @@ def comp_model_frame(frame, model_path, roi_frame):
     shutil.rmtree(os.path.join(ouptut_dir, "masks_frame"))
 
 
-# Example usage
-
-# comp_model_frame(
-#    "/home/gbouland/warm/tests/model_crop/dataset/test/test_x/001_frame_crop.png",
-#    "/home/gbouland/warm/tests/model_crop/",
-#    "/home/gbouland/warm/tests/model_crop/dataset/test/test_y/001_masks_crop.zip",
-# )
-# comp_model_frame(
-#    "/home/gbouland/warm/tests/model_crop/dataset/test/test_x/002_frame_crop.png",
-#    "/home/gbouland/warm/tests/model_crop/",
-#    "/home/gbouland/warm/tests/model_crop/dataset/test/test_y/002_masks_crop.zip",
-# )
-
-
 def comp_model(model_path, train=False):
     """Compare the model with the ground truth. This functions takes a test set and a model path, and compares the model prediction with the ground truth."""
     if train:
@@ -270,10 +234,12 @@ def comp_model(model_path, train=False):
     )
     print(gt_folder)
     # Output folder
-    output_dir = os.path.join(caller_path, "output")
+    output_dir = os.path.join(caller_path, "model_output")
     # Clean it if it already exists
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
+        os.makedirs(output_dir, exist_ok=True)
+    else:
         os.makedirs(output_dir, exist_ok=True)
 
     for img, roi in zip(test_set_folder, gt_folder):
@@ -283,11 +249,3 @@ def comp_model(model_path, train=False):
         roi_path = os.path.join(model_path, "dataset", f"{set}", f"{set}_y", roi)
         # Compare the model with the ground truth
         comp_model_frame(img_path, model_path, roi_path)
-
-
-# Example usage
-
-# comp_model("/home/gbouland/warm/tests/model_crop/")
-
-# on a less accurate model
-comp_model("/home/gbouland/warm/model_test/model_slides/", train=True)

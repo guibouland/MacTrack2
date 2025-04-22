@@ -1,3 +1,6 @@
+# Source code for model training
+# ########################################################
+
 from kartezio.apps.segmentation import create_segmentation_model
 from kartezio.endpoint import EndpointThreshold
 from kartezio.dataset import read_dataset
@@ -22,7 +25,7 @@ model = create_segmentation_model(
     output_mutation_rate=rate,
     outputs=1,
     fitness="IOU",
-    endpoint=EndpointThreshold(threshold=4)
+    endpoint=EndpointThreshold(threshold=4),
 )
 
 dataset = read_dataset(DATASET)

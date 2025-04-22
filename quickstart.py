@@ -15,23 +15,21 @@ Through this file, you can find all the information you need to make this projec
 # +++++++++++++++
 # First, you need a dataset to create your model and a **models** folder to store it.
 
-if False:
-    import os
+import os
 
-    dirs = [
-        "model",
-        "model/dataset",
-        "model/dataset/train",
-        "model/dataset/train/train_x",
-        "model/dataset/train/train_y",
-        "model/dataset/test",
-        "model/dataset/test/test_x",
-        "model/dataset/test/test_y",
-        "model/models",
-    ]
-
-    for d in dirs:
-        os.makedirs(d, exist_ok=True)
+dirs = [
+    "model",
+    "model/dataset",
+    "model/dataset/train",
+    "model/dataset/train/train_x",
+    "model/dataset/train/train_y",
+    "model/dataset/test",
+    "model/dataset/test/test_x",
+    "model/dataset/test/test_y",
+    "model/models",
+]
+for d in dirs:
+    os.makedirs(d, exist_ok=True)
 
 # This dataset is essential to create your model, you need to add the following :
 # * ``train_x`` : a training set of images that you hand-cut yourself using `Fiji <https://imagej.net/software/fiji/downloads>`_ and more specifically `ImageJ <https://imagej.net/software/imagej>`_.
@@ -42,8 +40,8 @@ if False:
 # .. raw:: html
 #
 #    <p align="center">
-#      <img src="images/example_frame.jpg" alt="frame_ex" width="45%"/>
-#      <img src="images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
+#      <img src="./doc/souce/images/example_frame.jpg" alt="frame_ex" width="45%"/>
+#      <img src="./doc/source/images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
 #    </p>
 #
 # .. note::
@@ -53,7 +51,6 @@ if False:
 #
 # The META file is here to help the package recognize the formats of the different objects in the dataset folder.
 
-import os
 import json
 
 # Path to the JSON file
@@ -183,8 +180,6 @@ print(scores_test)
 
 scores_all[f"training"] = scores_training
 scores_all[f"test"] = scores_test
-# print_stats(scores_training, "IOU", "training set")    # WRONG USAGE
-# print_stats(scores_test, "IOU", "test set")            # WRONG USAGE
 
 pd.DataFrame(scores_all).to_csv("model/scores.csv", index=False)
 
@@ -231,3 +226,18 @@ comp_model("./model", train=False)
 # if you put `train=False`, it will compare the test set with the predictions on the test set.
 # if you put `train=True`, it will compare the training set with the predictions on the training set.
 # You can then find the results in the `output` folder.
+
+comp_model("./model", train=True)
+
+#################################################
+# Calculate IOU
+# You have to be careful with the second argument. If you've put `train=False` (default), you will have to use the test set.
+# If you've put `train=True`, you will have to use the training set, which means that your second argument will be `./model/dataset/train/train_y/` and not `./model/dataset/test/test_y/`.
+
+from mactrack.visualisation.iou import mean_global_iou
+
+mean_global_iou(
+    "./model_output/test_def/ROIs_pred_def/",
+    "./model/dataset/test/test_y/",
+    "./model_output/comparison/",
+)
