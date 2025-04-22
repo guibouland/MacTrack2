@@ -46,8 +46,54 @@
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MacTrack2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#analyse">analyse</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#locate">locate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.analyse.distance">analyse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance_to_right_edge"><code class="docutils literal notranslate"><span class="pre">distance_to_right_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.calculate_ratio"><code class="docutils literal notranslate"><span class="pre">calculate_ratio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.graphmed"><code class="docutils literal notranslate"><span class="pre">graphmed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.intensity"><code class="docutils literal notranslate"><span class="pre">intensity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.intensitymed"><code class="docutils literal notranslate"><span class="pre">intensitymed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.perimeter"><code class="docutils literal notranslate"><span class="pre">perimeter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.aggregate"><code class="docutils literal notranslate"><span class="pre">aggregate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.calculate_intensity_features"><code class="docutils literal notranslate"><span class="pre">calculate_intensity_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.calculate_mean"><code class="docutils literal notranslate"><span class="pre">calculate_mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.plot_intensity_curves"><code class="docutils literal notranslate"><span class="pre">plot_intensity_curves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.tabglobal.tabglobal"><code class="docutils literal notranslate"><span class="pre">tabglobal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.defuse">locate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.invdefuse"><code class="docutils literal notranslate"><span class="pre">invdefuse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.paint_black_area_from_mask"><code class="docutils literal notranslate"><span class="pre">paint_black_area_from_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.process_images"><code class="docutils literal notranslate"><span class="pre">process_images()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.save_segmentation_images"><code class="docutils literal notranslate"><span class="pre">save_segmentation_images()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.trace_lines_between_contours"><code class="docutils literal notranslate"><span class="pre">trace_lines_between_contours()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation"><code class="docutils literal notranslate"><span class="pre">segmentation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.add_image"><code class="docutils literal notranslate"><span class="pre">segmentation.add_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_image"><code class="docutils literal notranslate"><span class="pre">segmentation.get_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_list"><code class="docutils literal notranslate"><span class="pre">segmentation.get_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.load_images"><code class="docutils literal notranslate"><span class="pre">segmentation.load_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.replace_image"><code class="docutils literal notranslate"><span class="pre">segmentation.replace_image()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.temp_dataset.create_temporary_dataset"><code class="docutils literal notranslate"><span class="pre">create_temporary_dataset()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track">track</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video">video</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.visualisation">visualisation</a></li>
@@ -81,11 +127,221 @@
              
   <section id="mactrack2">
 <h1>MacTrack2<a class="headerlink" href="#mactrack2" title="Link to this heading"></a></h1>
-<section id="analyse">
-<h2>analyse<a class="headerlink" href="#analyse" title="Link to this heading"></a></h2>
+<section id="module-mactrack.analyse.distance">
+<span id="analyse"></span><h2>analyse<a class="headerlink" href="#module-mactrack.analyse.distance" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.distance.count_valid_entries">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.count_valid_entries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.distance.distance">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.distance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.distance.distance_to_right_edge">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">distance_to_right_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#distance_to_right_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.distance_to_right_edge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.distance.graph">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.analyse.intensity">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.calculate_ratio">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">calculate_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path_contour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_f0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#calculate_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.calculate_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.count_valid_entries">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.count_valid_entries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.graph">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.graphmed">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">graphmed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#graphmed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.graphmed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.intensity">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">intensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#intensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.intensity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.intensity.intensitymed">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.intensity.</span></span><span class="sig-name descname"><span class="pre">intensitymed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#intensitymed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.intensitymed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.analyse.perimeter">
+<dt class="sig sig-object py" id="mactrack.analyse.perimeter.count_valid_entries">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.perimeter.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/perimeter.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.perimeter.count_valid_entries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.perimeter.graph">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.perimeter.</span></span><span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/perimeter.html#graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.perimeter.graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.perimeter.object_size">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.perimeter.</span></span><span class="sig-name descname"><span class="pre">object_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/perimeter.html#object_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.perimeter.object_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.perimeter.perimeter">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.perimeter.</span></span><span class="sig-name descname"><span class="pre">perimeter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/perimeter.html#perimeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.perimeter.perimeter" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.analyse.recap">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.aggregate">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perimeter_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.aggregate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.calculate_intensity_features">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">calculate_intensity_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#calculate_intensity_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.calculate_intensity_features" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.calculate_mean">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">calculate_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#calculate_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.calculate_mean" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.count_valid_entries">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.count_valid_entries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.load_data">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#load_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.load_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.recap.plot_intensity_curves">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.recap.</span></span><span class="sig-name descname"><span class="pre">plot_intensity_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_entry_counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#plot_intensity_curves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.plot_intensity_curves" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.analyse.size">
+<dt class="sig sig-object py" id="mactrack.analyse.size.count_valid_entries">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.size.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.count_valid_entries" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.size.graph">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.size.</span></span><span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.size.object_size">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.size.</span></span><span class="sig-name descname"><span class="pre">object_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#object_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.object_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.analyse.size.size">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.size.</span></span><span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.analyse.tabglobal">
+<dt class="sig sig-object py" id="mactrack.analyse.tabglobal.tabglobal">
+<span class="sig-prename descclassname"><span class="pre">mactrack.analyse.tabglobal.</span></span><span class="sig-name descname"><span class="pre">tabglobal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/tabglobal.html#tabglobal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.tabglobal.tabglobal" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="locate">
-<h2>locate<a class="headerlink" href="#locate" title="Link to this heading"></a></h2>
+<section id="module-mactrack.locate.defuse">
+<span id="locate"></span><h2>locate<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.defuse">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">defuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#defuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.defuse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.extract_and_save_objects">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">extract_and_save_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_object_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#extract_and_save_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.extract_and_save_objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.invdefuse">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">invdefuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#invdefuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.invdefuse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.paint_black_area_from_mask">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">paint_black_area_from_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#paint_black_area_from_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.paint_black_area_from_mask" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.process_images">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">process_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_line_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#process_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.process_images" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.save_segmentation_images">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">save_segmentation_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segmentation_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#save_segmentation_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.save_segmentation_images" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.trace_lines_between_contours">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">trace_lines_between_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#trace_lines_between_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.trace_lines_between_contours" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class" id="module-mactrack.locate.list_sep">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mactrack.locate.list_sep.</span></span><span class="sig-name descname"><span class="pre">segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.add_image">
+<span class="sig-name descname"><span class="pre">add_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.add_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.add_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_image">
+<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_list">
+<span class="sig-name descname"><span class="pre">get_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.load_images">
+<span class="sig-name descname"><span class="pre">load_images</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.load_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.load_images" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.replace_image">
+<span class="sig-name descname"><span class="pre">replace_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.replace_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.replace_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function" id="module-mactrack.locate.temp_dataset">
+<dt class="sig sig-object py" id="mactrack.locate.temp_dataset.create_temporary_dataset">
+<span class="sig-prename descclassname"><span class="pre">mactrack.locate.temp_dataset.</span></span><span class="sig-name descname"><span class="pre">create_temporary_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">imput_image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/temp_dataset.html#create_temporary_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.temp_dataset.create_temporary_dataset" title="Link to this definition"></a></dt>
+<dd><p>Creates a temporary dataset for structural purposes in the execution of the locate_frame function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>imput_image_path</strong> (<em>str</em>) – Path to the input image.</p></li>
+<li><p><strong>model_path</strong> (<em>str</em>) – Path to the model you want to use. Should contain a ‘models’ folder with the model in it and a dataset folder with the dataset used to train the model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-mactrack.track">
 <span id="track"></span><h2>track<a class="headerlink" href="#module-mactrack.track" title="Link to this heading"></a></h2>
