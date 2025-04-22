@@ -1,8 +1,8 @@
 Quickstart
 ==========
 
-Autodocumentation for the `quickstart.py` script.:
+.. automodule:: quickstart
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-.. literalinclude:: ../../quickstart.py
-   :language: python
-   :linenos:
