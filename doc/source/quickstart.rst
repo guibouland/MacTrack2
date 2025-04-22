@@ -40,8 +40,8 @@ Here is an example of an image that will be placed in the **x** sets (whether it
 .. raw:: html
 
    <p align="center">
-     <img src="./doc/souce/images/example_frame.jpg" alt="frame_ex" width="45%"/>
-     <img src="./doc/source/images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
+     <img src="MacTrack2/doc/source/_static/images/example_frame.jpg" alt="frame_ex" width="45%"/>
+     <img src="MacTrack2/doc/source/_static/images/example_frame_ROI.jpg" alt="ROI_ex" width="45%"/>
    </p>
 
 .. note::
