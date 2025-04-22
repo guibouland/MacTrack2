@@ -21,6 +21,8 @@ Table of Contents
    quickstart
    Set_up
    mactrack
+   set_up 
+   
 
 * :ref:`genindex`
 * :ref:`modindex`
