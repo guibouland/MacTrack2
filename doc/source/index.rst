@@ -19,10 +19,7 @@ Table of Contents
    :maxdepth: 2
 
    quickstart
+   gettingstarted
    Set_up
-   mactrack/index
+   mactrack
    
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
