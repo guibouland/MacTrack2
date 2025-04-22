@@ -112,7 +112,7 @@ def locate(input_folder):
 
 
 def locate_frame(input_image_path, model_path, output_name):
-    """Same function as locate but for a single frame. Used for model building or to test the performences of the model.
+    """Same function as `locate` but for a single frame. Used for model building or to test the performences of the model.
 
     Args:
         input_image_path (str): Path to the input image.
