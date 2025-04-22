@@ -6,12 +6,19 @@
 Welcome to MacTrack2's documentation!
 ======================================
 
+
+Add the readme in sphinx format after it is redone
+
+
+
+
+Table of Contents
+------------------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    quickstart
    Set_up
    mactrack
-   modules
 
