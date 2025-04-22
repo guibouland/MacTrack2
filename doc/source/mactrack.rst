@@ -1,40 +1,49 @@
-mactrack package
-================
+mactrack
+========
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   mactrack.locate
-   mactrack.track
-   mactrack.video
-   mactrack.visualisation
-
-Submodules
-----------
-
-mactrack.gettingstarted module
-------------------------------
+gettingstarted
+--------------
 
 .. literalinclude:: ../../mactrack/gettingstarted.py
    :language: python
    :linenos:
 
 
-mactrack.gettingstarted\_norma module
--------------------------------------
+analyse
+-------
 
-.. literalinclude:: ../../mactrack/gettingstarted_norma.py
-   :language: python
-   :linenos:
-
-
-Module contents
----------------
-
-.. automodule:: mactrack
+.. automodule:: mactrack.analyse
    :members:
    :show-inheritance:
    :undoc-members:
+
+locate
+------
+
+.. automodule:: mactrack.locate
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+track 
+-----
+.. automodule:: mactrack.track
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+video
+-----
+.. automodule:: mactrack.video
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+visualisation
+-------------
+.. automodule:: mactrack.visualisation
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+

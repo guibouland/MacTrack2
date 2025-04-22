@@ -1,5 +1,5 @@
-Quickstart API
-==============
+Quickstart
+==========
 
 Autodocumentation for the `quickstart.py` script.:
 
