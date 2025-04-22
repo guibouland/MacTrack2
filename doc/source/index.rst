@@ -22,3 +22,6 @@ Table of Contents
    Set_up
    mactrack
 
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
