@@ -75,16 +75,6 @@ def get_folder_shapes(folder_path):
     return shapes
 
 
-# Exemple d'utilisation
-# zip_pred = "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/test_def/ROIs_pred_def/004_frame_masks.zip"
-# zip_gt = "/home/gbouland/warm/model_test/model/dataset/test/test_y/004_masks.zip"
-# canvas_shape = get_image_shape(
-#    "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/comparison/004_frame_heatmap_roi_roi.png"
-# )
-# iou_global = compute_global_iou(zip_pred, zip_gt, canvas_shape=canvas_shape)
-# print(f"IoU global : {iou_global:.4f}")
-
-
 def mean_global_iou(zip_pred_folder, zip_gt_folder, image_folder):
     """Function that computes the mean global IoU between two folders of zip files.
     The zip files are expected to contain ROIs in ImageJ format.
@@ -125,45 +115,3 @@ def mean_global_iou(zip_pred_folder, zip_gt_folder, image_folder):
 
     mean_iou = np.mean(ious)
     return mean_iou, ious
-
-
-# print(
-#    mean_global_iou(
-#        "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/test_def/ROIs_pred_def/",
-#        "/home/gbouland/warm/model_test/model_small/dataset/test/test_y/",
-#        "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/comparison/",
-#    )
-# )
-
-# print(
-#    mean_global_iou(
-#        "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/test_def/ROIs_pred_def/",
-#        "/home/gbouland/warm/model_test/model_slides/dataset/train/train_y/",
-#        "/home/gbouland/Stage-LPHI-2024/mactrack/visualisation/output/comparison/",
-#    )
-# )
-#
-
-
-## 2e test
-def call(y_true, y_pred):
-    _y_true = y_true[0].copy()
-    _y_pred = y_pred["mask"]
-    _y_pred[_y_pred > 0] = 1
-    if np.sum(_y_true) == 0:
-        _y_true = 1 - _y_true
-        _y_pred = 1 - _y_pred
-    intersection = np.logical_and(_y_true, _y_pred)
-    union = np.logical_or(_y_true, _y_pred)
-    score = 1.0 - np.sum(intersection) / np.sum(union)
-    return score
-
-
-def compute_one(y_true, y_pred):
-    score = 0.0
-    y_size = len(y_true)
-    for i in range(y_size):
-        _y_true = y_true[i].copy()
-        _y_pred = y_pred[i]
-        score += call(_y_true, _y_pred)
-    return score / y_size

@@ -7,32 +7,38 @@ analyse
 .. automodule:: mactrack.analyse.distance
     :members:
     :show-inheritance:
+    :private-members:
     :undoc-members:
 
 .. automodule:: mactrack.analyse.intensity
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.analyse.perimeter
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.analyse.recap
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.analyse.size
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.analyse.tabglobal
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 
 
@@ -41,44 +47,51 @@ locate
 
 .. automodule:: mactrack.locate.defuse
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.locate.list_sep
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.locate.locate
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 .. automodule:: mactrack.locate.temp_dataset
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 track
 -----
 
 .. automodule:: mactrack.track
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 video
 -----
 
 .. automodule:: mactrack.video
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
 
 visualisation
 -------------
 
 .. automodule:: mactrack.visualisation
     :members:
-    :show-inheritance:
+    :private-members:
     :undoc-members:
+    :show-inheritance:
