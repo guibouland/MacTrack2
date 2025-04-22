@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="mactrack.html">mactrack package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="mactrack.html#subpackages">Subpackages</a><ul class="current">
@@ -52,7 +52,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">mactrack.track package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.track.filtre">mactrack.track.filtre module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.track.track">mactrack.track.track module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-track-track-module">mactrack.track.track module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.track">Module contents</a></li>
 </ul>
 </li>
@@ -73,17 +73,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.track.filtre.supprimer_petit"><code class="docutils literal notranslate"><span class="pre">supprimer_petit()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track.track">mactrack.track.track module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.find_containing_folder"><code class="docutils literal notranslate"><span class="pre">find_containing_folder()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.track"><code class="docutils literal notranslate"><span class="pre">track()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-track-track-module">mactrack.track.track module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mactrack.video.html">mactrack.video package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mactrack.visualisation.html">mactrack.visualisation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Set_up</a></li>
 </ul>
 
         </div>
@@ -124,23 +120,8 @@
 <dd></dd></dl>
 
 </section>
-<section id="module-mactrack.track.track">
-<span id="mactrack-track-track-module"></span><h2>mactrack.track.track module<a class="headerlink" href="#module-mactrack.track.track" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.track.track.calculate_iou">
-<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.calculate_iou" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.track.track.find_containing_folder">
-<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">find_containing_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#find_containing_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.find_containing_folder" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.track.track.track">
-<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_iou</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.track" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-track-track-module">
+<h2>mactrack.track.track module<a class="headerlink" href="#mactrack-track-track-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-mactrack.track">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mactrack.track" title="Link to this heading"></a></h2>

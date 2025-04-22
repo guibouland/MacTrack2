@@ -19,6 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Set_up" href="modules.html" />
     <link rel="prev" title="mactrack.video package" href="mactrack.video.html" /> 
 </head>
 
@@ -43,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="mactrack.html">mactrack package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="mactrack.html#subpackages">Subpackages</a><ul class="current">
@@ -52,8 +53,8 @@
 <li class="toctree-l3"><a class="reference internal" href="mactrack.video.html">mactrack.video package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">mactrack.visualisation package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.visualisation.iou">mactrack.visualisation.iou module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.visualisation.viz_model">mactrack.visualisation.viz_model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-visualisation-iou-module">mactrack.visualisation.iou module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-visualisation-viz-model-module">mactrack.visualisation.viz_model module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.visualisation">Module contents</a></li>
 </ul>
 </li>
@@ -70,28 +71,12 @@
 <li class="toctree-l1"><a class="reference internal" href="mactrack.video.html">mactrack.video package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">mactrack.visualisation package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.visualisation.iou">mactrack.visualisation.iou module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.build_global_mask"><code class="docutils literal notranslate"><span class="pre">build_global_mask()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.call"><code class="docutils literal notranslate"><span class="pre">call()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.compute_global_iou"><code class="docutils literal notranslate"><span class="pre">compute_global_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.compute_one"><code class="docutils literal notranslate"><span class="pre">compute_one()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.get_folder_shapes"><code class="docutils literal notranslate"><span class="pre">get_folder_shapes()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.get_image_shape"><code class="docutils literal notranslate"><span class="pre">get_image_shape()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.mean_global_iou"><code class="docutils literal notranslate"><span class="pre">mean_global_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.iou.roi_to_mask"><code class="docutils literal notranslate"><span class="pre">roi_to_mask()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.visualisation.viz_model">mactrack.visualisation.viz_model module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.viz_model.comp_model"><code class="docutils literal notranslate"><span class="pre">comp_model()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.viz_model.comp_model_frame"><code class="docutils literal notranslate"><span class="pre">comp_model_frame()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.viz_model.pred_to_rois"><code class="docutils literal notranslate"><span class="pre">pred_to_rois()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.viz_model.save_rois_to_folder"><code class="docutils literal notranslate"><span class="pre">save_rois_to_folder()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.visualisation.viz_model.visualize_roi"><code class="docutils literal notranslate"><span class="pre">visualize_roi()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-visualisation-iou-module">mactrack.visualisation.iou module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-visualisation-viz-model-module">mactrack.visualisation.viz_model module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.visualisation">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Set_up</a></li>
 </ul>
 
         </div>
@@ -124,188 +109,11 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.visualisation.iou">
-<span id="mactrack-visualisation-iou-module"></span><h2>mactrack.visualisation.iou module<a class="headerlink" href="#module-mactrack.visualisation.iou" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.build_global_mask">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">build_global_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#build_global_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.build_global_mask" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.call">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.call" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.compute_global_iou">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">compute_global_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip1_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zip2_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#compute_global_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.compute_global_iou" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.compute_one">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">compute_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#compute_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.compute_one" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.get_folder_shapes">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">get_folder_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#get_folder_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.get_folder_shapes" title="Link to this definition"></a></dt>
-<dd><p>Gets the shapes of images in a folder.
-WARNING! The folder must only contain images.
-The function will raise an error if it finds any other files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>folder_path</strong> (<em>str</em>) – Folder path containing images.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the folder contains non-image files or if an image cannot be read.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List of the shapes of the images in the folder.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.get_image_shape">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">get_image_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#get_image_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.get_image_shape" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.mean_global_iou">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">mean_global_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip_pred_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zip_gt_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#mean_global_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.mean_global_iou" title="Link to this definition"></a></dt>
-<dd><p>Function that computes the mean global IoU between two folders of zip files.
-The zip files are expected to contain ROIs in ImageJ format.
-The function will raise an error if the number of zip files in the two folders is not the same.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>zip_pred_folder</strong> (<em>str</em>) – Path to the folder containing predicted zip files.</p></li>
-<li><p><strong>zip_gt_folder</strong> (<em>str</em>) – Path to the folder containing ground truth zip files.</p></li>
-<li><p><strong>image_folder</strong> (<em>str</em>) – Path to the folder containing images to get the shape.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the number of zip files in the two folders is not the same.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Mean global IoU between the predicted and ground truth zip files.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.iou.roi_to_mask">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.iou.</span></span><span class="sig-name descname"><span class="pre">roi_to_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#roi_to_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.roi_to_mask" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-visualisation-iou-module">
+<h2>mactrack.visualisation.iou module<a class="headerlink" href="#mactrack-visualisation-iou-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.visualisation.viz_model">
-<span id="mactrack-visualisation-viz-model-module"></span><h2>mactrack.visualisation.viz_model module<a class="headerlink" href="#module-mactrack.visualisation.viz_model" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.comp_model">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">comp_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#comp_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.comp_model" title="Link to this definition"></a></dt>
-<dd><p>Compare the model with the ground truth. This functions takes a test set and a model path, and compares the model prediction with the ground truth.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.comp_model_frame">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">comp_model_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#comp_model_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.comp_model_frame" title="Link to this definition"></a></dt>
-<dd><p>Create an image comparison between the model and the ground truth.
-This function takes a frame, a model path, and a ground truth ROI frame.
-It is used to compare the model’s predictions with the ground truth after the model has been run.
-Be careful, in your ‘models’ folder, if you have more than one model, the function will
-take all of the available models and you will see a number of red outlines according to the number of models.
-We then recommend you to only keep one model in the ‘models’ folder, be it the one you want to compare with the ground truth.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>frame</strong> (<em>str</em>) – Path to the frame image.</p></li>
-<li><p><strong>model_path</strong> (<em>str</em>) – Path to the model folder. It must include the ‘models’ and ‘dataset’ folders, as well as the ‘dataset.csv’ and ‘PETA.json’ files.</p></li>
-<li><p><strong>roi_frame</strong> (<em>str</em>) – Path to the ground truth ROI frame. It must be a .zip file containing the ROIs or a .roi file.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.pred_to_rois">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">pred_to_rois</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#pred_to_rois"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.pred_to_rois" title="Link to this definition"></a></dt>
-<dd><p>Take the prediction (form the output of the ‘locate_frame’ function) and convert it to ROIs.
-This function extracts the contours of the masks and creates ROIs for each contour.
-Each ROI is represented as a polygon with its coordinates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pred</strong> (<em>list</em>) – Prediction from the model on a frame. Should be the output of the ‘locate_frame’ function.</p></li>
-<li><p><strong>score.</strong> (<em>Each element in the list is a tuple containing a list</em><em> of </em><em>masks and a</em>)</p></li>
-<li><p><strong>min_length</strong> (<em>int</em>) – Minimum length of the contour to be considered a valid ROI (to prevent points or artefacts).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A dictionary where each key is a unique name for the ROI and the value is a dictionary containing</dt><dd><p>the ROI type, coordinates (x, y), number of points (n), width, name, and position.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.save_rois_to_folder">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">save_rois_to_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rois</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#save_rois_to_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.save_rois_to_folder" title="Link to this definition"></a></dt>
-<dd><p>Save ROIs for each objects as .roi files in a zip file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rois</strong> (<em>dict</em>) – Dictionary containing ROIs. Each key is a unique name for the ROI and the value is a dictionary</p></li>
-<li><p><strong>folder_path</strong> (<em>str</em>) – Path to the folder where the ROIs will be saved.</p></li>
-<li><p><strong>frame_name</strong> (<em>str</em>) – Name of the frame. This will be used to name the zip file.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.visualize_roi">
-<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">visualize_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'red'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#visualize_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.visualize_roi" title="Link to this definition"></a></dt>
-<dd><p>Visualize the region of interest (ROI) on the image without white borders.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>image_path</strong> (<em>str</em>) – Path to the image file.</p></li>
-<li><p><strong>roi_path</strong> (<em>str</em>) – Path to the ROI file. Can be a .zip or .roi file.</p></li>
-<li><p><strong>output_folder</strong> (<em>str</em>) – Path to the folder where the output image will be saved.</p></li>
-<li><p><strong>color</strong> (<em>str</em><em>, </em><em>optional</em>) – Outline color for the ROI. Defaults to “red”.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>ValueError</strong> – If the ROI file format is not supported.</p></li>
-<li><p><strong>ValueError</strong> – If the ROI type is not recognized.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="mactrack-visualisation-viz-model-module">
+<h2>mactrack.visualisation.viz_model module<a class="headerlink" href="#mactrack-visualisation-viz-model-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-mactrack.visualisation">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mactrack.visualisation" title="Link to this heading"></a></h2>
@@ -317,6 +125,7 @@ Each ROI is represented as a polygon with its coordinates.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="mactrack.video.html" class="btn btn-neutral float-left" title="mactrack.video package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Set_up" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

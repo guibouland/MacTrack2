@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="mactrack.html">mactrack package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="mactrack.html#subpackages">Subpackages</a><ul class="current">
@@ -52,10 +52,10 @@
 <li class="toctree-l3"><a class="reference internal" href="mactrack.track.html">mactrack.track package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">mactrack.video package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.video.convert">mactrack.video.convert module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-video-convert-module">mactrack.video.convert module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.video.frame">mactrack.video.frame module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.video.inputconfig">mactrack.video.inputconfig module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.video.result">mactrack.video.result module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-video-inputconfig-module">mactrack.video.inputconfig module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-video-result-module">mactrack.video.result module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.video">Module contents</a></li>
 </ul>
 </li>
@@ -72,10 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mactrack.track.html">mactrack.track package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">mactrack.video package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.convert">mactrack.video.convert module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.convert.convert_avi_to_mp4"><code class="docutils literal notranslate"><span class="pre">convert_avi_to_mp4()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-video-convert-module">mactrack.video.convert module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.frame">mactrack.video.frame module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.video.frame.VideoFrames"><code class="docutils literal notranslate"><span class="pre">VideoFrames</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames.add_frame"><code class="docutils literal notranslate"><span class="pre">VideoFrames.add_frame()</span></code></a></li>
@@ -84,24 +81,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.inputconfig">mactrack.video.inputconfig module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.create_average_green_image"><code class="docutils literal notranslate"><span class="pre">create_average_green_image()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.inputconfig"><code class="docutils literal notranslate"><span class="pre">inputconfig()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.median_green_intensity"><code class="docutils literal notranslate"><span class="pre">median_green_intensity()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.result">mactrack.video.result module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.draw_contours"><code class="docutils literal notranslate"><span class="pre">draw_contours()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.generate_random_rgb_color"><code class="docutils literal notranslate"><span class="pre">generate_random_rgb_color()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.result"><code class="docutils literal notranslate"><span class="pre">result()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.video"><code class="docutils literal notranslate"><span class="pre">video()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.videocomp"><code class="docutils literal notranslate"><span class="pre">videocomp()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-video-inputconfig-module">mactrack.video.inputconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-video-result-module">mactrack.video.result module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mactrack.visualisation.html">mactrack.visualisation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Set_up</a></li>
 </ul>
 
         </div>
@@ -134,13 +120,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.video.convert">
-<span id="mactrack-video-convert-module"></span><h2>mactrack.video.convert module<a class="headerlink" href="#module-mactrack.video.convert" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.convert.convert_avi_to_mp4">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.convert.</span></span><span class="sig-name descname"><span class="pre">convert_avi_to_mp4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/convert.html#convert_avi_to_mp4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.convert.convert_avi_to_mp4" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-video-convert-module">
+<h2>mactrack.video.convert module<a class="headerlink" href="#mactrack-video-convert-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-mactrack.video.frame">
 <span id="mactrack-video-frame-module"></span><h2>mactrack.video.frame module<a class="headerlink" href="#module-mactrack.video.frame" title="Link to this heading"></a></h2>
@@ -161,51 +142,11 @@
 </dd></dl>
 
 </section>
-<section id="module-mactrack.video.inputconfig">
-<span id="mactrack-video-inputconfig-module"></span><h2>mactrack.video.inputconfig module<a class="headerlink" href="#module-mactrack.video.inputconfig" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.inputconfig.create_average_green_image">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.inputconfig.</span></span><span class="sig-name descname"><span class="pre">create_average_green_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#create_average_green_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.create_average_green_image" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.inputconfig.inputconfig">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.inputconfig.</span></span><span class="sig-name descname"><span class="pre">inputconfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#inputconfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.inputconfig" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.inputconfig.median_green_intensity">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.inputconfig.</span></span><span class="sig-name descname"><span class="pre">median_green_intensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#median_green_intensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.median_green_intensity" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-video-inputconfig-module">
+<h2>mactrack.video.inputconfig module<a class="headerlink" href="#mactrack-video-inputconfig-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.video.result">
-<span id="mactrack-video-result-module"></span><h2>mactrack.video.result module<a class="headerlink" href="#module-mactrack.video.result" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.result.draw_contours">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">draw_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contours</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#draw_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.draw_contours" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.result.generate_random_rgb_color">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">generate_random_rgb_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#generate_random_rgb_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.generate_random_rgb_color" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.result.result">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.result" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.result.video">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.video" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.video.result.videocomp">
-<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">videocomp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#videocomp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.videocomp" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-video-result-module">
+<h2>mactrack.video.result module<a class="headerlink" href="#mactrack-video-result-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-mactrack.video">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mactrack.video" title="Link to this heading"></a></h2>

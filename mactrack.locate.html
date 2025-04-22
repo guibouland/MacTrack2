@@ -44,16 +44,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up package</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="mactrack.html">mactrack package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="mactrack.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">mactrack.locate package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.locate.defuse">mactrack.locate.defuse module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.locate.list_sep">mactrack.locate.list_sep module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.locate.locate">mactrack.locate.locate module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-mactrack.locate.temp_dataset">mactrack.locate.temp_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-locate-defuse-module">mactrack.locate.defuse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-locate-list-sep-module">mactrack.locate.list_sep module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-locate-locate-module">mactrack.locate.locate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack-locate-temp-dataset-module">mactrack.locate.temp_dataset module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-mactrack.locate">Module contents</a></li>
 </ul>
 </li>
@@ -70,39 +70,10 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">mactrack.locate package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.defuse">mactrack.locate.defuse module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.invdefuse"><code class="docutils literal notranslate"><span class="pre">invdefuse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.paint_black_area_from_mask"><code class="docutils literal notranslate"><span class="pre">paint_black_area_from_mask()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.process_images"><code class="docutils literal notranslate"><span class="pre">process_images()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.save_segmentation_images"><code class="docutils literal notranslate"><span class="pre">save_segmentation_images()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.trace_lines_between_contours"><code class="docutils literal notranslate"><span class="pre">trace_lines_between_contours()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.list_sep">mactrack.locate.list_sep module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation"><code class="docutils literal notranslate"><span class="pre">segmentation</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.add_image"><code class="docutils literal notranslate"><span class="pre">segmentation.add_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_image"><code class="docutils literal notranslate"><span class="pre">segmentation.get_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_list"><code class="docutils literal notranslate"><span class="pre">segmentation.get_list()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.load_images"><code class="docutils literal notranslate"><span class="pre">segmentation.load_images()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.replace_image"><code class="docutils literal notranslate"><span class="pre">segmentation.replace_image()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.locate">mactrack.locate.locate module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.extract_objects"><code class="docutils literal notranslate"><span class="pre">extract_objects()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.filter_small_shapes"><code class="docutils literal notranslate"><span class="pre">filter_small_shapes()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.locate_frame"><code class="docutils literal notranslate"><span class="pre">locate_frame()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.temp_dataset">mactrack.locate.temp_dataset module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.temp_dataset.create_temporary_dataset"><code class="docutils literal notranslate"><span class="pre">create_temporary_dataset()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-locate-defuse-module">mactrack.locate.defuse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-locate-list-sep-module">mactrack.locate.list_sep module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-locate-locate-module">mactrack.locate.locate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack-locate-temp-dataset-module">mactrack.locate.temp_dataset module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate">Module contents</a></li>
 </ul>
 </li>
@@ -142,138 +113,17 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.locate.defuse">
-<span id="mactrack-locate-defuse-module"></span><h2>mactrack.locate.defuse module<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.defuse">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">defuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#defuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.defuse" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.extract_and_save_objects">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">extract_and_save_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_object_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#extract_and_save_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.extract_and_save_objects" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.invdefuse">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">invdefuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#invdefuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.invdefuse" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.paint_black_area_from_mask">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">paint_black_area_from_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#paint_black_area_from_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.paint_black_area_from_mask" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.process_images">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">process_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_line_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#process_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.process_images" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.save_segmentation_images">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">save_segmentation_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segmentation_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#save_segmentation_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.save_segmentation_images" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.defuse.trace_lines_between_contours">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">trace_lines_between_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#trace_lines_between_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.trace_lines_between_contours" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="mactrack-locate-defuse-module">
+<h2>mactrack.locate.defuse module<a class="headerlink" href="#mactrack-locate-defuse-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.locate.list_sep">
-<span id="mactrack-locate-list-sep-module"></span><h2>mactrack.locate.list_sep module<a class="headerlink" href="#module-mactrack.locate.list_sep" title="Link to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mactrack.locate.list_sep.</span></span><span class="sig-name descname"><span class="pre">segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.add_image">
-<span class="sig-name descname"><span class="pre">add_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.add_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.add_image" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_image">
-<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_image" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_list">
-<span class="sig-name descname"><span class="pre">get_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_list" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.load_images">
-<span class="sig-name descname"><span class="pre">load_images</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.load_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.load_images" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.replace_image">
-<span class="sig-name descname"><span class="pre">replace_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.replace_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.replace_image" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="mactrack-locate-list-sep-module">
+<h2>mactrack.locate.list_sep module<a class="headerlink" href="#mactrack-locate-list-sep-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.locate.locate">
-<span id="mactrack-locate-locate-module"></span><h2>mactrack.locate.locate module<a class="headerlink" href="#module-mactrack.locate.locate" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.locate.extract_objects">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.locate.</span></span><span class="sig-name descname"><span class="pre">extract_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#extract_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.extract_objects" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.locate.filter_small_shapes">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.locate.</span></span><span class="sig-name descname"><span class="pre">filter_small_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#filter_small_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.filter_small_shapes" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.locate.locate">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.locate.</span></span><span class="sig-name descname"><span class="pre">locate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#locate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.locate" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.locate.locate_frame">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.locate.</span></span><span class="sig-name descname"><span class="pre">locate_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#locate_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.locate_frame" title="Link to this definition"></a></dt>
-<dd><p>Same function as locate but for a single frame. Used for model building or to test the performences of the model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_image_path</strong> (<em>str</em>) – Path to the input image.</p></li>
-<li><p><strong>model_path</strong> (<em>str</em>) – Path to the model you want to use. Should contain a ‘models’ folder with the model in it and a dataset folder with the dataset used to train the model.</p></li>
-<li><p><strong>output_name</strong> (<em>str</em>) – Name of the output folder where the results will be saved.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>p_test, the prediction on the input frame</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="mactrack-locate-locate-module">
+<h2>mactrack.locate.locate module<a class="headerlink" href="#mactrack-locate-locate-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-mactrack.locate.temp_dataset">
-<span id="mactrack-locate-temp-dataset-module"></span><h2>mactrack.locate.temp_dataset module<a class="headerlink" href="#module-mactrack.locate.temp_dataset" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.locate.temp_dataset.create_temporary_dataset">
-<span class="sig-prename descclassname"><span class="pre">mactrack.locate.temp_dataset.</span></span><span class="sig-name descname"><span class="pre">create_temporary_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">imput_image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/temp_dataset.html#create_temporary_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.temp_dataset.create_temporary_dataset" title="Link to this definition"></a></dt>
-<dd><p>Creates a temporary dataset for structural purposes in the execution of the locate_frame function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>imput_image_path</strong> (<em>str</em>) – Path to the input image.</p></li>
-<li><p><strong>model_path</strong> (<em>str</em>) – Path to the model you want to use. Should contain a ‘models’ folder with the model in it and a dataset folder with the dataset used to train the model.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="mactrack-locate-temp-dataset-module">
+<h2>mactrack.locate.temp_dataset module<a class="headerlink" href="#mactrack-locate-temp-dataset-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-mactrack.locate">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mactrack.locate" title="Link to this heading"></a></h2>
