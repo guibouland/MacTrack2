@@ -46,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MacTrack2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.analyse.distance">analyse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.analyse.distance">Analysis</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance_to_right_edge"><code class="docutils literal notranslate"><span class="pre">distance_to_right_edge()</span></code></a></li>
@@ -74,7 +74,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.tabglobal.tabglobal"><code class="docutils literal notranslate"><span class="pre">tabglobal()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.defuse">locate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.defuse">Locate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
@@ -94,9 +94,27 @@
 <li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.temp_dataset.create_temporary_dataset"><code class="docutils literal notranslate"><span class="pre">create_temporary_dataset()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track">track</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video">video</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.visualisation">visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track.filtre">Track</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.filtre.supprimer_petit"><code class="docutils literal notranslate"><span class="pre">supprimer_petit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.find_containing_folder"><code class="docutils literal notranslate"><span class="pre">find_containing_folder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.track"><code class="docutils literal notranslate"><span class="pre">track()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.frame">Video</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.frame.VideoFrames"><code class="docutils literal notranslate"><span class="pre">VideoFrames</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames.add_frame"><code class="docutils literal notranslate"><span class="pre">VideoFrames.add_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames.add_frame_v"><code class="docutils literal notranslate"><span class="pre">VideoFrames.add_frame_v()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.draw_contours"><code class="docutils literal notranslate"><span class="pre">draw_contours()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.generate_random_rgb_color"><code class="docutils literal notranslate"><span class="pre">generate_random_rgb_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.result"><code class="docutils literal notranslate"><span class="pre">result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.video"><code class="docutils literal notranslate"><span class="pre">video()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.videocomp"><code class="docutils literal notranslate"><span class="pre">videocomp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualisation">Visualisation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,7 +146,7 @@
   <section id="mactrack2">
 <h1>MacTrack2<a class="headerlink" href="#mactrack2" title="Link to this heading"></a></h1>
 <section id="module-mactrack.analyse.distance">
-<span id="analyse"></span><h2>analyse<a class="headerlink" href="#module-mactrack.analyse.distance" title="Link to this heading"></a></h2>
+<span id="analysis"></span><h2>Analysis<a class="headerlink" href="#module-mactrack.analyse.distance" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.distance.count_valid_entries">
 <span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.count_valid_entries" title="Link to this definition"></a></dt>
@@ -256,7 +274,7 @@
 
 </section>
 <section id="module-mactrack.locate.defuse">
-<span id="locate"></span><h2>locate<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h2>
+<span id="locate"></span><h2>Locate<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
 <span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
@@ -343,14 +361,75 @@
 </dd></dl>
 
 </section>
-<section id="module-mactrack.track">
-<span id="track"></span><h2>track<a class="headerlink" href="#module-mactrack.track" title="Link to this heading"></a></h2>
+<section id="module-mactrack.track.filtre">
+<span id="track"></span><h2>Track<a class="headerlink" href="#module-mactrack.track.filtre" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.track.filtre.supprimer_petit">
+<span class="sig-prename descclassname"><span class="pre">mactrack.track.filtre.</span></span><span class="sig-name descname"><span class="pre">supprimer_petit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/filtre.html#supprimer_petit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.filtre.supprimer_petit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-mactrack.track.track">
+<dt class="sig sig-object py" id="mactrack.track.track.calculate_iou">
+<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.calculate_iou" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.track.track.find_containing_folder">
+<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">find_containing_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#find_containing_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.find_containing_folder" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.track.track.track">
+<span class="sig-prename descclassname"><span class="pre">mactrack.track.track.</span></span><span class="sig-name descname"><span class="pre">track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_iou</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.track" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="module-mactrack.video">
-<span id="video"></span><h2>video<a class="headerlink" href="#module-mactrack.video" title="Link to this heading"></a></h2>
+<section id="module-mactrack.video.frame">
+<span id="video"></span><h2>Video<a class="headerlink" href="#module-mactrack.video.frame" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mactrack.video.frame.</span></span><span class="sig-name descname"><span class="pre">VideoFrames</span></span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames.add_frame">
+<span class="sig-name descname"><span class="pre">add_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames.add_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames.add_frame" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames.add_frame_v">
+<span class="sig-name descname"><span class="pre">add_frame_v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames.add_frame_v"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames.add_frame_v" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function" id="module-mactrack.video.result">
+<dt class="sig sig-object py" id="mactrack.video.result.draw_contours">
+<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">draw_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contours</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#draw_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.draw_contours" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.video.result.generate_random_rgb_color">
+<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">generate_random_rgb_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#generate_random_rgb_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.generate_random_rgb_color" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.video.result.result">
+<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.video.result.video">
+<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.video" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.video.result.videocomp">
+<span class="sig-prename descclassname"><span class="pre">mactrack.video.result.</span></span><span class="sig-name descname"><span class="pre">videocomp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#videocomp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.videocomp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="module-mactrack.visualisation">
-<span id="visualisation"></span><h2>visualisation<a class="headerlink" href="#module-mactrack.visualisation" title="Link to this heading"></a></h2>
+<section id="visualisation">
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading"></a></h2>
 </section>
 </section>
 
