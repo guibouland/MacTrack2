@@ -13,21 +13,22 @@ from locate.locate import locate_frame
 
 
 def visualize_roi(image_path, roi_path, output_folder, color="red"):
-    """Visualize the region of interest (ROI) on the image without white borders.
+    """Visualize the region of interest (ROI) on an image without white borders.
 
-    Args:
-        image_path (str): Path to the image file.
-        roi_path (str): Path to the ROI file. Can be a .zip or .roi file.
-        output_folder (str): Path to the folder where the output image will be saved.
-        color (str, optional): Outline color for the ROI. Defaults to "red".
+    This function overlays the specified ROI on the given image and saves the
+    resulting visualization to the specified output folder.
 
-    Raises:
-        ValueError: If the ROI file format is not supported.
-        ValueError: If the ROI type is not recognized.
+    :param str image_path: Path to the image file.
+    :param str roi_path: Path to the ROI file. Supported formats are `.zip` and `.roi`.
+    :param str output_folder: Path to the folder where the output image will be saved.
+    :param str color: Outline color for the ROI. Defaults to "red".
 
-    Returns:
-        None
+    :raises ValueError: If the ROI file format is not supported.
+    :raises ValueError: If the ROI type is not recognized.
+
+    :returns: None
     """
+
     image = Image.open(image_path).convert("RGB")
     draw = ImageDraw.Draw(image)
 
@@ -52,18 +53,35 @@ def visualize_roi(image_path, roi_path, output_folder, color="red"):
 
 
 def pred_to_rois(pred, min_length):
-    """Take the prediction (form the output of the 'locate_frame' function) and convert it to ROIs.
-    This function extracts the contours of the masks and creates ROIs for each contour.
-    Each ROI is represented as a polygon with its coordinates.
+    """
+    Convert model predictions into Regions of Interest (ROIs).
 
-    Args:
-        pred (list): Prediction from the model on a frame. Should be the output of the 'locate_frame' function.
-        Each element in the list is a tuple containing a list of masks and a score.
-        min_length (int): Minimum length of the contour to be considered a valid ROI (to prevent points or artefacts).
+    This function processes the output of the 'locate_frame' function, extracts contours
+    from the masks, and generates ROIs for each contour. Each ROI is represented as a
+    polygon with its coordinates.
 
-    Returns:
-        dict: A dictionary where each key is a unique name for the ROI and the value is a dictionary containing
-              the ROI type, coordinates (x, y), number of points (n), width, name, and position.
+    Parameters
+    ----------
+    pred : list
+        A list of predictions from the model on a frame. Each element in the list is a
+        tuple containing a list of masks and a score. The masks are expected to be
+        binary arrays.
+    min_length : int
+        The minimum length of the contour to be considered a valid ROI. This helps
+        filter out small artefacts or noise.
+
+    Returns
+    -------
+    dict
+        A dictionary where each key is a unique name for the ROI, and the value is a
+        dictionary containing the following information:
+            - type (str): The type of the ROI (e.g., "polygon").
+            - x (list of float): The x-coordinates of the ROI's contour points.
+            - y (list of float): The y-coordinates of the ROI's contour points.
+            - n (int): The number of points in the contour.
+            - width (int): Placeholder for width (currently set to 0).
+            - name (str): The unique name of the ROI.
+            - position (int): Placeholder for position (currently set to 0).
     """
     rois = {}
 
@@ -100,7 +118,8 @@ def save_rois_to_folder(rois, folder_path, frame_name):
     """Save ROIs for each objects as .roi files in a zip file.
 
     Args:
-        rois (dict): Dictionary containing ROIs. Each key is a unique name for the ROI and the value is a dictionary
+        rois (dict): Dictionary containing ROIs.
+        Each key is a unique name for the ROI and the value is a dictionary
         folder_path (str): Path to the folder where the ROIs will be saved.
         frame_name (str): Name of the frame. This will be used to name the zip file.
 
@@ -135,21 +154,42 @@ def save_rois_to_folder(rois, folder_path, frame_name):
 
 
 def comp_model_frame(frame, model_path, roi_frame):
-    """Create an image comparison between the model and the ground truth.
-    This function takes a frame, a model path, and a ground truth ROI frame.
-    It is used to compare the model's predictions with the ground truth after the model has been run.
-    Be careful, in your 'models' folder, if you have more than one model, the function will
-    take all of the available models and you will see a number of red outlines according to the number of models.
-    We then recommend you to only keep one model in the 'models' folder, be it the one you want to compare with the ground truth.
-
-    Args:
-        frame (str): Path to the frame image.
-        model_path (str): Path to the model folder. It must include the 'models' and 'dataset' folders, as well as the 'dataset.csv' and 'PETA.json' files.
-        roi_frame (str): Path to the ground truth ROI frame. It must be a .zip file containing the ROIs or a .roi file.
-
-    Returns:
-        None
     """
+    Create an image comparison between the model's predictions and the ground truth.
+
+    This function processes a given frame using a specified model, generates predicted
+    ROIs (Regions of Interest), and visualizes them alongside the ground truth ROIs.
+    It is designed to compare the model's predictions with the ground truth after
+    the model has been run. Note that if there are multiple models in the 'models'
+    folder, the function will process all of them, resulting in multiple red outlines.
+    It is recommended to keep only one model in the 'models' folder for accurate comparison.
+
+    Parameters
+    ----------
+    frame : str
+        Path to the frame image.
+    model_path : str
+        Path to the model folder. The folder must include the 'models' and 'dataset'
+        subfolders, as well as the 'dataset.csv' and 'META.json' files.
+    roi_frame : str
+        Path to the ground truth ROI frame. This must be a .zip file containing the
+        ROIs or a .roi file.
+
+    Returns
+    -------
+        The function does not return any value. It generates visualizations and saves
+        them in the appropriate directories.
+
+    Notes
+    -----
+    - The function creates several temporary directories for intermediate outputs,
+      which are cleaned up after processing.
+    - The final outputs, including predicted ROIs, visualizations, and masks, are
+      saved in the 'test_def' directory within the 'model_output' folder.
+    - Ensure that the input paths are valid and the required files are present in
+      the specified directories.
+    """
+
     # Get the caller script's directory
     caller_path = os.path.dirname(os.path.abspath(__file__))
     # Define the output directory
@@ -217,7 +257,40 @@ def comp_model_frame(frame, model_path, roi_frame):
 
 
 def comp_model(model_path, train=False):
-    """Compare the model with the ground truth. This functions takes a test set and a model path, and compares the model prediction with the ground truth."""
+    """
+    comp_model(model_path, train=False)
+    Compare the model predictions with the ground truth.
+
+    This function takes a test or training dataset and a model path, then compares
+    the model's predictions with the ground truth data. The comparison results are
+    stored in an output directory.
+
+    Parameters
+    ----------
+    model_path : str
+        The path to the directory containing the model and dataset.
+    train : bool, optional
+        If True, the training dataset is used for comparison. If False, the test
+        dataset is used. Default is False.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the specified dataset or model path does not exist.
+    PermissionError
+        If there are insufficient permissions to access or modify the output directory.
+
+    Notes
+    -----
+    - The function assumes a specific directory structure under `model_path`:
+      - `dataset/train/train_x` and `dataset/train/train_y` for training data.
+      - `dataset/test/test_x` and `dataset/test/test_y` for test data.
+    - The output directory is cleared and recreated for each function call.
+
+    See Also
+    --------
+    comp_model_frame : Function used to compare individual frames.
+    """
     if train:
         set = "train"
     else:

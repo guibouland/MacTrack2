@@ -48,18 +48,18 @@ def get_image_shape(image_path):
 
 
 def get_folder_shapes(folder_path):
-    """Gets the shapes of images in a folder.
-    WARNING! The folder must only contain images.
-    The function will raise an error if it finds any other files.
+    """
+    Gets the dimensions (height and width) of all images in a specified folder.
 
-    Args:
-        folder_path (str): Folder path containing images.
+    .. warning::
+        The folder must only contain image files. If any non-image files are present
+        or an image cannot be read, the function will raise a ValueError.
 
-    Raises:
-        ValueError: If the folder contains non-image files or if an image cannot be read.
-
-    Returns:
-        list: List of the shapes of the images in the folder.
+    :param folder_path: The path to the folder containing the images.
+    :type folder_path: str
+    :raises ValueError: If the folder contains non-image files or if an image cannot be read.
+    :returns: A list of tuples representing the dimensions (height, width) of each image in the folder.
+    :rtype: list of tuple
     """
     shapes = []
     for filename in os.listdir(folder_path):
@@ -76,20 +76,36 @@ def get_folder_shapes(folder_path):
 
 
 def mean_global_iou(zip_pred_folder, zip_gt_folder, image_folder):
-    """Function that computes the mean global IoU between two folders of zip files.
-    The zip files are expected to contain ROIs in ImageJ format.
-    The function will raise an error if the number of zip files in the two folders is not the same.
+    """
+    Compute the mean global Intersection over Union (IoU) between two folders of zip files.
 
-    Args:
-        zip_pred_folder (str): Path to the folder containing predicted zip files.
-        zip_gt_folder (str): Path to the folder containing ground truth zip files.
-        image_folder (str): Path to the folder containing images to get the shape.
+    The zip files are expected to contain Regions of Interest (ROIs) in ImageJ format.
+    The function ensures that the number of zip files in the two folders is the same
+    and validates that all files have the `.zip` extension. It also retrieves image
+    shapes from the specified image folder to compute the IoU.
 
-    Raises:
-        ValueError: If the number of zip files in the two folders is not the same.
+    Parameters
+    ----------
+    zip_pred_folder : str
+        Path to the folder containing predicted zip files.
+    zip_gt_folder : str
+        Path to the folder containing ground truth zip files.
+    image_folder : str
+        Path to the folder containing images to retrieve their shapes.
 
-    Returns:
-        float: Mean global IoU between the predicted and ground truth zip files.
+    Raises
+    ------
+    ValueError
+        If the number of zip files in the two folders is not the same.
+    ValueError
+        If any file in the folders does not have a `.zip` extension.
+
+    Returns
+    -------
+    float
+        The mean global IoU between the predicted and ground truth zip files.
+    list of float
+        A list of IoU values for each pair of predicted and ground truth zip files.
     """
     zip_pred_files = [
         os.path.join(zip_pred_folder, f) for f in sorted(os.listdir(zip_pred_folder))
