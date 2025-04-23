@@ -1,8 +1,8 @@
 MacTrack2
 =========
 
-analyse
--------
+Analysis
+---------
 
 .. automodule:: mactrack.analyse.distance
     :members:
@@ -42,8 +42,8 @@ analyse
 
 
 
-locate
-------
+Locate
+-------
 
 .. automodule:: mactrack.locate.defuse
     :members:
@@ -69,28 +69,58 @@ locate
     :undoc-members:
     :show-inheritance:
 
-track
------
+Track
+------
 
-.. automodule:: mactrack.track
+.. automodule:: mactrack.track.filtre
     :members:
     :private-members:
     :undoc-members:
     :show-inheritance:
 
-video
------
-
-.. automodule:: mactrack.video
+.. automodule:: mactrack.track.track
     :members:
     :private-members:
     :undoc-members:
     :show-inheritance:
 
-visualisation
+Video
+-----
+
+.. automodule:: mactrack.video.convert
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: mactrack.video.frame
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: mactrack.video.inputconfig
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: mactrack.video.result
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
+
+Visualisation
 -------------
 
-.. automodule:: mactrack.visualisation
+.. automodule:: mactrack.visualisation.iou
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: mactrack.visualisation.viz_model
     :members:
     :private-members:
     :undoc-members:
