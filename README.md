@@ -1,17 +1,12 @@
 # MacTrack2
 
-Derived from the work by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. Our work aims at simplifying its use and providing an example dataset that matches the structures that the subsequent libraries oblige you to follow.
+Derived from the work by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. Our work aims at simplifying its use by adding different scripts. For instance, a `gettingstarted` file in the `mactrack` folder is here to help you with the analysis of your videos, based that we provide in the `examples` folder. You can also create your own model by running the `quickstart.py` file. Make sure to careffuly read the documentation of these two files. You can find them either in the files or in the website available [here](https://guibouland.github.io/MacTrack2/).
 
----
-
-First, all the videos and frames we used for analysis and segmentation were taken using a spinning disk confocal microscope, which illuminates macrophages in red and calcium flashes in green, thanks to a zebrafish transgenic lineage. We cut the caudal fin fold of a zebrafish in order to study if there is a correlation between the macrophage polarization and calcium flashes.
-
-The goal of this project is then to accurately segment the macrophages. This segmentation will allow us to superimpose it on the green channel video to analyse the calcium flashes of the macrophages we have tracked.
+The goal of this project is then to accurately segment the macrophages. This segmentation will allow us to superimpose it on the green channel video to analyse the calcium flashes of the macrophages we have tracked. We then can retrieve informations on each macrophages conditionnally to the segmentation (such as amplitude of flashes, intensity...) without being hindered by the noise we often encounter in microscopic images.
 
 ## Installation
 
-As my internship was following his work, I had to be acostumed to what he did during his time at LPHI. This repository consists of upgrades of the original work available via this [link](https://github.com/Axeldmont/Stage-LPHI-2024). We recommend you to clone this repository more than the other, as we worked on improving it. 
-
+As my internship was following his work, I had to be acostumed to what he did during his time at LPHI. This repository consists of upgrades of the original work available via this [link](https://github.com/Axeldmont/Stage-LPHI-2024). We recommend you to clone this repository more than the other, as we worked on improving it.
 
 ```bash
 git clone https://github.com/guibouland/MacTrack2.git
@@ -92,6 +87,10 @@ You can execute the `convert.py` file in the `Set_up` folder to convert AVI file
 ---
 
 The `input` subfolder (in the `examples` folder) contains a full, ready to use, example dataset that you can use to execute Axel's **Mactrack** by running the `gettingstarted_example` file in the `mactrack` folder.
+
+## Materials and Methods
+
+First, all the videos and frames we used for analysis and segmentation were taken using a spinning disk confocal microscope, which illuminates macrophages in red and calcium flashes in green, thanks to a zebrafish transgenic lineage. We cut the caudal fin fold of a zebrafish in order to study if there is a correlation between the macrophage polarization and calcium flashes.
 
 * [ ] Link to an ImageJ (Fiji) tuto to hand-cut frames.
 * [ ] update readme fully
