@@ -1,0 +1,78 @@
+{
+    "dataset": {
+        "name": "Macrophage",
+        "label_name": "macrophage",
+        "indices": null
+    },
+    "individual": {
+        "sequence": "[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [9, 0, 0, 51, 193], [25, 0, 1, 61, 3], [5, 2, 3, 26, 122], [29, 2, 4, 182, 135], [32, 5, 0, 241, 220], [6, 1, 1, 66, 174], [26, 3, 4, 61, 167], [19, 7, 5, 14, 144], [7, 7, 10, 186, 0], [20, 7, 10, 0, 184], [34, 7, 2, 249, 105], [35, 1, 8, 159, 179], [11, 4, 9, 218, 33], [2, 11, 7, 27, 126], [18, 13, 0, 135, 2], [33, 0, 3, 49, 193], [16, 3, 10, 127, 8], [3, 17, 17, 25, 63], [16, 2, 1, 44, 44], [33, 19, 16, 37, 231], [12, 13, 9, 0, 188], [2, 16, 13, 78, 110], [38, 3, 22, 79, 15], [2, 22, 13, 134, 36], [28, 20, 7, 130, 83], [16, 13, 20, 48, 37], [11, 7, 11, 6, 86], [4, 14, 4, 197, 2], [9, 6, 28, 185, 114], [36, 17, 15, 188, 68], [0, 24, 0, 0, 0]]",
+        "fitness": {
+            "fitness": 0.2836861490025096,
+            "time": 0.002126951217651367
+        }
+    },
+    "decoding": {
+        "metadata": {
+            "rows": 1,
+            "columns": 30,
+            "n_in": 3,
+            "n_out": 1,
+            "n_para": 2,
+            "n_conn": 2
+        },
+        "functions": [
+            "max",
+            "min",
+            "mean",
+            "add",
+            "subtract",
+            "bitwise_not",
+            "bitwise_or",
+            "bitwise_and",
+            "bitwise_and_mask",
+            "bitwise_xor",
+            "sqrt",
+            "pow2",
+            "exp",
+            "log",
+            "median_blur",
+            "gaussian_blur",
+            "laplacian",
+            "sobel",
+            "robert_cross",
+            "canny",
+            "sharpen",
+            "gabor",
+            "abs_diff",
+            "abs_diff2",
+            "fluo_tophat",
+            "rel_diff",
+            "erode",
+            "dilate",
+            "open",
+            "close",
+            "morph_gradient",
+            "morph_tophat",
+            "morph_blackhat",
+            "fill_holes",
+            "remove_small_objects",
+            "remove_small_holes",
+            "threshold",
+            "threshold_at_1",
+            "distance_transform",
+            "distance_transform_and_thresh",
+            "inrange_bin",
+            "inrange"
+        ],
+        "endpoint": {
+            "name": "Threshold (t=4)",
+            "abbv": "TRSH",
+            "arity": 1,
+            "args": 0,
+            "kwargs": {
+                "threshold": 4
+            }
+        },
+        "mode": "default"
+    }
+}
