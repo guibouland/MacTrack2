@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started &mdash; MacTrack2 0.1 documentation</title>
+  <title>Macrophage Tracking &mdash; MacTrack2 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -44,7 +44,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Macrophage Tracking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frame-extraction">Frame Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cleanup">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#segmentation">Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defusion">Defusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tracking">Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#video-generation">Video Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-cleanup">Optional Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-output-folders">Create Output Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-extraction">Feature Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mactrack.html">MacTrack2</a></li>
 </ul>
@@ -63,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Getting started</li>
+      <li class="breadcrumb-item active">Macrophage Tracking</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/gettingstarted.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,8 +87,173 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+  <section id="macrophage-tracking">
+<h1>Macrophage Tracking<a class="headerlink" href="#macrophage-tracking" title="Link to this heading"></a></h1>
+<p>This page will help you get started with MacTrack2 and the analysis of macrophage videos.</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">locate.locate</span><span class="w"> </span><span class="kn">import</span> <span class="n">locate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locate.list_sep</span><span class="w"> </span><span class="kn">import</span> <span class="n">segmentation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locate.defuse</span><span class="w"> </span><span class="kn">import</span> <span class="n">defuse</span><span class="p">,</span> <span class="n">invdefuse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">track.track</span><span class="w"> </span><span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">video.inputconfig</span><span class="w"> </span><span class="kn">import</span> <span class="n">inputconfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">video.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">video</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">videocomp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.intensity</span><span class="w"> </span><span class="kn">import</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">intensitymed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.size</span><span class="w"> </span><span class="kn">import</span> <span class="n">size</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.perimeter</span><span class="w"> </span><span class="kn">import</span> <span class="n">perimeter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.recap</span><span class="w"> </span><span class="kn">import</span> <span class="n">aggregate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">track.filtre</span><span class="w"> </span><span class="kn">import</span> <span class="n">supprimer_petit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="n">current</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.count</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_frame_count</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_avi_to_mp4</span>
+</pre></div>
+</div>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
+<p>We need the path to the folder you will use as input, containing:</p>
+<ul class="simple">
+<li><p>The pretrained model</p></li>
+<li><p>The dataset used for training</p></li>
+<li><p>The example video for tracking and analysis</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s2">&quot;examples/input_tracking/&quot;</span><span class="p">)</span>
+<span class="n">video_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;redchannel.avi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If your video is in <cite>.avi</cite> format (as is often the case with microscopic videos), you can convert it to <cite>.mp4</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">video_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.avi&quot;</span><span class="p">):</span>
+    <span class="n">convert_avi_to_mp4</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+    <span class="n">video_path</span> <span class="o">=</span> <span class="n">video_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.avi&quot;</span><span class="p">,</span> <span class="s2">&quot;.mp4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, your video is a <cite>.mp4</cite> file and can be used in the pipeline.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">get_frame_count</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>  <span class="c1"># Number of frames in the initial video</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Minimal number of frames in which a macrophage must appear to be tracked</span>
+</pre></div>
+</div>
+</section>
+<section id="frame-extraction">
+<h2>Frame Extraction<a class="headerlink" href="#frame-extraction" title="Link to this heading"></a></h2>
+<p>We will cut the video into frames and store them in <cite>input_folder</cite>.</p>
+<ul class="simple">
+<li><p>Red channel frames: <cite>input_folder/dataset/test/test_x</cite></p></li>
+<li><p>Green channel frames: <cite>input_folder/vert/frames</cite></p></li>
+</ul>
+<p>⚠️ The following function erases the contents in the <cite>dataset</cite> folder. If it contains the frames you used to build your model (as in demonstrated in the <a class="reference internal" href="quickstart.html"><span class="doc">Quickstart for MacTrack2</span></a>) may be deleted.</p>
+<p>Recommendation: use a <strong>copy</strong> of your model-building folder, or change the working folder to avoid data loss. That is why we used <cite>input_tracking</cite> as the input folder and not <cite>input_model</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">inputconfig</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cleanup">
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
+<p>Delete the <cite>list_sep</cite> and <cite>list_comp</cite> folders if they already exist to avoid inconsistencies in frame count:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/list_comp&quot;</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_comp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can add a <strong>#</strong> if you want to keep them.</p>
+</section>
+<section id="segmentation">
+<h2>Segmentation<a class="headerlink" href="#segmentation" title="Link to this heading"></a></h2>
+<p>We begin tracking macrophages in the red channel video. This function:</p>
+<ul class="simple">
+<li><p>Creates an <cite>output</cite> folder</p></li>
+<li><p>Generates <cite>list_comp</cite>: full-frame segmentations</p></li>
+<li><p>Generates <cite>list_sep</cite>: individual macrophages per frame</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">locate</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we load all the images into memory to accelerate further processing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_storage</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">)</span>
+<span class="n">image_storage</span><span class="o">.</span><span class="n">load_images</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="defusion">
+<h2>Defusion<a class="headerlink" href="#defusion" title="Link to this heading"></a></h2>
+<p>This step separates merged macrophages, as nearby cells might be detected as a single object.</p>
+<p>Creates <cite>output/list_def</cite> containing the corrected segmentation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_storage</span> <span class="o">=</span> <span class="n">defuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">)</span>
+<span class="n">image_storage</span> <span class="o">=</span> <span class="n">invdefuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tracking">
+<h2>Tracking<a class="headerlink" href="#tracking" title="Link to this heading"></a></h2>
+<p>Track all macrophages across frames. Only keep those present in more than <cite>p</cite> frames.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">track</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">threshold_iou</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">image_storage</span><span class="o">=</span><span class="n">image_storage</span><span class="p">)</span>
+<span class="n">supprimer_petit</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="video-generation">
+<h2>Video Generation<a class="headerlink" href="#video-generation" title="Link to this heading"></a></h2>
+<p>Generate two videos showing tracking results:</p>
+<ul class="simple">
+<li><p><cite>result.mp4</cite>: red channel</p></li>
+<li><p><cite>resultv.mp4</cite>: green channel</p></li>
+</ul>
+<p>Stored in the <cite>output</cite> folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
+<span class="n">video</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-cleanup">
+<h2>Optional Cleanup<a class="headerlink" href="#optional-cleanup" title="Link to this heading"></a></h2>
+<p>Free up disk space by removing intermediate folders. Comment out the lines if you want to keep them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_def&quot;</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/result&quot;</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/resultv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-output-folders">
+<h2>Create Output Folders<a class="headerlink" href="#create-output-folders" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/data&quot;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;output/data&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/plot&quot;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;output/plot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="feature-extraction">
+<h2>Feature Extraction<a class="headerlink" href="#feature-extraction" title="Link to this heading"></a></h2>
+<p>Extract and store features in DataFrames:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">intmed</span> <span class="o">=</span> <span class="n">intensitymed</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">input_folder</span><span class="p">)</span>  <span class="c1"># Intensity of macrophages</span>
+<span class="n">dis</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Distance to the right border</span>
+<span class="n">siz</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Macrophage size</span>
+<span class="n">per</span> <span class="o">=</span> <span class="n">perimeter</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Macrophage perimeter</span>
+</pre></div>
+</div>
+<p>Aggregate results in a recap:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">recap</span> <span class="o">=</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">dis</span><span class="p">,</span> <span class="n">intmed</span><span class="p">,</span> <span class="n">siz</span><span class="p">,</span> <span class="n">per</span><span class="p">)</span>  <span class="c1"># Summary of all features per macrophage</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>You now have:</p>
+<ul class="simple">
+<li><p>Tracked macrophages through time</p></li>
+<li><p>Segmented images and result videos</p></li>
+<li><p>DataFrames of physical and intensity metrics</p></li>
+<li><p>Aggregated summaries ready for analysis</p></li>
+</ul>
+</section>
 </section>
 
 
