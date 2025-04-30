@@ -5,7 +5,7 @@ Welcome to MacTrack2's documentation!
 Add the readme in sphinx format after it is redone
 
 
-..toctree::
+.. toctree::
     :maxdepth: 1
     :caption: Contents:
     
