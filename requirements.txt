@@ -1,9 +1,9 @@
+git+https://github.com/guibouland/Numena.git@main#egg=numena
 kartezio==1.0.0a1
-matplotlib==3.10.1
+matplotlib
 moviepy==1.0.3
-numena==0.1.2
-numpy==2.2.4
+numpy
 opencv_python==4.11.0.86
-pandas==2.2.3
+pandas
 scipy==1.15.2
-openpyxl==3.1.5
+openpyxl
