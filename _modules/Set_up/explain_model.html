@@ -43,8 +43,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for MacTrack2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Macrophage Tracking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../mactrack.html">MacTrack2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Set_up.html">Set_up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">MacTrack2’s Input Folders Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mactrack.html">API Documentation</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <div class="viewcode-block" id="SummaryModel">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SummaryModel</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">model_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
@@ -91,7 +91,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_path</span> <span class="o">=</span> <span class="n">model_path</span>
 
 <div class="viewcode-block" id="SummaryModel.template">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.template">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.template">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">template</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function returns a formatted string that summarizes the model.</span>
@@ -121,7 +121,7 @@
 
 
 <div class="viewcode-block" id="SummaryModel.format_list">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.format_list">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.format_list">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_list</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; List formatting for display. &quot;&quot;&quot;</span>
@@ -129,7 +129,7 @@
 
 
 <div class="viewcode-block" id="SummaryModel.format_dict">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.format_dict">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.format_dict">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_dict</span><span class="p">(</span><span class="n">dct</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Dictionary formatting for display. &quot;&quot;&quot;</span>
@@ -137,7 +137,7 @@
 
     
 <div class="viewcode-block" id="SummaryModel.format_dataframe">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.format_dataframe">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.format_dataframe">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Dataframe formatting for display. &quot;&quot;&quot;</span>
@@ -145,7 +145,7 @@
 
 
 <div class="viewcode-block" id="SummaryModel.to_csv">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.to_csv">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.to_csv">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; This function saves the nodes dataframe to a CSV file. If an index is provided, it appends the index to the filename for uniqueness. &quot;&quot;&quot;</span>
         <span class="n">folder_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_path</span><span class="p">)</span>
@@ -158,7 +158,7 @@
 
 
 <div class="viewcode-block" id="SummaryModel.keys">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.SummaryModel.keys">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel.keys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function returns the keys of the model.</span>
@@ -168,7 +168,7 @@
 
 
 <div class="viewcode-block" id="get_function">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.get_function">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.get_function">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_function</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts the function names from the sequence based on their IDs.</span>
@@ -196,7 +196,7 @@
 
 
 <div class="viewcode-block" id="summary_model">
-<a class="viewcode-back" href="../../Set_up.html#Set_up.explain_model.summary_model">[docs]</a>
+<a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.summary_model">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">summary_model</span><span class="p">(</span><span class="n">model_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function loads models from all subdirectories in a specified folder and creates summaries.</span>

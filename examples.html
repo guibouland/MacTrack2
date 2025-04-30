@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MacTrack2’s Input Folders Examples &mdash; MacTrack2 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2709fde1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Documentation" href="mactrack.html" />
+    <link rel="prev" title="Macrophage Tracking" href="gettingstarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MacTrack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Macrophage Tracking</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MacTrack2’s Input Folders Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-folders">Input Folders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tracking">Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-building">Model Building</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#specificities-for-tracking">Specificities for Tracking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mactrack.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MacTrack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MacTrack2’s Input Folders Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mactrack2-s-input-folders-examples">
+<h1>MacTrack2’s Input Folders Examples<a class="headerlink" href="#mactrack2-s-input-folders-examples" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>As you may have seen if you already looked up the two input folders (<cite>input_model</cite> and <cite>input_tracking</cite>), they are almost identical — because they are copies. We decided to provide you with two separate folders to help you with the two main processes supported by this project:</p>
+<ul class="simple">
+<li><p><strong>Model building, training, and testing</strong></p></li>
+<li><p><strong>Tracking</strong>: Segmentation and analysis of a video using a model</p></li>
+</ul>
+<p>You can use them as examples. The module we primarily use in this project, <cite>kartezio</cite>, is quite restrictive regarding input formats. Hence, we aim to make it easier for you to understand.</p>
+</section>
+<section id="input-folders">
+<h2>Input Folders<a class="headerlink" href="#input-folders" title="Link to this heading"></a></h2>
+<section id="tracking">
+<h3>Tracking<a class="headerlink" href="#tracking" title="Link to this heading"></a></h3>
+<p>The structure of the <cite>input_tracking</cite> folder is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>input_tracking/
+  ├── dataset
+  ├── models
+  ├── vert
+  │   ├── frames  # (empty)
+  │   └── greenchannelvideo.avi
+  └── redchannelvideo.avi
+</pre></div>
+</div>
+</section>
+<section id="model-building">
+<h3>Model Building<a class="headerlink" href="#model-building" title="Link to this heading"></a></h3>
+<p>The structure of the <cite>input_model</cite> folder is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>input_model/
+  ├── dataset
+  ├── models
+</pre></div>
+</div>
+<p>There are no videos here, as they are not necessary for model creation.</p>
+</section>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading"></a></h3>
+<p>The <cite>dataset</cite> folder is organized as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dataset
+├── test
+│   ├── test_x
+│   └── test_y
+├── train
+│   ├── train_x
+│   └── train_y
+├── dataset.csv
+└── META.json
+</pre></div>
+</div>
+<p>In order for <cite>kartezio</cite> to function correctly, this structure is required. Without it, errors will occur.</p>
+<p>We will now describe each subfolder:</p>
+<ul class="simple">
+<li><p>The <cite>train</cite> folder contains the images selected for model training.
+For instance, in the provided example, there are 25 microscopic images in <cite>train_x</cite>.</p></li>
+<li><p>The <cite>train_y</cite> folder contains corresponding ground truth masks, created manually using ImageJ (see the <span class="xref std std-ref">Materials and Methods</span> section of the README).</p></li>
+<li><p>This training folder will remain the same in both <cite>input_model</cite> and <cite>input_tracking</cite>, as it is used for structure during tracking.</p></li>
+</ul>
+<p>The <cite>test</cite> folder will change depending on your use case:</p>
+<ul class="simple">
+<li><p>For testing a model (i.e., in the <cite>input_model</cite> folder), segment a few images and store them just as with the training set.</p></li>
+<li><p>For tracking and video segmentation, the frames extracted from your video will replace the test images. This is a limitation of <cite>kartezio</cite>.</p></li>
+</ul>
+<p>That is why we provide both folders and recommend creating your own by copying them. Be sure to store and track your model folders carefully.</p>
+<ul class="simple">
+<li><p><cite>dataset.csv</cite> and <cite>META.json</cite> are also necessary for <cite>kartezio</cite> to properly interpret the input folder.</p></li>
+</ul>
+<p>If you want to create your own model — by retraining the provided one or building from a new dataset — follow the steps in <cite>quickstart.py</cite>.</p>
+</section>
+<section id="models">
+<h3>Models<a class="headerlink" href="#models" title="Link to this heading"></a></h3>
+<p>The <cite>models</cite> folder contains a hash-named directory with two JSON files:</p>
+<ul class="simple">
+<li><p><cite>elite.json</cite>: Contains the final pipeline of the model</p></li>
+<li><p><cite>history.json</cite>: Contains the training history (e.g., generations)</p></li>
+</ul>
+</section>
+</section>
+<section id="specificities-for-tracking">
+<h2>Specificities for Tracking<a class="headerlink" href="#specificities-for-tracking" title="Link to this heading"></a></h2>
+<p>In the <cite>input_tracking</cite> folder, you will find:</p>
+<ul class="simple">
+<li><p>A <strong>red channel video</strong></p></li>
+<li><p>A <cite>vert/</cite> folder containing:
+- A <strong>green channel video</strong>
+- An empty <cite>frames/</cite> folder</p></li>
+</ul>
+<p>These are example videos for tracking. If you wish to segment your own video, <strong>you must respect this structure</strong>.</p>
+<p>Both videos (red and green channels) originate from the same microscopic analysis, with channels separated using ImageJ. For more information, refer to the <span class="xref std std-ref">Materials and Methods</span> section in the README.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gettingstarted.html" class="btn btn-neutral float-left" title="Macrophage Tracking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mactrack.html" class="btn btn-neutral float-right" title="API Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Guillaume Bouland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

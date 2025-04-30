@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MacTrack2 &mdash; MacTrack2 0.1 documentation</title>
+  <title>API Documentation &mdash; MacTrack2 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Set_up" href="Set_up.html" />
-    <link rel="prev" title="Macrophage Tracking" href="gettingstarted.html" /> 
+    <link rel="prev" title="MacTrack2’s Input Folders Examples" href="examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,86 +45,117 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Macrophage Tracking</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MacTrack2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.analyse.distance">Analysis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.distance_to_right_edge"><code class="docutils literal notranslate"><span class="pre">distance_to_right_edge()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.distance.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.calculate_ratio"><code class="docutils literal notranslate"><span class="pre">calculate_ratio()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.graphmed"><code class="docutils literal notranslate"><span class="pre">graphmed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.intensity"><code class="docutils literal notranslate"><span class="pre">intensity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.intensity.intensitymed"><code class="docutils literal notranslate"><span class="pre">intensitymed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.perimeter.perimeter"><code class="docutils literal notranslate"><span class="pre">perimeter()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.aggregate"><code class="docutils literal notranslate"><span class="pre">aggregate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.calculate_intensity_features"><code class="docutils literal notranslate"><span class="pre">calculate_intensity_features()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.calculate_mean"><code class="docutils literal notranslate"><span class="pre">calculate_mean()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.recap.plot_intensity_curves"><code class="docutils literal notranslate"><span class="pre">plot_intensity_curves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.size.size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.analyse.tabglobal.tabglobal"><code class="docutils literal notranslate"><span class="pre">tabglobal()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">MacTrack2’s Input Folders Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mactrack2">MacTrack2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mactrack.analyse.distance">Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.distance.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.distance.distance"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.distance.distance_to_right_edge"><code class="docutils literal notranslate"><span class="pre">distance_to_right_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.distance.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.calculate_ratio"><code class="docutils literal notranslate"><span class="pre">calculate_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.graphmed"><code class="docutils literal notranslate"><span class="pre">graphmed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.intensity"><code class="docutils literal notranslate"><span class="pre">intensity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.intensity.intensitymed"><code class="docutils literal notranslate"><span class="pre">intensitymed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.perimeter"><code class="docutils literal notranslate"><span class="pre">perimeter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.aggregate"><code class="docutils literal notranslate"><span class="pre">aggregate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.calculate_intensity_features"><code class="docutils literal notranslate"><span class="pre">calculate_intensity_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.calculate_mean"><code class="docutils literal notranslate"><span class="pre">calculate_mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.plot_intensity_curves"><code class="docutils literal notranslate"><span class="pre">plot_intensity_curves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.tabglobal.tabglobal"><code class="docutils literal notranslate"><span class="pre">tabglobal()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.locate.defuse">Locate</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.invdefuse"><code class="docutils literal notranslate"><span class="pre">invdefuse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.paint_black_area_from_mask"><code class="docutils literal notranslate"><span class="pre">paint_black_area_from_mask()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.process_images"><code class="docutils literal notranslate"><span class="pre">process_images()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.save_segmentation_images"><code class="docutils literal notranslate"><span class="pre">save_segmentation_images()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.defuse.trace_lines_between_contours"><code class="docutils literal notranslate"><span class="pre">trace_lines_between_contours()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation"><code class="docutils literal notranslate"><span class="pre">segmentation</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.add_image"><code class="docutils literal notranslate"><span class="pre">segmentation.add_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_image"><code class="docutils literal notranslate"><span class="pre">segmentation.get_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.get_list"><code class="docutils literal notranslate"><span class="pre">segmentation.get_list()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.load_images"><code class="docutils literal notranslate"><span class="pre">segmentation.load_images()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation.replace_image"><code class="docutils literal notranslate"><span class="pre">segmentation.replace_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mactrack.locate.defuse">Locate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.invdefuse"><code class="docutils literal notranslate"><span class="pre">invdefuse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.paint_black_area_from_mask"><code class="docutils literal notranslate"><span class="pre">paint_black_area_from_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.process_images"><code class="docutils literal notranslate"><span class="pre">process_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.save_segmentation_images"><code class="docutils literal notranslate"><span class="pre">save_segmentation_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.trace_lines_between_contours"><code class="docutils literal notranslate"><span class="pre">trace_lines_between_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.list_sep.segmentation"><code class="docutils literal notranslate"><span class="pre">segmentation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.locate.extract_objects"><code class="docutils literal notranslate"><span class="pre">extract_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.locate.filter_small_shapes"><code class="docutils literal notranslate"><span class="pre">filter_small_shapes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.locate.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.locate.locate_frame"><code class="docutils literal notranslate"><span class="pre">locate_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.temp_dataset.create_temporary_dataset"><code class="docutils literal notranslate"><span class="pre">create_temporary_dataset()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.extract_objects"><code class="docutils literal notranslate"><span class="pre">extract_objects()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.filter_small_shapes"><code class="docutils literal notranslate"><span class="pre">filter_small_shapes()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.locate.locate_frame"><code class="docutils literal notranslate"><span class="pre">locate_frame()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.locate.temp_dataset.create_temporary_dataset"><code class="docutils literal notranslate"><span class="pre">create_temporary_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mactrack.track.filtre">Track</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.track.filtre.supprimer_petit"><code class="docutils literal notranslate"><span class="pre">supprimer_petit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.track.track.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.track.track.find_containing_folder"><code class="docutils literal notranslate"><span class="pre">find_containing_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.track.track.track"><code class="docutils literal notranslate"><span class="pre">track()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.track.filtre">Track</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.filtre.supprimer_petit"><code class="docutils literal notranslate"><span class="pre">supprimer_petit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.find_containing_folder"><code class="docutils literal notranslate"><span class="pre">find_containing_folder()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.track.track.track"><code class="docutils literal notranslate"><span class="pre">track()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mactrack.video.frame">Video</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames"><code class="docutils literal notranslate"><span class="pre">VideoFrames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.inputconfig.create_average_green_image"><code class="docutils literal notranslate"><span class="pre">create_average_green_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.inputconfig.inputconfig"><code class="docutils literal notranslate"><span class="pre">inputconfig()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.inputconfig.median_green_intensity"><code class="docutils literal notranslate"><span class="pre">median_green_intensity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.result.draw_contours"><code class="docutils literal notranslate"><span class="pre">draw_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.result.generate_random_rgb_color"><code class="docutils literal notranslate"><span class="pre">generate_random_rgb_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.result.result"><code class="docutils literal notranslate"><span class="pre">result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.result.video"><code class="docutils literal notranslate"><span class="pre">video()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.result.videocomp"><code class="docutils literal notranslate"><span class="pre">videocomp()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-mactrack.video.frame">Video</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.frame.VideoFrames"><code class="docutils literal notranslate"><span class="pre">VideoFrames</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames.add_frame"><code class="docutils literal notranslate"><span class="pre">VideoFrames.add_frame()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.video.frame.VideoFrames.add_frame_v"><code class="docutils literal notranslate"><span class="pre">VideoFrames.add_frame_v()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisation">Visualisation</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.create_average_green_image"><code class="docutils literal notranslate"><span class="pre">create_average_green_image()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.inputconfig"><code class="docutils literal notranslate"><span class="pre">inputconfig()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.inputconfig.median_green_intensity"><code class="docutils literal notranslate"><span class="pre">median_green_intensity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.draw_contours"><code class="docutils literal notranslate"><span class="pre">draw_contours()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.generate_random_rgb_color"><code class="docutils literal notranslate"><span class="pre">generate_random_rgb_color()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.result"><code class="docutils literal notranslate"><span class="pre">result()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.video"><code class="docutils literal notranslate"><span class="pre">video()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mactrack.video.result.videocomp"><code class="docutils literal notranslate"><span class="pre">videocomp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up">Set-up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.Structure">Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.Structure.copy_zip_files"><code class="docutils literal notranslate"><span class="pre">copy_zip_files()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#visualisation">Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.convert">Convert</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.convert.convert_all_avi_in_folder"><code class="docutils literal notranslate"><span class="pre">convert_all_avi_in_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.convert.convert_avi_to_mp4"><code class="docutils literal notranslate"><span class="pre">convert_avi_to_mp4()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.convert.delete_avi_files"><code class="docutils literal notranslate"><span class="pre">delete_avi_files()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.count">Count</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.count.get_frame_count"><code class="docutils literal notranslate"><span class="pre">get_frame_count()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.dataset_csv">Dataset_csv</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.dataset_csv.create_dataset_csv"><code class="docutils literal notranslate"><span class="pre">create_dataset_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.dataset_csv.create_meta_file"><code class="docutils literal notranslate"><span class="pre">create_meta_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.empty_zip">Empty_zip</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.empty_zip.empty_dataset_testy_zip"><code class="docutils literal notranslate"><span class="pre">empty_dataset_testy_zip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.empty_zip.empty_dataset_testy_zip_single_frame"><code class="docutils literal notranslate"><span class="pre">empty_dataset_testy_zip_single_frame()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.explain_model">Explain_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.explain_model.SummaryModel"><code class="docutils literal notranslate"><span class="pre">SummaryModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.explain_model.get_function"><code class="docutils literal notranslate"><span class="pre">get_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.explain_model.summary_model"><code class="docutils literal notranslate"><span class="pre">summary_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Set_up.extract_frames">Extract_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Set_up.extract_frames.extract_frames"><code class="docutils literal notranslate"><span class="pre">extract_frames()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#train-model">Train_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eval-models">Eval_models</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -142,7 +172,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">MacTrack2</li>
+      <li class="breadcrumb-item active">API Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/mactrack.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -152,10 +182,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mactrack2">
-<h1>MacTrack2<a class="headerlink" href="#mactrack2" title="Link to this heading"></a></h1>
+  <section id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h1>
+<p>Here is an API documentation of the MacTrack2 package.</p>
+<section id="mactrack2">
+<h2>MacTrack2<a class="headerlink" href="#mactrack2" title="Link to this heading"></a></h2>
 <section id="module-mactrack.analyse.distance">
-<span id="analysis"></span><h2>Analysis<a class="headerlink" href="#module-mactrack.analyse.distance" title="Link to this heading"></a></h2>
+<span id="analysis"></span><h3>Analysis<a class="headerlink" href="#module-mactrack.analyse.distance" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.distance.count_valid_entries">
 <span class="sig-prename descclassname"><span class="pre">mactrack.analyse.distance.</span></span><span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/distance.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.distance.count_valid_entries" title="Link to this definition"></a></dt>
@@ -283,7 +316,7 @@
 
 </section>
 <section id="module-mactrack.locate.defuse">
-<span id="locate"></span><h2>Locate<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h2>
+<span id="locate"></span><h3>Locate<a class="headerlink" href="#module-mactrack.locate.defuse" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
 <span class="sig-prename descclassname"><span class="pre">mactrack.locate.defuse.</span></span><span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
@@ -407,7 +440,7 @@
 
 </section>
 <section id="module-mactrack.track.filtre">
-<span id="track"></span><h2>Track<a class="headerlink" href="#module-mactrack.track.filtre" title="Link to this heading"></a></h2>
+<span id="track"></span><h3>Track<a class="headerlink" href="#module-mactrack.track.filtre" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.track.filtre.supprimer_petit">
 <span class="sig-prename descclassname"><span class="pre">mactrack.track.filtre.</span></span><span class="sig-name descname"><span class="pre">supprimer_petit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/filtre.html#supprimer_petit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.filtre.supprimer_petit" title="Link to this definition"></a></dt>
@@ -430,7 +463,7 @@
 
 </section>
 <section id="module-mactrack.video.frame">
-<span id="video"></span><h2>Video<a class="headerlink" href="#module-mactrack.video.frame" title="Link to this heading"></a></h2>
+<span id="video"></span><h3>Video<a class="headerlink" href="#module-mactrack.video.frame" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mactrack.video.frame.</span></span><span class="sig-name descname"><span class="pre">VideoFrames</span></span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames" title="Link to this definition"></a></dt>
@@ -489,7 +522,283 @@
 
 </section>
 <section id="visualisation">
-<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading"></a></h2>
+<h3>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="set-up">
+<h2>Set-up<a class="headerlink" href="#set-up" title="Link to this heading"></a></h2>
+<section id="module-Set_up.Structure">
+<span id="structure"></span><h3>Structure<a class="headerlink" href="#module-Set_up.Structure" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.Structure.copy_zip_files">
+<span class="sig-prename descclassname"><span class="pre">Set_up.Structure.</span></span><span class="sig-name descname"><span class="pre">copy_zip_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/Structure.html#copy_zip_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.Structure.copy_zip_files" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-Set_up.convert">
+<span id="convert"></span><h3>Convert<a class="headerlink" href="#module-Set_up.convert" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.convert.convert_all_avi_in_folder">
+<span class="sig-prename descclassname"><span class="pre">Set_up.convert.</span></span><span class="sig-name descname"><span class="pre">convert_all_avi_in_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/convert.html#convert_all_avi_in_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.convert.convert_all_avi_in_folder" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.convert.convert_avi_to_mp4">
+<span class="sig-prename descclassname"><span class="pre">Set_up.convert.</span></span><span class="sig-name descname"><span class="pre">convert_avi_to_mp4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">avi_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/convert.html#convert_avi_to_mp4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.convert.convert_avi_to_mp4" title="Link to this definition"></a></dt>
+<dd><p>Converts an AVI video file to MP4 format using moviepy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>avi_file</strong> (<em>str</em>) – Path to the input AVI file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path to the generated MP4 file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.convert.delete_avi_files">
+<span class="sig-prename descclassname"><span class="pre">Set_up.convert.</span></span><span class="sig-name descname"><span class="pre">delete_avi_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/convert.html#delete_avi_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.convert.delete_avi_files" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-Set_up.count">
+<span id="count"></span><h3>Count<a class="headerlink" href="#module-Set_up.count" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.count.get_frame_count">
+<span class="sig-prename descclassname"><span class="pre">Set_up.count.</span></span><span class="sig-name descname"><span class="pre">get_frame_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/count.html#get_frame_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.count.get_frame_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-Set_up.dataset_csv">
+<span id="dataset-csv"></span><h3>Dataset_csv<a class="headerlink" href="#module-Set_up.dataset_csv" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.dataset_csv.create_dataset_csv">
+<span class="sig-prename descclassname"><span class="pre">Set_up.dataset_csv.</span></span><span class="sig-name descname"><span class="pre">create_dataset_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/dataset_csv.html#create_dataset_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.dataset_csv.create_dataset_csv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.dataset_csv.create_meta_file">
+<span class="sig-prename descclassname"><span class="pre">Set_up.dataset_csv.</span></span><span class="sig-name descname"><span class="pre">create_meta_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/dataset_csv.html#create_meta_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.dataset_csv.create_meta_file" title="Link to this definition"></a></dt>
+<dd><p>Create a META.json file for ‘dataset’ structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>meta_path</strong> (<em>str</em>) – Path to the META.json file to be created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Set_up.empty_zip">
+<span id="empty-zip"></span><h3>Empty_zip<a class="headerlink" href="#module-Set_up.empty_zip" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.empty_zip.empty_dataset_testy_zip">
+<span class="sig-prename descclassname"><span class="pre">Set_up.empty_zip.</span></span><span class="sig-name descname"><span class="pre">empty_dataset_testy_zip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testy_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">video_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/empty_zip.html#empty_dataset_testy_zip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.empty_zip.empty_dataset_testy_zip" title="Link to this definition"></a></dt>
+<dd><p>Function that creates empty zip files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.empty_zip.empty_dataset_testy_zip_single_frame">
+<span class="sig-prename descclassname"><span class="pre">Set_up.empty_zip.</span></span><span class="sig-name descname"><span class="pre">empty_dataset_testy_zip_single_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testy_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/empty_zip.html#empty_dataset_testy_zip_single_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.empty_zip.empty_dataset_testy_zip_single_frame" title="Link to this definition"></a></dt>
+<dd><p>Function that creates empty zip file.</p>
+</dd></dl>
+
+</section>
+<section id="module-Set_up.explain_model">
+<span id="explain-model"></span><h3>Explain_model<a class="headerlink" href="#module-Set_up.explain_model" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Set_up.explain_model.</span></span><span class="sig-name descname"><span class="pre">SummaryModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.format_dataframe">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.format_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.format_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Dataframe formatting for display.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.format_dict">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.format_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.format_dict" title="Link to this definition"></a></dt>
+<dd><p>Dictionary formatting for display.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.format_list">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.format_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.format_list" title="Link to this definition"></a></dt>
+<dd><p>List formatting for display.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.keys" title="Link to this definition"></a></dt>
+<dd><p>This function returns the keys of the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.template">
+<span class="sig-name descname"><span class="pre">template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.template" title="Link to this definition"></a></dt>
+<dd><p>This function returns a formatted string that summarizes the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Set_up.explain_model.SummaryModel.to_csv">
+<span class="sig-name descname"><span class="pre">to_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#SummaryModel.to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.SummaryModel.to_csv" title="Link to this definition"></a></dt>
+<dd><p>This function saves the nodes dataframe to a CSV file. If an index is provided, it appends the index to the filename for uniqueness.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.explain_model.get_function">
+<span class="sig-prename descclassname"><span class="pre">Set_up.explain_model.</span></span><span class="sig-name descname"><span class="pre">get_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#get_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.get_function" title="Link to this definition"></a></dt>
+<dd><p>Extracts the function names from the sequence based on their IDs.</p>
+<p>The functions are from OpenCV and are used to create the model using Kartezio
+(not all OpenCV functions are used). The function ID is the index of the
+function in the list of functions chosen in the Kartezio package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence</strong> (<em>list</em>) – The sequence of the model, following the Kartezio architecture:
+[function_id, c_1, c_2, …, c_n, p_1, p_2, …, p_l]
+- function_id: Index of the function in the list of functions.
+- c_i: Connections (n is the number of connections).
+- p_k: Parameters (l is the number of parameters).</p></li>
+<li><p><strong>functions</strong> (<em>list</em>) – The list of functions available in the Kartezio package.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of function names corresponding to the function_id in the sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.explain_model.summary_model">
+<span class="sig-prename descclassname"><span class="pre">Set_up.explain_model.</span></span><span class="sig-name descname"><span class="pre">summary_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#summary_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.summary_model" title="Link to this definition"></a></dt>
+<dd><p>This function loads models from all subdirectories in a specified folder and creates summaries.</p>
+<p>Parameters:
+model_folder (str): The name of the folder containing the ‘models’ folder.</p>
+</dd></dl>
+
+</section>
+<section id="module-Set_up.extract_frames">
+<span id="extract-frames"></span><h3>Extract_frames<a class="headerlink" href="#module-Set_up.extract_frames" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="Set_up.extract_frames.extract_frames">
+<span class="sig-prename descclassname"><span class="pre">Set_up.extract_frames.</span></span><span class="sig-name descname"><span class="pre">extract_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/extract_frames.html#extract_frames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.extract_frames.extract_frames" title="Link to this definition"></a></dt>
+<dd><p>Extract frames from an MP4 video and save them as PNG images with a fixed resolution.
+Ensures uniform frame size by resizing and padding if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_path</strong> – Path to the input MP4 video file.</p></li>
+<li><p><strong>output_folder</strong> – Path to the folder where frames will be saved.</p></li>
+<li><p><strong>fps</strong> – Frames per second to extract.</p></li>
+<li><p><strong>width</strong> – Output frame width.</p></li>
+<li><p><strong>height</strong> – Output frame height.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="train-model">
+<h3>Train_model<a class="headerlink" href="#train-model" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Source code for model training</span>
+<span class="linenos"> 2</span><span class="c1"># ########################################################</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.apps.segmentation</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_segmentation_model</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.endpoint</span><span class="w"> </span><span class="kn">import</span> <span class="n">EndpointThreshold</span>
+<span class="linenos"> 6</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_dataset</span>
+<span class="linenos"> 7</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_model</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">DATASET</span> <span class="o">=</span> <span class="s2">&quot;./dataset&quot;</span>
+<span class="linenos">11</span><span class="n">OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;./models&quot;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">generations</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos">15</span><span class="n">_lambda</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="linenos">16</span><span class="n">frequency</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="linenos">17</span><span class="n">rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">18</span><span class="nb">print</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+<span class="linenos">19</span><span class="n">model</span> <span class="o">=</span> <span class="n">create_segmentation_model</span><span class="p">(</span>
+<span class="linenos">20</span>    <span class="n">generations</span><span class="p">,</span>
+<span class="linenos">21</span>    <span class="n">_lambda</span><span class="p">,</span>
+<span class="linenos">22</span>    <span class="n">inputs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">23</span>    <span class="n">nodes</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<span class="linenos">24</span>    <span class="n">node_mutation_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span>
+<span class="linenos">25</span>    <span class="n">output_mutation_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span>
+<span class="linenos">26</span>    <span class="n">outputs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">27</span>    <span class="n">fitness</span><span class="o">=</span><span class="s2">&quot;IOU&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>    <span class="n">endpoint</span><span class="o">=</span><span class="n">EndpointThreshold</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+<span class="linenos">29</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">read_dataset</span><span class="p">(</span><span class="n">DATASET</span><span class="p">)</span>
+<span class="linenos">32</span><span class="n">elite</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">,</span> <span class="n">callback_frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="eval-models">
+<h3>Eval_models<a class="headerlink" href="#eval-models" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Source code for model testing</span>
+<span class="linenos"> 2</span><span class="c1"># ########################################################</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="linenos"> 5</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.easy</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_stats</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_dataset</span>
+<span class="linenos"> 9</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.fitness</span><span class="w"> </span><span class="kn">import</span> <span class="n">FitnessIOU</span>
+<span class="linenos">10</span><span class="kn">from</span><span class="w"> </span><span class="nn">kartezio.inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelPool</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">scores_all</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">13</span><span class="n">pool</span> <span class="o">=</span> <span class="n">ModelPool</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./models&quot;</span><span class="p">,</span> <span class="n">FitnessIOU</span><span class="p">(),</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;*/elite.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_ensemble</span><span class="p">()</span>
+<span class="linenos">14</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">read_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./dataset&quot;</span><span class="p">,</span> <span class="n">counting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">15</span><span class="n">annotations_test</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">16</span><span class="n">annotations_training</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">17</span><span class="n">roi_pixel_areas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">18</span><span class="k">for</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_y</span><span class="p">:</span>
+<span class="linenos">19</span>    <span class="n">n_annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">20</span>    <span class="n">annotations_training</span> <span class="o">+=</span> <span class="n">n_annotations</span>
+<span class="linenos">21</span><span class="k">for</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">test_y</span><span class="p">:</span>
+<span class="linenos">22</span>    <span class="n">annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">23</span>    <span class="n">n_annotations</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">24</span>    <span class="n">annotations_test</span> <span class="o">+=</span> <span class="n">n_annotations</span>
+<span class="linenos">25</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_annotations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos">26</span>        <span class="n">roi_pixel_areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">annotations</span> <span class="o">==</span> <span class="n">i</span><span class="p">]))</span>
+<span class="linenos">27</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total annotations for training set: </span><span class="si">{</span><span class="n">annotations_training</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">28</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total annotations for test set: </span><span class="si">{</span><span class="n">annotations_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">29</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean pixel area for test set: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">roi_pixel_areas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">scores_test</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">33</span><span class="n">scores_training</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">34</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">models</span><span class="p">):</span>
+<span class="linenos">35</span>    <span class="c1"># Test set</span>
+<span class="linenos">36</span>    <span class="n">_</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos">37</span>    <span class="n">scores_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fitness</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>    <span class="c1"># Training set</span>
+<span class="linenos">40</span>    <span class="n">_</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="linenos">41</span>    <span class="n">scores_training</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fitness</span><span class="p">)</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="n">scores_all</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_training</span>
+<span class="linenos">45</span><span class="n">scores_all</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_test</span>
+<span class="linenos">46</span><span class="n">print_stats</span><span class="p">(</span><span class="n">scores_training</span><span class="p">,</span> <span class="s2">&quot;AP50&quot;</span><span class="p">,</span> <span class="s2">&quot;training set&quot;</span><span class="p">)</span>
+<span class="linenos">47</span><span class="n">print_stats</span><span class="p">(</span><span class="n">scores_test</span><span class="p">,</span> <span class="s2">&quot;AP50&quot;</span><span class="p">,</span> <span class="s2">&quot;test set&quot;</span><span class="p">)</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores_all</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./results/results.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -497,8 +806,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gettingstarted.html" class="btn btn-neutral float-left" title="Macrophage Tracking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Set_up.html" class="btn btn-neutral float-right" title="Set_up" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples.html" class="btn btn-neutral float-left" title="MacTrack2’s Input Folders Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

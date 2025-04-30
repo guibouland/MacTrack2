@@ -45,8 +45,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Macrophage Tracking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.html">MacTrack2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">MacTrack2’s Input Folders Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mactrack.html">API Documentation</a></li>
 </ul>
 
         </div>
@@ -75,16 +75,64 @@
              
   <section id="welcome-to-mactrack2-s-documentation">
 <h1>Welcome to MacTrack2’s documentation!<a class="headerlink" href="#welcome-to-mactrack2-s-documentation" title="Link to this heading"></a></h1>
-<p>Add the readme in sphinx format after it is redone</p>
+<p>Derived from the work by <a class="reference external" href="https://github.com/Axeldmont/">Axel de Montgolfier</a> during his time at the LPHI lab at the University of Montpellier. Our work aims to simplify its use by adding various scripts. For instance, a <cite>gettingstarted</cite> file in the <cite>mactrack</cite> folder helps with the analysis of your videos, based on examples we provide in the <cite>examples</cite> folder. You can also create your own model by running the <cite>quickstart.py</cite> file.</p>
+<p>Make sure to carefully read the documentation for both files. You can find it either in the source files or on the website available <a class="reference external" href="https://guibouland.github.io/MacTrack2/">here</a>.</p>
+<p>The goal of this project is to <strong>accurately segment macrophages</strong>. This segmentation enables superimposing results on the green channel video to analyze calcium flashes of the tracked macrophages. This way, we can retrieve information about each macrophage — such as flash amplitude and intensity — without being hindered by the noise commonly present in microscopic images.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>As my internship followed Axel’s work, I had to familiarize myself with his original project. This repository contains upgrades to the original work, available <a class="reference external" href="https://github.com/Axeldmont/Stage-LPHI-2024">here</a>. We recommend cloning <strong>this repository</strong> as it includes various improvements.</p>
+<p>Clone the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/guibouland/MacTrack2.git
+</pre></div>
+</div>
+<p>You can then install the dependencies listed in <cite>requirements.txt</cite>. We recommend creating a virtual environment.</p>
+<p>If you use (micro)mamba:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>micromamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mactrack-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w">  </span><span class="c1"># Create virtual env using Python 3.12</span>
+micromamba<span class="w"> </span>activate<span class="w">                             </span><span class="c1"># Activate the environment</span>
+<span class="nb">cd</span><span class="w"> </span>MacTrack2<span class="w">                                     </span><span class="c1"># Enter the project directory</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">                  </span><span class="c1"># Install dependencies</span>
+</pre></div>
+</div>
+<p>If you use Python’s <cite>venv</cite> module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>mactrack-env<span class="w">                  </span><span class="c1"># Create virtual environment</span>
+<span class="nb">source</span><span class="w"> </span>mactrack-env/bin/activate<span class="w">                 </span><span class="c1"># Activate on Linux/macOS</span>
+mactrack-env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">                    </span><span class="c1"># Activate on Windows</span>
+<span class="nb">cd</span><span class="w"> </span>MacTrack2
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">                  </span><span class="c1"># Install dependencies</span>
+</pre></div>
+</div>
+<p>You’re now ready to go!</p>
+<p>To try the module we provide, run the <cite>gettingstarted</cite> file in the <cite>mactrack</cite> folder. It uses a pre-trained model found in the <cite>examples</cite> folder. If you want to train your own model, use <cite>quickstart.py</cite>.</p>
+</section>
+<section id="create-your-own-dataset-and-model">
+<h2>Create Your Own Dataset and Model<a class="headerlink" href="#create-your-own-dataset-and-model" title="Link to this heading"></a></h2>
+<p>For more details on how to create your own dataset, train and test a model, and apply it to videos beyond those provided, refer to the documentation available <a class="reference external" href="./examples/README.md">here</a>.</p>
+</section>
+<section id="materials-and-methods">
+<h2>Materials and Methods<a class="headerlink" href="#materials-and-methods" title="Link to this heading"></a></h2>
+<p>All videos and frames used for analysis and segmentation were acquired using a <strong>spinning disk confocal microscope</strong>. It illuminates <strong>macrophages in red</strong> and <strong>calcium flashes in green</strong>, using a <strong>zebrafish transgenic lineage</strong>.</p>
+<p>We amputated the caudal fin fold of a zebrafish to study potential correlations between <strong>macrophage polarization</strong> and <strong>calcium flashes</strong>.</p>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/guibouland">Guillaume Bouland</a>: Intern at the LPHI lab in 2025</p></li>
+<li><p><a class="reference external" href="https://github.com/Axeldmont/">Axel de Montgolfier</a>: Intern at the LPHI lab in 2024</p></li>
+</ul>
+</section>
+<section id="acknowledgement">
+<h2>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Link to this heading"></a></h2>
+<p>This project relies mainly on the <a class="reference external" href="https://github.com/KevinCortacero/Kartezio">kartezio</a> Python package, developed by <a class="reference external" href="https://github.com/KevinCortacero">Kévin Cortacero</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart for MacTrack2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Macrophage Tracking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mactrack.html">MacTrack2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Set_up.html">Set_up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">MacTrack2’s Input Folders Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mactrack.html">API Documentation</a></li>
 </ul>
 </div>
+</section>
 </section>
 
 
