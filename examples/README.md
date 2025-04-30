@@ -71,59 +71,9 @@ The `models` folder contains a hash-type named folder with two json files inside
 
 ### Specificities for tracking
 
+For the `input_tracking` folder, there is the red channel video and the `vert` folder containing the green channel video and an empty `frames` folder. They are examples videos for tracking purposes. Note that if you want to segment your own video, you must respect the structure mentionned before.
+The two videos (red and green channels) come from the same microscopic analysis. The channels were separated using ImageJ. You can refer yourself to the [Materials and Methods](../README.md#materials-and-methods) for more details.
 
-
-
-
-
-
-As you may have seen, an `examples/input` folder already exists in this repository. It is an sample input folder to help you understand how it should look and what to put in it.
-
-Now let's talk about what's inside of these folders.
-
----
-
-The `dataset` folder is arranged as follows :
-
-```
-dataset
-├── test
-    ├── test_x
-    └── test_y
-├── train
-    ├── train_x
-    └── train_y
-├── dataset.csv
-└── META.json
-```
-
-The `train` folder consists of `train_x` which is a folder containing all the frames that served to train the model. They must be from the red channel (so macrophages). The `train_y` folder contains the "masks". Each frame in the `train_x` folder must be hand-cut in the ImageJ program. You must add "Regions of Interest" on each frame and then save it as a `.zip` file containing all the ROIs in a single frame. You must do it for all frames in the `train_x` folder. Thanks to the `kartezio` module and the methods it is using, you don't need a lot of frame to make a good `train` dataset. For instance, Axel used only 26 frames, which is a very small number for a learning set.
-
-Then comes the `test` folder. You don't have to worry about the `test_x` folder, it will be added when you run the `gettingstarted_example` file. It contains the frames of your red channel video. The `test_y` is a bit special. It is only here for structure. In fact, the one we provided in the `examples/imput` folder consists of empty `.zip` files. The number depends on the length of your video (number of frames). The `Set_up/empty_zip.py` helps you create these files.
-
-The `dataset.csv` file is a summary of the different paths of your dataset. It is possible to make it by running the `dataset_csv.py` file. Finally, the `META.json` file is linked to the `dataset.csv` file as you can see input and label. Input is an image with format hsv and label are ROI files with format polygon (this `META.json` file was made to match functions from the kartezio library).
-
----
-
-The `models` folder consists of json files that characterize the model obtained from the `train_model.py` file in the `Set_up` folder. To set-up your model, I advice you to do it first and to add a few frames in the `test` folder (before you start segmenting your videos, you may delete them later on place them in a different folder). You need to hand-cut these frames as it was done in the `train` folder.
-
----
-
-The `results` folder contains the performances of the model in the `results.csv` file that is obtained by the `eval_models.py` file after initializing your model. It has been tested on 6 additional hand-cut frames.
-
----
-
-The `vert` folder contains a `frames` folder that is at first empty. You must place your green channel video in the `vert` folder. By running the `extract_frames.py` file in the `Set_up` folder (by correctly replacing the path of your green channel video), the `frames` folder will be filled with the frames of your green channel video.
-
-Finally, you must put you red channel video in the `input/yourdatafolder/` folder.
-
----
-
-You can execute the `convert.py` file in the `Set_up` folder to convert AVI files into MP4 as AVI is the preferred format for video extraction from ImageJ (as Python doesn't work well with 16-bit file formats such as TIFF, while MP4, an 8-bit format, is more compatible).
-
----
-
-The `input` subfolder (in the `examples` folder) contains a full, ready to use, example dataset that you can use to execute Axel's **Mactrack** by running the `gettingstarted_example` file in the `mactrack` folder.
 
 ## TODO
 
