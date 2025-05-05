@@ -6,7 +6,6 @@ numpy
 opencv_python==4.11.0.86
 pandas
 Pillow
-read_roi==1.6.0
+read-roi==1.6.0
 roifile==2025.2.20
 scipy
-skimage
