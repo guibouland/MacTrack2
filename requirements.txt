@@ -5,5 +5,8 @@ moviepy==1.0.3
 numpy
 opencv_python==4.11.0.86
 pandas
-scipy==1.15.2
-openpyxl
+Pillow
+read_roi==1.6.0
+roifile==2025.2.20
+scipy
+skimage
