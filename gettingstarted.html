@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#frame-extraction">Frame Extraction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cleanup">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-structure">Dataset structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#segmentation">Segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#defusion">Defusion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tracking">Tracking</a></li>
@@ -93,27 +94,25 @@
 <p>This page will help you get started with MacTrack2 and the analysis of macrophage videos.</p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">locate.locate</span><span class="w"> </span><span class="kn">import</span> <span class="n">locate</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">locate.list_sep</span><span class="w"> </span><span class="kn">import</span> <span class="n">segmentation</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">locate.defuse</span><span class="w"> </span><span class="kn">import</span> <span class="n">defuse</span><span class="p">,</span> <span class="n">invdefuse</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">track.track</span><span class="w"> </span><span class="kn">import</span> <span class="n">track</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">video.inputconfig</span><span class="w"> </span><span class="kn">import</span> <span class="n">inputconfig</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">video.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">video</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">videocomp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.locate.locate</span><span class="w"> </span><span class="kn">import</span> <span class="n">locate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.locate.list_sep</span><span class="w"> </span><span class="kn">import</span> <span class="n">segmentation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.locate.defuse</span><span class="w"> </span><span class="kn">import</span> <span class="n">defuse</span><span class="p">,</span> <span class="n">invdefuse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.track.track</span><span class="w"> </span><span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.video.inputconfig</span><span class="w"> </span><span class="kn">import</span> <span class="n">inputconfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.video.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">video</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">videocomp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.intensity</span><span class="w"> </span><span class="kn">import</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">intensitymed</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.size</span><span class="w"> </span><span class="kn">import</span> <span class="n">size</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.perimeter</span><span class="w"> </span><span class="kn">import</span> <span class="n">perimeter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">analyse.recap</span><span class="w"> </span><span class="kn">import</span> <span class="n">aggregate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.analyse.intensity</span><span class="w"> </span><span class="kn">import</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">intensitymed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.analyse.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.analyse.size</span><span class="w"> </span><span class="kn">import</span> <span class="n">size</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.analyse.perimeter</span><span class="w"> </span><span class="kn">import</span> <span class="n">perimeter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.analyse.recap</span><span class="w"> </span><span class="kn">import</span> <span class="n">aggregate</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">track.filtre</span><span class="w"> </span><span class="kn">import</span> <span class="n">supprimer_petit</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mactrack.track.filtre</span><span class="w"> </span><span class="kn">import</span> <span class="n">supprimer_petit</span>
 
-<span class="n">current</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.count</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_frame_count</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_avi_to_mp4</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.empty_zip</span><span class="w"> </span><span class="kn">import</span> <span class="n">empty_dataset_testy_zip</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Set_up.dataset_csv</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_dataset_csv</span>
 </pre></div>
 </div>
 </section>
@@ -125,17 +124,32 @@
 <li><p>The dataset used for training</p></li>
 <li><p>The example video for tracking and analysis</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s2">&quot;examples/input_tracking/&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">input_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">&quot;input_tracking&quot;</span><span class="p">)</span>
 <span class="n">video_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;redchannel.avi&quot;</span><span class="p">)</span>
+<span class="n">video_path_v</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;vert&quot;</span><span class="p">,</span> <span class="s2">&quot;greenchannel.avi&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If your video is in <cite>.avi</cite> format (as is often the case with microscopic videos), you can convert it to <cite>.mp4</cite>:</p>
+<p>If your video is in <code class="docutils literal notranslate"><span class="pre">.avi</span></code> format (as is often the case with microscopic videos), you can convert it to <code class="docutils literal notranslate"><span class="pre">.mp4</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">video_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.avi&quot;</span><span class="p">):</span>
     <span class="n">convert_avi_to_mp4</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
     <span class="n">video_path</span> <span class="o">=</span> <span class="n">video_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.avi&quot;</span><span class="p">,</span> <span class="s2">&quot;.mp4&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now, your video is a <cite>.mp4</cite> file and can be used in the pipeline.</p>
+<p>You can do the same for the green channel video:
+.. code-block:: python</p>
+<blockquote>
+<div><dl class="simple">
+<dt>if video_path_v.endswith(“.avi”):</dt><dd><p>convert_avi_to_mp4(video_path_v)
+video_path_v = video_path_v.replace(“.avi”, “.mp4”)</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you already have a <cite>mp4</cite> video, you can skip this step and put directly the path to the <cite>mp4</cite> video in the <cite>video_path</cite> variable.</p>
+</div>
+<p>Now, your video is a <code class="docutils literal notranslate"><span class="pre">.mp4</span></code> file and can be used in the pipeline.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">get_frame_count</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>  <span class="c1"># Number of frames in the initial video</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Minimal number of frames in which a macrophage must appear to be tracked</span>
 </pre></div>
@@ -143,41 +157,59 @@
 </section>
 <section id="frame-extraction">
 <h2>Frame Extraction<a class="headerlink" href="#frame-extraction" title="Link to this heading"></a></h2>
-<p>We will cut the video into frames and store them in <cite>input_folder</cite>.</p>
+<p>We will cut the video into frames and store them in <code class="docutils literal notranslate"><span class="pre">input_folder</span></code>.</p>
 <ul class="simple">
-<li><p>Red channel frames: <cite>input_folder/dataset/test/test_x</cite></p></li>
-<li><p>Green channel frames: <cite>input_folder/vert/frames</cite></p></li>
+<li><p>Red channel frames: <code class="docutils literal notranslate"><span class="pre">input_folder/dataset/test/test_x</span></code></p></li>
+<li><p>Green channel frames: <code class="docutils literal notranslate"><span class="pre">input_folder/vert/frames</span></code></p></li>
 </ul>
-<p>⚠️ The following function erases the contents in the <cite>dataset</cite> folder. If it contains the frames you used to build your model (as in demonstrated in the <a class="reference internal" href="quickstart.html"><span class="doc">Quickstart for MacTrack2</span></a>) may be deleted.</p>
-<p>Recommendation: use a <strong>copy</strong> of your model-building folder, or change the working folder to avoid data loss. That is why we used <cite>input_tracking</cite> as the input folder and not <cite>input_model</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommand you to store the frames that served for model building carefully in another folder, as the tracking will cause changes in the dataset (see <a class="reference internal" href="quickstart.html"><span class="doc">Quickstart for MacTrack2</span></a> for more details). That is why we used <code class="docutils literal notranslate"><span class="pre">input_tracking</span></code> as the input folder and not <code class="docutils literal notranslate"><span class="pre">input_model</span></code>.</p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">inputconfig</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="cleanup">
 <h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
-<p>Delete the <cite>list_sep</cite> and <cite>list_comp</cite> folders if they already exist to avoid inconsistencies in frame count:</p>
+<p>Delete the <code class="docutils literal notranslate"><span class="pre">list_sep</span></code> and <code class="docutils literal notranslate"><span class="pre">list_comp</span></code> folders if they already exist to avoid inconsistencies in frame count:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">):</span>
     <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;output/list_comp&quot;</span><span class="p">):</span>
     <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">&quot;output/list_comp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can add a <strong>#</strong> if you want to keep them.</p>
+<p>You can add a ‘<strong>#</strong>’ if you want to keep them.</p>
+</section>
+<section id="dataset-structure">
+<h2>Dataset structure<a class="headerlink" href="#dataset-structure" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">inputconfig</span></code> function cut both videos (red ans green channels) in frames stored in the <code class="docutils literal notranslate"><span class="pre">test_y</span></code> and <code class="docutils literal notranslate"><span class="pre">vert/frames</span></code> folders. The <code class="docutils literal notranslate"><span class="pre">kartezio</span></code> package has special needs to properly function. The <code class="docutils literal notranslate"><span class="pre">test_x</span></code> (red channel frames) and <code class="docutils literal notranslate"><span class="pre">test_y</span></code> folders must have the same length with the latter containing masks (in a zip format). However, it does not check the contents inside those files, so we will artificially create empty zip files in the <code class="docutils literal notranslate"><span class="pre">test_y</span></code> folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testy_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;dataset/test/test_y/&quot;</span><span class="p">)</span>
+<span class="n">empty_dataset_testy_zip</span><span class="p">(</span><span class="n">testy_folder</span><span class="o">=</span><span class="n">testy_folder</span><span class="p">,</span> <span class="n">video_path</span><span class="o">=</span><span class="n">video_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It also needs a csv file that sums up the contents of the dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_dataset_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;dataset&quot;</span><span class="p">),</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;dataset.csv&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="segmentation">
 <h2>Segmentation<a class="headerlink" href="#segmentation" title="Link to this heading"></a></h2>
 <p>We begin tracking macrophages in the red channel video. This function:</p>
 <ul class="simple">
-<li><p>Creates an <cite>output</cite> folder</p></li>
-<li><p>Generates <cite>list_comp</cite>: full-frame segmentations</p></li>
-<li><p>Generates <cite>list_sep</cite>: individual macrophages per frame</p></li>
+<li><p>Creates an <code class="docutils literal notranslate"><span class="pre">output</span></code> folder</p></li>
+<li><p>Generates <code class="docutils literal notranslate"><span class="pre">list_comp</span></code>: full-frame segmentations subfolder</p></li>
+<li><p>Generates <code class="docutils literal notranslate"><span class="pre">list_sep</span></code>: individual macrophages per frame subfolder</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">locate</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Then we load all the images into memory to accelerate further processing:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_storage</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">(</span><span class="s2">&quot;output/list_sep&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;output&quot;</span><span class="p">)</span>
+<span class="n">image_storage</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;list_sep&quot;</span><span class="p">))</span>
 <span class="n">image_storage</span><span class="o">.</span><span class="n">load_images</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -185,7 +217,7 @@
 <section id="defusion">
 <h2>Defusion<a class="headerlink" href="#defusion" title="Link to this heading"></a></h2>
 <p>This step separates merged macrophages, as nearby cells might be detected as a single object.</p>
-<p>Creates <cite>output/list_def</cite> containing the corrected segmentation:</p>
+<p>Creates <code class="docutils literal notranslate"><span class="pre">output/list_def</span></code> containing the corrected segmentation:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_storage</span> <span class="o">=</span> <span class="n">defuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">)</span>
 <span class="n">image_storage</span> <span class="o">=</span> <span class="n">invdefuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">)</span>
 </pre></div>
@@ -193,7 +225,7 @@
 </section>
 <section id="tracking">
 <h2>Tracking<a class="headerlink" href="#tracking" title="Link to this heading"></a></h2>
-<p>Track all macrophages across frames. Only keep those present in more than <cite>p</cite> frames.</p>
+<p>Track all macrophages across frames. Only keep those present in more than <code class="docutils literal notranslate"><span class="pre">p</span></code> frames.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">track</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">threshold_iou</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">image_storage</span><span class="o">=</span><span class="n">image_storage</span><span class="p">)</span>
 <span class="n">supprimer_petit</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
@@ -203,10 +235,10 @@
 <h2>Video Generation<a class="headerlink" href="#video-generation" title="Link to this heading"></a></h2>
 <p>Generate two videos showing tracking results:</p>
 <ul class="simple">
-<li><p><cite>result.mp4</cite>: red channel</p></li>
-<li><p><cite>resultv.mp4</cite>: green channel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">result.mp4</span></code>: red channel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resultv.mp4</span></code>: green channel</p></li>
 </ul>
-<p>Stored in the <cite>output</cite> folder.</p>
+<p>Stored in the <code class="docutils literal notranslate"><span class="pre">output</span></code> folder.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span>
 <span class="n">video</span><span class="p">()</span>
 </pre></div>

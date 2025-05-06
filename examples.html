@@ -92,18 +92,18 @@
 <h1>MacTrack2’s Input Folders Examples<a class="headerlink" href="#mactrack2-s-input-folders-examples" title="Link to this heading"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
-<p>As you may have seen if you already looked up the two input folders (<cite>input_model</cite> and <cite>input_tracking</cite>), they are almost identical — because they are copies. We decided to provide you with two separate folders to help you with the two main processes supported by this project:</p>
+<p>As you may have seen if you already looked up the two input folders (<code class="docutils literal notranslate"><span class="pre">input_model</span></code> and <code class="docutils literal notranslate"><span class="pre">input_tracking</span></code>), they are almost identical — because they are copies. We decided to provide you with two separate folders to help you with the two main processes supported by this project:</p>
 <ul class="simple">
 <li><p><strong>Model building, training, and testing</strong></p></li>
 <li><p><strong>Tracking</strong>: Segmentation and analysis of a video using a model</p></li>
 </ul>
-<p>You can use them as examples. The module we primarily use in this project, <cite>kartezio</cite>, is quite restrictive regarding input formats. Hence, we aim to make it easier for you to understand.</p>
+<p>You can use them as examples. The module we primarily use in this project, <code class="docutils literal notranslate"><span class="pre">kartezio</span></code>, is quite restrictive regarding input formats. Hence, we aim to make it easier for you to understand.</p>
 </section>
 <section id="input-folders">
 <h2>Input Folders<a class="headerlink" href="#input-folders" title="Link to this heading"></a></h2>
 <section id="tracking">
 <h3>Tracking<a class="headerlink" href="#tracking" title="Link to this heading"></a></h3>
-<p>The structure of the <cite>input_tracking</cite> folder is as follows:</p>
+<p>The structure of the <code class="docutils literal notranslate"><span class="pre">input_tracking</span></code> folder is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>input_tracking/
   ├── dataset
   ├── models
@@ -116,7 +116,7 @@
 </section>
 <section id="model-building">
 <h3>Model Building<a class="headerlink" href="#model-building" title="Link to this heading"></a></h3>
-<p>The structure of the <cite>input_model</cite> folder is as follows:</p>
+<p>The structure of the <code class="docutils literal notranslate"><span class="pre">input_model</span></code> folder is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>input_model/
   ├── dataset
   ├── models
@@ -129,7 +129,7 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
 <section id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading"></a></h3>
-<p>The <cite>dataset</cite> folder is organized as follows:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dataset</span></code> folder is organized as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dataset
 ├── test
 │   ├── test_x
@@ -141,42 +141,42 @@
 └── META.json
 </pre></div>
 </div>
-<p>In order for <cite>kartezio</cite> to function correctly, this structure is required. Without it, errors will occur.</p>
+<p>In order for <code class="docutils literal notranslate"><span class="pre">kartezio</span></code> to function correctly, this structure is required. Without it, errors will occur.</p>
 <p>We will now describe each subfolder:</p>
 <ul class="simple">
-<li><p>The <cite>train</cite> folder contains the images selected for model training.
-For instance, in the provided example, there are 25 microscopic images in <cite>train_x</cite>.</p></li>
-<li><p>The <cite>train_y</cite> folder contains corresponding ground truth masks, created manually using ImageJ (see the <span class="xref std std-ref">Materials and Methods</span> section of the README).</p></li>
-<li><p>This training folder will remain the same in both <cite>input_model</cite> and <cite>input_tracking</cite>, as it is used for structure during tracking.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">train</span></code> folder contains the images selected for model training.
+For instance, in the provided example, there are 25 microscopic images in <code class="docutils literal notranslate"><span class="pre">train_x</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">train_y</span></code> folder contains corresponding ground truth masks, created manually using ImageJ (see the <span class="xref std std-ref">Materials and Methods</span> section of the README).</p></li>
+<li><p>This training folder will remain the same in both <code class="docutils literal notranslate"><span class="pre">input_model</span></code> and <code class="docutils literal notranslate"><span class="pre">input_tracking</span></code>, as it is used for structure during tracking.</p></li>
 </ul>
-<p>The <cite>test</cite> folder will change depending on your use case:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">test</span></code> folder will change depending on your use case:</p>
 <ul class="simple">
-<li><p>For testing a model (i.e., in the <cite>input_model</cite> folder), segment a few images and store them just as with the training set.</p></li>
-<li><p>For tracking and video segmentation, the frames extracted from your video will replace the test images. This is a limitation of <cite>kartezio</cite>.</p></li>
+<li><p>For testing a model (i.e., in the <code class="docutils literal notranslate"><span class="pre">input_model</span></code> folder), segment a few images and store them just as with the training set.</p></li>
+<li><p>For tracking and video segmentation, the frames extracted from your video will replace the test images. This is a limitation of <code class="docutils literal notranslate"><span class="pre">kartezio</span></code>.</p></li>
 </ul>
 <p>That is why we provide both folders and recommend creating your own by copying them. Be sure to store and track your model folders carefully.</p>
 <ul class="simple">
-<li><p><cite>dataset.csv</cite> and <cite>META.json</cite> are also necessary for <cite>kartezio</cite> to properly interpret the input folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">META.json</span></code> are also necessary for <code class="docutils literal notranslate"><span class="pre">kartezio</span></code> to properly interpret the input folder.</p></li>
 </ul>
-<p>If you want to create your own model — by retraining the provided one or building from a new dataset — follow the steps in <cite>quickstart.py</cite>.</p>
+<p>If you want to create your own model — by retraining the provided one or building from a new dataset — follow the steps in <code class="docutils literal notranslate"><span class="pre">quickstart.py</span></code>.</p>
 </section>
 <section id="models">
 <h3>Models<a class="headerlink" href="#models" title="Link to this heading"></a></h3>
-<p>The <cite>models</cite> folder contains a hash-named directory with two JSON files:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">models</span></code> folder contains a hash-named directory with two JSON files:</p>
 <ul class="simple">
-<li><p><cite>elite.json</cite>: Contains the final pipeline of the model</p></li>
-<li><p><cite>history.json</cite>: Contains the training history (e.g., generations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elite.json</span></code>: Contains the final pipeline of the model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">history.json</span></code>: Contains the training history (e.g., generations)</p></li>
 </ul>
 </section>
 </section>
 <section id="specificities-for-tracking">
 <h2>Specificities for Tracking<a class="headerlink" href="#specificities-for-tracking" title="Link to this heading"></a></h2>
-<p>In the <cite>input_tracking</cite> folder, you will find:</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">input_tracking</span></code> folder, you will find:</p>
 <ul class="simple">
 <li><p>A <strong>red channel video</strong></p></li>
-<li><p>A <cite>vert/</cite> folder containing:
+<li><p>A <code class="docutils literal notranslate"><span class="pre">vert</span></code> folder containing:
 - A <strong>green channel video</strong>
-- An empty <cite>frames/</cite> folder</p></li>
+- An empty <code class="docutils literal notranslate"><span class="pre">frames</span></code> folder</p></li>
 </ul>
 <p>These are example videos for tracking. If you wish to segment your own video, <strong>you must respect this structure</strong>.</p>
 <p>Both videos (red and green channels) originate from the same microscopic analysis, with channels separated using ImageJ. For more information, refer to the <span class="xref std std-ref">Materials and Methods</span> section in the README.</p>
