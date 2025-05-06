@@ -92,9 +92,10 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input file must be an AVI file.&quot;</span><span class="p">)</span>
 
     <span class="n">clip</span> <span class="o">=</span> <span class="n">VideoFileClip</span><span class="p">(</span><span class="n">avi_file</span><span class="p">)</span>
+    <span class="n">fps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">clip</span><span class="o">.</span><span class="n">fps</span><span class="p">)</span>
     <span class="n">mp4_file</span> <span class="o">=</span> <span class="n">avi_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.avi&quot;</span><span class="p">,</span> <span class="s2">&quot;.mp4&quot;</span><span class="p">)</span>
-    <span class="n">clip</span><span class="o">.</span><span class="n">write_videofile</span><span class="p">(</span><span class="n">mp4_file</span><span class="p">)</span>
-
+    <span class="n">clip</span><span class="o">.</span><span class="n">write_videofile</span><span class="p">(</span><span class="n">mp4_file</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="s2">&quot;libx264&quot;</span><span class="p">,</span> <span class="n">audio_codec</span><span class="o">=</span><span class="s2">&quot;aac&quot;</span><span class="p">)</span>
+    <span class="n">clip</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">mp4_file</span></div>
 
 
