@@ -1,6 +1,6 @@
 # MacTrack2
 
-Derived from the work by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. Our work aims at simplifying its use by adding different scripts. For instance, a `gettingstarted` file in the `mactrack` folder is here to help you with the analysis of your videos, based that we provide in the `examples` folder. You can also create your own model by running the `quickstart.py` file. Make sure to careffuly read the documentation of these two files. You can find them either in the files or in the website available [here](https://guibouland.github.io/MacTrack2/).
+Derived from the work by [Axel de Montgolfier](https://github.com/Axeldmont/) during his time at the LPHI lab at the University of Montpellier. Our work aims at simplifying its use by adding different scripts. For instance, a `gettingstarted` file is here to help you with the analysis of your videos, based that we provide in the `examples` folder. You can also create your own model by running the `quickstart.py` file. Make sure to careffuly read the documentation of these two files. You can find them either in the files or in the website available [here](https://guibouland.github.io/MacTrack2/).
 
 The goal of this project is then to accurately segment the macrophages. This segmentation will allow us to superimpose it on the green channel video to analyse the calcium flashes of the macrophages we have tracked. We then can retrieve informations on each macrophages conditionnally to the segmentation (such as amplitude of flashes, intensity...) without being hindered by the noise we often encounter in microscopic images.
 
@@ -33,7 +33,7 @@ cd MacTrack2
 pip install -r requirements.txt # Installing dependencies
 ```
 
-You are now set to go. If you want to try the module we provide, a `gettingstarted` python file is available in the `mactrack` folder. It uses a pre-trained model provided in the `examples` folder. If you want to train your own model, the `quickstart.py` file helps you to do so.
+You are now set to go. If you want to try the module we provide, a `gettingstarted` python file is available. It uses a pre-trained model provided in the `examples` folder. If you want to train your own model, the `quickstart.py` file helps you to do so.
 
 ## Create your own dataset and model
 
@@ -56,6 +56,4 @@ This project was made using mainly the [kartezio](https://github.com/KevinCortac
 
 
 * [x] update readme fully
-* [ ] update requirements
-* [ ] update doc (put set_up in mactrack with separate titles)
 * [ ] Materials and Methods, doc on fiji
