@@ -44,8 +44,8 @@ def locate(input_folder):
     caller_frame = inspect.stack()[1]
     caller_file = caller_frame.filename
     caller_dir = os.path.dirname(os.path.abspath(caller_file))
+    output_dir = os.path.join(caller_dir, r"output")
 
-    output_dir = os.path.join(caller_dir, "output")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 

@@ -1,34 +1,44 @@
-from locate.locate import locate
-from locate.list_sep import segmentation
-from locate.defuse import defuse, invdefuse
-from track.track import track
-from video.inputconfig import inputconfig
-from video.result import video, result, videocomp
+from mactrack.locate.locate import locate
+from mactrack.locate.list_sep import segmentation
+from mactrack.locate.defuse import defuse, invdefuse
+from mactrack.track.track import track
+from mactrack.video.inputconfig import inputconfig
+from mactrack.video.result import video, result, videocomp
 import os
-from analyse.intensity import intensity, intensitymed
-from analyse.distance import distance
-from analyse.size import size
-from analyse.perimeter import perimeter
-from analyse.recap import aggregate
+from mactrack.analyse.intensity import intensity, intensitymed
+from mactrack.analyse.distance import distance
+from mactrack.analyse.size import size
+from mactrack.analyse.perimeter import perimeter
+from mactrack.analyse.recap import aggregate
 import shutil
-from track.filtre import supprimer_petit
-import sys
+from mactrack.track.filtre import supprimer_petit
 
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
 from Set_up.count import get_frame_count
 from Set_up.convert import convert_avi_to_mp4
+from Set_up.empty_zip import empty_dataset_testy_zip
+from Set_up.dataset_csv import create_dataset_csv
 
 # We need the path to the folder you will use as input, containing the pretrained model we provided as an example, the dataset used for training the model, and the example video we are going to track and analyse.
-input_folder = os.path.join(parent, "examples/input_tracking/")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+input_folder = os.path.join(current_dir, "input_tracking")
 video_path = os.path.join(input_folder, "redchannel.avi")
+video_path_v = os.path.join(input_folder, r"vert", "greenchannel.avi")
 
 # If your video, as it is often the case with microscopic videos, is in `avi` format, you can convert it to `mp4` format.
 if video_path.endswith(".avi"):
     convert_avi_to_mp4(video_path)
     video_path = video_path.replace(".avi", ".mp4")
+
+############################################
+# Do the same for the green channel video
+if video_path_v.endswith(".avi"):
+    convert_avi_to_mp4(video_path_v)
+    video_path_v = video_path_v.replace(".avi", ".mp4")
+
 ##############################################
+# .. note:: If you already have a `mp4` video, you can skip this step and put directly the path to the `mp4` video in the `video_path` variable.
+
+
 # Now, your video is a `mp4` file and you can use it in the package.
 n = get_frame_count(video_path)  # Number of frame in the initial video
 p = 10  # Minimal number of frame where you can track your macrophage, if it is present in less or equal p frames, it will not be tracked
@@ -45,12 +55,24 @@ if os.path.exists("output/list_sep"):
 if os.path.exists("output/list_comp"):
     shutil.rmtree("output/list_comp")
 
+# The package `kartezio` has special needs for the data's structure. In fact the *test_x* and *test_y* folders must be of the same size with the latter containing masks (in a zip format). However, it does not check the contents inside those files, so we will artificially create empty zip files in the `test_y` folder.
+testy_folder = os.path.join(input_folder, "dataset/test/test_y/")
+empty_dataset_testy_zip(testy_folder=testy_folder, video_path=video_path)
+
+# `kartezio` also needs a csv file that summaries the contents of the dataset.
+create_dataset_csv(
+    os.path.join(input_folder, r"dataset"),
+    os.path.join(input_folder, "dataset", "dataset.csv"),
+)
+
+#############################################################
 # We can now begin the tracking of the macrophages in the red channel video. The following function will create a folder called `output` in the current directory, and inside it, two folders : `list_comp` and `list_sep`. The first one contains the segmentation of each frame, and the second one contains each object in separate picture file at each frame. They will have a role in the next steps of the tracking process.
 locate(input_folder)
 
 
-# This will stock all the picture in class in order to accelerate the program
-image_storage = segmentation("output/list_sep")
+# This will save all the picture in a python class in order to accelerate the program
+output_path = os.path.join(current_dir, r"output")
+image_storage = segmentation(os.path.join(output_path, "list_sep"))
 image_storage.load_images()
 
 
@@ -63,12 +85,11 @@ image_storage = invdefuse(n, image_storage)
 track(n, threshold_iou=0.5, image_storage=image_storage)
 supprimer_petit(p)
 
-
 # This will create in the output folder two video which show the results of the tracking
 result(input_folder)
+
 # We finally can merge all the fully segmented frames in a single video. We will obtain two videos : `result.mp4` and `resultv.mp4`. The first one contains the tracking of the segmented macrophages on the red channel video, and the second one contains the tracking of the segmented macrophages on the green channel video. Both videos are stored in the `output` folder.
 video()
-
 
 # This is for deleting non necessary folder to liberate some place. You can add a '#' before the lines below if you want to keep the folders.
 shutil.rmtree("output/list_def")
@@ -76,13 +97,11 @@ shutil.rmtree("output/list_sep")
 shutil.rmtree("output/result")
 shutil.rmtree("output/resultv")
 
-
 # This is to create folder who will contain the data
 if not os.path.exists("output/data"):
     os.makedirs("output/data")
 if not os.path.exists("output/plot"):
     os.makedirs("output/plot")
-
 
 # These will collect the data and stock them in dataframe
 intmed = intensitymed(n, frame, input_folder)  # Data on the intensity of macrophage

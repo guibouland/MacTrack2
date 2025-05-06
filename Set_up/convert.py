@@ -16,9 +16,10 @@ def convert_avi_to_mp4(avi_file):
         raise ValueError("Input file must be an AVI file.")
 
     clip = VideoFileClip(avi_file)
+    fps = int(clip.fps)
     mp4_file = avi_file.replace(".avi", ".mp4")
-    clip.write_videofile(mp4_file)
-
+    clip.write_videofile(mp4_file, fps=fps, codec="libx264", audio_codec="aac")
+    clip.close()
     return mp4_file
 
 
