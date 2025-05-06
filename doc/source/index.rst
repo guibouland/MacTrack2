@@ -1,7 +1,7 @@
 Welcome to MacTrack2's documentation!
 ======================================
 
-Derived from the work by `Axel de Montgolfier <https://github.com/Axeldmont/>`_ during his time at the LPHI lab at the University of Montpellier. Our work aims to simplify its use by adding various scripts. For instance, a `gettingstarted` file helps with the analysis of your videos, based on examples we provide in the `examples` folder. You can also create your own model by running the `quickstart.py` file. 
+Derived from the work by `Axel de Montgolfier <https://github.com/Axeldmont/>`_ during his time at the LPHI lab at the University of Montpellier. Our work aims to simplify its use by adding various scripts. For instance, a ``gettingstarted`` file helps with the analysis of your videos, based on examples we provide in the ``examples`` folder. You can also create your own model by running the ``quickstart.py`` file. 
 
 Make sure to carefully read the documentation for both files. You can find it either in the source files or on the website available `here <https://guibouland.github.io/MacTrack2/>`_.
 
@@ -18,16 +18,16 @@ Clone the repository:
 
     git clone https://github.com/guibouland/MacTrack2.git
 
-You can then install the dependencies listed in `requirements.txt`. We recommend creating a virtual environment.
+You can then install the dependencies listed in ``requirements.txt``. We recommend creating a virtual environment.
 
 If you use (micro)mamba:
 
 .. code-block:: bash
 
-    micromamba create -n mactrack-env python=3.12  # Create virtual env using Python 3.12
+    micromamba create -n mactrack-env python=3.12   # Create virtual env using Python 3.12
     micromamba activate                             # Activate the environment
-    cd MacTrack2                                     # Enter the project directory
-    pip install -r requirements.txt                  # Install dependencies
+    cd MacTrack2                                    # Enter the project directory
+    pip install -r requirements.txt                 # Install dependencies
 
 If you use Python's `venv` module:
 
@@ -41,7 +41,7 @@ If you use Python's `venv` module:
 
 You're now ready to go!
 
-To try the module we provide, run the `gettingstarted` file. It uses a pre-trained model found in the `examples` folder. If you want to train your own model, use `quickstart.py`.
+To try the module we provide, run the ``gettingstarted`` file. It uses a pre-trained model found in the ``examples`` folder. If you want to train your own model, use ``quickstart.py``.
 
 Create Your Own Dataset and Model
 ---------------------------------
