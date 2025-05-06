@@ -20,7 +20,7 @@ from Set_up.dataset_csv import create_dataset_csv
 
 # We need the path to the folder you will use as input, containing the pretrained model we provided as an example, the dataset used for training the model, and the example video we are going to track and analyse.
 current_dir = os.path.dirname(os.path.abspath(__file__))
-input_folder = os.path.join(current_dir, "input_tracking")
+input_folder = os.path.join(current_dir, "examples", "input_tracking")
 video_path = os.path.join(input_folder, "redchannel.avi")
 video_path_v = os.path.join(input_folder, r"vert", "greenchannel.avi")
 
