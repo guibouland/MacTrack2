@@ -8,27 +8,25 @@ Imports
 
 .. code-block:: python
 
-    from locate.locate import locate
-    from locate.list_sep import segmentation
-    from locate.defuse import defuse, invdefuse
-    from track.track import track
-    from video.inputconfig import inputconfig
-    from video.result import video, result, videocomp
+    from mactrack.locate.locate import locate
+    from mactrack.locate.list_sep import segmentation
+    from mactrack.locate.defuse import defuse, invdefuse
+    from mactrack.track.track import track
+    from mactrack.video.inputconfig import inputconfig
+    from mactrack.video.result import video, result, videocomp
     import os
-    from analyse.intensity import intensity, intensitymed
-    from analyse.distance import distance
-    from analyse.size import size
-    from analyse.perimeter import perimeter
-    from analyse.recap import aggregate
+    from mactrack.analyse.intensity import intensity, intensitymed
+    from mactrack.analyse.distance import distance
+    from mactrack.analyse.size import size
+    from mactrack.analyse.perimeter import perimeter
+    from mactrack.analyse.recap import aggregate
     import shutil
-    from track.filtre import supprimer_petit
-    import sys
+    from mactrack.track.filtre import supprimer_petit
 
-    current = os.path.dirname(os.path.realpath(__file__))
-    parent = os.path.dirname(current)
-    sys.path.append(parent)
     from Set_up.count import get_frame_count
     from Set_up.convert import convert_avi_to_mp4
+    from Set_up.empty_zip import empty_dataset_testy_zip
+    from Set_up.dataset_csv import create_dataset_csv
 
 Setup
 -----
@@ -41,10 +39,12 @@ We need the path to the folder you will use as input, containing:
 
 .. code-block:: python
 
-    input_folder = os.path.join(parent, "examples/input_tracking/")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    input_folder = os.path.join(current_dir, "input_tracking")
     video_path = os.path.join(input_folder, "redchannel.avi")
+    video_path_v = os.path.join(input_folder, r"vert", "greenchannel.avi")
 
-If your video is in `.avi` format (as is often the case with microscopic videos), you can convert it to `.mp4`:
+If your video is in ``.avi`` format (as is often the case with microscopic videos), you can convert it to ``.mp4``:
 
 .. code-block:: python
 
@@ -52,7 +52,18 @@ If your video is in `.avi` format (as is often the case with microscopic videos)
         convert_avi_to_mp4(video_path)
         video_path = video_path.replace(".avi", ".mp4")
 
-Now, your video is a `.mp4` file and can be used in the pipeline.
+You can do the same for the green channel video:
+.. code-block:: python
+
+    if video_path_v.endswith(".avi"):
+        convert_avi_to_mp4(video_path_v)
+        video_path_v = video_path_v.replace(".avi", ".mp4")
+
+.. note::
+
+    If you already have a `mp4` video, you can skip this step and put directly the path to the `mp4` video in the `video_path` variable.
+
+Now, your video is a ``.mp4`` file and can be used in the pipeline.
 
 .. code-block:: python
 
@@ -62,14 +73,15 @@ Now, your video is a `.mp4` file and can be used in the pipeline.
 Frame Extraction
 ----------------
 
-We will cut the video into frames and store them in `input_folder`.
+We will cut the video into frames and store them in ``input_folder``.
 
-- Red channel frames: `input_folder/dataset/test/test_x`
-- Green channel frames: `input_folder/vert/frames`
+- Red channel frames: ``input_folder/dataset/test/test_x``
+- Green channel frames: ``input_folder/vert/frames``
 
-⚠️ The following function erases the contents in the `dataset` folder. If it contains the frames you used to build your model (as in demonstrated in the :doc:`quickstart`) may be deleted.
 
-Recommendation: use a **copy** of your model-building folder, or change the working folder to avoid data loss. That is why we used `input_tracking` as the input folder and not `input_model`.
+.. note::
+
+    We recommand you to store the frames that served for model building carefully in another folder, as the tracking will cause changes in the dataset (see :doc:`quickstart` for more details). That is why we used ``input_tracking`` as the input folder and not ``input_model``.
 
 .. code-block:: python
 
@@ -78,7 +90,7 @@ Recommendation: use a **copy** of your model-building folder, or change the work
 Cleanup
 -------
 
-Delete the `list_sep` and `list_comp` folders if they already exist to avoid inconsistencies in frame count:
+Delete the ``list_sep`` and ``list_comp`` folders if they already exist to avoid inconsistencies in frame count:
 
 .. code-block:: python
 
@@ -86,16 +98,35 @@ Delete the `list_sep` and `list_comp` folders if they already exist to avoid inc
         shutil.rmtree("output/list_sep")
     if os.path.exists("output/list_comp"):
         shutil.rmtree("output/list_comp")
-You can add a **#** if you want to keep them.
+
+You can add a '**#**' if you want to keep them.
+
+Dataset structure
+-----------------
+The ``inputconfig`` function cut both videos (red ans green channels) in frames stored in the ``test_y`` and ``vert/frames`` folders. The ``kartezio`` package has special needs to properly function. The ``test_x`` (red channel frames) and ``test_y`` folders must have the same length with the latter containing masks (in a zip format). However, it does not check the contents inside those files, so we will artificially create empty zip files in the ``test_y`` folder.
+
+.. code-block:: python
+
+    testy_folder = os.path.join(input_folder, "dataset/test/test_y/")
+    empty_dataset_testy_zip(testy_folder=testy_folder, video_path=video_path)
+
+It also needs a csv file that sums up the contents of the dataset.
+
+.. code-block:: python
+
+    create_dataset_csv(
+        os.path.join(input_folder, r"dataset"),
+        os.path.join(input_folder, "dataset", "dataset.csv"),
+    )
 
 Segmentation
 ------------
 
 We begin tracking macrophages in the red channel video. This function:
 
-- Creates an `output` folder
-- Generates `list_comp`: full-frame segmentations
-- Generates `list_sep`: individual macrophages per frame
+- Creates an ``output`` folder
+- Generates ``list_comp``: full-frame segmentations subfolder
+- Generates ``list_sep``: individual macrophages per frame subfolder
 
 .. code-block:: python
 
@@ -105,7 +136,8 @@ Then we load all the images into memory to accelerate further processing:
 
 .. code-block:: python
 
-    image_storage = segmentation("output/list_sep")
+    output_path = os.path.join(current_dir, r"output")
+    image_storage = segmentation(os.path.join(output_path, "list_sep"))
     image_storage.load_images()
 
 Defusion
@@ -113,7 +145,7 @@ Defusion
 
 This step separates merged macrophages, as nearby cells might be detected as a single object.
 
-Creates `output/list_def` containing the corrected segmentation:
+Creates ``output/list_def`` containing the corrected segmentation:
 
 .. code-block:: python
 
@@ -123,7 +155,7 @@ Creates `output/list_def` containing the corrected segmentation:
 Tracking
 --------
 
-Track all macrophages across frames. Only keep those present in more than `p` frames.
+Track all macrophages across frames. Only keep those present in more than ``p`` frames.
 
 .. code-block:: python
 
@@ -135,10 +167,10 @@ Video Generation
 
 Generate two videos showing tracking results:
 
-- `result.mp4`: red channel
-- `resultv.mp4`: green channel
+- ``result.mp4``: red channel
+- ``resultv.mp4``: green channel
 
-Stored in the `output` folder.
+Stored in the ``output`` folder.
 
 .. code-block:: python
 

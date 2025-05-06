@@ -59,7 +59,7 @@ if os.path.exists("output/list_comp"):
 testy_folder = os.path.join(input_folder, "dataset/test/test_y/")
 empty_dataset_testy_zip(testy_folder=testy_folder, video_path=video_path)
 
-# `kartezio` also needs a csv file that summaries the contents of the dataset.
+# `kartezio` also needs a csv file that sums up the contents of the dataset.
 create_dataset_csv(
     os.path.join(input_folder, r"dataset"),
     os.path.join(input_folder, "dataset", "dataset.csv"),
