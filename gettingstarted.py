@@ -42,7 +42,7 @@ if video_path_v.endswith(".avi"):
 # Now, your video is a `mp4` file and you can use it in the package.
 n = get_frame_count(video_path)  # Number of frame in the initial video
 p = 10  # Minimal number of frame where you can track your macrophage, if it is present in less or equal p frames, it will not be tracked
-
+print(n)
 # We will then cut the videos into frames and store them in the `input_folder` directory. The red channel frames will be stored in `input_folder/dataset/test/test_x`, and the green channel frames will be stored in `input_folder/vert/frames`. That is why we used the `input_tracking` folder as input, as the following function erase the contents inside the `dataset` folder, meaning that the frames that helped you build the model may be gone.
 
 # That is why we recommend to either store the frames you used to build the model in a different folder, or to use a different folder as input, creating a copy of the one used to build the model.

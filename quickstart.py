@@ -18,15 +18,15 @@ Through this file, you can find all the information you need to make this projec
 import os
 
 dirs = [
-    "model",
-    "model/dataset",
-    "model/dataset/train",
-    "model/dataset/train/train_x",
-    "model/dataset/train/train_y",
-    "model/dataset/test",
-    "model/dataset/test/test_x",
-    "model/dataset/test/test_y",
-    "model/models",
+    "examples/input_model",
+    "examples/input_model/dataset",
+    "examples/input_model/dataset/train",
+    "examples/input_model/dataset/train/train_x",
+    "examples/input_model/dataset/train/train_y",
+    "examples/input_model/dataset/test",
+    "examples/input_model/dataset/test/test_x",
+    "examples/input_model/dataset/test/test_y",
+    "examples/input_model/models",
 ]
 for d in dirs:
     os.makedirs(d, exist_ok=True)
@@ -54,7 +54,7 @@ for d in dirs:
 import json
 
 # Path to the JSON file
-meta_path = "model/dataset/META.json"
+meta_path = "examples/input_model/dataset/META.json"
 
 # Content of the JSON file
 meta_data = {
@@ -77,7 +77,10 @@ print(f"Fichier {meta_path} créé avec succès !")
 
 from Set_up.dataset_csv import create_dataset_csv
 
-create_dataset_csv(input_folder="model/dataset", output_csv="model/dataset/dataset.csv")
+create_dataset_csv(
+    input_folder="examples/input_model/dataset",
+    output_csv="examples/input_model/dataset/dataset.csv",
+)
 
 ########################################################
 # Your two files are now created and located in the `model/dataset` folder. We can now train our model.
@@ -97,8 +100,8 @@ from datetime import timedelta
 
 t0_train = time.time()
 
-DATASET = "model/dataset"
-OUTPUT = "model/models"
+DATASET = "examples/input_model/dataset"
+OUTPUT = "examples/input_model/models"
 
 generations = 1000
 _lambda = 5
@@ -138,8 +141,10 @@ from kartezio.inference import ModelPool
 t0_test = time.time()
 
 scores_all = {}
-pool = ModelPool(f"model/models", FitnessIOU(), regex="*/elite.json").to_ensemble()
-dataset = read_dataset(f"model/dataset", counting=True)
+pool = ModelPool(
+    f"examples/input_model/models", FitnessIOU(), regex="*/elite.json"
+).to_ensemble()
+dataset = read_dataset(f"examples/input_model/dataset", counting=True)
 annotations_test = 0
 annotations_training = 0
 roi_pixel_areas = []
@@ -181,7 +186,7 @@ print(scores_test)
 scores_all[f"training"] = scores_training
 scores_all[f"test"] = scores_test
 
-pd.DataFrame(scores_all).to_csv("model/scores.csv", index=False)
+pd.DataFrame(scores_all).to_csv("examples/input_model/scores.csv", index=False)
 
 print(f"Total runtime : {timedelta(seconds=elapsed_total)}")
 print(f"Training time : {timedelta(seconds=elapsed_train)}")
@@ -194,7 +199,8 @@ print(f"Testing time : {timedelta(seconds=elapsed_test)}")
 
 from Set_up.explain_model import summary_model
 
-summaries = summary_model("model")
+model_path = "examples/input_model"
+summaries = summary_model(model_path)
 
 ###########################################
 # You can create a ``csv`` file for the nodes that will help you understand your model.
@@ -217,9 +223,10 @@ print(summaries[0].endpoint)
 # +++++++++++++++
 # You can visualize the model you've just created and tested by running the following code.
 
+
 from mactrack.visualisation.viz_model import comp_model
 
-comp_model("./model", train=False)
+comp_model("./examples/input_model", train=False)
 
 #################################################
 # You have two options to visualize your model :
@@ -227,7 +234,7 @@ comp_model("./model", train=False)
 # if you put `train=True`, it will compare the training set with the predictions on the training set.
 # You can then find the results in the `output` folder.
 
-comp_model("./model", train=True)
+comp_model("./examples/input_model", train=True)
 
 #################################################
 # Calculate IOU
@@ -238,6 +245,6 @@ from mactrack.visualisation.iou import mean_global_iou
 
 mean_global_iou(
     "./model_output/test_def/ROIs_pred_def/",
-    "./model/dataset/test/test_y/",
+    "./examples/input_model/dataset/train/train_y/",
     "./model_output/comparison/",
 )

@@ -3,23 +3,24 @@ import cv2
 import numpy as np
 from scipy.sparse import csr_matrix
 
+
 class segmentation:
     def __init__(self, root_folder):
         self.root_folder = root_folder
-        self.images = [] 
+        self.images = []
 
     def load_images(self):
         for dir_name in os.listdir(self.root_folder):
             dir_path = os.path.join(self.root_folder, dir_name)
             if os.path.isdir(dir_path) and dir_name.startswith("heatmap_test_"):
-                objects_list = [] 
+                objects_list = []
                 for file_name in os.listdir(dir_path):
                     if file_name.endswith(".png") and file_name.startswith("object_"):
                         file_path = os.path.join(dir_path, file_name)
-                        image = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE) 
+                        image = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
                         print(file_path)
                         if image is not None:
-                            sparse_image = csr_matrix(image) 
+                            sparse_image = csr_matrix(image)
                             objects_list.append((file_name, sparse_image))
                 self.images.append((dir_name, objects_list))
 
@@ -35,7 +36,7 @@ class segmentation:
             if dir_name == heatmap_test_name:
                 return [sparse_image for _, sparse_image in objects_list]
         return None
-    
+
     def add_image(self, heatmap_test_name, object_name, image):
         if image is None:
             print(f"Failed to load image")
@@ -46,7 +47,7 @@ class segmentation:
             if dir_name == heatmap_test_name:
                 objects_list.append((object_name, sparse_image))
                 return
-            
+
     def replace_image(self, heatmap_test_name, object_name, new_image):
         if new_image is None:
             print(f"Failed to load new image")

@@ -16,7 +16,7 @@ def create_temporary_dataset(imput_image_path, model_path):
         model_path (str): Path to the model you want to use. Should contain a 'models' folder with the model in it and a dataset folder with the dataset used to train the model.
     """
     # Automatically determine the directory of the caller
-    caller_frame = inspect.stack()[2]
+    caller_frame = inspect.stack()[-1]
     caller_file = caller_frame.filename
     caller_dir = os.path.dirname(os.path.abspath(caller_file))
 

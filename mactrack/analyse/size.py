@@ -5,12 +5,14 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def count_valid_entries(data):
     num_valid_entries = data.notna().sum(axis=1)
     return num_valid_entries
 
+
 def graph():
-    file_path = 'output/data/size.xlsx'
+    file_path = "output/data/size.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
     individus = data.iloc[:, 0]
@@ -21,15 +23,16 @@ def graph():
         y = intensites.iloc[i]
         x = intensites.columns
         y_masked = np.where(y == threshold, np.nan, y)
-    
+
         plt.plot(x, y_masked, label=individu)
     step = 5
     plt.xticks(intensites.columns[::step], rotation=45)
-    plt.xlabel('Temps')
-    plt.ylabel('taille')
-    plt.title('Courbes de taille des individus au cours du temps')
-    plt.savefig('output/plot/courbes_taille_individus.png', format='png')
+    plt.xlabel("Temps")
+    plt.ylabel("taille")
+    plt.title("Courbes de taille des individus au cours du temps")
+    plt.savefig("output/plot/courbes_taille_individus.png", format="png")
     plt.close()
+
 
 def object_size(image_path):
     image = cv2.imread(image_path)
@@ -47,35 +50,40 @@ def object_size(image_path):
 
     return object_area
 
+
 def size(n):
-    base_folder = 'output/list_track'
-    output_file = 'output/data/size.xlsx'
-    if not output_file.endswith('.xlsx'):
+    base_folder = "output/list_track"
+    output_file = "output/data/size.xlsx"
+    if not output_file.endswith(".xlsx"):
         raise ValueError("Output file must have an .xlsx extension")
 
-    folders = [d for d in os.listdir(base_folder) if os.path.isdir(os.path.join(base_folder, d)) and d.startswith('macrophage_')]
-    folders.sort(key=lambda x: int(re.findall(r'\d+', x)[0]))
+    folders = [
+        d
+        for d in os.listdir(base_folder)
+        if os.path.isdir(os.path.join(base_folder, d)) and d.startswith("macrophage_")
+    ]
+    folders.sort(key=lambda x: int(re.findall(r"\d+", x)[0]))
     results = []
     for folder in folders:
         folder_path = os.path.join(base_folder, folder)
-        folder_result = {'Time': folder}
+        folder_result = {"Time": folder}
         print(folder_path)
         for a in range(0, n):
             found = False
 
             for file in os.listdir(folder_path):
-                if re.match(rf'{a}_\d+\.png', file):
+                if re.match(rf"{a}_\d+\.png", file):
                     found = True
-                    input = os.path.join(folder_path,file)
+                    input = os.path.join(folder_path, file)
                     x = object_size(input)
-                    folder_result[f'{a}'] = x
+                    folder_result[f"{a}"] = x
                     break
             if not found:
-                folder_result[f'{a}'] = 'NA'
-        
+                folder_result[f"{a}"] = "NA"
+
         results.append(folder_result)
     df = pd.DataFrame(results)
-    df.to_excel(output_file, index=False, engine='openpyxl')
+    df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
     graph()
     return output_file

@@ -7,6 +7,7 @@ import sys
 from roifile import ImagejRoi
 import zipfile
 import shutil
+import inspect
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from locate.locate import locate_frame
@@ -114,6 +115,30 @@ def pred_to_rois(pred, min_length):
     return rois
 
 
+from roifile import ImagejRoi, ROI_TYPE
+
+
+def create_polygon_roi(points, **kwargs):
+    """
+    Create an ImagejRoi object with the type set to POLYGON.
+
+    Parameters:
+    ----------
+    points : list
+        List of (x, y) coordinates for the polygon.
+    kwargs : dict
+        Additional arguments to pass to ImagejRoi.frompoints.
+
+    Returns:
+    -------
+    ImagejRoi
+        An ImagejRoi object with the type set to POLYGON.
+    """
+    roi = ImagejRoi.frompoints(points, **kwargs)
+    roi.roitype = ROI_TYPE.POLYGON  # Override the ROI type to POLYGON
+    return roi
+
+
 def save_rois_to_folder(rois, folder_path, frame_name):
     """Save ROIs for each objects as .roi files in a zip file.
 
@@ -142,7 +167,7 @@ def save_rois_to_folder(rois, folder_path, frame_name):
                 x = np.round(roi["x"]).astype(np.int16)
                 y = np.round(roi["y"]).astype(np.int16)
 
-                ij_roi = ImagejRoi.frompoints(np.column_stack((x, y)))
+                ij_roi = create_polygon_roi(points=np.column_stack((x, y)))
                 ij_roi.name = name
 
                 roi_path = os.path.join(folder_path, f"{name}.roi")
@@ -189,71 +214,71 @@ def comp_model_frame(frame, model_path, roi_frame):
     - Ensure that the input paths are valid and the required files are present in
       the specified directories.
     """
-
-    # Get the caller script's directory
-    caller_path = os.path.dirname(os.path.abspath(__file__))
+    # Get the directory in which this function will be used
+    called_path = os.path.dirname(os.path.abspath(inspect.stack()[-1].filename))
+    print(called_path)
     # Define the output directory
-    ouptut_dir = os.path.join(caller_path, "model_output")
-
+    output_dir = os.path.join(called_path, "model_output")
+    print(output_dir)
     # Locate objects in the frame using the model
     loc = locate_frame(frame, model_path, "model_output")
     # Convert model predictions to ROIs
     rois_pred = pred_to_rois(loc, min_length=1)
     # Define the folder to save predicted ROIs
-    rois_folder = os.path.join(ouptut_dir, "ROIs_pred")
+    rois_folder = os.path.join(output_dir, "ROIs_pred")
     # Extract the frame name from the path
     frame_name = frame.split("/")[-1].split(".")[0]
     # Save predicted ROIs to the folder
     save_rois_to_folder(rois_pred, rois_folder, frame_name=frame_name)
 
     # Get the image from the list_comp folder
-    imgs = os.listdir(os.path.join(ouptut_dir, "list_comp"))
+    imgs = os.listdir(os.path.join(output_dir, "list_comp"))
     imgs.sort()
-    img_path = os.path.join(ouptut_dir, "list_comp", imgs[0])
+    img_path = os.path.join(output_dir, "list_comp", imgs[0])
     # Get the ROI file from the ROIs_pred folder
     roi_path = os.path.join(rois_folder, os.listdir(rois_folder)[0])
     # Create a temporary folder for visualization
-    os.makedirs(os.path.join(ouptut_dir, "viz_temp"), exist_ok=True)
-    viz_temp = os.path.join(ouptut_dir, "viz_temp")
+    os.makedirs(os.path.join(output_dir, "viz_temp"), exist_ok=True)
+    viz_temp = os.path.join(output_dir, "viz_temp")
     # Visualize the predicted ROIs on the image
     visualize_roi(img_path, roi_path, viz_temp)
 
     # Visualize the ground truth ROIs on the image with predicted ROIs
-    img_path = os.path.join(ouptut_dir, viz_temp, os.listdir(viz_temp)[0])
-    os.makedirs(os.path.join(ouptut_dir, "comparison"), exist_ok=True)
+    img_path = os.path.join(output_dir, viz_temp, os.listdir(viz_temp)[0])
+    os.makedirs(os.path.join(output_dir, "comparison"), exist_ok=True)
     visualize_roi(
-        img_path, roi_frame, os.path.join(ouptut_dir, "comparison"), color="blue"
+        img_path, roi_frame, os.path.join(output_dir, "comparison"), color="blue"
     )
 
     # Create directories for final outputs
-    os.makedirs(os.path.join(ouptut_dir, "test_def"), exist_ok=True)
-    os.makedirs(os.path.join(ouptut_dir, "test_def", "ROIs_pred_def"), exist_ok=True)
-    os.makedirs(os.path.join(ouptut_dir, "test_def", "1st_viz_pred"), exist_ok=True)
-    os.makedirs(os.path.join(ouptut_dir, "test_def", "masks_def"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "test_def"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "test_def", "ROIs_pred_def"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "test_def", "1st_viz_pred"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "test_def", "masks_def"), exist_ok=True)
 
     # Copy predicted ROIs, visualizations, and masks to the final output directories
     shutil.copy(
         roi_path,
-        os.path.join(ouptut_dir, "test_def", "ROIs_pred_def"),
+        os.path.join(output_dir, "test_def", "ROIs_pred_def"),
     )
     shutil.copy(
         os.path.join(viz_temp, os.listdir(viz_temp)[0]),
-        os.path.join(ouptut_dir, "test_def", "1st_viz_pred"),
+        os.path.join(output_dir, "test_def", "1st_viz_pred"),
     )
     shutil.copy(
         os.path.join(
-            ouptut_dir, "masks_frame", os.listdir(ouptut_dir + "/masks_frame")[0]
+            output_dir, "masks_frame", os.listdir(output_dir + "/masks_frame")[0]
         ),
-        os.path.join(ouptut_dir, "test_def", "masks_def"),
+        os.path.join(output_dir, "test_def", "masks_def"),
     )
 
     # Clean up temporary directories
-    shutil.rmtree(os.path.join(ouptut_dir, "list_comp"))
-    shutil.rmtree(os.path.join(ouptut_dir, "ROIs_pred"))
-    shutil.rmtree(os.path.join(ouptut_dir, "viz_temp"))
-    shutil.rmtree(os.path.join(caller_path, "temp_dataset"))
-    shutil.rmtree(os.path.join(ouptut_dir, "list_sep"))
-    shutil.rmtree(os.path.join(ouptut_dir, "masks_frame"))
+    shutil.rmtree(os.path.join(output_dir, "list_comp"))
+    shutil.rmtree(os.path.join(output_dir, "ROIs_pred"))
+    shutil.rmtree(os.path.join(output_dir, "viz_temp"))
+    shutil.rmtree(os.path.join(called_path, "temp_dataset"))
+    shutil.rmtree(os.path.join(output_dir, "list_sep"))
+    shutil.rmtree(os.path.join(output_dir, "masks_frame"))
 
 
 def comp_model(model_path, train=False):
@@ -295,7 +320,7 @@ def comp_model(model_path, train=False):
         set = "train"
     else:
         set = "test"
-    caller_path = os.path.dirname(os.path.abspath(__file__))
+    caller_path = os.path.dirname(os.path.abspath(inspect.stack()[1].filename))
     # Test set folder
     test_set_folder = sorted(
         os.listdir(os.path.join(model_path, "dataset", f"{set}", f"{set}_x"))

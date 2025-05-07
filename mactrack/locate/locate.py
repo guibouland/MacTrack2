@@ -122,7 +122,7 @@ def locate_frame(input_image_path, model_path, output_name):
     Returns:
         list: p_test, the prediction on the input frame
     """
-    caller_frame = inspect.stack()[1]
+    caller_frame = inspect.stack()[-1]
     caller_file = caller_frame.filename
     caller_dir = os.path.dirname(os.path.abspath(caller_file))
 
@@ -136,11 +136,11 @@ def locate_frame(input_image_path, model_path, output_name):
 
     fitness = FitnessIOU()
     ensemble = ModelPool(
-        os.path.join(os.path.dirname(model_path), r"models"),
+        os.path.join(model_path, r"models"),
         fitness,
         regex="*/elite.json",
     ).to_ensemble()
-    create_temporary_dataset(input_image_path, os.path.dirname(model_path))
+    create_temporary_dataset(input_image_path, model_path)
     dataset = read_dataset(os.path.join(caller_dir, r"temp_dataset"), counting=True)
 
     p_test = ensemble.predict(dataset.test_x)
