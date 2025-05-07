@@ -207,7 +207,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        list: p_test, the prediction on the input frame</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">caller_file</span> <span class="o">=</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">filename</span>
     <span class="n">caller_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">caller_file</span><span class="p">))</span>
 
@@ -221,11 +221,11 @@
 
     <span class="n">fitness</span> <span class="o">=</span> <span class="n">FitnessIOU</span><span class="p">()</span>
     <span class="n">ensemble</span> <span class="o">=</span> <span class="n">ModelPool</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">model_path</span><span class="p">),</span> <span class="sa">r</span><span class="s2">&quot;models&quot;</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;models&quot;</span><span class="p">),</span>
         <span class="n">fitness</span><span class="p">,</span>
         <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;*/elite.json&quot;</span><span class="p">,</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_ensemble</span><span class="p">()</span>
-    <span class="n">create_temporary_dataset</span><span class="p">(</span><span class="n">input_image_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">model_path</span><span class="p">))</span>
+    <span class="n">create_temporary_dataset</span><span class="p">(</span><span class="n">input_image_path</span><span class="p">,</span> <span class="n">model_path</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">read_dataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">caller_dir</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;temp_dataset&quot;</span><span class="p">),</span> <span class="n">counting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">p_test</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">test_x</span><span class="p">)</span>

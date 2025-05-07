@@ -121,6 +121,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.iou.roi_to_mask"><code class="docutils literal notranslate"><span class="pre">roi_to_mask()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.comp_model"><code class="docutils literal notranslate"><span class="pre">comp_model()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.comp_model_frame"><code class="docutils literal notranslate"><span class="pre">comp_model_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.create_polygon_roi"><code class="docutils literal notranslate"><span class="pre">create_polygon_roi()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.pred_to_rois"><code class="docutils literal notranslate"><span class="pre">pred_to_rois()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.save_rois_to_folder"><code class="docutils literal notranslate"><span class="pre">save_rois_to_folder()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.visualisation.viz_model.visualize_roi"><code class="docutils literal notranslate"><span class="pre">visualize_roi()</span></code></a></li>
@@ -691,6 +692,28 @@ the specified directories.</p></li>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="mactrack.visualisation.viz_model.create_polygon_roi">
+<span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">create_polygon_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#create_polygon_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.create_polygon_roi" title="Link to this definition"></a></dt>
+<dd><p>Create an ImagejRoi object with the type set to POLYGON.</p>
+<section id="parameters">
+<h4>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>points<span class="classifier">list</span></dt><dd><p>List of (x, y) coordinates for the polygon.</p>
+</dd>
+<dt>kwargs<span class="classifier">dict</span></dt><dd><p>Additional arguments to pass to ImagejRoi.frompoints.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h4>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>ImagejRoi</dt><dd><p>An ImagejRoi object with the type set to POLYGON.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="mactrack.visualisation.viz_model.pred_to_rois">
 <span class="sig-prename descclassname"><span class="pre">mactrack.visualisation.viz_model.</span></span><span class="sig-name descname"><span class="pre">pred_to_rois</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/viz_model.html#pred_to_rois"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.viz_model.pred_to_rois" title="Link to this definition"></a></dt>
 <dd><p>Convert model predictions into Regions of Interest (ROIs).</p>
@@ -932,10 +955,10 @@ function in the list of functions chosen in the Kartezio package.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.explain_model.summary_model">
-<span class="sig-prename descclassname"><span class="pre">Set_up.explain_model.</span></span><span class="sig-name descname"><span class="pre">summary_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#summary_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.summary_model" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Set_up.explain_model.</span></span><span class="sig-name descname"><span class="pre">summary_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/explain_model.html#summary_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.explain_model.summary_model" title="Link to this definition"></a></dt>
 <dd><p>This function loads models from all subdirectories in a specified folder and creates summaries.</p>
 <p>Parameters:
-model_folder (str): The name of the folder containing the ‘models’ folder.</p>
+model_folder (str): Path to the folder containing the models. The function will look for subdirectories within this folder.</p>
 </dd></dl>
 
 </section>
