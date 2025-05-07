@@ -25,7 +25,7 @@ If you use (micro)mamba:
 .. code-block:: bash
 
     micromamba create -n mactrack-env python=3.12   # Create virtual env using Python 3.12
-    micromamba activate                             # Activate the environment
+    micromamba activate mactrack-env                # Activate the environment
     cd MacTrack2                                    # Enter the project directory
     pip install -r requirements.txt                 # Install dependencies
 
