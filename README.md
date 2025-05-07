@@ -18,7 +18,7 @@ If you use (micro)mamba :
 
 ```bash
 micromamba create -n mactrack-env python=3.12 # Create virtual env using python 3.12
-micromamba activate # Activate the environment
+micromamba activate mactrack-env # Activate the environment
 cd MacTrack2 # cd into the repository containing the requirements.txt file
 pip install -r requirements.txt # Installing depedencies
 ```
