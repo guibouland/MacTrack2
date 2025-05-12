@@ -6,12 +6,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def count_valid_entries(data):
-    num_valid_entries = data.notna().sum(axis=1)
-    return num_valid_entries
-
-
-def graph():
+def graph_intensity():
+    """
+    Generates a plot of the intensity of individuals over time (frames).
+    Reads data from an Excel file, processes it, and saves the plot as a PNG image.
+    """
     file_path = "output/data/intensity.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
@@ -34,7 +33,11 @@ def graph():
     plt.close()
 
 
-def graphmed():
+def graphmed_intensity():
+    """
+    Generates a plot of the median intensity of individuals over time (frames).
+    Reads data from an Excel file, processes it, and saves the plot as a PNG image.
+    """
     file_path = "output/data/intensitymed.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
@@ -58,6 +61,21 @@ def graphmed():
 
 
 def calculate_ratio(image_path_contour, image_a, image_f0):
+    """
+    Calculate the ratio of the difference between two images (image_a and image_f0) within the contour of a third image (image_path_contour).
+    The ratio is calculated as :
+    .. math::
+        ratio = \\frac{f - f_0}{f_0}
+    where f is the pixel value in image_a and f_0 is the pixel value in image_f0.
+
+    Parameters:
+        image_path_contour (str): Path to the contour image.
+        image_a (numpy.ndarray): The first image (green channel) to compare.
+        image_f0 (numpy.ndarray): The second image (green channel) to compare.
+
+    Returns:
+        float: The mean ratio calculated from the pixels within the contour.
+    """
     image_contour = cv2.imread(image_path_contour)
     if image_contour is None:
         raise FileNotFoundError(f"Image not found: {image_path_contour}")
@@ -100,6 +118,19 @@ def calculate_ratio(image_path_contour, image_a, image_f0):
 
 
 def intensity(n, frame, input_folder):
+    """
+    This function calculates the intensity of segmented macrophages in images.
+    It processes images in the specified folder, extracts the intensity for each segmented macrophage,
+    and saves the results in an Excel file.
+
+    Parameters:
+        n (int): The number of segmented macrophages to process.
+        frame (object): An object containing the frames of the images.
+        input_folder (str): The folder containing the input images.
+
+    Returns:
+        str: The path to the output Excel file containing the intensity data.
+    """
     base_folder = "output/list_track"
     output_file = "output/data/intensity.xlsx"
     if not output_file.endswith(".xlsx"):
@@ -134,11 +165,24 @@ def intensity(n, frame, input_folder):
     df = pd.DataFrame(results)
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
-    graph()
+    graph_intensity()
     return output_file
 
 
 def intensitymed(n, frame, input_folder):
+    """
+    This function calculates the median intensity of segmented macrophages in images.
+    It processes images in the specified folder, extracts the median intensity for each segmented macrophage,
+    and saves the results in an Excel file.
+
+    Parameters:
+        n (int): The number of segmented macrophages to process.
+        frame (object): An object containing the frames of the images.
+        input_folder (str): The folder containing the input images.
+
+    Returns:
+        str: The path to the output Excel file containing the median intensity data.
+    """
     base_folder = "output/list_track"
     output_file = "output/data/intensitymed.xlsx"
     if not output_file.endswith(".xlsx"):
@@ -173,5 +217,5 @@ def intensitymed(n, frame, input_folder):
     df = pd.DataFrame(results)
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
-    graphmed()
+    graphmed_intensity()
     return output_file

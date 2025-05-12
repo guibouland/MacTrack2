@@ -5,6 +5,14 @@ import random
 
 
 def draw_contours(image, contours, number, colors):
+    """
+    Draw contours on the image with a specific color based on the number.
+    Parameters:
+        image (numpy.ndarray): The image on which to draw the contours.
+        contours (list): List of contours to draw.
+        number (int): The number used to determine the color.
+        colors (list): List of colors to choose from.
+    """
     color = colors[number % len(colors)]
     for contour in contours:
         cv2.drawContours(image, [contour], -1, color, 2)
@@ -18,10 +26,20 @@ def draw_contours(image, contours, number, colors):
 
 
 def generate_random_rgb_color():
+    """
+    Generate a random RGB color.
+    Returns:
+        tuple: A tuple representing a random RGB color.
+    """
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 
 def result(input_folder):
+    """
+    Process images in the input folder and draw contours based on the list of tracks.
+    Parameters:
+        input_folder (str): Path to the folder containing images and tracks.
+    """
     input_folder_v = os.path.join(input_folder, "vert/frames")
     output_folder_v = "output/resultv"
     list_track_folder_v = "output/list_track"
@@ -101,6 +119,9 @@ def result(input_folder):
 
 
 def video():
+    """
+    Create a video from images in the ``output/result`` and ``output/resultv`` folders.
+    """
     result_folder = "output/result"
     video_output = "output/result_video.mp4"
     images = [img for img in os.listdir(result_folder) if img.endswith(".png")]
@@ -149,6 +170,9 @@ def video():
 
 
 def videocomp():
+    """
+    Create a video from images in the ``output/list_comp`` folder.
+    """
     image_folder = "output/list_comp"
     video_name = "output/result_video_w.mp4"
     images = [img for img in os.listdir(image_folder) if img.endswith(".png")]

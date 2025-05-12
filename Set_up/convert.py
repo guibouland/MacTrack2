@@ -24,6 +24,11 @@ def convert_avi_to_mp4(avi_file):
 
 
 def convert_all_avi_in_folder(folder_path):
+    """
+    Converts all AVI files in a folder and its subfolders to MP4 format.
+    Parameters:
+        folder_path (str): Path to the folder containing AVI files.
+    """
     for root, dirs, files in os.walk(folder_path):
         for file_name in files:
             if file_name.endswith(".avi"):
@@ -33,6 +38,11 @@ def convert_all_avi_in_folder(folder_path):
 
 # Delete avi files in folder and subfolders
 def delete_avi_files(folder_path):
+    """
+    Deletes all AVI files in a folder and its subfolders.
+    Parameters:
+        folder_path (str): Path to the folder containing AVI files.
+    """
     for root, dirs, files in os.walk(folder_path):
         for file_name in files:
             if file_name.endswith(".avi"):

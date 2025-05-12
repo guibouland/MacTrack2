@@ -4,6 +4,11 @@ import json
 
 
 def create_dataset_csv(input_folder, output_csv):
+    """Create a ``dataset.csv`` file for the 'dataset' structure needed by ``kartezio``.
+    Args:
+        input_folder (str): Path to the input folder containing the dataset.
+        output_csv (str): Path to the output CSV file to be created.
+    """
     train_x_folder = os.path.join(input_folder, "train/train_x")
     train_y_folder = os.path.join(input_folder, "train/train_y")
     test_x_folder = os.path.join(input_folder, "test/test_x")

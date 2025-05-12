@@ -6,6 +6,15 @@ import os
 
 
 def roi_to_mask(shape, roi):
+    """
+    Convert a single ROI to a binary mask.
+    The mask will have the same shape as the image, with the ROI filled with 1s.
+    Parameters:
+        shape (tuple): The shape of the image (height, width).
+        roi (dict): The ROI dictionary containing 'x' and 'y' coordinates.
+    Returns:
+        mask (numpy.ndarray): A binary mask with the same shape as the image.
+    """
     mask = np.zeros(shape, dtype=np.uint8)
     x = np.array(roi["x"])
     y = np.array(roi["y"])
@@ -15,6 +24,15 @@ def roi_to_mask(shape, roi):
 
 
 def build_global_mask(roi_dict, shape):
+    """
+    Build a global mask from a dictionary of ROIs.
+    The mask will have the same shape as the image, with all ROIs filled with 1s.
+    Parameters:
+        roi_dict (dict): A dictionary of ROIs, where each key is a ROI name and the value is a dict with 'x' and 'y' coordinates.
+        shape (tuple): The shape of the image (height, width).
+    Returns:
+        mask (numpy.ndarray): A binary mask with the same shape as the image.
+    """
     mask = np.zeros(shape, dtype=np.uint8)
     for roi in roi_dict.values():
         # print(roi)
@@ -27,6 +45,15 @@ def build_global_mask(roi_dict, shape):
 
 
 def compute_global_iou(zip1_path, zip2_path, shape):
+    """
+    Compute the Intersection over Union (IoU) between two sets of ROIs.
+    Parameters:
+        zip1_path (str): Path to the first zip file containing ROIs.
+        zip2_path (str): Path to the second zip file containing ROIs.
+        shape (tuple): The shape of the image (height, width).
+    Returns:
+        iou (float): The IoU value between the two sets of ROIs.
+    """
     rois1 = read_roi_zip(zip1_path)
     rois2 = read_roi_zip(zip2_path)
 
@@ -41,6 +68,13 @@ def compute_global_iou(zip1_path, zip2_path, shape):
 
 
 def get_image_shape(image_path):
+    """
+    Gets the dimensions (height and width) of an image.
+    Parameters:
+        image_path (str): The path to the image file.
+    Returns:
+        tuple: A tuple representing the dimensions (height, width) of the image.
+    """
     img = cv2.imread(image_path)
     if img is None:
         raise ValueError(f"Could not read image at {image_path}")
@@ -102,10 +136,8 @@ def mean_global_iou(zip_pred_folder, zip_gt_folder, image_folder):
 
     Returns
     -------
-    float
-        The mean global IoU between the predicted and ground truth zip files.
-    list of float
-        A list of IoU values for each pair of predicted and ground truth zip files.
+        mean_iou (float): The mean IoU value across all zip files.
+        ious (list): A list of IoU values for each pair of zip files.
     """
     zip_pred_files = [
         os.path.join(zip_pred_folder, f) for f in sorted(os.listdir(zip_pred_folder))

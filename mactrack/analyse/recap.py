@@ -5,11 +5,38 @@ from scipy.signal import find_peaks
 
 
 def load_data(file_path):
+    """
+    Loads data from an Excel file.
+
+    Parameters:
+        file_path (str): Path to the Excel file.
+
+    Returns:
+        pd.DataFrame: Data loaded from the Excel file.
+    """
     data = pd.read_excel(file_path, index_col=0)
     return data
 
 
 def calculate_intensity_features(intensity_data):
+    """
+    Calculates intensity features such as the number of peaks, mean prominence,
+    and mean distance between peaks for each row in the intensity data.
+
+    Parameters
+    ----------
+    intensity_data : pd.DataFrame
+        DataFrame containing intensity data, where each row represents a signal.
+
+    Returns
+    -------
+    tuple
+        A tuple containing:
+        * **num_peaks** (*pd.Series*): Number of peaks for each row.
+        * **mean_prominence** (*pd.Series*): Mean prominence of peaks for each row.
+        * **mean_distance** (*pd.Series*): Mean distance between peaks for each row.
+    """
+
     def find_peaks_and_prominences(row):
         peaks, properties = find_peaks(row, prominence=0.3)
         prominences = properties["prominences"]
@@ -36,15 +63,38 @@ def calculate_intensity_features(intensity_data):
 
 
 def calculate_mean(data):
+    """
+    Calculates the mean of each row in the given DataFrame.
+    Parameters:
+        data (pd.DataFrame): The input DataFrame to analyze.
+    Returns:
+        pd.Series: A series containing the mean of each row.
+    """
     return data.mean(axis=1)
 
 
 def count_valid_entries(data):
+    """
+    Counts the number of valid (non-NaN) entries in each row of the given DataFrame.
+
+    Parameters:
+        data (pd.DataFrame): The input DataFrame to analyze.
+
+    Returns:
+        pd.Series: A series containing the count of valid entries for each row.
+    """
     num_valid_entries = data.notna().sum(axis=1)
     return num_valid_entries
 
 
 def plot_intensity_curves(intensity_data, valid_entry_counts, threshold=10):
+    """
+    Plots intensity curves for each row in the DataFrame and saves them as PNG files.
+    Parameters:
+        intensity_data (pd.DataFrame): The DataFrame containing intensity data.
+        valid_entry_counts (pd.Series): A series containing the count of valid entries for each row.
+        threshold (int): The minimum number of valid entries required to plot the curve.
+    """
     filtered_data = intensity_data[valid_entry_counts > threshold]
     output_folder = "output/plot"
     for index, row in filtered_data.iterrows():
@@ -57,6 +107,14 @@ def plot_intensity_curves(intensity_data, valid_entry_counts, threshold=10):
 
 
 def aggregate(distance_file, intensity_file, size_file, perimeter_file):
+    """
+    Aggregates data from multiple files and saves the results to an Excel file.
+    Parameters:
+        distance_file (str): Path to the distance data file.
+        intensity_file (str): Path to the intensity data file.
+        size_file (str): Path to the size data file.
+        perimeter_file (str): Path to the perimeter data file.
+    """
     output_file = "output/data/data.xlsx"
     distance_data = load_data(distance_file)
     intensity_data = load_data(intensity_file)

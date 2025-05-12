@@ -3,6 +3,11 @@ import os
 
 
 def tabglobal(result_path):
+    """
+    Generate a summary of the results from the analysis.
+    Parameters:
+        result_path (str): Path to the folder containing the results.
+    """
     results = []
     for folder_name in os.listdir(result_path):
         folder_path = os.path.join(result_path, folder_name)

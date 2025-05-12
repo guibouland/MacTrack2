@@ -3,6 +3,13 @@ import shutil
 
 
 def copy_zip_files(input_folder, n):
+    """
+    Copy zip files from the train_y folder to the test_y folder. The number of zip files copied is determined by the parameter n.
+    If there are fewer zip files than n, the last zip file is copied multiple times.
+    Parameters:
+        input_folder (str): Path to the input folder containing the dataset.
+        n (int): Number of zip files to copy.
+    """
     train_y_folder = os.path.join(input_folder, "dataset/train/train_y")
     test_y_folder = os.path.join(input_folder, "dataset/test/test_y")
 

@@ -6,12 +6,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def count_valid_entries(data):
-    num_valid_entries = data.notna().sum(axis=1)
-    return num_valid_entries
-
-
-def graph():
+def graph_size():
+    """
+    Plot the size of individuals over time.
+    """
     file_path = "output/data/size.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
@@ -35,6 +33,14 @@ def graph():
 
 
 def object_size(image_path):
+    """
+    Calculate the size of an object in an image.
+    Parameters:
+        image_path (str): Path to the input image.
+    
+    Returns:
+        object_area (float): Area of the detected object in pixels.
+    """
     image = cv2.imread(image_path)
 
     if image is None:
@@ -52,6 +58,15 @@ def object_size(image_path):
 
 
 def size(n):
+    """
+    Calculate the size of objects in images and save the results to an Excel file. Uses the object_size function to calculate the size of each object in the images. Uses the graph_size function to plot the size of individuals over time.
+    Parameters:
+        n (int): Number of images to process.
+    
+    See also:
+        object_size: Function to calculate the size of an object in an image.
+        graph_size: Function to plot the size of individuals over time.
+    """
     base_folder = "output/list_track"
     output_file = "output/data/size.xlsx"
     if not output_file.endswith(".xlsx"):
@@ -85,5 +100,5 @@ def size(n):
     df = pd.DataFrame(results)
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
-    graph()
+    graph_size()
     return output_file

@@ -14,6 +14,13 @@ from locate.temp_dataset import create_temporary_dataset
 
 
 def filter_small_shapes(image, min_size):
+    """Filter out small shapes in a binary image.
+    Parameters:
+        image (numpy.ndarray): Input binary image.
+        min_size (int): Minimum size of shapes to keep.
+    Returns:
+        image (numpy.ndarray): Image with small shapes removed.
+    """
     contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     for contour in contours:
@@ -25,6 +32,14 @@ def filter_small_shapes(image, min_size):
 
 
 def extract_objects(image, output_dir, filename):
+    """Extract objects from a binary image and save them as separate images.
+    Parameters:
+        image (numpy.ndarray): Input binary image.
+        output_dir (str): Directory to save the extracted objects.
+        filename (str): Name of the input image file.
+    Returns:
+        object_count (int): Number of objects extracted from the image.
+    """
     contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     image_dir = os.path.join(output_dir, filename.split(".")[0])
     os.makedirs(image_dir, exist_ok=True)
@@ -41,6 +56,12 @@ def extract_objects(image, output_dir, filename):
 
 
 def locate(input_folder):
+    """Locate the objects in the video and save the results in a folder named 'output' in the same directory as the script.
+    Parameters:
+        input_folder (str): Path to the folder containing the dataset and models.
+    Returns:
+        p_test (list): the prediction on the input video.
+    """
     caller_frame = inspect.stack()[1]
     caller_file = caller_frame.filename
     caller_dir = os.path.dirname(os.path.abspath(caller_file))
@@ -120,7 +141,7 @@ def locate_frame(input_image_path, model_path, output_name):
         output_name (str): Name of the output folder where the results will be saved.
 
     Returns:
-        list: p_test, the prediction on the input frame
+        p_test (list): the prediction on the input frame
     """
     caller_frame = inspect.stack()[-1]
     caller_file = caller_frame.filename

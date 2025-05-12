@@ -205,14 +205,10 @@ def comp_model_frame(frame, model_path, roi_frame):
         The function does not return any value. It generates visualizations and saves
         them in the appropriate directories.
 
-    Notes
-    -----
-    - The function creates several temporary directories for intermediate outputs,
-      which are cleaned up after processing.
-    - The final outputs, including predicted ROIs, visualizations, and masks, are
-      saved in the 'test_def' directory within the 'model_output' folder.
-    - Ensure that the input paths are valid and the required files are present in
-      the specified directories.
+    .. note::
+        * The function creates several temporary directories for intermediate outputs, which are cleaned up after processing.
+        * The final outputs, including predicted ROIs, visualizations, and masks, are saved in the 'test_def' directory within the 'model_output' folder.
+        * Ensure that the input paths are valid and the required files are present in the specified directories.
     """
     # Get the directory in which this function will be used
     called_path = os.path.dirname(os.path.abspath(inspect.stack()[-1].filename))
@@ -283,7 +279,6 @@ def comp_model_frame(frame, model_path, roi_frame):
 
 def comp_model(model_path, train=False):
     """
-    comp_model(model_path, train=False)
     Compare the model predictions with the ground truth.
 
     This function takes a test or training dataset and a model path, then compares
@@ -305,12 +300,11 @@ def comp_model(model_path, train=False):
     PermissionError
         If there are insufficient permissions to access or modify the output directory.
 
-    Notes
-    -----
-    - The function assumes a specific directory structure under `model_path`:
-      - `dataset/train/train_x` and `dataset/train/train_y` for training data.
-      - `dataset/test/test_x` and `dataset/test/test_y` for test data.
-    - The output directory is cleared and recreated for each function call.
+    .. note::
+    * The function assumes a specific directory structure under ``model_path``:
+      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data.
+      * ``dataset/test/test_x`` and ``dataset/test/test_y`` for test data.
+    * The output directory is cleared and recreated for each function call.
 
     See Also
     --------

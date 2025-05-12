@@ -6,12 +6,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def count_valid_entries(data):
-    num_valid_entries = data.notna().sum(axis=1)
-    return num_valid_entries
+def graphmed_perimeter():
+    """
+    Generates a plot of the perimeter of individuals over time (frames).
+    Reads data from an Excel file, processes it, and saves the plot as a PNG image.
+    """
 
-
-def graph():
     file_path = "output/data/perimeter.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
@@ -35,6 +35,18 @@ def graph():
 
 
 def object_size(image_path):
+    """
+    Calculate the perimeter of a contour in an image.
+
+    Parameters:
+        image_path (str): Path to the input image.
+
+    Returns:
+        float: Perimeter of the largest contour in the image.
+
+    Raises:
+        ValueError: If the image cannot be loaded or if no contours are found.
+    """
     image = cv2.imread(image_path)
 
     if image is None:
@@ -52,6 +64,21 @@ def object_size(image_path):
 
 
 def perimeter(n):
+    """
+    Calculate the perimeter of objects in images and save the results to an Excel file.
+    The images are expected to be organized in folders named 'macrophage_<number>'.
+    Each folder contains images named '<number>_<index>.png'.
+    The results are saved in an Excel file named 'perimeter.xlsx'.
+
+    Parameters:
+        n (int): The number of images to process in each folder.
+
+    Returns:
+        str: The path to the output Excel file.
+
+    Raises:
+        ValueError: If the output file does not have an .xlsx extension.
+    """
     base_folder = "output/list_track"
     output_file = "output/data/perimeter.xlsx"
     if not output_file.endswith(".xlsx"):
@@ -74,8 +101,8 @@ def perimeter(n):
             for file in os.listdir(folder_path):
                 if re.match(rf"{a}_\d+\.png", file):
                     found = True
-                    input = os.path.join(folder_path, file)
-                    x = object_size(input)
+                    input_ = os.path.join(folder_path, file)
+                    x = object_size(input_)
                     folder_result[f"{a}"] = x
                     break
             if not found:
@@ -85,5 +112,5 @@ def perimeter(n):
     df = pd.DataFrame(results)
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
-    graph()
+    graphmed_perimeter()
     return output_file

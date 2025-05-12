@@ -4,6 +4,14 @@ import os
 
 
 def trace_lines_between_contours(images, distance_threshold=50):
+    """
+    Trace lines between contours in a list of images based on a distance threshold. The contours are obtained from the binary images by the ``findContours`` function from the OpenCV library.
+    Parameters:
+        images (list): List of images (numpy arrays) to process.
+        distance_threshold (int): Maximum distance between contours to draw a line.
+    Returns:
+        traced_lines_image (numpy array): Image with traced lines between contours.
+    """
     traced_lines_image = np.zeros_like(images[0])
     all_contours = []
 
@@ -29,6 +37,14 @@ def trace_lines_between_contours(images, distance_threshold=50):
 
 
 def paint_black_area_from_mask(image_c, mask):
+    """
+    Paints the black area of the image based on the mask.
+    Parameters:
+        image_c (numpy array): The original image (BGR or grayscale).
+        mask (numpy array): The mask to use for painting the black area.
+    Returns:
+        image_c_black (numpy array): The image with the black area painted.
+    """
     if len(image_c.shape) == 2:
         image_c_gray = image_c
     elif len(image_c.shape) == 3:
@@ -48,6 +64,18 @@ def paint_black_area_from_mask(image_c, mask):
 def extract_and_save_objects(
     image_c, image, heatmap, object, image_storage, min_object_size=100
 ):
+    """
+    Extracts and saves objects from the image based on contours.
+    Parameters:
+        image_c (numpy array): The original image (BGR or grayscale).
+        image (numpy array): The image with contours.
+        heatmap (int): The heatmap number.
+        object (int): The object number.
+        image_storage (ImageStorage): The image storage object.
+        min_object_size (int): Minimum size of the object to be extracted. Default is 100.
+    Returns:
+        image_storage (ImageStorage): The updated image storage object.
+    """
     image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     contours, _ = cv2.findContours(
         image_gray, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
@@ -77,6 +105,18 @@ def extract_and_save_objects(
 
 
 def process_images(list, image_c, heatmap, object, image_storage, max_line_length=50):
+    """
+    Process images by tracing lines between contours and painting the black area.
+    Parameters:
+        list (list): List of images (numpy arrays) to process.
+        image_c (numpy array): The original image (BGR or grayscale).
+        heatmap (int): The heatmap number.
+        object (int): The object number.
+        image_storage (ImageStorage): The image storage object.
+        max_line_length (int): Maximum length of the line to be drawn. Default is 50.
+    Returns:
+        image_storage (ImageStorage): The updated image storage object.
+    """
     n = len(list)
     print(n)
     traced_lines_image = trace_lines_between_contours(list)
@@ -96,12 +136,29 @@ def process_images(list, image_c, heatmap, object, image_storage, max_line_lengt
 
 
 def calculate_iou(image1, image2):
+    """
+    Calculate the Intersection over Union (IoU) between two binary images.
+    .. math::
+        IoU = \\frac{A \\cap B}{A \\cup B}
+    where :math:`A` and :math:`B` are the two binary images.
+    Parameters:
+        image1 (numpy array): First binary image.
+        image2 (numpy array): Second binary image.
+    Returns:
+        float: IoU value between 0 and 1.
+    """
     intersection = np.logical_and(image1, image2).sum()
     union = np.logical_or(image1, image2).sum()
     return intersection / union if union != 0 else 0
 
 
 def save_segmentation_images(segmentation_instance, output_folder):
+    """
+    Save the segmented images to the specified output folder.
+    Parameters:
+        segmentation_instance (Segmentation): The segmentation instance containing the images.
+        output_folder (str): The folder where the images will be saved.
+    """
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -116,6 +173,14 @@ def save_segmentation_images(segmentation_instance, output_folder):
 
 
 def defuse(n, image_storage):
+    """
+    Splits the images by processing them and saving the results.
+    Parameters:
+        n (int): Number of images to process.
+        image_storage (ImageStorage): The image storage object.
+    Returns:
+        image_storage (ImageStorage): The updated image storage object.
+    """
     c = 0
     for i in range(1, n):
         print(f"heatmap_test_{i}")
@@ -151,6 +216,14 @@ def defuse(n, image_storage):
 
 
 def invdefuse(n, image_storage):
+    """
+    Inverse splits the images by processing them and saving the results.
+    Parameters:
+        n (int): Number of images to process.
+        image_storage (ImageStorage): The image storage object.
+    Returns:
+        image_storage (ImageStorage): The updated image storage object.
+    """
     caller_dir = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.dirname(caller_dir)
     root = os.path.dirname(parent)

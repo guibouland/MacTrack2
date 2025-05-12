@@ -5,9 +5,24 @@ import numpy as np
 
 
 class SummaryModel:
+    """
+    This class summarizes the model parameters, fitness, endpoint, mode, nodes, sequence, functions, and model path.
+    """
     def __init__(
         self, params, fitness, endpoint, mode, nodes, sequence, functions, model_path
     ):
+        """
+        Initializes the SummaryModel class with the provided parameters.
+        Parameters:
+            params (pd.DataFrame): Parameters of the model.
+            fitness (pd.DataFrame): Fitness of the model.
+            endpoint (pd.DataFrame): Endpoint of the model.
+            mode (pd.DataFrame): Mode of the model.
+            nodes (pd.DataFrame): Nodes of the model.
+            sequence (list): Sequence of the model.
+            functions (list): Functions used in the model.
+            model_path (str): Path to the model.
+        """
         self.params = params
         self.fitness = fitness
         self.endpoint = endpoint
@@ -98,15 +113,14 @@ def get_function(sequence, functions):
     function in the list of functions chosen in the Kartezio package.
 
     Parameters:
-        sequence (list): The sequence of the model, following the Kartezio architecture:
-            [function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]
-            - function_id: Index of the function in the list of functions.
-            - c_i: Connections (n is the number of connections).
-            - p_k: Parameters (l is the number of parameters).
+        sequence (list): The sequence of the model, following the Kartezio architecture: .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:
+            * function_id: Index of the function in the list of functions.
+            * c_i: Connections (n is the number of connections).
+            * p_k: Parameters (l is the number of parameters).
         functions (list): The list of functions available in the Kartezio package.
 
     Returns:
-        list: The list of function names corresponding to the function_id in the sequence.
+        function_names (list): The list of function names corresponding to the ``function_id`` in the sequence.
     """
     function_id = [sublist[0] for sublist in sequence]
     function_names = [functions[i] for i in function_id]
@@ -124,7 +138,10 @@ def summary_model(model_folder_path):
     This function loads models from all subdirectories in a specified folder and creates summaries.
 
     Parameters:
-    model_folder (str): Path to the folder containing the models. The function will look for subdirectories within this folder.
+        model_folder (str): Path to the folder containing the models. The function will look for subdirectories within this folder.
+
+    Returns:
+        summaries (list): A list of SummaryModel objects, each representing a model in the subdirectories.
     """
     current = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.dirname(current)

@@ -6,12 +6,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def count_valid_entries(data):
-    num_valid_entries = data.notna().sum(axis=1)
-    return num_valid_entries
-
-
-def graph():
+def graph_distance():
+    """
+    Generates a plot of the distance of individuals over time.
+    Reads data from an Excel file, processes it, and saves the plot as a PNG image.
+    """
     file_path = "output/data/distance.xlsx"
     data = pd.read_excel(file_path)
     data = data.fillna(0)
@@ -34,6 +33,18 @@ def graph():
 
 
 def distance_to_right_edge(image_path):
+    """
+    Calculate the distance from the center of the largest contour in an image to the right edge of the image.
+
+    Parameters:
+        image_path (str): Path to the input image.
+
+    Returns:
+        int: Distance from the center of the largest contour to the right edge of the image.
+
+    Raises:
+        ValueError: If the image cannot be loaded or if no contours are found.
+    """
     image = cv2.imread(image_path)
 
     if image is None:
@@ -61,6 +72,18 @@ def distance_to_right_edge(image_path):
 
 
 def distance(n):
+    """
+    This function calculates the distance of each segmented macrophage to the right edge of the image.
+    It processes images in the specified folder, extracts the distance for each segmented macrophage,
+    and saves the results in an Excel file.
+
+    Parameters:
+        n (int): The number of segmented macrophages to process.
+
+    Returns:
+        str: The path to the output Excel file containing the distance data.
+    """
+
     base_folder = "output/list_track"
     output_file = "output/data/distance.xlsx"
     if not output_file.endswith(".xlsx"):
@@ -94,5 +117,5 @@ def distance(n):
     df = pd.DataFrame(results)
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
-    graph()
+    graph_distance()
     return output_file

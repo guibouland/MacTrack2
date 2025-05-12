@@ -29,6 +29,12 @@ import numpy as np
 
 
 def median_green_intensity(input_folder, output_path):
+    """
+    Calculate the **median** green intensity from images in a folder and save the result.
+    Parameters:
+        input_folder (str): Path to the folder containing images.
+        output_path (str): Path to save the median green intensity image.
+    """
     image_files = [
         f for f in os.listdir(input_folder) if f.endswith(".jpg") or f.endswith(".png")
     ]
@@ -55,7 +61,7 @@ def median_green_intensity(input_folder, output_path):
             print(f"Warning: Could not read {image_file}, skipping.")
             continue
 
-        # Vérifie la taille et redimensionne si nécessaire
+        # Check shape and resize if necessary
         if image.shape[:2] != (height, width):
             image = cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
 
@@ -71,6 +77,12 @@ def median_green_intensity(input_folder, output_path):
 
 
 def create_average_green_image(folder_path, output_path):
+    """
+    Create an **average** green intensity image from images in a folder.
+    Parameters:
+        folder_path (str): Path to the folder containing images.
+        output_path (str): Path to save the average green intensity image.
+    """
     image_files = [
         f
         for f in os.listdir(folder_path)
@@ -114,6 +126,13 @@ def create_average_green_image(folder_path, output_path):
 
 
 def inputconfig(input_folder):
+    """
+    Process a video file and its corresponding green channel video file.
+    Parameters:
+        input_folder (str): Path to the folder containing the video files.
+    Returns:
+        video_frames (VideoFrames): An object containing the processed video frames.
+    """
     input_folder_v = os.path.join(input_folder, "vert")
     output_folder = os.path.join(input_folder, "dataset/test/test_x")
     output_folder_v = os.path.join(input_folder_v, "frames")
