@@ -249,24 +249,26 @@ Reads data from an Excel file, processes it, and saves the plot as a PNG image.<
 <dl class="py function" id="module-mactrack.analyse.intensity">
 <dt class="sig sig-object py" id="mactrack.analyse.intensity.calculate_ratio">
 <span class="sig-name descname"><span class="pre">calculate_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path_contour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_f0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#calculate_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.calculate_ratio" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Calculate the ratio of the difference between two images (<code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>) within the contour of a third image (<code class="docutils literal notranslate"><span class="pre">image_path_contour</span></code>).
+<dd><p>Calculate the ratio of the difference between two images (<code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>) within the contour of a third image (<code class="docutils literal notranslate"><span class="pre">image_path_contour</span></code>).
 The ratio is calculated as :</p>
 <div class="math notranslate nohighlight">
-\[ratio =\]</div>
-</div></blockquote>
-<p>rac{f - f_0}{f_0}</p>
-<blockquote>
-<div><p>where f is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">f_0</span></code> is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><p>image_path_contour (str): Path to the contour image.
-image_a (numpy.ndarray): The first image (green channel) to compare.
-image_f0 (numpy.ndarray): The second image (green channel) to compare.</p>
+\[ratio = \frac{f - f_0}{f_0}\]</div>
+<p>where f is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">f_0</span></code> is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path_contour</strong> (<em>str</em>) – Path to the contour image.</p></li>
+<li><p><strong>image_a</strong> (<em>numpy.ndarray</em>) – The first image (green channel) to compare.</p></li>
+<li><p><strong>image_f0</strong> (<em>numpy.ndarray</em>) – The second image (green channel) to compare.</p></li>
+</ul>
 </dd>
-<dt>Returns:</dt><dd><p>float: The mean ratio calculated from the pixels within the contour.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mean ratio calculated from the pixels within the contour.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -537,22 +539,24 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
 <span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
+<dd><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
 <div class="math notranslate nohighlight">
-\[IoU =\]</div>
-</div></blockquote>
-<p>rac{A cap B}{A cup B}</p>
-<blockquote>
-<div><p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><p>image1 (numpy array): First binary image.
-image2 (numpy array): Second binary image.</p>
+\[IoU = \frac{A \cap B}{A \cup B}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image1</strong> (<em>numpy array</em>) – First binary image.</p></li>
+<li><p><strong>image2</strong> (<em>numpy array</em>) – Second binary image.</p></li>
+</ul>
 </dd>
-<dt>Returns:</dt><dd><p>float: IoU value between 0 and 1.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>IoU value between 0 and 1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -889,22 +893,24 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function" id="module-mactrack.track.track">
 <dt class="sig sig-object py" id="mactrack.track.track.calculate_iou">
 <span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.calculate_iou" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
+<dd><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
 <div class="math notranslate nohighlight">
-\[IoU =\]</div>
-</div></blockquote>
-<p>rac{A cap B}{A cup B}</p>
-<blockquote>
-<div><p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><p>image1 (numpy array): First binary image.
-image2 (numpy array): Second binary image.</p>
+\[IoU = \frac{A \cap B}{A \cup B}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image1</strong> (<em>numpy array</em>) – First binary image.</p></li>
+<li><p><strong>image2</strong> (<em>numpy array</em>) – Second binary image.</p></li>
+</ul>
 </dd>
-<dt>Returns:</dt><dd><p>float: IoU value between 0 and 1.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>IoU value between 0 and 1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
