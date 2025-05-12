@@ -20,6 +20,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
+    "sphinx-copybutton",
 ]
 
 
