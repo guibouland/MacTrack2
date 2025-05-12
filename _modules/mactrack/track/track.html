@@ -85,7 +85,8 @@
 <span class="sd">    Calculate the Intersection over Union (IoU) between two binary images.</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">        \text{IoU} = \frac{A \cap B}{A \cup B}</span>
+
+<span class="sd">        IoU = \frac{A \cap B}{A \cup B}</span>
 
 <span class="sd">    where :math:`A` and :math:`B` are the two binary images.</span>
 
@@ -130,7 +131,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">track</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">threshold_iou</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Track objects across frames based on IoU thresholding.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        n (int): Number of frames to process.</span>
 <span class="sd">        threshold_iou (float): IoU threshold for tracking.</span>

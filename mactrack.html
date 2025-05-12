@@ -250,14 +250,14 @@ Reads data from an Excel file, processes it, and saves the plot as a PNG image.<
 <dt class="sig sig-object py" id="mactrack.analyse.intensity.calculate_ratio">
 <span class="sig-name descname"><span class="pre">calculate_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path_contour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_f0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#calculate_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.calculate_ratio" title="Link to this definition"></a></dt>
 <dd><blockquote>
-<div><p>Calculate the ratio of the difference between two images (image_a and image_f0) within the contour of a third image (image_path_contour).
+<div><p>Calculate the ratio of the difference between two images (<code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>) within the contour of a third image (<code class="docutils literal notranslate"><span class="pre">image_path_contour</span></code>).
 The ratio is calculated as :</p>
 <div class="math notranslate nohighlight">
-\[ext{ratio} =\]</div>
+\[ratio =\]</div>
 </div></blockquote>
 <p>rac{f - f_0}{f_0}</p>
 <blockquote>
-<div><p>where f is the pixel value in image_a and f_0 is the pixel value in image_f0.</p>
+<div><p>where f is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_a</span></code> and <code class="docutils literal notranslate"><span class="pre">f_0</span></code> is the pixel value in <code class="docutils literal notranslate"><span class="pre">image_f0</span></code>.</p>
 <dl class="simple">
 <dt>Parameters:</dt><dd><p>image_path_contour (str): Path to the contour image.
 image_a (numpy.ndarray): The first image (green channel) to compare.
@@ -540,7 +540,7 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dd><blockquote>
 <div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
 <div class="math notranslate nohighlight">
-\[ext{IoU} =\]</div>
+\[IoU =\]</div>
 </div></blockquote>
 <p>rac{A cap B}{A cup B}</p>
 <blockquote>
@@ -892,7 +892,7 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dd><blockquote>
 <div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
 <div class="math notranslate nohighlight">
-\[ext{IoU} =\]</div>
+\[IoU =\]</div>
 </div></blockquote>
 <p>rac{A cap B}{A cup B}</p>
 <blockquote>
