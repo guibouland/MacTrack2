@@ -109,11 +109,12 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    tuple</span>
-<span class="sd">        A tuple containing:</span>
-<span class="sd">        * **num_peaks** (*pd.Series*): Number of peaks for each row.</span>
-<span class="sd">        * **mean_prominence** (*pd.Series*): Mean prominence of peaks for each row.</span>
-<span class="sd">        * **mean_distance** (*pd.Series*): Mean distance between peaks for each row.</span>
+<span class="sd">        num_peaks : list</span>
+<span class="sd">            Number of peaks for each row.</span>
+<span class="sd">        mean_prominence : list</span>
+<span class="sd">            Mean prominence of peaks for each row.</span>
+<span class="sd">        mean_distance : list</span>
+<span class="sd">            Mean distance between peaks for each row.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">find_peaks_and_prominences</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
@@ -147,8 +148,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_mean</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates the mean of each row in the given DataFrame.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        data (pd.DataFrame): The input DataFrame to analyze.</span>
+<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        pd.Series: A series containing the mean of each row.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -178,6 +181,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_intensity_curves</span><span class="p">(</span><span class="n">intensity_data</span><span class="p">,</span> <span class="n">valid_entry_counts</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots intensity curves for each row in the DataFrame and saves them as PNG files.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        intensity_data (pd.DataFrame): The DataFrame containing intensity data.</span>
 <span class="sd">        valid_entry_counts (pd.Series): A series containing the count of valid entries for each row.</span>
@@ -200,6 +204,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="n">distance_file</span><span class="p">,</span> <span class="n">intensity_file</span><span class="p">,</span> <span class="n">size_file</span><span class="p">,</span> <span class="n">perimeter_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Aggregates data from multiple files and saves the results to an Excel file.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        distance_file (str): Path to the distance data file.</span>
 <span class="sd">        intensity_file (str): Path to the intensity data file.</span>

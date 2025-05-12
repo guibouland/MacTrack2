@@ -89,6 +89,7 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the SummaryModel class with the provided parameters.</span>
+<span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">            params (pd.DataFrame): Parameters of the model.</span>
 <span class="sd">            fitness (pd.DataFrame): Fitness of the model.</span>
@@ -210,10 +211,16 @@
 <span class="sd">    function in the list of functions chosen in the Kartezio package.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        sequence (list): The sequence of the model, following the Kartezio architecture: .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:</span>
-<span class="sd">            * function_id: Index of the function in the list of functions.</span>
-<span class="sd">            * c_i: Connections (n is the number of connections).</span>
-<span class="sd">            * p_k: Parameters (l is the number of parameters).</span>
+<span class="sd">        sequence (list): The sequence of the model, following the Kartezio architecture: </span>
+<span class="sd">            </span>
+<span class="sd">            .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:</span>
+
+<span class="sd">                * function_id: Index of the function in the list of functions.</span>
+
+<span class="sd">                * c_i: Connections (n is the number of connections).</span>
+
+<span class="sd">                * p_k: Parameters (l is the number of parameters).</span>
+
 <span class="sd">        functions (list): The list of functions available in the Kartezio package.</span>
 
 <span class="sd">    Returns:</span>

@@ -391,10 +391,14 @@
 <span class="sd">    PermissionError</span>
 <span class="sd">        If there are insufficient permissions to access or modify the output directory.</span>
 
-<span class="sd">    .. note::</span>
+<span class="sd">    Note</span>
+<span class="sd">    -----</span>
 <span class="sd">    * The function assumes a specific directory structure under ``model_path``:</span>
-<span class="sd">      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data.</span>
+
+<span class="sd">      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data. </span>
+
 <span class="sd">      * ``dataset/test/test_x`` and ``dataset/test/test_y`` for test data.</span>
+<span class="sd">      </span>
 <span class="sd">    * The output directory is cleared and recreated for each function call.</span>
 
 <span class="sd">    See Also</span>

@@ -249,28 +249,24 @@ Reads data from an Excel file, processes it, and saves the plot as a PNG image.<
 <dl class="py function" id="module-mactrack.analyse.intensity">
 <dt class="sig sig-object py" id="mactrack.analyse.intensity.calculate_ratio">
 <span class="sig-name descname"><span class="pre">calculate_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path_contour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_f0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/intensity.html#calculate_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.intensity.calculate_ratio" title="Link to this definition"></a></dt>
-<dd><p>Calculate the ratio of the difference between two images (image_a and image_f0) within the contour of a third image (image_path_contour).
-The ratio is calculated as :
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span> <span class="o">=</span> \<span class="n">frac</span><span class="p">{</span><span class="n">f</span> <span class="o">-</span> <span class="n">f_0</span><span class="p">}{</span><span class="n">f_0</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>where f is the pixel value in image_a and f_0 is the pixel value in image_f0.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>image_path_contour</strong> (<em>str</em>) – Path to the contour image.</p></li>
-<li><p><strong>image_a</strong> (<em>numpy.ndarray</em>) – The first image (green channel) to compare.</p></li>
-<li><p><strong>image_f0</strong> (<em>numpy.ndarray</em>) – The second image (green channel) to compare.</p></li>
-</ul>
+<dd><blockquote>
+<div><p>Calculate the ratio of the difference between two images (image_a and image_f0) within the contour of a third image (image_path_contour).
+The ratio is calculated as :</p>
+<div class="math notranslate nohighlight">
+\[ext{ratio} =\]</div>
+</div></blockquote>
+<p>rac{f - f_0}{f_0}</p>
+<blockquote>
+<div><p>where f is the pixel value in image_a and f_0 is the pixel value in image_f0.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>image_path_contour (str): Path to the contour image.
+image_a (numpy.ndarray): The first image (green channel) to compare.
+image_f0 (numpy.ndarray): The second image (green channel) to compare.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The mean ratio calculated from the pixels within the contour.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dt>Returns:</dt><dd><p>float: The mean ratio calculated from the pixels within the contour.</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -386,15 +382,17 @@ The results are saved in an Excel file named ‘perimeter.xlsx’.</p>
 <dl class="py function" id="module-mactrack.analyse.recap">
 <dt class="sig sig-object py" id="mactrack.analyse.recap.aggregate">
 <span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perimeter_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.aggregate" title="Link to this definition"></a></dt>
-<dd><p>Aggregates data from multiple files and saves the results to an Excel file.
-:param distance_file: Path to the distance data file.
-:type distance_file: str
-:param intensity_file: Path to the intensity data file.
-:type intensity_file: str
-:param size_file: Path to the size data file.
-:type size_file: str
-:param perimeter_file: Path to the perimeter data file.
-:type perimeter_file: str</p>
+<dd><p>Aggregates data from multiple files and saves the results to an Excel file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_file</strong> (<em>str</em>) – Path to the distance data file.</p></li>
+<li><p><strong>intensity_file</strong> (<em>str</em>) – Path to the intensity data file.</p></li>
+<li><p><strong>size_file</strong> (<em>str</em>) – Path to the size data file.</p></li>
+<li><p><strong>perimeter_file</strong> (<em>str</em>) – Path to the perimeter data file.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -407,13 +405,12 @@ and mean distance between peaks for each row in the intensity data.</p>
 <dd class="field-odd"><p><strong>intensity_data</strong> (<em>pd.DataFrame</em>) – DataFrame containing intensity data, where each row represents a signal.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple containing:
-* <strong>num_peaks</strong> (<em>pd.Series</em>): Number of peaks for each row.
-* <strong>mean_prominence</strong> (<em>pd.Series</em>): Mean prominence of peaks for each row.
-* <strong>mean_distance</strong> (<em>pd.Series</em>): Mean distance between peaks for each row.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>num_peaks</strong> (<em>list</em>) – Number of peaks for each row.</p></li>
+<li><p><strong>mean_prominence</strong> (<em>list</em>) – Mean prominence of peaks for each row.</p></li>
+<li><p><strong>mean_distance</strong> (<em>list</em>) – Mean distance between peaks for each row.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -421,15 +418,16 @@ and mean distance between peaks for each row in the intensity data.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.recap.calculate_mean">
 <span class="sig-name descname"><span class="pre">calculate_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#calculate_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.calculate_mean" title="Link to this definition"></a></dt>
-<dd><p>Calculates the mean of each row in the given DataFrame.
-:param data: The input DataFrame to analyze.
-:type data: pd.DataFrame</p>
+<dd><p>Calculates the mean of each row in the given DataFrame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A series containing the mean of each row.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The input DataFrame to analyze.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pd.Series</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A series containing the mean of each row.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
 </dd>
 </dl>
 </dd></dl>
@@ -471,13 +469,16 @@ and mean distance between peaks for each row in the intensity data.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.recap.plot_intensity_curves">
 <span class="sig-name descname"><span class="pre">plot_intensity_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_entry_counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#plot_intensity_curves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.plot_intensity_curves" title="Link to this definition"></a></dt>
-<dd><p>Plots intensity curves for each row in the DataFrame and saves them as PNG files.
-:param intensity_data: The DataFrame containing intensity data.
-:type intensity_data: pd.DataFrame
-:param valid_entry_counts: A series containing the count of valid entries for each row.
-:type valid_entry_counts: pd.Series
-:param threshold: The minimum number of valid entries required to plot the curve.
-:type threshold: int</p>
+<dd><p>Plots intensity curves for each row in the DataFrame and saves them as PNG files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensity_data</strong> (<em>pd.DataFrame</em>) – The DataFrame containing intensity data.</p></li>
+<li><p><strong>valid_entry_counts</strong> (<em>pd.Series</em>) – A series containing the count of valid entries for each row.</p></li>
+<li><p><strong>threshold</strong> (<em>int</em>) – The minimum number of valid entries required to plot the curve.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function" id="module-mactrack.analyse.size">
@@ -489,15 +490,16 @@ and mean distance between peaks for each row in the intensity data.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.size.object_size">
 <span class="sig-name descname"><span class="pre">object_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#object_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.object_size" title="Link to this definition"></a></dt>
-<dd><p>Calculate the size of an object in an image.
-:param image_path: Path to the input image.
-:type image_path: str</p>
+<dd><p>Calculate the size of an object in an image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Area of the detected object in pixels.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image_path</strong> (<em>str</em>) – Path to the input image.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>object_area (float)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Area of the detected object in pixels.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object_area (float)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -505,9 +507,12 @@ and mean distance between peaks for each row in the intensity data.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.analyse.size.size">
 <span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.size" title="Link to this definition"></a></dt>
-<dd><p>Calculate the size of objects in images and save the results to an Excel file. Uses the object_size function to calculate the size of each object in the images. Uses the graph_size function to plot the size of individuals over time.
-:param n: Number of images to process.
-:type n: int</p>
+<dd><p>Calculate the size of objects in images and save the results to an Excel file. Uses the object_size function to calculate the size of each object in the images. Uses the graph_size function to plot the size of individuals over time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Number of images to process.</p>
+</dd>
+</dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>object_size: Function to calculate the size of an object in an image.
@@ -518,9 +523,12 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function" id="module-mactrack.analyse.tabglobal">
 <dt class="sig sig-object py" id="mactrack.analyse.tabglobal.tabglobal">
 <span class="sig-name descname"><span class="pre">tabglobal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/tabglobal.html#tabglobal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.tabglobal.tabglobal" title="Link to this definition"></a></dt>
-<dd><p>Generate a summary of the results from the analysis.
-:param result_path: Path to the folder containing the results.
-:type result_path: str</p>
+<dd><p>Generate a summary of the results from the analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>result_path</strong> (<em>str</em>) – Path to the folder containing the results.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -529,40 +537,40 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.calculate_iou">
 <span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.calculate_iou" title="Link to this definition"></a></dt>
-<dd><p>Calculate the Intersection over Union (IoU) between two binary images.
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IoU</span> <span class="o">=</span> \<span class="n">frac</span><span class="p">{</span><span class="n">A</span> \<span class="n">cap</span> <span class="n">B</span><span class="p">}{</span><span class="n">A</span> \<span class="n">cup</span> <span class="n">B</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.
-:param image1: First binary image.
-:type image1: numpy array
-:param image2: Second binary image.
-:type image2: numpy array</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>IoU value between 0 and 1.</p>
+<dd><blockquote>
+<div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
+<div class="math notranslate nohighlight">
+\[ext{IoU} =\]</div>
+</div></blockquote>
+<p>rac{A cap B}{A cup B}</p>
+<blockquote>
+<div><p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>image1 (numpy array): First binary image.
+image2 (numpy array): Second binary image.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dt>Returns:</dt><dd><p>float: IoU value between 0 and 1.</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.defuse">
 <span class="sig-name descname"><span class="pre">defuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#defuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.defuse" title="Link to this definition"></a></dt>
-<dd><p>Splits the images by processing them and saving the results.
-:param n: Number of images to process.
-:type n: int
-:param image_storage: The image storage object.
-:type image_storage: ImageStorage</p>
+<dd><p>Splits the images by processing them and saving the results.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The updated image storage object.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of images to process.</p></li>
+<li><p><strong>image_storage</strong> (<em>ImageStorage</em>) – The image storage object.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image_storage (ImageStorage)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated image storage object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image_storage (ImageStorage)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -570,25 +578,23 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.extract_and_save_objects">
 <span class="sig-name descname"><span class="pre">extract_and_save_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_object_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#extract_and_save_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.extract_and_save_objects" title="Link to this definition"></a></dt>
-<dd><p>Extracts and saves objects from the image based on contours.
-:param image_c: The original image (BGR or grayscale).
-:type image_c: numpy array
-:param image: The image with contours.
-:type image: numpy array
-:param heatmap: The heatmap number.
-:type heatmap: int
-:param object: The object number.
-:type object: int
-:param image_storage: The image storage object.
-:type image_storage: ImageStorage
-:param min_object_size: Minimum size of the object to be extracted. Default is 100.
-:type min_object_size: int</p>
+<dd><p>Extracts and saves objects from the image based on contours.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The updated image storage object.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_c</strong> (<em>numpy array</em>) – The original image (BGR or grayscale).</p></li>
+<li><p><strong>image</strong> (<em>numpy array</em>) – The image with contours.</p></li>
+<li><p><strong>heatmap</strong> (<em>int</em>) – The heatmap number.</p></li>
+<li><p><strong>object</strong> (<em>int</em>) – The object number.</p></li>
+<li><p><strong>image_storage</strong> (<em>ImageStorage</em>) – The image storage object.</p></li>
+<li><p><strong>min_object_size</strong> (<em>int</em>) – Minimum size of the object to be extracted. Default is 100.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image_storage (ImageStorage)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated image storage object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image_storage (ImageStorage)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -596,17 +602,19 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.invdefuse">
 <span class="sig-name descname"><span class="pre">invdefuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#invdefuse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.invdefuse" title="Link to this definition"></a></dt>
-<dd><p>Inverse splits the images by processing them and saving the results.
-:param n: Number of images to process.
-:type n: int
-:param image_storage: The image storage object.
-:type image_storage: ImageStorage</p>
+<dd><p>Inverse splits the images by processing them and saving the results.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The updated image storage object.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of images to process.</p></li>
+<li><p><strong>image_storage</strong> (<em>ImageStorage</em>) – The image storage object.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image_storage (ImageStorage)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated image storage object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image_storage (ImageStorage)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -614,17 +622,19 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.paint_black_area_from_mask">
 <span class="sig-name descname"><span class="pre">paint_black_area_from_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#paint_black_area_from_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.paint_black_area_from_mask" title="Link to this definition"></a></dt>
-<dd><p>Paints the black area of the image based on the mask.
-:param image_c: The original image (BGR or grayscale).
-:type image_c: numpy array
-:param mask: The mask to use for painting the black area.
-:type mask: numpy array</p>
+<dd><p>Paints the black area of the image based on the mask.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The image with the black area painted.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_c</strong> (<em>numpy array</em>) – The original image (BGR or grayscale).</p></li>
+<li><p><strong>mask</strong> (<em>numpy array</em>) – The mask to use for painting the black area.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image_c_black (numpy array)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The image with the black area painted.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image_c_black (numpy array)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -632,25 +642,23 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.process_images">
 <span class="sig-name descname"><span class="pre">process_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_line_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#process_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.process_images" title="Link to this definition"></a></dt>
-<dd><p>Process images by tracing lines between contours and painting the black area.
-:param list: List of images (numpy arrays) to process.
-:type list: list
-:param image_c: The original image (BGR or grayscale).
-:type image_c: numpy array
-:param heatmap: The heatmap number.
-:type heatmap: int
-:param object: The object number.
-:type object: int
-:param image_storage: The image storage object.
-:type image_storage: ImageStorage
-:param max_line_length: Maximum length of the line to be drawn. Default is 50.
-:type max_line_length: int</p>
+<dd><p>Process images by tracing lines between contours and painting the black area.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The updated image storage object.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> (<em>list</em>) – List of images (numpy arrays) to process.</p></li>
+<li><p><strong>image_c</strong> (<em>numpy array</em>) – The original image (BGR or grayscale).</p></li>
+<li><p><strong>heatmap</strong> (<em>int</em>) – The heatmap number.</p></li>
+<li><p><strong>object</strong> (<em>int</em>) – The object number.</p></li>
+<li><p><strong>image_storage</strong> (<em>ImageStorage</em>) – The image storage object.</p></li>
+<li><p><strong>max_line_length</strong> (<em>int</em>) – Maximum length of the line to be drawn. Default is 50.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image_storage (ImageStorage)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated image storage object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image_storage (ImageStorage)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -658,27 +666,33 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.save_segmentation_images">
 <span class="sig-name descname"><span class="pre">save_segmentation_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segmentation_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#save_segmentation_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.save_segmentation_images" title="Link to this definition"></a></dt>
-<dd><p>Save the segmented images to the specified output folder.
-:param segmentation_instance: The segmentation instance containing the images.
-:type segmentation_instance: Segmentation
-:param output_folder: The folder where the images will be saved.
-:type output_folder: str</p>
+<dd><p>Save the segmented images to the specified output folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segmentation_instance</strong> (<em>Segmentation</em>) – The segmentation instance containing the images.</p></li>
+<li><p><strong>output_folder</strong> (<em>str</em>) – The folder where the images will be saved.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.defuse.trace_lines_between_contours">
 <span class="sig-name descname"><span class="pre">trace_lines_between_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#trace_lines_between_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.trace_lines_between_contours" title="Link to this definition"></a></dt>
-<dd><p>Trace lines between contours in a list of images based on a distance threshold. The contours are obtained from the binary images by the <code class="docutils literal notranslate"><span class="pre">findContours</span></code> function from the OpenCV library.
-:param images: List of images (numpy arrays) to process.
-:type images: list
-:param distance_threshold: Maximum distance between contours to draw a line.
-:type distance_threshold: int</p>
+<dd><p>Trace lines between contours in a list of images based on a distance threshold. The contours are obtained from the binary images by the <code class="docutils literal notranslate"><span class="pre">findContours</span></code> function from the OpenCV library.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Image with traced lines between contours.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images</strong> (<em>list</em>) – List of images (numpy arrays) to process.</p></li>
+<li><p><strong>distance_threshold</strong> (<em>int</em>) – Maximum distance between contours to draw a line.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>traced_lines_image (numpy array)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Image with traced lines between contours.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>traced_lines_image (numpy array)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -691,29 +705,34 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.add_image">
 <span class="sig-name descname"><span class="pre">add_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.add_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.add_image" title="Link to this definition"></a></dt>
-<dd><p>Add a new image to the specified heatmap test directory.
-:param heatmap_test_name: Name of the heatmap test directory.
-:type heatmap_test_name: str
-:param object_name: Name of the object image file.
-:type object_name: str
-:param image: Image to be added.
-:type image: numpy.ndarray</p>
+<dd><p>Add a new image to the specified heatmap test directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>heatmap_test_name</strong> (<em>str</em>) – Name of the heatmap test directory.</p></li>
+<li><p><strong>object_name</strong> (<em>str</em>) – Name of the object image file.</p></li>
+<li><p><strong>image</strong> (<em>numpy.ndarray</em>) – Image to be added.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_image">
 <span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_image" title="Link to this definition"></a></dt>
-<dd><p>Get a specific image from the loaded images.
-:param heatmap_test_name: Name of the heatmap test directory.
-:type heatmap_test_name: str
-:param object_name: Name of the object image file.
-:type object_name: str</p>
+<dd><p>Get a specific image from the loaded images.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Sparse matrix representation of the image.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>heatmap_test_name</strong> (<em>str</em>) – Name of the heatmap test directory.</p></li>
+<li><p><strong>object_name</strong> (<em>str</em>) – Name of the object image file.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>sparse_image (scipy.sparse.csr_matrix)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sparse matrix representation of the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sparse_image (scipy.sparse.csr_matrix)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -721,15 +740,16 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.get_list">
 <span class="sig-name descname"><span class="pre">get_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.get_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.get_list" title="Link to this definition"></a></dt>
-<dd><p>Get a list of images from a specific heatmap test directory.
-:param heatmap_test_name: Name of the heatmap test directory.
-:type heatmap_test_name: str</p>
+<dd><p>Get a list of images from a specific heatmap test directory.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List of sparse matrix representations of images.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>heatmap_test_name</strong> (<em>str</em>) – Name of the heatmap test directory.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of sparse matrix representations of images.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -745,13 +765,16 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py method">
 <dt class="sig sig-object py" id="mactrack.locate.list_sep.segmentation.replace_image">
 <span class="sig-name descname"><span class="pre">replace_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heatmap_test_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/list_sep.html#segmentation.replace_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.list_sep.segmentation.replace_image" title="Link to this definition"></a></dt>
-<dd><p>Replace an existing image in the specified heatmap test directory.
-:param heatmap_test_name: Name of the heatmap test directory.
-:type heatmap_test_name: str
-:param object_name: Name of the object image file.
-:type object_name: str
-:param new_image: New image to replace the existing one.
-:type new_image: numpy.ndarray</p>
+<dd><p>Replace an existing image in the specified heatmap test directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>heatmap_test_name</strong> (<em>str</em>) – Name of the heatmap test directory.</p></li>
+<li><p><strong>object_name</strong> (<em>str</em>) – Name of the object image file.</p></li>
+<li><p><strong>new_image</strong> (<em>numpy.ndarray</em>) – New image to replace the existing one.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -759,19 +782,20 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function" id="module-mactrack.locate.locate">
 <dt class="sig sig-object py" id="mactrack.locate.locate.extract_objects">
 <span class="sig-name descname"><span class="pre">extract_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#extract_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.extract_objects" title="Link to this definition"></a></dt>
-<dd><p>Extract objects from a binary image and save them as separate images.
-:param image: Input binary image.
-:type image: numpy.ndarray
-:param output_dir: Directory to save the extracted objects.
-:type output_dir: str
-:param filename: Name of the input image file.
-:type filename: str</p>
+<dd><p>Extract objects from a binary image and save them as separate images.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Number of objects extracted from the image.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>numpy.ndarray</em>) – Input binary image.</p></li>
+<li><p><strong>output_dir</strong> (<em>str</em>) – Directory to save the extracted objects.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the input image file.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>object_count (int)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of objects extracted from the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object_count (int)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -779,17 +803,19 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.locate.filter_small_shapes">
 <span class="sig-name descname"><span class="pre">filter_small_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#filter_small_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.filter_small_shapes" title="Link to this definition"></a></dt>
-<dd><p>Filter out small shapes in a binary image.
-:param image: Input binary image.
-:type image: numpy.ndarray
-:param min_size: Minimum size of shapes to keep.
-:type min_size: int</p>
+<dd><p>Filter out small shapes in a binary image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Image with small shapes removed.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>numpy.ndarray</em>) – Input binary image.</p></li>
+<li><p><strong>min_size</strong> (<em>int</em>) – Minimum size of shapes to keep.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>image (numpy.ndarray)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Image with small shapes removed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image (numpy.ndarray)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -797,15 +823,16 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.locate.locate.locate">
 <span class="sig-name descname"><span class="pre">locate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/locate.html#locate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.locate.locate" title="Link to this definition"></a></dt>
-<dd><p>Locate the objects in the video and save the results in a folder named ‘output’ in the same directory as the script.
-:param input_folder: Path to the folder containing the dataset and models.
-:type input_folder: str</p>
+<dd><p>Locate the objects in the video and save the results in a folder named ‘output’ in the same directory as the script.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the prediction on the input video.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_folder</strong> (<em>str</em>) – Path to the folder containing the dataset and models.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>p_test (list)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the prediction on the input video.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>p_test (list)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -851,48 +878,51 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.track.filtre.supprimer_petit">
 <span class="sig-name descname"><span class="pre">supprimer_petit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/filtre.html#supprimer_petit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.filtre.supprimer_petit" title="Link to this definition"></a></dt>
-<dd><p>Deletes subdirectories containing fewer than p PNG files in the specified directory, meaning the macrophages were tracked in less than .. math:<cite>p</cite> frames.
-:param p: The threshold number of PNG files.
-:type p: int</p>
+<dd><p>Deletes subdirectories containing fewer than p PNG files in the specified directory, meaning the macrophages were tracked in less than .. math:<cite>p</cite> frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>int</em>) – The threshold number of PNG files.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function" id="module-mactrack.track.track">
 <dt class="sig sig-object py" id="mactrack.track.track.calculate_iou">
 <span class="sig-name descname"><span class="pre">calculate_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#calculate_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.calculate_iou" title="Link to this definition"></a></dt>
-<dd><p>Calculate the Intersection over Union (IoU) between two binary images.
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IoU</span> <span class="o">=</span> \<span class="n">frac</span><span class="p">{</span><span class="n">A</span> \<span class="n">cap</span> <span class="n">B</span><span class="p">}{</span><span class="n">A</span> \<span class="n">cup</span> <span class="n">B</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.
-:param image1: First binary image.
-:type image1: numpy array
-:param image2: Second binary image.
-:type image2: numpy array</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>IoU value between 0 and 1.</p>
+<dd><blockquote>
+<div><p>Calculate the Intersection over Union (IoU) between two binary images.</p>
+<div class="math notranslate nohighlight">
+\[ext{IoU} =\]</div>
+</div></blockquote>
+<p>rac{A cap B}{A cup B}</p>
+<blockquote>
+<div><p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the two binary images.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>image1 (numpy array): First binary image.
+image2 (numpy array): Second binary image.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dt>Returns:</dt><dd><p>float: IoU value between 0 and 1.</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.track.track.find_containing_folder">
 <span class="sig-name descname"><span class="pre">find_containing_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#find_containing_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.find_containing_folder" title="Link to this definition"></a></dt>
-<dd><p>Find the folder containing the specified image.
-:param image_path: Path to the image.
-:type image_path: str
-:param root_folder: Path to the root folder containing subfolders.
-:type root_folder: str</p>
+<dd><p>Find the folder containing the specified image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Path to the folder containing the image, or None if not found.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> (<em>str</em>) – Path to the image.</p></li>
+<li><p><strong>root_folder</strong> (<em>str</em>) – Path to the root folder containing subfolders.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>folder_path (str)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path to the folder containing the image, or None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>folder_path (str)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -900,13 +930,16 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.track.track.track">
 <span class="sig-name descname"><span class="pre">track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_iou</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_storage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/track/track.html#track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.track.track.track" title="Link to this definition"></a></dt>
-<dd><p>Track objects across frames based on IoU thresholding.
-:param n: Number of frames to process.
-:type n: int
-:param threshold_iou: IoU threshold for tracking.
-:type threshold_iou: float
-:param image_storage: Instance of the segmentation class containing images.
-:type image_storage: segmentation</p>
+<dd><p>Track objects across frames based on IoU thresholding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of frames to process.</p></li>
+<li><p><strong>threshold_iou</strong> (<em>float</em>) – IoU threshold for tracking.</p></li>
+<li><p><strong>image_storage</strong> (<a class="reference internal" href="#mactrack.locate.list_sep.segmentation" title="mactrack.locate.list_sep.segmentation"><em>segmentation</em></a>) – Instance of the segmentation class containing images.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -916,27 +949,15 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VideoFrames</span></span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class to hold video frames and their corresponding visualizations.
-.. attribute:: frames</p>
-<blockquote>
-<div><p>A list to store the video frames.</p>
+<p>A class to hold video frames and their corresponding visualizations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames</strong> (<em>list</em>) – A list to store the video frames.</p></li>
+<li><p><strong>frames_v</strong> (<em>list</em>) – A list to store the visualizations of the video frames.</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames.frames_v">
-<span class="sig-name descname"><span class="pre">frames_v</span></span><a class="headerlink" href="#mactrack.video.frame.VideoFrames.frames_v" title="Link to this definition"></a></dt>
-<dd><p>A list to store the visualizations of the video frames.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="mactrack.video.frame.VideoFrames.add_frame">
 <span class="sig-name descname"><span class="pre">add_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames.add_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.frame.VideoFrames.add_frame" title="Link to this definition"></a></dt>
@@ -952,17 +973,23 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
 <span class="sig-name descname"><span class="pre">add_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames.add_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
-<dd><p>Adds a video frame to the <code class="docutils literal notranslate"><span class="pre">frames</span></code> list.
-:param frame: The video frame to be added.
-:type frame: object</p>
+<dd><p>Adds a video frame to the <code class="docutils literal notranslate"><span class="pre">frames</span></code> list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>object</em>) – The video frame to be added.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id1">
 <span class="sig-name descname"><span class="pre">add_frame_v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/frame.html#VideoFrames.add_frame_v"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
-<dd><p>Adds a video frame from the green channel video to the <code class="docutils literal notranslate"><span class="pre">frames_v</span></code> list.
-:param frame: The green channel video frame to be added.
-:type frame: object</p>
+<dd><p>Adds a video frame from the green channel video to the <code class="docutils literal notranslate"><span class="pre">frames_v</span></code> list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>object</em>) – The green channel video frame to be added.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -970,25 +997,30 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function" id="module-mactrack.video.inputconfig">
 <dt class="sig sig-object py" id="mactrack.video.inputconfig.create_average_green_image">
 <span class="sig-name descname"><span class="pre">create_average_green_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#create_average_green_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.create_average_green_image" title="Link to this definition"></a></dt>
-<dd><p>Create an <strong>average</strong> green intensity image from images in a folder.
-:param folder_path: Path to the folder containing images.
-:type folder_path: str
-:param output_path: Path to save the average green intensity image.
-:type output_path: str</p>
+<dd><p>Create an <strong>average</strong> green intensity image from images in a folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>folder_path</strong> (<em>str</em>) – Path to the folder containing images.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the average green intensity image.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.video.inputconfig.inputconfig">
 <span class="sig-name descname"><span class="pre">inputconfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#inputconfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.inputconfig" title="Link to this definition"></a></dt>
-<dd><p>Process a video file and its corresponding green channel video file.
-:param input_folder: Path to the folder containing the video files.
-:type input_folder: str</p>
+<dd><p>Process a video file and its corresponding green channel video file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>An object containing the processed video frames.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_folder</strong> (<em>str</em>) – Path to the folder containing the video files.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>video_frames (<a class="reference internal" href="#mactrack.video.frame.VideoFrames" title="mactrack.video.frame.VideoFrames">VideoFrames</a>)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing the processed video frames.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>video_frames (<a class="reference internal" href="#mactrack.video.frame.VideoFrames" title="mactrack.video.frame.VideoFrames">VideoFrames</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -996,41 +1028,56 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.video.inputconfig.median_green_intensity">
 <span class="sig-name descname"><span class="pre">median_green_intensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/inputconfig.html#median_green_intensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.inputconfig.median_green_intensity" title="Link to this definition"></a></dt>
-<dd><p>Calculate the <strong>median</strong> green intensity from images in a folder and save the result.
-:param input_folder: Path to the folder containing images.
-:type input_folder: str
-:param output_path: Path to save the median green intensity image.
-:type output_path: str</p>
+<dd><p>Calculate the <strong>median</strong> green intensity from images in a folder and save the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_folder</strong> (<em>str</em>) – Path to the folder containing images.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the median green intensity image.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function" id="module-mactrack.video.result">
 <dt class="sig sig-object py" id="mactrack.video.result.draw_contours">
 <span class="sig-name descname"><span class="pre">draw_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contours</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#draw_contours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.draw_contours" title="Link to this definition"></a></dt>
-<dd><p>Draw contours on the image with a specific color based on the number.
-:param image: The image on which to draw the contours.
-:type image: numpy.ndarray
-:param contours: List of contours to draw.
-:type contours: list
-:param number: The number used to determine the color.
-:type number: int
-:param colors: List of colors to choose from.
-:type colors: list</p>
+<dd><p>Draw contours on the image with a specific color based on the number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>numpy.ndarray</em>) – The image on which to draw the contours.</p></li>
+<li><p><strong>contours</strong> (<em>list</em>) – List of contours to draw.</p></li>
+<li><p><strong>number</strong> (<em>int</em>) – The number used to determine the color.</p></li>
+<li><p><strong>colors</strong> (<em>list</em>) – List of colors to choose from.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.video.result.generate_random_rgb_color">
 <span class="sig-name descname"><span class="pre">generate_random_rgb_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#generate_random_rgb_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.generate_random_rgb_color" title="Link to this definition"></a></dt>
-<dd><p>Generate a random RGB color.
-:returns: A tuple representing a random RGB color.
-:rtype: tuple</p>
+<dd><p>Generate a random RGB color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple representing a random RGB color.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.video.result.result">
 <span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.result" title="Link to this definition"></a></dt>
-<dd><p>Process images in the input folder and draw contours based on the list of tracks.
-:param input_folder: Path to the folder containing images and tracks.
-:type input_folder: str</p>
+<dd><p>Process images in the input folder and draw contours based on the list of tracks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_folder</strong> (<em>str</em>) – Path to the folder containing images and tracks.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1052,17 +1099,19 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 <dt class="sig sig-object py" id="mactrack.visualisation.iou.build_global_mask">
 <span class="sig-name descname"><span class="pre">build_global_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#build_global_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.build_global_mask" title="Link to this definition"></a></dt>
 <dd><p>Build a global mask from a dictionary of ROIs.
-The mask will have the same shape as the image, with all ROIs filled with 1s.
-:param roi_dict: A dictionary of ROIs, where each key is a ROI name and the value is a dict with ‘x’ and ‘y’ coordinates.
-:type roi_dict: dict
-:param shape: The shape of the image (height, width).
-:type shape: tuple</p>
+The mask will have the same shape as the image, with all ROIs filled with 1s.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A binary mask with the same shape as the image.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>roi_dict</strong> (<em>dict</em>) – A dictionary of ROIs, where each key is a ROI name and the value is a dict with ‘x’ and ‘y’ coordinates.</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – The shape of the image (height, width).</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>mask (numpy.ndarray)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A binary mask with the same shape as the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>mask (numpy.ndarray)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1070,19 +1119,20 @@ The mask will have the same shape as the image, with all ROIs filled with 1s.
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.visualisation.iou.compute_global_iou">
 <span class="sig-name descname"><span class="pre">compute_global_iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip1_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zip2_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#compute_global_iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.compute_global_iou" title="Link to this definition"></a></dt>
-<dd><p>Compute the Intersection over Union (IoU) between two sets of ROIs.
-:param zip1_path: Path to the first zip file containing ROIs.
-:type zip1_path: str
-:param zip2_path: Path to the second zip file containing ROIs.
-:type zip2_path: str
-:param shape: The shape of the image (height, width).
-:type shape: tuple</p>
+<dd><p>Compute the Intersection over Union (IoU) between two sets of ROIs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The IoU value between the two sets of ROIs.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zip1_path</strong> (<em>str</em>) – Path to the first zip file containing ROIs.</p></li>
+<li><p><strong>zip2_path</strong> (<em>str</em>) – Path to the second zip file containing ROIs.</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – The shape of the image (height, width).</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>iou (float)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IoU value between the two sets of ROIs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>iou (float)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1164,17 +1214,19 @@ shapes from the specified image folder to compute the IoU.</p>
 <dt class="sig sig-object py" id="mactrack.visualisation.iou.roi_to_mask">
 <span class="sig-name descname"><span class="pre">roi_to_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/visualisation/iou.html#roi_to_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.visualisation.iou.roi_to_mask" title="Link to this definition"></a></dt>
 <dd><p>Convert a single ROI to a binary mask.
-The mask will have the same shape as the image, with the ROI filled with 1s.
-:param shape: The shape of the image (height, width).
-:type shape: tuple
-:param roi: The ROI dictionary containing ‘x’ and ‘y’ coordinates.
-:type roi: dict</p>
+The mask will have the same shape as the image, with the ROI filled with 1s.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A binary mask with the same shape as the image.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>tuple</em>) – The shape of the image (height, width).</p></li>
+<li><p><strong>roi</strong> (<em>dict</em>) – The ROI dictionary containing ‘x’ and ‘y’ coordinates.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>mask (numpy.ndarray)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A binary mask with the same shape as the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>mask (numpy.ndarray)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1198,16 +1250,21 @@ dataset is used. Default is False.</p></li>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>FileNotFoundError</strong> – If the specified dataset or model path does not exist.</p></li>
 <li><p><strong>PermissionError</strong> – If there are insufficient permissions to access or modify the output directory.</p></li>
-<li><p><strong>.. note::</strong> – </p></li>
-<li><p><strong>* The function assumes a specific directory structure under model_path:</strong> – <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset/train/train_x</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset/train/train_y</span></code> for training data.
-    * <code class="docutils literal notranslate"><span class="pre">dataset/test/test_x</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset/test/test_y</span></code> for test data.</p></li>
-</ul>
-</p></li>
-<li><p><strong>* The output directory is cleared and recreated for each function call.</strong> – </p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The function assumes a specific directory structure under <code class="docutils literal notranslate"><span class="pre">model_path</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset/train/train_x</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset/train/train_y</span></code> for training data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset/test/test_x</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset/test/test_y</span></code> for test data.</p></li>
+</ul>
+</li>
+<li><p>The output directory is cleared and recreated for each function call.</p></li>
+</ul>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -1372,11 +1429,15 @@ resulting visualization to the specified output folder.</p>
 <dt class="sig sig-object py" id="Set_up.Structure.copy_zip_files">
 <span class="sig-name descname"><span class="pre">copy_zip_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/Structure.html#copy_zip_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.Structure.copy_zip_files" title="Link to this definition"></a></dt>
 <dd><p>Copy zip files from the train_y folder to the test_y folder. The number of zip files copied is determined by the parameter n.
-If there are fewer zip files than n, the last zip file is copied multiple times.
-:param input_folder: Path to the input folder containing the dataset.
-:type input_folder: str
-:param n: Number of zip files to copy.
-:type n: int</p>
+If there are fewer zip files than n, the last zip file is copied multiple times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_folder</strong> (<em>str</em>) – Path to the input folder containing the dataset.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Number of zip files to copy.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1385,9 +1446,12 @@ If there are fewer zip files than n, the last zip file is copied multiple times.
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.convert.convert_all_avi_in_folder">
 <span class="sig-name descname"><span class="pre">convert_all_avi_in_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/convert.html#convert_all_avi_in_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.convert.convert_all_avi_in_folder" title="Link to this definition"></a></dt>
-<dd><p>Converts all AVI files in a folder and its subfolders to MP4 format.
-:param folder_path: Path to the folder containing AVI files.
-:type folder_path: str</p>
+<dd><p>Converts all AVI files in a folder and its subfolders to MP4 format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>folder_path</strong> (<em>str</em>) – Path to the folder containing AVI files.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1410,9 +1474,12 @@ If there are fewer zip files than n, the last zip file is copied multiple times.
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.convert.delete_avi_files">
 <span class="sig-name descname"><span class="pre">delete_avi_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/convert.html#delete_avi_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.convert.delete_avi_files" title="Link to this definition"></a></dt>
-<dd><p>Deletes all AVI files in a folder and its subfolders.
-:param folder_path: Path to the folder containing AVI files.
-:type folder_path: str</p>
+<dd><p>Deletes all AVI files in a folder and its subfolders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>folder_path</strong> (<em>str</em>) – Path to the folder containing AVI files.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1421,15 +1488,16 @@ If there are fewer zip files than n, the last zip file is copied multiple times.
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.count.get_frame_count">
 <span class="sig-name descname"><span class="pre">get_frame_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/count.html#get_frame_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.count.get_frame_count" title="Link to this definition"></a></dt>
-<dd><p>Get the number of frames in a video file.
-:param video_path: Path to the video file.
-:type video_path: str</p>
+<dd><p>Get the number of frames in a video file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Number of frames in the video.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>video_path</strong> (<em>str</em>) – Path to the video file.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>frame_count (int)</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of frames in the video.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>frame_count (int)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1440,11 +1508,15 @@ If there are fewer zip files than n, the last zip file is copied multiple times.
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.dataset_csv.create_dataset_csv">
 <span class="sig-name descname"><span class="pre">create_dataset_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/dataset_csv.html#create_dataset_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.dataset_csv.create_dataset_csv" title="Link to this definition"></a></dt>
-<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">dataset.csv</span></code> file for the ‘dataset’ structure needed by <code class="docutils literal notranslate"><span class="pre">kartezio</span></code>.
-:param input_folder: Path to the input folder containing the dataset.
-:type input_folder: str
-:param output_csv: Path to the output CSV file to be created.
-:type output_csv: str</p>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">dataset.csv</span></code> file for the ‘dataset’ structure needed by <code class="docutils literal notranslate"><span class="pre">kartezio</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_folder</strong> (<em>str</em>) – Path to the input folder containing the dataset.</p></li>
+<li><p><strong>output_csv</strong> (<em>str</em>) – Path to the output CSV file to be created.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1474,11 +1546,15 @@ If there are fewer zip files than n, the last zip file is copied multiple times.
 <dl class="py function">
 <dt class="sig sig-object py" id="Set_up.empty_zip.empty_dataset_testy_zip_single_frame">
 <span class="sig-name descname"><span class="pre">empty_dataset_testy_zip_single_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testy_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Set_up/empty_zip.html#empty_dataset_testy_zip_single_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Set_up.empty_zip.empty_dataset_testy_zip_single_frame" title="Link to this definition"></a></dt>
-<dd><p>Function that creates empty zip file in the <code class="docutils literal notranslate"><span class="pre">test_y</span></code> folder for a unique frame. The zip file created matched the name of the frame you provided.
-:param testy_folder: Path to the testy folder.
-:type testy_folder: str
-:param frame_path: Path to the frame file.
-:type frame_path: str</p>
+<dd><p>Function that creates empty zip file in the <code class="docutils literal notranslate"><span class="pre">test_y</span></code> folder for a unique frame. The zip file created matched the name of the frame you provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testy_folder</strong> (<em>str</em>) – Path to the testy folder.</p></li>
+<li><p><strong>frame_path</strong> (<em>str</em>) – Path to the frame file.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1537,10 +1613,8 @@ function in the list of functions chosen in the Kartezio package.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sequence</strong> (<em>list</em>) – The sequence of the model, following the Kartezio architecture: .. math:<cite>[function_id, c_1, c_2, …, c_n, p_1, p_2, …, p_l]</cite> where:
-* function_id: Index of the function in the list of functions.
-* c_i: Connections (n is the number of connections).
-* p_k: Parameters (l is the number of parameters).</p></li>
+<li><p><strong>sequence</strong> (<em>list</em>) – <p>The sequence of the model, following the Kartezio architecture:</p>
+</p></li>
 <li><p><strong>functions</strong> (<em>list</em>) – The list of functions available in the Kartezio package.</p></li>
 </ul>
 </dd>

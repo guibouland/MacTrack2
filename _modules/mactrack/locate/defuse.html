@@ -82,9 +82,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">trace_lines_between_contours</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Trace lines between contours in a list of images based on a distance threshold. The contours are obtained from the binary images by the ``findContours`` function from the OpenCV library.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        images (list): List of images (numpy arrays) to process.</span>
 <span class="sd">        distance_threshold (int): Maximum distance between contours to draw a line.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        traced_lines_image (numpy array): Image with traced lines between contours.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -118,9 +120,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">paint_black_area_from_mask</span><span class="p">(</span><span class="n">image_c</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Paints the black area of the image based on the mask.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image_c (numpy array): The original image (BGR or grayscale).</span>
 <span class="sd">        mask (numpy array): The mask to use for painting the black area.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        image_c_black (numpy array): The image with the black area painted.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -148,6 +152,7 @@
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts and saves objects from the image based on contours.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image_c (numpy array): The original image (BGR or grayscale).</span>
 <span class="sd">        image (numpy array): The image with contours.</span>
@@ -155,6 +160,7 @@
 <span class="sd">        object (int): The object number.</span>
 <span class="sd">        image_storage (ImageStorage): The image storage object.</span>
 <span class="sd">        min_object_size (int): Minimum size of the object to be extracted. Default is 100.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        image_storage (ImageStorage): The updated image storage object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -192,6 +198,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">process_images</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">image_c</span><span class="p">,</span> <span class="n">heatmap</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">,</span> <span class="n">max_line_length</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Process images by tracing lines between contours and painting the black area.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        list (list): List of images (numpy arrays) to process.</span>
 <span class="sd">        image_c (numpy array): The original image (BGR or grayscale).</span>
@@ -199,6 +206,7 @@
 <span class="sd">        object (int): The object number.</span>
 <span class="sd">        image_storage (ImageStorage): The image storage object.</span>
 <span class="sd">        max_line_length (int): Maximum length of the line to be drawn. Default is 50.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        image_storage (ImageStorage): The updated image storage object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -226,12 +234,16 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_iou</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">image2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the Intersection over Union (IoU) between two binary images.</span>
+
 <span class="sd">    .. math::</span>
-<span class="sd">        IoU = \\frac{A \\cap B}{A \\cup B}</span>
+<span class="sd">        \text{IoU} = \frac{A \cap B}{A \cup B}</span>
+
 <span class="sd">    where :math:`A` and :math:`B` are the two binary images.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image1 (numpy array): First binary image.</span>
 <span class="sd">        image2 (numpy array): Second binary image.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        float: IoU value between 0 and 1.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -246,6 +258,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">save_segmentation_images</span><span class="p">(</span><span class="n">segmentation_instance</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save the segmented images to the specified output folder.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        segmentation_instance (Segmentation): The segmentation instance containing the images.</span>
 <span class="sd">        output_folder (str): The folder where the images will be saved.</span>
@@ -269,9 +282,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">defuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Splits the images by processing them and saving the results.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        n (int): Number of images to process.</span>
 <span class="sd">        image_storage (ImageStorage): The image storage object.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        image_storage (ImageStorage): The updated image storage object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -315,9 +330,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">invdefuse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inverse splits the images by processing them and saving the results.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        n (int): Number of images to process.</span>
 <span class="sd">        image_storage (ImageStorage): The image storage object.</span>
+<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        image_storage (ImageStorage): The updated image storage object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

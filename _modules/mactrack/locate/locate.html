@@ -91,9 +91,11 @@
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.filter_small_shapes">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">filter_small_shapes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_size</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter out small shapes in a binary image.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image (numpy.ndarray): Input binary image.</span>
 <span class="sd">        min_size (int): Minimum size of shapes to keep.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        image (numpy.ndarray): Image with small shapes removed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -112,10 +114,12 @@
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.extract_objects">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">extract_objects</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract objects from a binary image and save them as separate images.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image (numpy.ndarray): Input binary image.</span>
 <span class="sd">        output_dir (str): Directory to save the extracted objects.</span>
 <span class="sd">        filename (str): Name of the input image file.</span>
+<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        object_count (int): Number of objects extracted from the image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -139,8 +143,10 @@
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.locate">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">locate</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Locate the objects in the video and save the results in a folder named &#39;output&#39; in the same directory as the script.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        input_folder (str): Path to the folder containing the dataset and models.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        p_test (list): the prediction on the input video.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

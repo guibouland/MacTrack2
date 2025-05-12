@@ -121,9 +121,11 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a specific image from the loaded images.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
 <span class="sd">            object_name (str): Name of the object image file.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            sparse_image (scipy.sparse.csr_matrix): Sparse matrix representation of the image.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -139,8 +141,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of images from a specific heatmap test directory.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            list: List of sparse matrix representations of images.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -155,6 +159,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">add_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a new image to the specified heatmap test directory.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
 <span class="sd">            object_name (str): Name of the object image file.</span>
@@ -176,6 +181,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">replace_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">new_image</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Replace an existing image in the specified heatmap test directory.</span>
+<span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
 <span class="sd">            object_name (str): Name of the object image file.</span>

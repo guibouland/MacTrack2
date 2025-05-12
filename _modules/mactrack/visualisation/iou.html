@@ -85,9 +85,11 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a single ROI to a binary mask.</span>
 <span class="sd">    The mask will have the same shape as the image, with the ROI filled with 1s.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        shape (tuple): The shape of the image (height, width).</span>
 <span class="sd">        roi (dict): The ROI dictionary containing &#39;x&#39; and &#39;y&#39; coordinates.</span>
+<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        mask (numpy.ndarray): A binary mask with the same shape as the image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -106,9 +108,11 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build a global mask from a dictionary of ROIs.</span>
 <span class="sd">    The mask will have the same shape as the image, with all ROIs filled with 1s.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        roi_dict (dict): A dictionary of ROIs, where each key is a ROI name and the value is a dict with &#39;x&#39; and &#39;y&#39; coordinates.</span>
 <span class="sd">        shape (tuple): The shape of the image (height, width).</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        mask (numpy.ndarray): A binary mask with the same shape as the image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -129,10 +133,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_global_iou</span><span class="p">(</span><span class="n">zip1_path</span><span class="p">,</span> <span class="n">zip2_path</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the Intersection over Union (IoU) between two sets of ROIs.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        zip1_path (str): Path to the first zip file containing ROIs.</span>
 <span class="sd">        zip2_path (str): Path to the second zip file containing ROIs.</span>
 <span class="sd">        shape (tuple): The shape of the image (height, width).</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        iou (float): The IoU value between the two sets of ROIs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -83,12 +83,16 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_iou</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">image2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the Intersection over Union (IoU) between two binary images.</span>
+
 <span class="sd">    .. math::</span>
-<span class="sd">        IoU = \\frac{A \\cap B}{A \\cup B}</span>
+<span class="sd">        \text{IoU} = \frac{A \cap B}{A \cup B}</span>
+
 <span class="sd">    where :math:`A` and :math:`B` are the two binary images.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image1 (numpy array): First binary image.</span>
 <span class="sd">        image2 (numpy array): Second binary image.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        float: IoU value between 0 and 1.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -103,9 +107,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">find_containing_folder</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the folder containing the specified image.</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image_path (str): Path to the image.</span>
 <span class="sd">        root_folder (str): Path to the root folder containing subfolders.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        folder_path (str): Path to the folder containing the image, or None if not found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -124,6 +130,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">track</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">threshold_iou</span><span class="p">,</span> <span class="n">image_storage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Track objects across frames based on IoU thresholding.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters:</span>
 <span class="sd">        n (int): Number of frames to process.</span>
 <span class="sd">        threshold_iou (float): IoU threshold for tracking.</span>
