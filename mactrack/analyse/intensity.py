@@ -67,7 +67,7 @@ def calculate_ratio(image_path_contour, image_a, image_f0):
 
     .. math::
 
-        ratio = \frac{f - f_0}{f_0}
+        ratio = \\frac{f - f_0}{f_0}
     
     where f is the pixel value in ``image_a`` and ``f_0`` is the pixel value in ``image_f0``.
 

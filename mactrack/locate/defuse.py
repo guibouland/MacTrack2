@@ -149,7 +149,7 @@ def calculate_iou(image1, image2):
 
     .. math::
     
-        IoU = \frac{A \cap B}{A \cup B}
+        IoU = \\frac{A \\cap B}{A \\cup B}
 
     where :math:`A` and :math:`B` are the two binary images.
 
