@@ -9,9 +9,11 @@ def roi_to_mask(shape, roi):
     """
     Convert a single ROI to a binary mask.
     The mask will have the same shape as the image, with the ROI filled with 1s.
+
     Parameters:
         shape (tuple): The shape of the image (height, width).
         roi (dict): The ROI dictionary containing 'x' and 'y' coordinates.
+        
     Returns:
         mask (numpy.ndarray): A binary mask with the same shape as the image.
     """
@@ -27,9 +29,11 @@ def build_global_mask(roi_dict, shape):
     """
     Build a global mask from a dictionary of ROIs.
     The mask will have the same shape as the image, with all ROIs filled with 1s.
+
     Parameters:
         roi_dict (dict): A dictionary of ROIs, where each key is a ROI name and the value is a dict with 'x' and 'y' coordinates.
         shape (tuple): The shape of the image (height, width).
+
     Returns:
         mask (numpy.ndarray): A binary mask with the same shape as the image.
     """
@@ -47,10 +51,12 @@ def build_global_mask(roi_dict, shape):
 def compute_global_iou(zip1_path, zip2_path, shape):
     """
     Compute the Intersection over Union (IoU) between two sets of ROIs.
+
     Parameters:
         zip1_path (str): Path to the first zip file containing ROIs.
         zip2_path (str): Path to the second zip file containing ROIs.
         shape (tuple): The shape of the image (height, width).
+
     Returns:
         iou (float): The IoU value between the two sets of ROIs.
     """

@@ -31,6 +31,7 @@ def empty_dataset_testy_zip(testy_folder, video_path):
 def empty_dataset_testy_zip_single_frame(testy_folder, frame_path):
     """
     Function that creates empty zip file in the ``test_y`` folder for a unique frame. The zip file created matched the name of the frame you provided.
+    
     Parameters:
         testy_folder (str): Path to the testy folder.
         frame_path (str): Path to the frame file.

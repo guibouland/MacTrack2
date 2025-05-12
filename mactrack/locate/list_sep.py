@@ -40,9 +40,11 @@ class segmentation:
     def get_image(self, heatmap_test_name, object_name):
         """
         Get a specific image from the loaded images.
+
         Parameters:
             heatmap_test_name (str): Name of the heatmap test directory.
             object_name (str): Name of the object image file.
+
         Returns:
             sparse_image (scipy.sparse.csr_matrix): Sparse matrix representation of the image.
         """
@@ -55,8 +57,10 @@ class segmentation:
     def get_list(self, heatmap_test_name):
         """
         Get a list of images from a specific heatmap test directory.
+
         Parameters:
             heatmap_test_name (str): Name of the heatmap test directory.
+
         Returns:
             list: List of sparse matrix representations of images.
         """
@@ -68,6 +72,7 @@ class segmentation:
     def add_image(self, heatmap_test_name, object_name, image):
         """
         Add a new image to the specified heatmap test directory.
+
         Parameters:
             heatmap_test_name (str): Name of the heatmap test directory.
             object_name (str): Name of the object image file.
@@ -86,6 +91,7 @@ class segmentation:
     def replace_image(self, heatmap_test_name, object_name, new_image):
         """
         Replace an existing image in the specified heatmap test directory.
+        
         Parameters:
             heatmap_test_name (str): Name of the heatmap test directory.
             object_name (str): Name of the object image file.

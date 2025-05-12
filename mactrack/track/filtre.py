@@ -5,6 +5,7 @@ import shutil
 def supprimer_petit(p):
     """
     Deletes subdirectories containing fewer than p PNG files in the specified directory, meaning the macrophages were tracked in less than .. math:`p` frames.
+    
     Parameters:
         p (int): The threshold number of PNG files.
     """ 

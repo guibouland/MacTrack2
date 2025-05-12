@@ -26,6 +26,7 @@ def convert_avi_to_mp4(avi_file):
 def convert_all_avi_in_folder(folder_path):
     """
     Converts all AVI files in a folder and its subfolders to MP4 format.
+
     Parameters:
         folder_path (str): Path to the folder containing AVI files.
     """
@@ -40,6 +41,7 @@ def convert_all_avi_in_folder(folder_path):
 def delete_avi_files(folder_path):
     """
     Deletes all AVI files in a folder and its subfolders.
+    
     Parameters:
         folder_path (str): Path to the folder containing AVI files.
     """

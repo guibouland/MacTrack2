@@ -5,6 +5,7 @@ import json
 
 def create_dataset_csv(input_folder, output_csv):
     """Create a ``dataset.csv`` file for the 'dataset' structure needed by ``kartezio``.
+    
     Args:
         input_folder (str): Path to the input folder containing the dataset.
         output_csv (str): Path to the output CSV file to be created.

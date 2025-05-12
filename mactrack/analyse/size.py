@@ -35,6 +35,7 @@ def graph_size():
 def object_size(image_path):
     """
     Calculate the size of an object in an image.
+    
     Parameters:
         image_path (str): Path to the input image.
     
@@ -60,6 +61,7 @@ def object_size(image_path):
 def size(n):
     """
     Calculate the size of objects in images and save the results to an Excel file. Uses the object_size function to calculate the size of each object in the images. Uses the graph_size function to plot the size of individuals over time.
+    
     Parameters:
         n (int): Number of images to process.
     

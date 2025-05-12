@@ -13,6 +13,7 @@ class SummaryModel:
     ):
         """
         Initializes the SummaryModel class with the provided parameters.
+        
         Parameters:
             params (pd.DataFrame): Parameters of the model.
             fitness (pd.DataFrame): Fitness of the model.
@@ -113,10 +114,16 @@ def get_function(sequence, functions):
     function in the list of functions chosen in the Kartezio package.
 
     Parameters:
-        sequence (list): The sequence of the model, following the Kartezio architecture: .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:
-            * function_id: Index of the function in the list of functions.
-            * c_i: Connections (n is the number of connections).
-            * p_k: Parameters (l is the number of parameters).
+        sequence (list): The sequence of the model, following the Kartezio architecture: 
+            
+            .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:
+
+                * function_id: Index of the function in the list of functions.
+
+                * c_i: Connections (n is the number of connections).
+
+                * p_k: Parameters (l is the number of parameters).
+
         functions (list): The list of functions available in the Kartezio package.
 
     Returns:

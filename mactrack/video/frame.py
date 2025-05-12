@@ -1,12 +1,14 @@
 class VideoFrames:
     """
     A class to hold video frames and their corresponding visualizations.
-    Attributes
+
+    Parameters
     ----------
     frames : list
         A list to store the video frames.
     frames_v : list
         A list to store the visualizations of the video frames.
+
     Methods
     -------
     add_frame(frame)
@@ -24,6 +26,7 @@ class VideoFrames:
     def add_frame(self, frame):
         """
         Adds a video frame to the ``frames`` list.
+
         Parameters
         ----------
         frame : object
@@ -34,6 +37,7 @@ class VideoFrames:
     def add_frame_v(self, frame):
         """
         Adds a video frame from the green channel video to the ``frames_v`` list.
+        
         Parameters
         ----------
         frame : object

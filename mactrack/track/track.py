@@ -7,12 +7,16 @@ import numpy as np
 def calculate_iou(image1, image2):
     """
     Calculate the Intersection over Union (IoU) between two binary images.
+
     .. math::
-        IoU = \\frac{A \\cap B}{A \\cup B}
+        \text{IoU} = \frac{A \cap B}{A \cup B}
+
     where :math:`A` and :math:`B` are the two binary images.
+
     Parameters:
         image1 (numpy array): First binary image.
         image2 (numpy array): Second binary image.
+
     Returns:
         float: IoU value between 0 and 1.
     """
@@ -24,9 +28,11 @@ def calculate_iou(image1, image2):
 def find_containing_folder(image_path, root_folder):
     """
     Find the folder containing the specified image.
+
     Parameters:
         image_path (str): Path to the image.
         root_folder (str): Path to the root folder containing subfolders.
+
     Returns:
         folder_path (str): Path to the folder containing the image, or None if not found.
     """
@@ -42,6 +48,7 @@ def find_containing_folder(image_path, root_folder):
 def track(n, threshold_iou, image_storage):
     """
     Track objects across frames based on IoU thresholding.
+    
     Parameters:
         n (int): Number of frames to process.
         threshold_iou (float): IoU threshold for tracking.

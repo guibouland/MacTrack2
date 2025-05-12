@@ -7,6 +7,7 @@ import random
 def draw_contours(image, contours, number, colors):
     """
     Draw contours on the image with a specific color based on the number.
+    
     Parameters:
         image (numpy.ndarray): The image on which to draw the contours.
         contours (list): List of contours to draw.
@@ -28,6 +29,7 @@ def draw_contours(image, contours, number, colors):
 def generate_random_rgb_color():
     """
     Generate a random RGB color.
+
     Returns:
         tuple: A tuple representing a random RGB color.
     """
@@ -37,6 +39,7 @@ def generate_random_rgb_color():
 def result(input_folder):
     """
     Process images in the input folder and draw contours based on the list of tracks.
+
     Parameters:
         input_folder (str): Path to the folder containing images and tracks.
     """

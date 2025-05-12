@@ -300,10 +300,14 @@ def comp_model(model_path, train=False):
     PermissionError
         If there are insufficient permissions to access or modify the output directory.
 
-    .. note::
+    Note
+    -----
     * The function assumes a specific directory structure under ``model_path``:
-      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data.
+
+      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data. 
+
       * ``dataset/test/test_x`` and ``dataset/test/test_y`` for test data.
+      
     * The output directory is cleared and recreated for each function call.
 
     See Also

@@ -30,11 +30,12 @@ def calculate_intensity_features(intensity_data):
 
     Returns
     -------
-    tuple
-        A tuple containing:
-        * **num_peaks** (*pd.Series*): Number of peaks for each row.
-        * **mean_prominence** (*pd.Series*): Mean prominence of peaks for each row.
-        * **mean_distance** (*pd.Series*): Mean distance between peaks for each row.
+        num_peaks : list
+            Number of peaks for each row.
+        mean_prominence : list
+            Mean prominence of peaks for each row.
+        mean_distance : list
+            Mean distance between peaks for each row.
     """
 
     def find_peaks_and_prominences(row):
@@ -65,8 +66,10 @@ def calculate_intensity_features(intensity_data):
 def calculate_mean(data):
     """
     Calculates the mean of each row in the given DataFrame.
+
     Parameters:
         data (pd.DataFrame): The input DataFrame to analyze.
+        
     Returns:
         pd.Series: A series containing the mean of each row.
     """
@@ -90,6 +93,7 @@ def count_valid_entries(data):
 def plot_intensity_curves(intensity_data, valid_entry_counts, threshold=10):
     """
     Plots intensity curves for each row in the DataFrame and saves them as PNG files.
+
     Parameters:
         intensity_data (pd.DataFrame): The DataFrame containing intensity data.
         valid_entry_counts (pd.Series): A series containing the count of valid entries for each row.
@@ -109,6 +113,7 @@ def plot_intensity_curves(intensity_data, valid_entry_counts, threshold=10):
 def aggregate(distance_file, intensity_file, size_file, perimeter_file):
     """
     Aggregates data from multiple files and saves the results to an Excel file.
+
     Parameters:
         distance_file (str): Path to the distance data file.
         intensity_file (str): Path to the intensity data file.

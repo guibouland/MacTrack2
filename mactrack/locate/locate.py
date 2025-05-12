@@ -15,9 +15,11 @@ from locate.temp_dataset import create_temporary_dataset
 
 def filter_small_shapes(image, min_size):
     """Filter out small shapes in a binary image.
+
     Parameters:
         image (numpy.ndarray): Input binary image.
         min_size (int): Minimum size of shapes to keep.
+
     Returns:
         image (numpy.ndarray): Image with small shapes removed.
     """
@@ -33,10 +35,12 @@ def filter_small_shapes(image, min_size):
 
 def extract_objects(image, output_dir, filename):
     """Extract objects from a binary image and save them as separate images.
+
     Parameters:
         image (numpy.ndarray): Input binary image.
         output_dir (str): Directory to save the extracted objects.
         filename (str): Name of the input image file.
+        
     Returns:
         object_count (int): Number of objects extracted from the image.
     """
@@ -57,8 +61,10 @@ def extract_objects(image, output_dir, filename):
 
 def locate(input_folder):
     """Locate the objects in the video and save the results in a folder named 'output' in the same directory as the script.
+
     Parameters:
         input_folder (str): Path to the folder containing the dataset and models.
+
     Returns:
         p_test (list): the prediction on the input video.
     """
