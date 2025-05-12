@@ -81,9 +81,24 @@
 <div class="viewcode-block" id="SummaryModel">
 <a class="viewcode-back" href="../../mactrack.html#Set_up.explain_model.SummaryModel">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SummaryModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class summarizes the model parameters, fitness, endpoint, mode, nodes, sequence, functions, and model path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">model_path</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the SummaryModel class with the provided parameters.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            params (pd.DataFrame): Parameters of the model.</span>
+<span class="sd">            fitness (pd.DataFrame): Fitness of the model.</span>
+<span class="sd">            endpoint (pd.DataFrame): Endpoint of the model.</span>
+<span class="sd">            mode (pd.DataFrame): Mode of the model.</span>
+<span class="sd">            nodes (pd.DataFrame): Nodes of the model.</span>
+<span class="sd">            sequence (list): Sequence of the model.</span>
+<span class="sd">            functions (list): Functions used in the model.</span>
+<span class="sd">            model_path (str): Path to the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span> <span class="o">=</span> <span class="n">fitness</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
@@ -195,15 +210,14 @@
 <span class="sd">    function in the list of functions chosen in the Kartezio package.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        sequence (list): The sequence of the model, following the Kartezio architecture:</span>
-<span class="sd">            [function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]</span>
-<span class="sd">            - function_id: Index of the function in the list of functions.</span>
-<span class="sd">            - c_i: Connections (n is the number of connections).</span>
-<span class="sd">            - p_k: Parameters (l is the number of parameters).</span>
+<span class="sd">        sequence (list): The sequence of the model, following the Kartezio architecture: .. math:`[function_id, c_1, c_2, ..., c_n, p_1, p_2, ..., p_l]` where:</span>
+<span class="sd">            * function_id: Index of the function in the list of functions.</span>
+<span class="sd">            * c_i: Connections (n is the number of connections).</span>
+<span class="sd">            * p_k: Parameters (l is the number of parameters).</span>
 <span class="sd">        functions (list): The list of functions available in the Kartezio package.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: The list of function names corresponding to the function_id in the sequence.</span>
+<span class="sd">        function_names (list): The list of function names corresponding to the ``function_id`` in the sequence.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">function_id</span> <span class="o">=</span> <span class="p">[</span><span class="n">sublist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">]</span>
     <span class="n">function_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">functions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">function_id</span><span class="p">]</span>
@@ -224,7 +238,10 @@
 <span class="sd">    This function loads models from all subdirectories in a specified folder and creates summaries.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">    model_folder (str): Path to the folder containing the models. The function will look for subdirectories within this folder.</span>
+<span class="sd">        model_folder (str): Path to the folder containing the models. The function will look for subdirectories within this folder.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        summaries (list): A list of SummaryModel objects, each representing a model in the subdirectories.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>

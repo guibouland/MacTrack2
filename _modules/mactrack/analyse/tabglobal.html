@@ -79,6 +79,11 @@
 <div class="viewcode-block" id="tabglobal">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.tabglobal.tabglobal">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">tabglobal</span><span class="p">(</span><span class="n">result_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a summary of the results from the analysis.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        result_path (str): Path to the folder containing the results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">folder_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">result_path</span><span class="p">):</span>
         <span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_path</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">)</span>

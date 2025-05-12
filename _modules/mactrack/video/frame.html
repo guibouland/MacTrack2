@@ -75,19 +75,51 @@
 <div class="viewcode-block" id="VideoFrames">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.frame.VideoFrames">[docs]</a>
 <span></span><span class="k">class</span><span class="w"> </span><span class="nc">VideoFrames</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to hold video frames and their corresponding visualizations.</span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frames : list</span>
+<span class="sd">        A list to store the video frames.</span>
+<span class="sd">    frames_v : list</span>
+<span class="sd">        A list to store the visualizations of the video frames.</span>
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    add_frame(frame)</span>
+<span class="sd">        Adds a video frame to the ``frames`` list.</span>
+<span class="sd">    add_frame_v(frame)</span>
+<span class="sd">        Adds a video frame from the green channel video to the ``frames_v`` list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the VideoFrames class with empty lists for ``frames`` and ``frames_v``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames_v</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="VideoFrames.add_frame">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.frame.VideoFrames.add_frame">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a video frame to the ``frames`` list.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frame : object</span>
+<span class="sd">            The video frame to be added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VideoFrames.add_frame_v">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.frame.VideoFrames.add_frame_v">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_frame_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a video frame from the green channel video to the ``frames_v`` list.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frame : object</span>
+<span class="sd">            The green channel video frame to be added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span></div>
 </div>
 

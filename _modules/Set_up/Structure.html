@@ -79,6 +79,13 @@
 <div class="viewcode-block" id="copy_zip_files">
 <a class="viewcode-back" href="../../mactrack.html#Set_up.Structure.copy_zip_files">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">copy_zip_files</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Copy zip files from the train_y folder to the test_y folder. The number of zip files copied is determined by the parameter n.</span>
+<span class="sd">    If there are fewer zip files than n, the last zip file is copied multiple times.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        input_folder (str): Path to the input folder containing the dataset.</span>
+<span class="sd">        n (int): Number of zip files to copy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">train_y_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;dataset/train/train_y&quot;</span><span class="p">)</span>
     <span class="n">test_y_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;dataset/test/test_y&quot;</span><span class="p">)</span>
 

@@ -90,6 +90,13 @@
 <div class="viewcode-block" id="filter_small_shapes">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.filter_small_shapes">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">filter_small_shapes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter out small shapes in a binary image.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        image (numpy.ndarray): Input binary image.</span>
+<span class="sd">        min_size (int): Minimum size of shapes to keep.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        image (numpy.ndarray): Image with small shapes removed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">contours</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">:</span>
@@ -104,6 +111,14 @@
 <div class="viewcode-block" id="extract_objects">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.extract_objects">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">extract_objects</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract objects from a binary image and save them as separate images.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        image (numpy.ndarray): Input binary image.</span>
+<span class="sd">        output_dir (str): Directory to save the extracted objects.</span>
+<span class="sd">        filename (str): Name of the input image file.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        object_count (int): Number of objects extracted from the image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">contours</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
     <span class="n">image_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -123,6 +138,12 @@
 <div class="viewcode-block" id="locate">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.locate.locate">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">locate</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Locate the objects in the video and save the results in a folder named &#39;output&#39; in the same directory as the script.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        input_folder (str): Path to the folder containing the dataset and models.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        p_test (list): the prediction on the input video.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">caller_file</span> <span class="o">=</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">filename</span>
     <span class="n">caller_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">caller_file</span><span class="p">))</span>
@@ -205,7 +226,7 @@
 <span class="sd">        output_name (str): Name of the output folder where the results will be saved.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: p_test, the prediction on the input frame</span>
+<span class="sd">        p_test (list): the prediction on the input frame</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">caller_file</span> <span class="o">=</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">filename</span>

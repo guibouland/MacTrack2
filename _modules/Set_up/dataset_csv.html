@@ -80,6 +80,11 @@
 <div class="viewcode-block" id="create_dataset_csv">
 <a class="viewcode-back" href="../../mactrack.html#Set_up.dataset_csv.create_dataset_csv">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">create_dataset_csv</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="n">output_csv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a ``dataset.csv`` file for the &#39;dataset&#39; structure needed by ``kartezio``.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_folder (str): Path to the input folder containing the dataset.</span>
+<span class="sd">        output_csv (str): Path to the output CSV file to be created.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">train_x_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;train/train_x&quot;</span><span class="p">)</span>
     <span class="n">train_y_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;train/train_y&quot;</span><span class="p">)</span>
     <span class="n">test_x_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;test/test_x&quot;</span><span class="p">)</span>

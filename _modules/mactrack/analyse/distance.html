@@ -80,17 +80,13 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 
-<div class="viewcode-block" id="count_valid_entries">
-<a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.distance.count_valid_entries">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">count_valid_entries</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">num_valid_entries</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">num_valid_entries</span></div>
-
-
-
-<div class="viewcode-block" id="graph">
-<a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.distance.graph">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">graph</span><span class="p">():</span>
+<div class="viewcode-block" id="graph_distance">
+<a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.distance.graph_distance">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">graph_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a plot of the distance of individuals over time.</span>
+<span class="sd">    Reads data from an Excel file, processes it, and saves the plot as a PNG image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;output/data/distance.xlsx&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -116,6 +112,18 @@
 <div class="viewcode-block" id="distance_to_right_edge">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.distance.distance_to_right_edge">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_right_edge</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the distance from the center of the largest contour in an image to the right edge of the image.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        image_path (str): Path to the input image.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Distance from the center of the largest contour to the right edge of the image.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the image cannot be loaded or if no contours are found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -146,6 +154,18 @@
 <div class="viewcode-block" id="distance">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.distance.distance">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function calculates the distance of each segmented macrophage to the right edge of the image.</span>
+<span class="sd">    It processes images in the specified folder, extracts the distance for each segmented macrophage,</span>
+<span class="sd">    and saves the results in an Excel file.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        n (int): The number of segmented macrophages to process.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The path to the output Excel file containing the distance data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">base_folder</span> <span class="o">=</span> <span class="s2">&quot;output/list_track&quot;</span>
     <span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;output/data/distance.xlsx&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">output_file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">):</span>
@@ -179,7 +199,7 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">graph</span><span class="p">()</span>
+    <span class="n">graph_distance</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">output_file</span></div>
 
 </pre></div>

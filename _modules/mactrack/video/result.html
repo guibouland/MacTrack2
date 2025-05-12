@@ -81,6 +81,14 @@
 <div class="viewcode-block" id="draw_contours">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.draw_contours">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">draw_contours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw contours on the image with a specific color based on the number.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        image (numpy.ndarray): The image on which to draw the contours.</span>
+<span class="sd">        contours (list): List of contours to draw.</span>
+<span class="sd">        number (int): The number used to determine the color.</span>
+<span class="sd">        colors (list): List of colors to choose from.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">number</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">:</span>
         <span class="n">cv2</span><span class="o">.</span><span class="n">drawContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">[</span><span class="n">contour</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -97,6 +105,11 @@
 <div class="viewcode-block" id="generate_random_rgb_color">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.generate_random_rgb_color">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">generate_random_rgb_color</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a random RGB color.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple representing a random RGB color.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span></div>
 
 
@@ -104,6 +117,11 @@
 <div class="viewcode-block" id="result">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.result">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">result</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process images in the input folder and draw contours based on the list of tracks.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        input_folder (str): Path to the folder containing images and tracks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">input_folder_v</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="s2">&quot;vert/frames&quot;</span><span class="p">)</span>
     <span class="n">output_folder_v</span> <span class="o">=</span> <span class="s2">&quot;output/resultv&quot;</span>
     <span class="n">list_track_folder_v</span> <span class="o">=</span> <span class="s2">&quot;output/list_track&quot;</span>
@@ -186,6 +204,9 @@
 <div class="viewcode-block" id="video">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.video">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">video</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a video from images in the ``output/result`` and ``output/resultv`` folders.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result_folder</span> <span class="o">=</span> <span class="s2">&quot;output/result&quot;</span>
     <span class="n">video_output</span> <span class="o">=</span> <span class="s2">&quot;output/result_video.mp4&quot;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">result_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)]</span>
@@ -237,6 +258,9 @@
 <div class="viewcode-block" id="videocomp">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.videocomp">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">videocomp</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a video from images in the ``output/list_comp`` folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">image_folder</span> <span class="o">=</span> <span class="s2">&quot;output/list_comp&quot;</span>
     <span class="n">video_name</span> <span class="o">=</span> <span class="s2">&quot;output/result_video_w.mp4&quot;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)]</span>

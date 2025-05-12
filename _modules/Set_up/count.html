@@ -78,6 +78,13 @@
 <div class="viewcode-block" id="get_frame_count">
 <a class="viewcode-back" href="../../mactrack.html#Set_up.count.get_frame_count">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_frame_count</span><span class="p">(</span><span class="n">video_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the number of frames in a video file.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        video_path (str): Path to the video file.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        frame_count (int): Number of frames in the video.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
     <span class="n">frame_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_COUNT</span><span class="p">))</span>
     <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>

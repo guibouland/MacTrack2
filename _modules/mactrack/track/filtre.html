@@ -79,6 +79,11 @@
 <div class="viewcode-block" id="supprimer_petit">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.track.filtre.supprimer_petit">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">supprimer_petit</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Deletes subdirectories containing fewer than p PNG files in the specified directory, meaning the macrophages were tracked in less than .. math:`p` frames.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        p (int): The threshold number of PNG files.</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
     <span class="n">dossier_principal</span> <span class="o">=</span> <span class="s2">&quot;output/list_track&quot;</span>
     <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">dossier_principal</span><span class="p">):</span>
         <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>

@@ -81,6 +81,15 @@
 <div class="viewcode-block" id="load_data">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.load_data">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads data from an Excel file.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        file_path (str): Path to the Excel file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: Data loaded from the Excel file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span></div>
 
@@ -89,6 +98,24 @@
 <div class="viewcode-block" id="calculate_intensity_features">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.calculate_intensity_features">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_intensity_features</span><span class="p">(</span><span class="n">intensity_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates intensity features such as the number of peaks, mean prominence,</span>
+<span class="sd">    and mean distance between peaks for each row in the intensity data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intensity_data : pd.DataFrame</span>
+<span class="sd">        DataFrame containing intensity data, where each row represents a signal.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">        * **num_peaks** (*pd.Series*): Number of peaks for each row.</span>
+<span class="sd">        * **mean_prominence** (*pd.Series*): Mean prominence of peaks for each row.</span>
+<span class="sd">        * **mean_distance** (*pd.Series*): Mean distance between peaks for each row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">find_peaks_and_prominences</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
         <span class="n">peaks</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">prominence</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
         <span class="n">prominences</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s2">&quot;prominences&quot;</span><span class="p">]</span>
@@ -118,6 +145,13 @@
 <div class="viewcode-block" id="calculate_mean">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.calculate_mean">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_mean</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the mean of each row in the given DataFrame.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        data (pd.DataFrame): The input DataFrame to analyze.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: A series containing the mean of each row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 
@@ -125,6 +159,15 @@
 <div class="viewcode-block" id="count_valid_entries">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.count_valid_entries">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">count_valid_entries</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Counts the number of valid (non-NaN) entries in each row of the given DataFrame.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        data (pd.DataFrame): The input DataFrame to analyze.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: A series containing the count of valid entries for each row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">num_valid_entries</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">num_valid_entries</span></div>
 
@@ -133,6 +176,13 @@
 <div class="viewcode-block" id="plot_intensity_curves">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.plot_intensity_curves">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_intensity_curves</span><span class="p">(</span><span class="n">intensity_data</span><span class="p">,</span> <span class="n">valid_entry_counts</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots intensity curves for each row in the DataFrame and saves them as PNG files.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        intensity_data (pd.DataFrame): The DataFrame containing intensity data.</span>
+<span class="sd">        valid_entry_counts (pd.Series): A series containing the count of valid entries for each row.</span>
+<span class="sd">        threshold (int): The minimum number of valid entries required to plot the curve.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">filtered_data</span> <span class="o">=</span> <span class="n">intensity_data</span><span class="p">[</span><span class="n">valid_entry_counts</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span>
     <span class="n">output_folder</span> <span class="o">=</span> <span class="s2">&quot;output/plot&quot;</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -148,6 +198,14 @@
 <div class="viewcode-block" id="aggregate">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.analyse.recap.aggregate">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="n">distance_file</span><span class="p">,</span> <span class="n">intensity_file</span><span class="p">,</span> <span class="n">size_file</span><span class="p">,</span> <span class="n">perimeter_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Aggregates data from multiple files and saves the results to an Excel file.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        distance_file (str): Path to the distance data file.</span>
+<span class="sd">        intensity_file (str): Path to the intensity data file.</span>
+<span class="sd">        size_file (str): Path to the size data file.</span>
+<span class="sd">        perimeter_file (str): Path to the perimeter data file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;output/data/data.xlsx&quot;</span>
     <span class="n">distance_data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">distance_file</span><span class="p">)</span>
     <span class="n">intensity_data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">intensity_file</span><span class="p">)</span>

@@ -81,13 +81,26 @@
 <div class="viewcode-block" id="segmentation">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">segmentation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to handle the loading and processing of images for segmentation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the segmentation class.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            root_folder (str): Path to the root folder containing images.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root_folder</span> <span class="o">=</span> <span class="n">root_folder</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="segmentation.load_images">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation.load_images">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_images</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load images from the root folder and store them in a list.</span>
+<span class="sd">        The images are expected to be in subdirectories named &quot;heatmap_test_&lt;number&gt;&quot;.</span>
+<span class="sd">        Each subdirectory should contain images named &quot;object_&lt;number&gt;.png&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">dir_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_folder</span><span class="p">):</span>
             <span class="n">dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_folder</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dir_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;heatmap_test_&quot;</span><span class="p">):</span>
@@ -106,6 +119,14 @@
 <div class="viewcode-block" id="segmentation.get_image">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation.get_image">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a specific image from the loaded images.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
+<span class="sd">            object_name (str): Name of the object image file.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            sparse_image (scipy.sparse.csr_matrix): Sparse matrix representation of the image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">objects_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">dir_name</span> <span class="o">==</span> <span class="n">heatmap_test_name</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">sparse_image</span> <span class="ow">in</span> <span class="n">objects_list</span><span class="p">:</span>
@@ -116,6 +137,13 @@
 <div class="viewcode-block" id="segmentation.get_list">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation.get_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a list of images from a specific heatmap test directory.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of sparse matrix representations of images.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">objects_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">dir_name</span> <span class="o">==</span> <span class="n">heatmap_test_name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="p">[</span><span class="n">sparse_image</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">sparse_image</span> <span class="ow">in</span> <span class="n">objects_list</span><span class="p">]</span>
@@ -125,6 +153,13 @@
 <div class="viewcode-block" id="segmentation.add_image">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation.add_image">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a new image to the specified heatmap test directory.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
+<span class="sd">            object_name (str): Name of the object image file.</span>
+<span class="sd">            image (numpy.ndarray): Image to be added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load image&quot;</span><span class="p">)</span>
             <span class="k">return</span>
@@ -139,6 +174,13 @@
 <div class="viewcode-block" id="segmentation.replace_image">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.list_sep.segmentation.replace_image">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">replace_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heatmap_test_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">new_image</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace an existing image in the specified heatmap test directory.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            heatmap_test_name (str): Name of the heatmap test directory.</span>
+<span class="sd">            object_name (str): Name of the object image file.</span>
+<span class="sd">            new_image (numpy.ndarray): New image to replace the existing one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">new_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load new image&quot;</span><span class="p">)</span>
             <span class="k">return</span>

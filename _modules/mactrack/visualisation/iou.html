@@ -82,6 +82,15 @@
 <div class="viewcode-block" id="roi_to_mask">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.visualisation.iou.roi_to_mask">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">roi_to_mask</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">roi</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a single ROI to a binary mask.</span>
+<span class="sd">    The mask will have the same shape as the image, with the ROI filled with 1s.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        shape (tuple): The shape of the image (height, width).</span>
+<span class="sd">        roi (dict): The ROI dictionary containing &#39;x&#39; and &#39;y&#39; coordinates.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        mask (numpy.ndarray): A binary mask with the same shape as the image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">roi</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">roi</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
@@ -94,6 +103,15 @@
 <div class="viewcode-block" id="build_global_mask">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.visualisation.iou.build_global_mask">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">build_global_mask</span><span class="p">(</span><span class="n">roi_dict</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a global mask from a dictionary of ROIs.</span>
+<span class="sd">    The mask will have the same shape as the image, with all ROIs filled with 1s.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        roi_dict (dict): A dictionary of ROIs, where each key is a ROI name and the value is a dict with &#39;x&#39; and &#39;y&#39; coordinates.</span>
+<span class="sd">        shape (tuple): The shape of the image (height, width).</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        mask (numpy.ndarray): A binary mask with the same shape as the image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">roi</span> <span class="ow">in</span> <span class="n">roi_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="c1"># print(roi)</span>
@@ -109,6 +127,15 @@
 <div class="viewcode-block" id="compute_global_iou">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.visualisation.iou.compute_global_iou">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_global_iou</span><span class="p">(</span><span class="n">zip1_path</span><span class="p">,</span> <span class="n">zip2_path</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the Intersection over Union (IoU) between two sets of ROIs.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        zip1_path (str): Path to the first zip file containing ROIs.</span>
+<span class="sd">        zip2_path (str): Path to the second zip file containing ROIs.</span>
+<span class="sd">        shape (tuple): The shape of the image (height, width).</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        iou (float): The IoU value between the two sets of ROIs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rois1</span> <span class="o">=</span> <span class="n">read_roi_zip</span><span class="p">(</span><span class="n">zip1_path</span><span class="p">)</span>
     <span class="n">rois2</span> <span class="o">=</span> <span class="n">read_roi_zip</span><span class="p">(</span><span class="n">zip2_path</span><span class="p">)</span>
 
@@ -126,6 +153,13 @@
 <div class="viewcode-block" id="get_image_shape">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.visualisation.iou.get_image_shape">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_image_shape</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets the dimensions (height and width) of an image.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        image_path (str): The path to the image file.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple representing the dimensions (height, width) of the image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not read image at </span><span class="si">{</span><span class="n">image_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -193,10 +227,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        The mean global IoU between the predicted and ground truth zip files.</span>
-<span class="sd">    list of float</span>
-<span class="sd">        A list of IoU values for each pair of predicted and ground truth zip files.</span>
+<span class="sd">        mean_iou (float): The mean IoU value across all zip files.</span>
+<span class="sd">        ious (list): A list of IoU values for each pair of zip files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">zip_pred_files</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">zip_pred_folder</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">zip_pred_folder</span><span class="p">))</span>

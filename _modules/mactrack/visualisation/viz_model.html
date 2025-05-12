@@ -293,14 +293,10 @@
 <span class="sd">        The function does not return any value. It generates visualizations and saves</span>
 <span class="sd">        them in the appropriate directories.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - The function creates several temporary directories for intermediate outputs,</span>
-<span class="sd">      which are cleaned up after processing.</span>
-<span class="sd">    - The final outputs, including predicted ROIs, visualizations, and masks, are</span>
-<span class="sd">      saved in the &#39;test_def&#39; directory within the &#39;model_output&#39; folder.</span>
-<span class="sd">    - Ensure that the input paths are valid and the required files are present in</span>
-<span class="sd">      the specified directories.</span>
+<span class="sd">    .. note::</span>
+<span class="sd">        * The function creates several temporary directories for intermediate outputs, which are cleaned up after processing.</span>
+<span class="sd">        * The final outputs, including predicted ROIs, visualizations, and masks, are saved in the &#39;test_def&#39; directory within the &#39;model_output&#39; folder.</span>
+<span class="sd">        * Ensure that the input paths are valid and the required files are present in the specified directories.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get the directory in which this function will be used</span>
     <span class="n">called_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
@@ -374,7 +370,6 @@
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.visualisation.viz_model.comp_model">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">comp_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    comp_model(model_path, train=False)</span>
 <span class="sd">    Compare the model predictions with the ground truth.</span>
 
 <span class="sd">    This function takes a test or training dataset and a model path, then compares</span>
@@ -396,12 +391,11 @@
 <span class="sd">    PermissionError</span>
 <span class="sd">        If there are insufficient permissions to access or modify the output directory.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - The function assumes a specific directory structure under `model_path`:</span>
-<span class="sd">      - `dataset/train/train_x` and `dataset/train/train_y` for training data.</span>
-<span class="sd">      - `dataset/test/test_x` and `dataset/test/test_y` for test data.</span>
-<span class="sd">    - The output directory is cleared and recreated for each function call.</span>
+<span class="sd">    .. note::</span>
+<span class="sd">    * The function assumes a specific directory structure under ``model_path``:</span>
+<span class="sd">      * ``dataset/train/train_x`` and ``dataset/train/train_y`` for training data.</span>
+<span class="sd">      * ``dataset/test/test_x`` and ``dataset/test/test_y`` for test data.</span>
+<span class="sd">    * The output directory is cleared and recreated for each function call.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
