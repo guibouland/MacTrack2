@@ -9,7 +9,8 @@ def calculate_iou(image1, image2):
     Calculate the Intersection over Union (IoU) between two binary images.
 
     .. math::
-        \text{IoU} = \frac{A \cap B}{A \cup B}
+
+        IoU = \frac{A \cap B}{A \cup B}
 
     where :math:`A` and :math:`B` are the two binary images.
 
@@ -48,7 +49,7 @@ def find_containing_folder(image_path, root_folder):
 def track(n, threshold_iou, image_storage):
     """
     Track objects across frames based on IoU thresholding.
-    
+
     Parameters:
         n (int): Number of frames to process.
         threshold_iou (float): IoU threshold for tracking.

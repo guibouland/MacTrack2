@@ -148,7 +148,8 @@ def calculate_iou(image1, image2):
     Calculate the Intersection over Union (IoU) between two binary images.
 
     .. math::
-        \text{IoU} = \frac{A \cap B}{A \cup B}
+    
+        IoU = \frac{A \cap B}{A \cup B}
 
     where :math:`A` and :math:`B` are the two binary images.
 
@@ -237,7 +238,7 @@ def invdefuse(n, image_storage):
     Parameters:
         n (int): Number of images to process.
         image_storage (ImageStorage): The image storage object.
-        
+
     Returns:
         image_storage (ImageStorage): The updated image storage object.
     """

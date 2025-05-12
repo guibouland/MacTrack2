@@ -62,14 +62,14 @@ def graphmed_intensity():
 
 def calculate_ratio(image_path_contour, image_a, image_f0):
     """
-    Calculate the ratio of the difference between two images (image_a and image_f0) within the contour of a third image (image_path_contour).
+    Calculate the ratio of the difference between two images (``image_a`` and ``image_f0``) within the contour of a third image (``image_path_contour``).
     The ratio is calculated as :
 
     .. math::
 
-        \text{ratio} = \frac{f - f_0}{f_0}
+        ratio = \frac{f - f_0}{f_0}
     
-    where f is the pixel value in image_a and f_0 is the pixel value in image_f0.
+    where f is the pixel value in ``image_a`` and ``f_0`` is the pixel value in ``image_f0``.
 
     Parameters:
         image_path_contour (str): Path to the contour image.
