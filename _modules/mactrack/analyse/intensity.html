@@ -153,7 +153,7 @@
 <span class="sd">    .. math::</span>
 
 <span class="sd">        ratio = \\frac{f - f_0}{f_0}</span>
-<span class="sd">    </span>
+
 <span class="sd">    where f is the pixel value in ``image_a`` and ``f_0`` is the pixel value in ``image_f0``.</span>
 
 <span class="sd">    Parameters:</span>
@@ -171,7 +171,9 @@
     <span class="n">_</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
     <span class="n">contours</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">contours</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No contours found in the image.&quot;</span><span class="p">)</span>
+        <span class="c1"># Skip this frame ad take value mean of all previous one</span>
+        <span class="c1"># This is a placeholder for the case where no contours are found.</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">image_a</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">image_f0</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image dimensions do not match.&quot;</span><span class="p">)</span>
@@ -254,6 +256,19 @@
 
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">folder_result</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="c1"># Replace the 0 values (if merge) by the mean of the 5 previous and the 5 next values of the row they belong to</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># idx of the row</span>
+                <span class="c1"># list of the 5 previous in the same row (i)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">5</span> <span class="p">:</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="c1"># list of the 5 next in the same row (i)</span>
+                <span class="n">next_</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">mean_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">sum</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">next_</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">next_</span><span class="p">)))</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_value</span>
+
     <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">graph_intensity</span><span class="p">()</span>

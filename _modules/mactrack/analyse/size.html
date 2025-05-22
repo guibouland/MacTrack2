@@ -117,10 +117,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">object_size</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the size of an object in an image.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        image_path (str): Path to the input image.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        object_area (float): Area of the detected object in pixels.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -133,7 +133,7 @@
     <span class="n">contours</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">contours</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Aucun contour n&#39;a été détecté dans l&#39;image.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
     <span class="n">contour</span> <span class="o">=</span> <span class="n">contours</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">object_area</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">contourArea</span><span class="p">(</span><span class="n">contour</span><span class="p">)</span>
 
@@ -146,10 +146,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the size of objects in images and save the results to an Excel file. Uses the object_size function to calculate the size of each object in the images. Uses the graph_size function to plot the size of individuals over time.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">        n (int): Number of images to process.</span>
-<span class="sd">    </span>
+
 <span class="sd">    See also:</span>
 <span class="sd">        object_size: Function to calculate the size of an object in an image.</span>
 <span class="sd">        graph_size: Function to plot the size of individuals over time.</span>
@@ -184,7 +184,21 @@
                 <span class="n">folder_result</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NA&quot;</span>
 
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">folder_result</span><span class="p">)</span>
+
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="c1"># Replace the 0 values (if merge) by the mean of the 5 previous and the 5 next values of the row they belong to</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># idx of the row</span>
+                <span class="c1"># list of the 5 previous in the same row (i)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">5</span> <span class="p">:</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="c1"># list of the 5 next in the same row (i)</span>
+                <span class="n">next_</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">mean_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">sum</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">next_</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">next_</span><span class="p">)))</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_value</span>
+
     <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">graph_size</span><span class="p">()</span>
