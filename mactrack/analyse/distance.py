@@ -54,7 +54,7 @@ def distance_to_right_edge(image_path):
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     if not contours:
-        raise ValueError("Aucun contour n'a été détecté dans l'image.")
+        return 0
 
     contour = contours[0]
     M = cv2.moments(contour)
@@ -114,7 +114,21 @@ def distance(n):
                 folder_result[f"{a}"] = "NA"
 
         results.append(folder_result)
+
     df = pd.DataFrame(results)
+
+    # Replace the 0 values (if merge) by the mean of the 5 previous and the 5 next values of the row they belong to
+    for i in range(len(df)):
+        for j in range(1, len(df.columns)):
+            if df.iloc[i, j] == 0:
+                # idx of the row
+                # list of the 5 previous in the same row (i)
+                prev = df.iloc[i, j - 5 : j].tolist()
+                # list of the 5 next in the same row (i)
+                next_ = df.iloc[i, j + 1 : j + 6].tolist()
+                mean_value = int((sum(prev) + sum(next_)) / (len(prev) + len(next_)))
+                df.iloc[i, j] = mean_value
+
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
     graph_distance()

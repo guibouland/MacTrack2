@@ -7,7 +7,7 @@ import random
 def draw_contours(image, contours, number, colors):
     """
     Draw contours on the image with a specific color based on the number.
-    
+
     Parameters:
         image (numpy.ndarray): The image on which to draw the contours.
         contours (list): List of contours to draw.
@@ -23,7 +23,7 @@ def draw_contours(image, contours, number, colors):
             cY = int(M["m01"] / M["m00"])
         else:
             cX, cY = contour[0][0]
-        cv2.putText(image, str(number), (cX, cY), cv2.FONT_HERSHEY_SIMPLEX, 2, color, 2)
+        cv2.putText(image, str(number), (cX, cY), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
 
 def generate_random_rgb_color():

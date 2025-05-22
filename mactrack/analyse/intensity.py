@@ -68,7 +68,7 @@ def calculate_ratio(image_path_contour, image_a, image_f0):
     .. math::
 
         ratio = \\frac{f - f_0}{f_0}
-    
+
     where f is the pixel value in ``image_a`` and ``f_0`` is the pixel value in ``image_f0``.
 
     Parameters:
@@ -86,7 +86,9 @@ def calculate_ratio(image_path_contour, image_a, image_f0):
     _, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if not contours:
-        raise ValueError("No contours found in the image.")
+        # Skip this frame ad take value mean of all previous one
+        # This is a placeholder for the case where no contours are found.
+        return 0
 
     if image_a.shape != image_f0.shape:
         raise ValueError("Image dimensions do not match.")
@@ -166,6 +168,19 @@ def intensity(n, frame, input_folder):
 
         results.append(folder_result)
     df = pd.DataFrame(results)
+
+    # Replace the 0 values (if merge) by the mean of the 5 previous and the 5 next values of the row they belong to
+    for i in range(len(df)):
+        for j in range(1, len(df.columns)):
+            if df.iloc[i, j] == 0:
+                # idx of the row
+                # list of the 5 previous in the same row (i)
+                prev = df.iloc[i, j - 5 : j].tolist()
+                # list of the 5 next in the same row (i)
+                next_ = df.iloc[i, j + 1 : j + 6].tolist()
+                mean_value = int((sum(prev) + sum(next_)) / (len(prev) + len(next_)))
+                df.iloc[i, j] = mean_value
+
     df.to_excel(output_file, index=False, engine="openpyxl")
     print(f"Report saved to {output_file}")
     graph_intensity()
