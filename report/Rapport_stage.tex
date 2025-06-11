@@ -16,7 +16,8 @@
 \geometry{margin=1.2in}
 \usepackage{nameref}
 \usepackage{csquotes}
-\usepackage[backend=biber,style=numeric,sorting=none, autocite=plain, natbib=true]{biblatex}
+\usepackage[backend=biber,style=numeric,sorting=none, autocite=plain, natbib=true, pagetracker=true]{biblatex}
+\renewcommand*{\bibfont}{\small}
 \addbibresource{ref.bib}
 \usepackage{lipsum}
 \usepackage{letltxmacro}
@@ -58,7 +59,7 @@
 }
 
 % Assure que les pages de chapitres utilisent le style 'plain'
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
 % Environnement custom pour abstract (style classique, marges larges)
@@ -162,11 +163,15 @@ blabla
 
 
 \cleardoublepage
-\chapter{Introduction}
+\chapter{Introduction}\label{chp:intro}
 \section*{Cadre du stage}
 \addcontentsline{toc}{section}{Cadre du stage}
 \section*{Contexte}
 \addcontentsline{toc}{section}{Contexte}
+
+mehari, nguyen \dots\\
+lignée transgénique
+obtention des images, microscopie
 \section*{Question}
 \addcontentsline{toc}{section}{Question}
 \section*{Objectifs}
@@ -174,7 +179,53 @@ blabla
 \chapter{Mactrack2}
 
 \section{Introduction}
-Pour répondre à la question biologique posée, nous devions développer un outil qui permettrait de segmenter des macrophages dans des vidéos. POur ce faire, nous avons tout d'abord réfléchi au problème de manière séquentielle, c'est-à-dire image par image. En poursuivant le travail déjà effectué au laboratoire par l'ancien stagiaire Axel de Montgolfier\cite{axel}, étudiant en Master 2 Statistiques et Sciences des Données qui était présent durant l'année 2023-2024, nous avons amélioré le programme MacTrack créé par ses soins, en le rendant plus robuste avec notamment un meilleur jeu de données pour l'entraînement des modèles. Nous pouvons maintenant visualiser la qualité des modèles entraînés. Des scripts plus intuitifs pour les débutants, qui sont la cible de ce projet, ont été ajoutés ainsi qu'une documentation complète sur un site internet, disponible sur le dépôt GitHub du projet (\cite{mactrack2}). Un post-processing a été implémenté pour corriger les erreurs de segmentation des macrophages. Ces erreurs que nous avons rencontrées étaient souvent dues à des problèmes au niveau de l'image de microscopie, comme par exemple la présence d'un fond bruité. Ce process sert aussi pour obtenir une segmentation continue dans le temps, sans changement de numérotation, afin d'obtenir la meilleure analyse possible des flux calciques présent dans ces macrophages.
+Pour répondre à la question biologique posée, nous devions développer un outil qui permettrait de segmenter des macrophages dans des vidéos. Pour ce faire, nous avons tout d'abord réfléchi au problème de manière séquentielle, c'est-à-dire image par image. En poursuivant le travail déjà effectué au laboratoire par l'ancien stagiaire Axel de Montgolfier\cite{axel}, étudiant en Master 2 Statistiques et Sciences des Données qui était présent durant l'année 2023-2024, nous avons amélioré le programme MacTrack créé par ses soins, en le rendant plus robuste avec notamment un meilleur jeu de données pour l'entraînement des modèles. Nous pouvons maintenant visualiser la qualité des modèles entraînés. Des scripts plus intuitifs pour les débutants, qui sont la cible de ce projet, ont été ajoutés ainsi qu'une documentation complète sur un site internet, disponible sur le dépôt GitHub du projet (\cite{mactrack2}). Un post-processing a été implémenté pour corriger les erreurs de segmentation des macrophages. Ces erreurs que nous avons rencontrées étaient souvent dues à des problèmes au niveau de l'image de microscopie, comme par exemple la présence d'un fond bruité. Ce process sert aussi pour obtenir une segmentation continue dans le temps, sans changement de numérotation, afin d'obtenir la meilleure analyse possible des flux calciques présent dans ces macrophages.
+
+Ainsi, toutes ces améliorations constituent \textbf{MacTrack2}, une librairie développée en Python, téléchargeable et utilisable simplement via les scripts et le jeu de données que nous fournissons en exemples. Elle se base principalement sur la librairie \textit{Kartezio}\cite{kartezio}, qui a été créée pour proposer une nouvelle approche de la segmentation d'objets dans des images microscopiques en se basant sur les principes du \textit{Cartesian Genetic Programming} (CGP)\cite{cgp}. À l'aide de cette méthode, \textit{Kartezio} est capable de générer des pipelines de segmentations qui sont à la fois peu gourmands en ressources, notamment en quantité d'images pour l'entraînement ou en temps computationnel, interprétables puisque cette librairie utilise une liste de fonction issues d'\textit{OpenCV}\cite{opencv,opencv-python}, une bibliothèque libre de fonctions spécialisées dans le traitement d'images, et performants.
+
+\section{Éléments théoriques}
+\subsection*{Image numérique}
+\addcontentsline{toc}{subsection}{Image numérique}
+Les images que nous obtenons par microscopie confocale à l'aide de la lignée transgénique, comme vu dans l'\nameref{chp:intro}, sont des images en 2 dimensions (2D) où l'on retrouve deux canaux de couleurs : le rouge pour la présence du macrophage (en bordure des cellules) et le vert pour la présence de calcium dans le cytoplasme du macrophage. Cependant, ces couleurs ont été ajoutées artificiellement par soucis de visualisation à l'aide du logiciel \textit{ImageJ}\cite{imagej} et plus particulièrement \textit{Fiji}\cite{fiji}, qui ajoute un certain nombre d'options à ce logiciel, sous forme de plugins et macros. Ces couleurs ont été spécifiquement choisies car les protéines fluorescentes (\textit{mCherry} pour le rouge et \textit{GFP (Green Fluorescent Protein)} pour le vert) utilisées dans la lignée transgénique sont activées par la stimulation provoquée par un laser à une certaine longueur d'onde qui correspond à ces couleurs.
+
+Les images que nous recevons, après avoir séparé les canaux, sont donc des images en niveaux de gris, où chaque pixel de celle-ci est un nombre réel entre 0 et 255, avec 0 représentant le noir et 255 le blanc. Cela nous évite la complexité de traiter une image RGB (Red, Green, Blue) où chaque pixel est un triplet d'intensité de chacune des trois couleurs (\figref{mac:grayrgb}).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.6\linewidth]{imgs/grayRGB.png}
+    \caption{Représentations matricielles d'une image en niveaux de gris (\textit{Grayscale}) et d'une image RGB. Figure issue de \cite{grayRGB}}
+    \label{mac:grayrgb}
+\end{figure}
+
+
+\subsection*{Différentes approches de segmentation d'images}
+\addcontentsline{toc}{subsection}{Différentes approches de segmentation d'images}
+La segmentation d'images est un problème de vision par ordinateur (\textit{Computer Vision}) qui consiste à diviser une image en plusieurs régions ou objets d'intérêt. Ici, les objets d'intérêt sont des macrophages, mais la segmentation est un problème plus général, applicable à de nombreux domaines. Les régions ou objets d'intérêts peuvent prendre plusieurs formes comme par exemple des rectangles permettant de délimiter la présence d'un objet. Elle sert à \textbf{détecter} tous les objets d'intérêt dans une image et peut même être être utilisée pour labelliser ces objets \cite{trex, gsam, gdino,gdino1.5}.
+
+La \textbf{segmentation sémantique} est une autre approche de segmentation d'images où on affecte à chaque pixel une classe d'objet, et ce pour chaque objet de nature (ou sémantique) différente. Elle ne fait donc pas la différence entre deux voitures de couleur ou modèle différents par exemple, mais les classifiera chacun comme étant une voiture.
+
+La \textbf{segmentation d'instance} est une approche plus complexe qui se concentre sur la distinction des instances, c'est-à-dire des objets individuels, même les instances occluses de la même classe d'objet. Si on reprend notre exemple, les voitures sont maintenant segmentées individuellement, même si elles sont identiques, puisqu'elles sont vues comme des objets différents mais appartenant à la même classe \og voiture\fg.
+
+La \textbf{segmentation panoptique} combine les deux précédentes. Elle englobe à la fois la classification sémantique de chacun des pixels de l'image et la délimitation de chaque instance d'objet, mais son coût de calcul est plus élevé.
+
+\
+
+Dans notre cas, nous cherchons a segmenter des macrophages, donc sur le canal rouge de l'image, pour ensuite analyser les flux calciques de ceux-ci à partir de la segmentation obtenue. Nous avons donc besoin d'une segmentation d'instances car nous voulons détecter chaque macrophage tout en faisant attention à ne pas les confondre entre eux. De plus, nous avons une difficulté en plus car jusqu'à présent, nous avons seulement traité de segmentation d'images et non de vidéos. Or, les macrophages étant des cellules immunitaires très mobiles, ils pourraient se regrouper ou se séparer à tout moment de la vidéo. Donc la qualité de la segmentation est primordiale pour pouvoir au mieux retranscrire les comportements réels des macrophages.
+
+Cependant, la segmentation d'instances fait appel à des modèle, comme les réseaux de neurones convolutifs par exemple, qui demandent un grand nombre d'images annotées. Or, annoter à la main des milliers d'images demande un temps énorme que nous n'avons pas. De plus, pour pouvoir segmenter autant d'images, il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction d ela condition que l'on cherche à observer, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 12, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables. Cela demande un coût humain et financier énorme que nous n'avions pas. En se tournant vers les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio}\cite{kartezio}, une librairie Python, qui a pour promesse de segmenter, et ce en concurrençant les modèles basés sur des réseaux de neurones bien connus du domaine comme \textit{Cellpose}\cite{cellpose1, cellpose2, cellpose3}, \textit{Mask R-CNN}\cite{maskRCNN} ou encore \textit{Stardist}\cite{stardist}, des objets dans des images biomédicales. Plus précisément, \textit{Kartezio} a pour avantage de générer des pipelines de segmentation robustes et interprétables à partir de peu d'images annotées, en se basant sur le CGP.
+
+\subsection*{Cartesian Genetic Programming (CGP)}
+\addcontentsline{toc}{subsection}{Cartesian Genetic Programming (CGP)}
+
+
+
+\subsection*{Kartezio}
+\addcontentsline{toc}{subsection}{Kartezio}
+
+nous on veut instance mais trop cher donc on ruse sémantique into instance grace a kartezio qui utilise cgp
+subsec cgp
+
+
 
 \chapter{SAM-2}
 \section{Introduction}
@@ -220,11 +271,11 @@ Les annotations sont sous la forme d'images où chaque macrophage est détouré 
 Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages. Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
 
 \subsection{Hyper-paramètres}\label{sec:hyperparameters}
-Les hyper-paramètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyperparamètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier\cite{sam2} page 19.
+Les hyper-paramètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyper-paramètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier\cite{sam2} page 19.
 
 \
 
-Pour le fine-tuning, les sous-modules affectés sont le \textit{mask decoder} et le \textit{prompt encoder}. Nous utilisons l'optimiseur AdamW\cite{adamw} avec un taux d'apprentissage (\textit{learning rate}) de 0.0001 et une dégradation des poids (\textit{weight decay}) de 0.0001, utile pour la régularisation L2. Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler}, qui permet de réduire le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=500$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 500 pas (pas vraiment tous les 500 pas, voir la partie suivante).
+Pour le fine-tuning, les sous-modules affectés sont le \textit{mask decoder} et le \textit{prompt encoder}. Nous utilisons l'optimiseur AdamW\cite{adamw} avec un taux d'apprentissage (\textit{learning rate}) de 0.0001 et une dégradation des poids (\textit{weight decay}) de 0.00001, utile pour la régularisation L2. Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler} permet d'ajuster le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=500$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 500 pas.
 
 Contrairement à ce que l'on peut retrouver habituellement dans l'entraînement de modèles, la taille du batch est égale à une seule image. En effet, à chaque pas \dots
 
@@ -301,7 +352,7 @@ avec :
 \
 
 Interprétations fonction de perte \dots
-ressemble a kullbackleibler mias différences \dots
+ressemble a kullbackleibler mais différences \dots
 
 \
 
@@ -312,7 +363,7 @@ $$\mathcal{L} = \mathcal{L}_{BCE} + \lambda\mathcal{L}_{\text{score}}$$
 \subsection{Optimisation}
 Une fois la perte calculée, elle est divisée par le nombre de pas d'accumulation des gradients, soit 4 dans notre cas, comme défini dans la partie~\ref{sec:hyperparameters} introduisant les hyper-paramètres. Cela nous permet d'éviter de multiplier le gradient total par ce facteur. C'est utilisé lorsque l'on accumule des gradients sur plusieurs images (ici 4 fois une image) pour que la somme finale corresponde en réalité à une moyenne sur ce batch étendu. Ainsi, nous simulons un batch de taille 4 alors qu'en réalité nous n'avons qu'une seule image par step.
 
-Ensuite, les gradients sont calculés en utilisant la méthode \textit{backward} du package PyTorch\cite{pytorch}, à partir de la perte totale $\mathcal{L}$ divisée par cet \textit{accumulation step}. Puis, tous ces 4 steps, nous mettons à jour l'optimiseur AdamW. Puisque le nombre de pas avant la mise à jour du \textit{learning rate} est de 500, il faut en réalité 2000 itérations avant de le mettre à jour. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 2000 pas, et non tous les 500 pas comme introduit dans la partie~\ref{sec:hyperparameters}. Ensuite, les gradients sont remis à zéro pour le prochain pas d'accumulation.
+Ensuite, les gradients sont calculés en utilisant la méthode \textit{backward} du package PyTorch\cite{pytorch}, à partir de la perte totale $\mathcal{L}$ divisée par cet \textit{accumulation step}. Puis, tous ces 4 steps, nous mettons à jour l'optimiseur AdamW. Le nombre de pas avant la mise à jour du \textit{learning rate} est de 500. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 500 pas. Ensuite, les gradients sont remis à zéro pour le prochain pas d'accumulation.
 
 Pour finir, nous calculons l'IoU moyenne au pas $\ell$ comme étant :
 
@@ -335,7 +386,7 @@ Le code de MacTrack2 est disponible, ainsi que deux scripts détaillés pour la 
 Un site internet est disponible sur ce dépôt GitHub, regroupant toute la documentation et des instructions détaillées pour les utilisateurs plus novices, notamment les biologistes traitant la même problématique, qui sont la cible principale de ce projet. Il servira aussi aux futurs membres du laboratoire LPHI qui souhaitent utiliser MacTrack2 pour leurs propres projets.
 
 \chapter{Matériel et Méthodes}\label{matmeth}
-tests tests\cite{cortacero2023evolutionary,sam,sam2,adamw}
+tests tests\cite{kartezio,sam,sam2,adamw}
 \section*{Acquisition des images}
 microscope \dots norma merci
 \section*{Fine-tuning de SAM-2}
