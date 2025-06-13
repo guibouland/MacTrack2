@@ -20,6 +20,7 @@
 \renewcommand*{\bibfont}{\small}
 \addbibresource{ref.bib}
 \usepackage{lipsum}
+\usepackage{longtable}
 \usepackage{letltxmacro}
 \LetLtxMacro{\oldnameref}{\nameref}
 \renewcommand{\nameref}[1]{\textbf{\oldnameref{#1}}}
@@ -74,7 +75,15 @@
     \end{quotation}
 }
 
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{tikz}
 
+
+\usepackage{xcolor}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\renewcommand{\cftsubsecfont}{\itshape} 
 
 \begin{document}
 
@@ -118,9 +127,9 @@
         \vspace{0cm}
         \centering
         \textit{Jury : }\\[0.2cm]
-        \textbf{1}\\[0.2cm]
-        \textbf{2}\\[0.2cm]
-        \textbf{3}
+        \textbf{Ali Gannoun}\\[0.2cm]
+        \textbf{Élodie Brunel}\\[0.2cm]
+        \textbf{Nicolas Meyer}
     \end{minipage}
 
 
@@ -157,6 +166,7 @@ blabla
 
 \end{customabstract}
 \vspace*{\fill}
+\newpage
 % Table of Contents
 \tableofcontents
 \newpage
@@ -169,12 +179,17 @@ blabla
 \section*{Contexte}
 \addcontentsline{toc}{section}{Contexte}
 
-mehari, nguyen \dots\\
+mehari \dots\\
 lignée transgénique
 obtention des images, microscopie
 \section*{Question}
 \addcontentsline{toc}{section}{Question}
 \section*{Objectifs}
+À partir des vidéos de microscopie obtenues par Norma, nous chercherons tout d'abord à obtenir la meilleure segmentation possible des macrophages sur celles-ci. Dans un second temps, à partir de cette segmentation, nous allons chercher à mesurer les intensités de calcium dans ces macrophages, tout au long des vidéos. Avec ces mesures, nous pourrons étudier les flus calciques dans les macrophages en fonction du temps et de la condition (si le poisson est blessé, infecté ou un contrôle). Une deuxième approche de la segmentation des macrophages sera étudiée afin de palier aux problèmes de la première, notamment sur la gestion du format vidéo.
+
+Le but principal est de trouver s'il y a une relation entre la quantité, l'intensité et la dynamique des flus calciques dans les macrophages et la polarisation de ceux-ci.
+
+
 \addcontentsline{toc}{section}{Objectifs}
 \chapter{Mactrack2}
 
@@ -184,8 +199,7 @@ Pour répondre à la question biologique posée, nous devions développer un out
 Ainsi, toutes ces améliorations constituent \textbf{MacTrack2}, une librairie développée en Python, téléchargeable et utilisable simplement via les scripts et le jeu de données que nous fournissons en exemples. Elle se base principalement sur la librairie \textit{Kartezio}\cite{kartezio}, qui a été créée pour proposer une nouvelle approche de la segmentation d'objets dans des images microscopiques en se basant sur les principes du \textit{Cartesian Genetic Programming} (CGP)\cite{cgp}. À l'aide de cette méthode, \textit{Kartezio} est capable de générer des pipelines de segmentations qui sont à la fois peu gourmands en ressources, notamment en quantité d'images pour l'entraînement ou en temps computationnel, interprétables puisque cette librairie utilise une liste de fonction issues d'\textit{OpenCV}\cite{opencv,opencv-python}, une bibliothèque libre de fonctions spécialisées dans le traitement d'images, et performants.
 
 \section{Éléments théoriques}
-\subsection*{Image numérique}
-\addcontentsline{toc}{subsection}{Image numérique}
+\subsection{Image numérique}
 Les images que nous obtenons par microscopie confocale à l'aide de la lignée transgénique, comme vu dans l'\nameref{chp:intro}, sont des images en 2 dimensions (2D) où l'on retrouve deux canaux de couleurs : le rouge pour la présence du macrophage (en bordure des cellules) et le vert pour la présence de calcium dans le cytoplasme du macrophage. Cependant, ces couleurs ont été ajoutées artificiellement par soucis de visualisation à l'aide du logiciel \textit{ImageJ}\cite{imagej} et plus particulièrement \textit{Fiji}\cite{fiji}, qui ajoute un certain nombre d'options à ce logiciel, sous forme de plugins et macros. Ces couleurs ont été spécifiquement choisies car les protéines fluorescentes (\textit{mCherry} pour le rouge et \textit{GFP (Green Fluorescent Protein)} pour le vert) utilisées dans la lignée transgénique sont activées par la stimulation provoquée par un laser à une certaine longueur d'onde qui correspond à ces couleurs.
 
 Les images que nous recevons, après avoir séparé les canaux, sont donc des images en niveaux de gris, où chaque pixel de celle-ci est un nombre réel entre 0 et 255, avec 0 représentant le noir et 255 le blanc. Cela nous évite la complexité de traiter une image RGB (Red, Green, Blue) où chaque pixel est un triplet d'intensité de chacune des trois couleurs (\figref{mac:grayrgb}).
@@ -198,8 +212,7 @@ Les images que nous recevons, après avoir séparé les canaux, sont donc des im
 \end{figure}
 
 
-\subsection*{Différentes approches de segmentation d'images}
-\addcontentsline{toc}{subsection}{Différentes approches de segmentation d'images}
+\subsection{Différentes approches de segmentation d'images}
 La segmentation d'images est un problème de vision par ordinateur (\textit{Computer Vision}) qui consiste à diviser une image en plusieurs régions ou objets d'intérêt. Ici, les objets d'intérêt sont des macrophages, mais la segmentation est un problème plus général, applicable à de nombreux domaines. Les régions ou objets d'intérêts peuvent prendre plusieurs formes comme par exemple des rectangles permettant de délimiter la présence d'un objet. Elle sert à \textbf{détecter} tous les objets d'intérêt dans une image et peut même être être utilisée pour labelliser ces objets \cite{trex, gsam, gdino,gdino1.5}.
 
 La \textbf{segmentation sémantique} est une autre approche de segmentation d'images où on affecte à chaque pixel une classe d'objet, et ce pour chaque objet de nature (ou sémantique) différente. Elle ne fait donc pas la différence entre deux voitures de couleur ou modèle différents par exemple, mais les classifiera chacun comme étant une voiture.
@@ -214,17 +227,80 @@ Dans notre cas, nous cherchons a segmenter des macrophages, donc sur le canal ro
 
 Cependant, la segmentation d'instances fait appel à des modèle, comme les réseaux de neurones convolutifs par exemple, qui demandent un grand nombre d'images annotées. Or, annoter à la main des milliers d'images demande un temps énorme que nous n'avons pas. De plus, pour pouvoir segmenter autant d'images, il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction d ela condition que l'on cherche à observer, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 12, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables. Cela demande un coût humain et financier énorme que nous n'avions pas. En se tournant vers les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio}\cite{kartezio}, une librairie Python, qui a pour promesse de segmenter, et ce en concurrençant les modèles basés sur des réseaux de neurones bien connus du domaine comme \textit{Cellpose}\cite{cellpose1, cellpose2, cellpose3}, \textit{Mask R-CNN}\cite{maskRCNN} ou encore \textit{Stardist}\cite{stardist}, des objets dans des images biomédicales. Plus précisément, \textit{Kartezio} a pour avantage de générer des pipelines de segmentation robustes et interprétables à partir de peu d'images annotées, en se basant sur le CGP.
 
-\subsection*{Cartesian Genetic Programming (CGP)}
-\addcontentsline{toc}{subsection}{Cartesian Genetic Programming (CGP)}
+\subsection{Cartesian Genetic Programming (CGP)}
+
+La CGP \cite{cgp}, développée par Julian Miller initialement pour optimiser des circuits électroniques \cite{circuit}, est une approche de programmation génétique \cite{gp} (\textit{Genetic Programming} (GP)) qui utilise des graphes pour coder des programmes informatiques (\figref{mac:cgp}). La GP est un algorithme évolutif, c'est-à-dire qu'il reproduit les éléments de la biologie évolutive (génotype, génome, phénotype, sélection, recombinaison ou \textit{crossover}, reproduction, mutation, \dots) pour résoudre des problèmes d'optimisation complexes. Le terme \og cartésien\fg\ de la CGP vient du fait que les modèles générés sont représentés grâce à une grille de nœuds, où chaque nœud représente une fonction ou une opération. Chaque nœud est connecté à d'autres nœuds, formant ainsi un graphe orienté acyclique (\figref{mac:dagitty}). Le CGP est particulièrement adapté pour les problèmes de classification et de régression, mais il peut également être utilisé pour la segmentation d'images.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[height=10cm]{imgs/cgp.png}
+    \caption{}
+    \label{mac:cgp}
+\end{figure}
+
+Chaque graphe peut être représenté par une chaîne d'entiers, qu'on appelle le génotype. Celui-ci est ensuite décodé pour obtenir le phénotype, qui est le programme exécutable. Le phénotype est obtenu en parcourant le graphe, en commençant par les nœuds d'entrée (\textit{input}) et en appliquant les fonctions de chaque nœud aux entrées correspondantes.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/dagitty-model(2).png}
+    \caption{Exemple de graphe orienté acyclique de notre propre modèle (voir section \nameref{mactrack2}). N$x$ avec $x$ le numéro du nœud et f$y$ avec $y$ le numéro de la fonction parmi une liste de fonctions (voir \tabref{ann:func} pour la numérotation des fonctions). Graphe obtenu avec Dagitty (\cite{dagitty}). }
+    \label{mac:dagitty}
+\end{figure}
+
+Un CGP utilise un stratégie évolutive (\textit{evolutionary strategy} (ES)) qui va décider de quel opérateur génétique appliquer à chaque génération. Nous avons par exemple la stratégie ($1+\lambda$) où un individu (\textit{parent}) génère $\lambda$ descendants (\textit{offspring}) par mutation et le meilleur de ceux-ci, selon une fonction d'adaptation (\textit{fitness}), est conservé et deviendra l'individu parent de la génération suivante. Si les performance du meilleur descendant sont inférieures à celles du parent, alors la descendante complète est rejetée, on parle de remplacement strict. On peut aussi avoir un stratégie de mutation ciblée, où on altère aléatoirement les gènes (nœuds), en modifiant les fonctions et les connexions, avec un taux de mutation ciblée. Il existe une stratégie de sélection par tournoi, où l'on compare de sous-ensembles d'individus et on sélectionne le plus performant de chacun des groupes, qui est ensuite utilisé pour la reproduction. Il existe des stratégies hybrides qui combinent le CGP avec des méthodes d'apprentissage automatique comme le Deep Learning. Le CGP, contrairement à d'autres approches de GP, n'utilise pas vraiment de \textit{crossover} et privilégie plutôt des mutations ciblées sur sa population d'individus. De plus, le CGP a une propriété de neutralité génétique, c'est-à-dire que certains changements dans le génotype ne seront pas forcément des changement visibles dans le phénotype. Cependant, ces nœuds servent à explorer l'espace de recherche d'une manière plus efficace. Certains nœuds, d'un autre côté, qui sont eux efficaces peuvent être facilement dupliqués et ré-utilisés. Cela nous permet d'obtenir des solutions plus compactes en restant tout autant efficaces. Dans le cadre de notre problème, qui est la segmentation d'images, cette particularité du CGP est très utile car souvent en segmentation d'images, la même opération est souvent utilisée plusieurs fois dans différentes parties de l'image.
+
+La stratégie évolutive la plus utilisée est la stratégie ($1+\lambda$) car elle favorise la simplicité et la stabilité du processus d'évolution, tout en restant efficace et en limitant la taille de la population. La mutation reste l'opérateur génétique principal utilisé dans cette stratégie. C'est la même stratégie évolutive qu'utilise \textit{Kartezio} pour générer des pipelines de segmentation d'images biomédicales.
+
+\subsection{Kartezio}
+\textit{Kartezio} est une stratégie computationnelle de segmentation d'images biomédicales se basant sur le CGP. Disponible sous la forme d'une librairie Python, cette méthode est capable de générer des pipelines de segmentation d'images qui sont à la fois clairs et interprétables, en assemblant et paramétrisant des fonctions connues de traitement d'images issues de la librairie \textit{OpenCV}\cite{opencv,opencv-python}. La liste de cette librairie disponible dans Kartezio est disponible en Annexe \ref{ann:1} (\tabref{ann:func}). Les fonctions de cette banque de fonctions de traitement d'images est la même qu'utilise le logiciel ImageJ \cite{imagej}, qui est un logiciel que les biologistes en général et plus particulièrement le laboratoire dans lequel j'étais utilisent pour traiter les images brutes de microscopie qu'ils obtiennent. Ainsi, l'explicabilité de Kartezio couplée à une banque de fonctions déjà connue des praticiens a poussé l'équipe, l'année précédente, à utiliser cette méthode pour segmenter les macrophages. Sachant que ce projet est destiné à être utilisé ultérieurement par l'équipe dans laquelle j'étais, il était nécessaire d'utiliser une méthode rapide, efficace, compréhensible et intelligible pour les biologistes.
+
+Un autre avantage de cette méthode, qui utilise le CGP, est que le nombre de données (images) annotées nécessaires pour entraîner un modèle de segmentation est nettement réduit par rapport aux méthodes dites état de l'art que sont par exemple les modèles d'apprentissage profond (\textit{Deep Learning}). Kartezio est donc une méthode que l'on appelle \textit{Few-Shot Learning}, c'est-à-dire que l'on a besoin seulement de quelques images annotées pour entraîner un modèle qui ait des performances satisfaisantes. La \figref{mac:kartezio} issue de l'article de Cortacero et al. \cite{kartezio} montre bien la structure héritée du CGP.
 
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.9\linewidth]{imgs/kart.png}
+    \caption{}
+    \label{mac:kartezio}
+\end{figure}
+\red{demander combien il faut expliquer de la figure et si c'est pertinent d'expliquer, ou référer à l'article}
 
-\subsection*{Kartezio}
-\addcontentsline{toc}{subsection}{Kartezio}
+Contrairement au CGP classique, Kartezio introduit le concept de nœud non évolutifs (\textit{non evolvable}, voir \figref{mac:kartezio}) qui sont le \textit{preprocessing}, qui permet de convertir l'image originale en un format préférentiel, ici le format HSV (\textit{Hue, Saturation, Value} ou TSV en français pour Teinte, Saturation et Valeur) qui constitue ensuite respectivement les 3 premiers nœuds d'entrée : $\mathcal{N}_1$, $\mathcal{N}_2$ et $\mathcal{N}_3$. Cela permet d'uniformiser les images d'entrées. Ainsi, on a une méthode qui fonctionne pour tous les formats d'images classiques (png, jpg, \dots) et même les plus flexibles comme le format TIFF (\textit{Tag Image File Format}) par exemple, qui est un format utilisé notamment en photographie pour le peu de perte de pixels qu'il engendre quand on modifie un tel fichier, mais aussi pour le fait qu'il supporte les images sur plusieurs couches comme les \textit{z-stacks} qui sont beaucoup utilisés en microscopie in-vivo, comme c'est le ca pour nous. La dernière opération du pipeline est nommée \textit{Endpoint} et est l'application d'une fonction choisie par l'utilisateur qui permet de créer un arrêt intentionnel des processus d'optimisation pour que celui des nœuds d'heuristique prenne place. Il fait partie intégrante du processus évolutif du génotype puisqu'il agit comme un point d'arrêt où à chaque génération on vérifie qu'il n'est pas dépassé (si c'est un seuil par exemple), mais il n'est pas voué à évoluer.
 
-nous on veut instance mais trop cher donc on ruse sémantique into instance grace a kartezio qui utilise cgp
-subsec cgp
+\section{Évaluation des performances}
+À la fois pour Kartezio et donc pour le CGP et pour toute méthode qui vise à optimiser quelque chose, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. Pour la segmentation d'images, la métrique la plus utilisée est l'\textbf{IoU} (\textit{Intersection over Union}). On peut ainsi le définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{sam2:iou}) :
+$$\text{IoU}_k(x,y) = \frac{|x\cap y|}{|x\cup y|}$$
 
+\noindent avec $x$ la prédiction de l'objet $k$ et $y$ la vérité annotée, et $|\cdot |$ la mesure de l'aire. Pour obtenir la valeur de l'IoU pour une image, on fait la moyenne sur tous les objets segmentés dans l'image :
+
+$$\text{IoU} = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}_k(x,y)$$
+\noindent où $K$ est le nombre total d'objet dans une image.
+
+Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'IoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, l'IoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème.
+
+Dans la pratique, obtenir une segmentation parfaite, signifiant que l'IoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. Ainsi, à travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité. Ainsi il est considéré, dans la pratique, qu'un IoU supérieur à 0.5 est un \og bon\fg\ IoU.
+
+\section{MacTrack2}\label{mactrack2}
+présentation package basé sur stage année précédente
+\subsection{Création de modèles}
+entrainement modèles, le meilleur : 0,712 sur le train et 0.763 sur le test (celui qu'on donne en exemple)
+
+\subsection{Visualisation de la qualité des modèles}
+\subsection{Segmentation automatique de vidéos}
+à partir d'un pipeline (le meilleur de ceux gnénérés)
+
+\subsection{Ajouts}
+- documentation et site internet, scripts automatiques  pour création et exec de modeles avec dataset exemples
+- visualisation de modèle
+- post traitement pour corriger les erreurs de segmentation
+
+\subsection{Analyse des signaux calciques}
+le faire pour plusieurs vidéos
+
+\subsection{Limitations}
+seulement sémantique que l'on force à faire de l'instance, mais ça peut poser problème parfois
+et surtout on fait image par image, on a pas de mémoire réelle des images précédentes
+donc on cherche une méthode qui peut débloquer ce soucis
 
 
 \chapter{SAM-2}
@@ -374,7 +450,8 @@ $$\text{mIoU}_\ell = \begin{cases}
 $$
 
 \subsection{Résultats et comparaisons}
-graphes miou et loss avant division par accumulation step
+graphes miou et loss
+comp avant apres fine tune, performances et visuel
 
 
 \section{Propagation dans une vidéo}
@@ -392,8 +469,75 @@ microscope \dots norma merci
 \section*{Fine-tuning de SAM-2}
 L'optimiseur AdamW a été utilisé avec comme hyper-paramètres un taux d'apprentissage (\textit{learning rate}) de 0.0001, une dégradation de pondération (\textit{weight decay}) de 0.0001.
 L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un GPU Nvidia A10 Tensor Core avec 24 Go de mémoire.
+\newpage
+
+\appendix
+\chapter{Annexes}
+\section{Liste des fonctions de traitement d'images disponibles dans Kartezio}\label{ann:1}
+
+\begin{longtable}{|c|l|P{6cm}|}
+    \hline
+    \textbf{Numéro} & \textbf{Fonction}                & \textbf{Description} \\
+    \hline
+    \endfirsthead
+
+    \hline
+    \textbf{Numéro} & \textbf{Fonction}                & \textbf{Description} \\
+    \hline
+    \endhead
+
+    \hline
+    \endfoot
+
+    \hline
+    \endlastfoot
 
 
+    1               & max                              &                      \\
+    2               & min                              &                      \\
+    3               & mean                             &                      \\
+    4               & add                              &                      \\
+    5               & subtract                         &                      \\
+    6               & bitwise\_not                     &                      \\
+    7               & bitwise\_or                      &                      \\
+    8               & bitwise\_and                     &                      \\
+    9               & bitwise\_and\_mask               &                      \\
+    10              & bitwise\_xor                     &                      \\
+    11              & sqrt                             &                      \\
+    12              & pow2                             &                      \\
+    13              & exp                              &                      \\
+    14              & log                              &                      \\
+    15              & median\_blur                     &                      \\
+    16              & gaussian\_blur                   &                      \\
+    17              & laplacian                        &                      \\
+    18              & sobel                            &                      \\
+    19              & robert\_cross                    &                      \\
+    20              & canny                            &                      \\
+    21              & sharpen                          &                      \\
+    22              & gabor                            &                      \\
+    23              & abs\_diff                        &                      \\
+    24              & abs\_diff2                       &                      \\
+    25              & fluo\_tophat                     &                      \\
+    26              & rel\_diff                        &                      \\
+    27              & erode                            &                      \\
+    28              & dilate                           &                      \\
+    29              & open                             &                      \\
+    30              & close                            &                      \\
+    31              & morph\_gradient                  &                      \\
+    32              & morph\_tophat                    &                      \\
+    33              & morph\_blackhat                  &                      \\
+    34              & fill\_holes                      &                      \\
+    35              & remove\_small\_objects           &                      \\
+    36              & remove\_small\_holes             &                      \\
+    37              & threshold                        &                      \\
+    38              & threshold\_at\_1                 &                      \\
+    39              & distance\_transform              &                      \\
+    40              & distance\_transform\_and\_thresh &                      \\
+    41              & inrange\_bin                     &                      \\
+    42              & inrange                          &
+\end{longtable}
+\setcounter{table}{0}
+\captionof{table}{Fonctions et descriptions}\label{ann:func}
 \newpage
 
 \printbibliography
