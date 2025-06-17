@@ -15,12 +15,13 @@
 \usepackage{geometry} 
 \geometry{margin=1.2in}
 \usepackage{nameref}
+\usepackage{setspace}
 \usepackage{csquotes}
 \usepackage[backend=biber,style=numeric,sorting=none, autocite=plain, natbib=true, pagetracker=true]{biblatex}
 \renewcommand*{\bibfont}{\small}
 \addbibresource{ref.bib}
 \usepackage{lipsum}
-\usepackage{longtable}
+
 \usepackage{letltxmacro}
 \LetLtxMacro{\oldnameref}{\nameref}
 \renewcommand{\nameref}[1]{\textbf{\oldnameref{#1}}}
@@ -81,10 +82,11 @@
 
 
 \usepackage{xcolor}
+
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \renewcommand{\cftsubsecfont}{\itshape} 
-
+\usepackage{longtable}
 \begin{document}
 
 % Title Page
@@ -254,7 +256,7 @@ La stratégie évolutive la plus utilisée est la stratégie ($1+\lambda$) car e
 \subsection{Kartezio}
 \textit{Kartezio} est une stratégie computationnelle de segmentation d'images biomédicales se basant sur le CGP. Disponible sous la forme d'une librairie Python, cette méthode est capable de générer des pipelines de segmentation d'images qui sont à la fois clairs et interprétables, en assemblant et paramétrisant des fonctions connues de traitement d'images issues de la librairie \textit{OpenCV}\cite{opencv,opencv-python}. La liste de cette librairie disponible dans Kartezio est disponible en Annexe \ref{ann:1} (\tabref{ann:func}). Les fonctions de cette banque de fonctions de traitement d'images est la même qu'utilise le logiciel ImageJ \cite{imagej}, qui est un logiciel que les biologistes en général et plus particulièrement le laboratoire dans lequel j'étais utilisent pour traiter les images brutes de microscopie qu'ils obtiennent. Ainsi, l'explicabilité de Kartezio couplée à une banque de fonctions déjà connue des praticiens a poussé l'équipe, l'année précédente, à utiliser cette méthode pour segmenter les macrophages. Sachant que ce projet est destiné à être utilisé ultérieurement par l'équipe dans laquelle j'étais, il était nécessaire d'utiliser une méthode rapide, efficace, compréhensible et intelligible pour les biologistes.
 
-Un autre avantage de cette méthode, qui utilise le CGP, est que le nombre de données (images) annotées nécessaires pour entraîner un modèle de segmentation est nettement réduit par rapport aux méthodes dites état de l'art que sont par exemple les modèles d'apprentissage profond (\textit{Deep Learning}). Kartezio est donc une méthode que l'on appelle \textit{Few-Shot Learning}, c'est-à-dire que l'on a besoin seulement de quelques images annotées pour entraîner un modèle qui ait des performances satisfaisantes. La \figref{mac:kartezio} issue de l'article de Cortacero et al. \cite{kartezio} montre bien la structure héritée du CGP.
+Un autre avantage de cette méthode, qui utilise le CGP, est que le nombre de données (images) annotées nécessaires pour entraîner un modèle de segmentation est nettement réduit par rapport aux méthodes dites état de l'art que sont par exemple les modèles d'apprentissage profond (\textit{Deep Learning}). Kartezio est donc une méthode que l'on appelle \textit{Few-Shot Learning}, c'est-à-dire que l'on a besoin seulement de quelques images annotées pour entraîner un modèle qui ait des performances satisfaisantes. La \figref{mac:kartezio} issue de l'article de Cortacero et al. \cite{kartezio} montre bien la structure de leur modèle, héritée du CGP.
 
 
 \begin{figure}[!ht]
@@ -282,16 +284,104 @@ Dans la pratique, obtenir une segmentation parfaite, signifiant que l'IoU vaudra
 
 \section{MacTrack2}\label{mactrack2}
 présentation package basé sur stage année précédente
+
+La librairie MacTrack2 est une librairie Python, deuxième version de MacTrack, développé par le stagiaire de l'année précédente.
 \subsection{Création de modèles}
-entrainement modèles, le meilleur : 0,712 sur le train et 0.763 sur le test (celui qu'on donne en exemple)
+La particularité de MacTrack2, et de Kartezio, est la facilité à entraîner des modèles. En effet, à l'aide d'un script simple, nous pouvons entraîner un modèle de segmentation d'images à partir d'un jeu de données d'images annotées. Nous avons, pour annoter nos données, utiliser ImageJ\cite{imagej}. À l'aide de ce logiciel, nous avons pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies à travers des vidéos à différents temps post-amputation (\figref{mac:train}).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.4\linewidth]{imgs/001_frame.png}
+    \includegraphics[width=.4\linewidth]{imgs/001_frame_roi.png}
+    \caption{}
+    \label{mac:train}
+\end{figure}
+
+Les masques sont données sous la forme de fichiers ROI (Region Of Interest), qui sont présentés dans la \figref{mac:train}, compilés sous un fichier ZIP. Ainsi il y a un fichier ZIP par image et un fichier ROI par macrophage détouré.
+
+Pour cette trentaine d'image et pour obtenir un détourage précis, cela nous a pris environ 3 jours de travail. Les images que nous avons choisies, venues de vidéos différentes, sont des images pouvant être considérées comme représentatives de la diversité que l'on peut rencontrer lorsque l'on observe des macrophages. En effet, on a souvent des macrophages qui sont proches les uns des autres, on parle de chimio-tactisme, mais aussi des macrophages qui ont des formes variées en fonction de leur état de polarisation. Par exemple, un macrophage dit M1 (pro-inflammatoire) aura tendance à être plutôt rond et compact, on peut l'observer à 3hpa (heures post-amputation), tandis qu'un macrophage M2 (anti-inflammatoire) aura tendance à être plus \og filamenteux\fg\ et allongé, on peut l'observer a 24hpa (voir figure).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.12\linewidth]{imgs/3hpa.png}
+    \includegraphics[width=.12\linewidth]{imgs/6hpa.png}
+    \includegraphics[width=.25\linewidth]{imgs/24hpa.png}
+    \includegraphics[width=.15\linewidth]{imgs/48hpa.png}
+    \includegraphics[width=.21\linewidth]{imgs/72hpa.png}
+    \caption{blabla (de gauche à droite: 3hpa, 6hpa, 24hpa, 48hpa, 72hpa).}
+    \label{mac:macros}
+\end{figure}
+
+Pour des questions de performances et de temps de calculs, nous avons choisi de créer 3 jeu de données identiques mais avec des tailles d'images différentes. Dans le premier, l'image était telle quelle, c'est-à-dire de la taille de l'image originale. Dans le second, nous avons divisé la taille de l'image par 4, réduisant ainsi le nombre de pixels à traiter par image. Pour le troisième, nous avons retiré, dans les images, les zones noires qui ne sont pas utiles pour la segmentation. Dans le dernier cas, nous avons combiné les méthodes du deuxième et du troisième jeu de données. C'est ce dernier que nous avons gardé pour obtenir les modèles. C'est avec celui-ci que nous avons obtenu les meilleurs résultats dans des temps record. La \tabref{mac:dataset} nous donne une idée des gains entre les différents jeux de données.
+
+\begin{table}[!ht]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{2}{|c}{Modèle initial} & \multicolumn{2}{|c}{Modèle petit} & \multicolumn{2}{|c}{Modèle crop} & \multicolumn{2}{|c|}{Modèle petit+crop}                                                                   \\ \hline
+        \textbf{Train}                      & \textbf{Test}                     & \textbf{Train}                   & \textbf{Test}                           & \textbf{Train} & \textbf{Test} & \textbf{Train} & \textbf{Test} \\ \hline
+        0.659                               & 0.663                             & 0.639                            & 0.628                                   & 0.674          & 0.706         & \red{0.712}    & \red{0.763}   \\\hline
+        0.647                               & 0.619                             & 0.646                            & 0.581                                   & 0.698          & 0.735         & 0.687          & 0.755         \\\hline
+        0.634                               & 0.639                             & 0.637                            & 0.634                                   & 0.682          & 0.681         & 0.716          & 0.727         \\\hline
+        \multicolumn{8}{|c|}{Temps de calcul}                                                                                                                                                                                  \\ \hline
+        \textbf{Train}                      & \textbf{Test}                     & \textbf{Train}                   & \textbf{Test}                           & \textbf{Train} & \textbf{Test} & \textbf{Train} & \textbf{Test} \\ \hline
+        1h27m                               & 1s                                & 36m30s                           & 0s                                      & 49m48s         & 1s            & 9m0s           & 1s            \\\hline
+        1h28m                               & 2s                                & 5m39s                            & 0s                                      & 1h             & 2s            & 4m6s           & 0s            \\\hline
+        1h54m                               & 3s                                & 7m35s                            & 0s                                      & 1h44m          & 2s            & 3m48s          & 0s            \\\hline
+    \end{tabular}
+    \caption{Exemples de performances des modèles entraînées sur les différents jeux de données.\\[-0.3em] {\footnotesize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en rouge est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet.}}
+    \label{mac:dataset}
+\end{table}
+
 
 \subsection{Visualisation de la qualité des modèles}
-\subsection{Segmentation automatique de vidéos}
-à partir d'un pipeline (le meilleur de ceux gnénérés)
+Nous avons mis en place un outil permettant de visualiser la qualité des modèle entraînés. En superposant les prédictions données par le modèle et la vérité sur les images ayant permis d'obtenir ce dernier, nous pouvons visualiser la qualité de la segmentation qu'a le modèle que nous venons de créer. La \figref{mac:viz_model} nous montre, pour une image venant de l'échantillon d'entraînement et une venant de l'échantillon de test, la superposition des prédictions du meilleur modèle, celui écrit en rouge dans la \tabref{mac:dataset}, et de la vérité annotée.
 
-\subsection{Ajouts}
-- documentation et site internet, scripts automatiques  pour création et exec de modeles avec dataset exemples
-- visualisation de modèle
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.4\linewidth]{imgs/011_frame_crop_small_heatmap_roi_roi.png}
+    \hspace*{0.3cm}
+    \includegraphics[width=0.5\linewidth]{imgs/002_frame_crop_small_heatmap_roi_roi.png}
+    \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).\\[-0.3em]
+    {\scriptsize\begingroup\linespread{0.2} Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.\endgroup}}
+    \label{mac:viz_model}
+\end{figure}
+
+Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire, on peut observer des petites taches considérées comme macrophages. Puisque le modèle est entraîné pour repérer des niveaux de gris sur une image, il n'y a pas de distinction réelle sur la question de savoir s'il s'agit bien d'un macrophage ou non.
+
+C'est pour cela que la préparation des images au préalable est une étape primordiale à ne pas négliger. Préparées par ma collègue Norma, stagiaire de M2 Biologie Infectieuse, les images ont été soigneusement traitées pour faire en sorte de ne pas avoir d'artefacts dans le fond de l'image. À l'aide du logiciel ImageJ, elle a pu ajuster les intensité de lumière pour rendre l'image lisible et sans bruit de fond.
+
+
+\subsection{Segmentation automatique de vidéos}
+Une fois le modèle généré, visualisé et validé, il est possible de l'appliquer sur des vidéos entières. Lorsque les vidéos traitées par ma collègue sortent du logiciel, elles sont au format AVI et ont 266 images. Pour plus de détails sur les vidéos, voir \nameref{matmeth}. Nous commençons donc par convertir les vidéos des canaux rouge et vert et format mp4. Puis, nous découpons cette vidéo en images, les plaçons dans des dossiers spécifiquement rangés pour respecter la structure nécessaire au bon fonctionnement de Kartezio et créons automatiquement des fichiers pour garder cette structure. En effet, Kartezio s'attend à ce que les images d'entraînement soient présents dans un dossier \og train\fg\ qui contient les images (dossier \texttt{train\_x}) et les fichiers ZIP (dossier \texttt{train\_y}) de chaque images contenant les masques (la vérité annotée) qui sont sous la forme de fichiers ROI. En revanche pour notre vidéo, les images extraites de celle-ci, pour le canal rouge qui nous est utile pour la segmentation des macrophages, sont placées dans le dossier \og test\fg, qui contient les images de la vidéo (dossier \texttt{test\_x}), mais dans le dossier \texttt{test\_y}, il n'y a pas de fichiers ZIP, car les vidéos que l'on cherche à segmenter automatiquement n'ont pas été annotées à la main. Cependant, pour la structure de Kartezio, il s'attend à ce qu'ils y ait des fichiers ZIP, au même nombre que les images dans le dossier correspondant. C'est pour cela que nous ajoutons automatiquement des fichiers ZIP vides dans le dossier \texttt{test\_y}. Nous avons aussi besoin d'un fichier \texttt{dataset.csv} indiquant les images, qu'elles viennent de l'entraînement ou du test qui n'en est pas vraiment un, ainsi que les masques associés même s'ils sont vides, et finalement une colonne \og set\fg\ qui indique si l'image est une image d'entraînement ou de test (donc issue de la vidéo).//
+
+La segmentation de la vidéo peut donc enfin commencer après toute cette étape structurelle fastidieuse mais nécessaire. La première étape de segmentation est réalisée par la fonction \texttt{locate}. Elle permet d'obtenir la segmentation, à partir du modèle entraîné, de chaque image dans la vidéo. Il en sort à la fois les images segmenter mais aussi des sous-dossiers contenant les segmentations de chaque macrophage détecté image par image. AUtrement dit, nous obtenons un dossier contenant 266 images en noir et blanc de la segmentation des macrophages, mais aussi un dossier contenant des sous-dossiers par macrophages, qui contiennent chacun les images de la segmentation de ce macrophage précis pour le nombre d'images dans lesquelles il a été repéré. La \figref{mac:locate} nous montre un exemple des deux sorties obtenues à l'issue de cette première segmentation.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.3\linewidth]{imgs/001_image.png}
+    \hspace{0.2cm}
+    \includegraphics[width=.3\linewidth]{imgs/heatmap_test_1.png}
+    \hspace{0.2cm}
+    \includegraphics[width=.3\linewidth]{imgs/object_1.png}
+    \caption{Illustrations des différentes sorties de la fonction \texttt{locate}, au milieu pour la segmentation complète et à droite pour la segmentation objet par objet, par rapport à l'image d'origine (à gauche).\\[-0.3em]
+    {\scriptsize\setstretch{0.2} Ces images proviennent de l'observation de la nageoire caudale d'un poisson à 3h post-amputation de celle-ci. Il s'agit de la deuxième image de la vidéo et des segmentations complète et d'un objet de cette même image.}
+    }
+    \label{mac:locate}
+\end{figure}
+
+
+
+
+
+différentes étapes
+
+à partir d'un pipeline (le meilleur de ceux générés)
+
+\subsection{Post-traitement}
+- documentation et site internet, scripts automatiques  pour création et exec de modèles avec dataset exemples
+
 - post traitement pour corriger les erreurs de segmentation
 
 \subsection{Analyse des signaux calciques}
@@ -302,8 +392,11 @@ seulement sémantique que l'on force à faire de l'instance, mais ça peut poser
 et surtout on fait image par image, on a pas de mémoire réelle des images précédentes
 donc on cherche une méthode qui peut débloquer ce soucis
 
+structure des entrees, fait que ct le travail d'axe et que j'ai mis 1 mois et demi a retrouver comment il avait fait marché ça, manque de docu \dots
+
 
 \chapter{SAM-2}
+
 \section{Introduction}
 SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI. Il s'agit d'une version améliorée de la première version du modèle, SAM\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}). Entraîné sur plus de 50 000 vidéos pour 600 000 masques (annotations), SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné. Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
 
@@ -466,6 +559,9 @@ Un site internet est disponible sur ce dépôt GitHub, regroupant toute la docum
 tests tests\cite{kartezio,sam,sam2,adamw}
 \section*{Acquisition des images}
 microscope \dots norma merci
+\section*{Format des vidéos}
+reconstitution sur imagej... par norma
+images toutes les 9sec donc sur 40 min de prise de vidéo on a que 266 images
 \section*{Fine-tuning de SAM-2}
 L'optimiseur AdamW a été utilisé avec comme hyper-paramètres un taux d'apprentissage (\textit{learning rate}) de 0.0001, une dégradation de pondération (\textit{weight decay}) de 0.0001.
 L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un GPU Nvidia A10 Tensor Core avec 24 Go de mémoire.
