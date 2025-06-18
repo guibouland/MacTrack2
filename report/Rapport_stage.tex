@@ -192,7 +192,7 @@ obtention des images, microscopie
 Les objectifs de ce stage sont multiples. Tout d'abord, nous cherchons à développer un outil de segmentation et de tracking des macrophages à partir de vidéos de microscopie obtenues par l'équipe, en effectuant une segmentation image par image dans un premier temps. Cependant, les macrophages étant des cellules mobiles et qui ont tendance à se rapprocher les une des autres, à fusionner ou à se séparer, nous devons prendre ces paramètres en compte premièrement dans la segmentation mais aussi dans le tracking, c'est-à-dire dans le suivi temporel de la segmentation image par image. Puis, nous voulons, à partir de cette segmentation, étudier les flux calciques dans les macrophages au cours du temps. Avec cette analyse, nous cherchons à répondre à la question biologique posée, à savoir s'il existe une relation entre les flux calciques, et plus particulièrement les flashs calciques en mesurant les intensités de calcium dans chaque macrophage segmenté, et la polarisation des macrophages au cours du temps. De plus, nous souhaitons rendre cette étude accessible et compréhensible par les biologistes du laboratoire, à l'aide d'une documentation et de scripts intuitifs couplés à un jeu de données exemple ce qui les rend exécutables en un clic, afin qu'ils puissent continuer à analyser leurs vidéos de manière autonome à la suite de cette période. C'est pour ces raisons que nous utilisons des méthodes de segmentation automatique. L'outil développé, sous la forme de librairie Python, pourra aussi être utilisé en tant qu'aide à la segmentation de vidéos de microscopie en général, et pas seulement pour les macrophages, mais pour tout type d'imagerie biomédicale. La librairie développée, nommée MacTrack2, permet à la fois d'analyser des vidéos de microscopie de macrophages à partir de modèles que nous fournissons, mais l'utilisateur a aussi la possibilité de créer les siens, étendant le domaine d'application de cette librairie.\\
 
 La segmentation image par image est rapide, ce qui nous permet de traiter des vidéos entières en peu de temps. Cependant, les macrophages sont des cellules mobiles, il est donc nécessaire de bien suivre leur mouvement au cours du temps. C'est pour cela que nous explorons la possibilité de segmenter les macrophages directement à partir de la vidéo elle-même, en utilisant le modèle de fondation~\cite{foundationmodel} SAM-2~\cite{sam2}, récemment développé par Meta AI en 2024. Cependant, ce modèle est généraliste et a été entraîné sur des données variées, nous cherchons donc à spécialiser ce modèle sur nos données, avec un fine-tuning des poids, pour qu'il puisse au mieux segmenter les macrophages dans les vidéos de microscopie.
-\chapter{Segmentation automatique \og framewise\fg\ pour le suivi de la réponse calcique dans les macrophages chez le zebrafish}
+\chapter{Segmentation automatique \og \textit{frame-wise}\fg\ de vidéos pour le suivi temporel de la réponse calcique dans les macrophages chez le zebrafish}
 
 \section{Introduction}
 Nous avons développé un outil qui permet de segmenter des macrophages dans des vidéos. Pour ce faire, nous avons tout d'abord réfléchi au problème de manière séquentielle, c'est-à-dire image par image (\textit{framewise} en anglais). En poursuivant le travail déjà effectué au laboratoire par l'ancien stagiaire Axel de Montgolfier \cite{axel}, étudiant en Master 2 Statistiques et Sciences des Données qui était présent durant l'année 2023-2024, nous avons amélioré le programme MacTrack créé par ses soins, en le rendant plus robuste avec notamment un meilleur jeu de données pour l'entraînement des modèles. Nous pouvons maintenant visualiser la qualité des modèles entraînés. Des scripts plus intuitifs pour les débutants, qui sont la cible de ce projet, ont été ajoutés ainsi qu'une documentation complète sur un site internet, disponible sur le dépôt GitHub du projet (\cite{mactrack2}). Un post-processing a été implémenté pour corriger les erreurs de segmentation des macrophages. Ces erreurs que nous avons rencontrées étaient souvent dues à des problèmes au niveau de l'image de microscopie, comme par exemple la présence d'un fond bruité. Ce process sert aussi pour obtenir une segmentation continue dans le temps, sans changement de numérotation, afin d'obtenir la meilleure analyse possible des flux calciques présent dans ces macrophages.
@@ -208,13 +208,13 @@ Les images que nous recevons, après avoir séparé les canaux, sont donc des im
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\linewidth]{imgs/grayRGB.png}
-    \caption{Représentations matricielles d'une image en niveaux de gris (\textit{Grayscale}) et d'une image RGB. Figure issue de \cite{grayRGB}}
+    \caption{Représentations matricielles d'une image en niveaux de gris (\textit{Grayscale}) et d'une image RGB. Figure issue de \cite{grayRGB}.}
     \label{mac:grayrgb}
 \end{figure}
 
 
 \subsection{Différentes approches de segmentation d'images}
-La segmentation d'images est un domaine de la vision par ordinateur (\textit{Computer Vision}) qui consiste à diviser une image en plusieurs régions ou objets d'intérêt. Ici, les objets d'intérêt sont des macrophages, mais la segmentation est un problème plus général, applicable à de nombreux domaines. Les régions ou objets d'intérêts peuvent prendre plusieurs formes comme par exemple des rectangles permettant de délimiter la présence d'un objet. Elle sert à \textbf{détecter} tous les objets d'intérêt dans une image et peut même être être utilisée pour labelliser ces objets \cite{trex, gsam, gdino,gdino1.5}.
+La segmentation d'images est un domaine de la vision par ordinateur (\textit{Computer Vision} ou CV) qui consiste à diviser une image en plusieurs régions ou objets d'intérêt. Ici, les objets d'intérêt sont des macrophages, mais la segmentation est un problème plus général, applicable à de nombreux domaines. Les régions ou objets d'intérêts peuvent prendre plusieurs formes comme par exemple des rectangles permettant de délimiter la présence d'un objet. Elle sert à \textbf{détecter} tous les objets d'intérêt dans une image et peut même être être utilisée pour labelliser ces objets \cite{trex, gsam, gdino,gdino1.5}.
 
 La \textbf{segmentation sémantique} est une autre approche de segmentation d'images où on affecte à chaque pixel une classe d'objet, et ce pour chaque objet de nature (ou sémantique) différente. Elle ne fait donc pas la différence entre deux voitures de couleur ou modèle différents par exemple, mais les classifiera chacun comme étant une voiture.
 
@@ -273,14 +273,17 @@ Un autre avantage de cette méthode, qui utilise le CGP, est que le nombre de do
 
 Contrairement au CGP classique, Kartezio introduit le concept de nœud non évolutifs (\textit{non evolvable}, voir \figref{mac:kartezio}) qui sont le \textit{preprocessing}, qui permet de convertir l'image originale en un format préférentiel, ici le format HSV (\textit{Hue, Saturation, Value} ou TSV en français pour Teinte, Saturation et Valeur) qui constitue ensuite respectivement les 3 premiers nœuds d'entrée : $\mathcal{N}_1$, $\mathcal{N}_2$ et $\mathcal{N}_3$. Cela permet d'uniformiser les images d'entrées. Ainsi, on a une méthode qui fonctionne pour tous les formats d'images classiques (png, jpg, \dots) et même les plus flexibles comme le format TIFF (\textit{Tag Image File Format}) par exemple, qui est un format utilisé notamment en photographie pour le peu de perte de pixels qu'il engendre quand on modifie un tel fichier, mais aussi pour le fait qu'il supporte les images sur plusieurs couches comme les \textit{z-stacks} qui sont beaucoup utilisés en microscopie in-vivo, comme c'est le ca pour nous. La dernière opération du pipeline est nommée \textit{Endpoint} et est l'application d'une fonction choisie par l'utilisateur qui permet de créer un arrêt intentionnel des processus d'optimisation pour que celui des nœuds d'heuristique prenne place. Il fait partie intégrante du processus évolutif du génotype puisqu'il agit comme un point d'arrêt où à chaque génération on vérifie qu'il n'est pas dépassé (si c'est un seuil par exemple), mais il n'est pas voué à évoluer.
 
-\section{Évaluation des performances}
+\section{Évaluation des performances}\label{evalperf}
 À la fois pour Kartezio et donc pour le CGP et pour toute méthode qui vise à optimiser quelque chose, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. Pour la segmentation d'images, la métrique la plus utilisée est l'\textbf{IoU} (\textit{Intersection over Union}). On peut ainsi le définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{mac:iou}) :
-$$\text{IoU}_k(x,y) = \frac{|x\cap y|}{|x\cup y|}$$
+$$\text{IoU}_k(x_k,y_k) = \frac{|x_k\cap y_k|}{|x_k\cup y_k|}$$
 
-\noindent avec $x$ la prédiction de l'objet $k$ et $y$ la vérité annotée, et $|\cdot |$ la mesure de l'aire. Pour obtenir la valeur de l'IoU pour une image, on fait la moyenne sur tous les objets segmentés dans l'image :
+\noindent avec $x_k$ la prédiction de l'objet $k$ et $y_k$ la vérité annotée, et $|\cdot |$ la mesure de l'aire. Pour obtenir la valeur de l'IoU pour une image, on fait la moyenne sur tous les objets segmentés dans l'image :
 
-$$\text{IoU} = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}_k(x,y)$$
-\noindent où $K$ est le nombre total d'objet dans une image.
+\begin{align}\label{eq:iou}
+    \text{mIoU}(x,y) = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}_k(x_k,y_k)
+\end{align}
+
+\noindent où $K$ est le nombre total d'objet dans une image, $x$ l'ensemble des prédictions dans l'image et $y$ l'ensemble des vérités annotées.
 
 \begin{figure}[!ht]
     \centering
@@ -295,16 +298,13 @@ Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction 
 Dans la pratique, obtenir une segmentation parfaite, signifiant que l'IoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. Ainsi, à travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité. Ainsi il est considéré, dans la pratique, qu'un IoU supérieur à 0.5 est un IoU \og acceptable\fg et on considère que si l'IoU dépasse 0.7, il s'agit d'un \og bon\fg\ IoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise l'IoU comme métrique principale, utilise un seuil de 0.5 ce qui signifie que toute détection d'objet ayant un IoU supérieur à 0.5 est considéré comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
 
 \section{Tracking de macrophages avec la librairie MacTrack2}\label{mactrack2}
-présentation package basé sur stage année précédente
 
-La librairie MacTrack2 est une librairie Python, deuxième version de MacTrack, développé par le stagiaire de l'année précédente.
 \subsection{Création de modèles de segmentation}
 La particularité de MacTrack2, et de Kartezio, est la facilité à entraîner des modèles. En effet, à l'aide d'un script simple, nous pouvons entraîner un modèle de segmentation d'images à partir d'un jeu de données d'images annotées. Nous avons, pour annoter nos données, utiliser ImageJ~\cite{imagej}. À l'aide de ce logiciel, nous avons pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies à travers des vidéos à différents temps post-amputation (\figref{mac:train}).
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=.4\linewidth]{imgs/001_frame.png}
-    \includegraphics[width=.4\linewidth]{imgs/001_frame_roi.png}
+    \includegraphics[width=.6\linewidth]{imgs/001_frame_roi.png}
     \caption{}
     \label{mac:train}
 \end{figure}
@@ -342,7 +342,8 @@ Pour des questions de performances et de temps de calculs, nous avons choisi de 
         1h28m                               & 2s                                & 5m39s                            & 0s                                      & 1h             & 2s            & 4m6s           & 0s            \\\hline
         1h54m                               & 3s                                & 7m35s                            & 0s                                      & 1h44m          & 2s            & 3m48s          & 0s            \\\hline
     \end{tabular}
-    \caption{Exemples de performances des modèles entraînées sur les différents jeux de données.\\[-0.3em] {\footnotesize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en rouge est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet.}}
+    \caption{Exemples de performances des modèles entraînées sur les différents jeux de données.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en rouge est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet.}}
     \label{mac:dataset}
 \end{table}
 
@@ -355,20 +356,21 @@ Nous avons mis en place un outil permettant de visualiser la qualité des modèl
     \includegraphics[width=0.4\linewidth]{imgs/011_frame_crop_small_heatmap_roi_roi.png}
     \hspace*{0.3cm}
     \includegraphics[width=0.5\linewidth]{imgs/002_frame_crop_small_heatmap_roi_roi.png}
-    \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).\\[-0.3em]
-    {\scriptsize\begingroup\linespread{0.2} Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.\endgroup}}
+    \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).}
+    \vspace{-1em}{\setstretch{0.2}
+        \caption*{\scriptsize Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.}}
     \label{mac:viz_model}
 \end{figure}
 
 Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire, on peut observer des petites taches considérées comme macrophages. Puisque le modèle est entraîné pour repérer des niveaux de gris sur une image, il n'y a pas de distinction réelle sur la question de savoir s'il s'agit bien d'un macrophage ou non.
 
-C'est pour cela que la préparation des images au préalable est une étape primordiale à ne pas négliger. Préparées l'équipe sur le logiciel ImageJ, les images ont été soigneusement traitées pour faire en sorte de ne pas avoir d'artefacts dans le fond de l'image, et ainsi le fond a une moyenne de gris proche de 0.
+C'est pour cela que la préparation des images au préalable est une étape primordiale à ne pas négliger. Préparées par l'équipe sur le logiciel ImageJ, les images ont été soigneusement traitées pour faire en sorte de ne pas avoir d'artefacts dans le fond de l'image, et ainsi le fond a une moyenne de gris proche de 0.
 
 
 \subsection{Segmentation automatique de vidéos}
 Une fois le modèle généré, visualisé et validé, il est possible de l'appliquer sur des vidéos entières. Lorsque les vidéos traitées par ma collègue sortent du logiciel, elles sont au format AVI et ont 266 images. Pour plus de détails sur les vidéos, voir \nameref{matmeth}. Nous commençons donc par convertir les vidéos des canaux rouge et vert et format mp4. Puis, nous découpons cette vidéo en images, les plaçons dans des dossiers spécifiquement rangés pour respecter la structure nécessaire au bon fonctionnement de Kartezio et créons automatiquement des fichiers pour garder cette structure. En effet, Kartezio s'attend à ce que les images d'entraînement soient présents dans un dossier \og train\fg\ qui contient les images (dossier \texttt{train\_x}) et les fichiers ZIP (dossier \texttt{train\_y}) de chaque images contenant les masques (la vérité annotée) qui sont sous la forme de fichiers ROI. En revanche pour notre vidéo, les images extraites de celle-ci, pour le canal rouge qui nous est utile pour la segmentation des macrophages, sont placées dans le dossier \og test\fg, qui contient les images de la vidéo (dossier \texttt{test\_x}), mais dans le dossier \texttt{test\_y}, il n'y a pas de fichiers ZIP, car les vidéos que l'on cherche à segmenter automatiquement n'ont pas été annotées à la main. Cependant, pour la structure de Kartezio, il s'attend à ce qu'ils y ait des fichiers ZIP, au même nombre que les images dans le dossier correspondant. C'est pour cela que nous ajoutons automatiquement des fichiers ZIP vides dans le dossier \texttt{test\_y}. Nous avons aussi besoin d'un fichier \texttt{dataset.csv} indiquant les images, qu'elles viennent de l'entraînement ou du test qui n'en est pas vraiment un, ainsi que les masques associés même s'ils sont vides, et finalement une colonne \og set\fg\ qui indique si l'image est une image d'entraînement ou de test (donc issue de la vidéo).//
 
-La segmentation de la vidéo peut donc enfin commencer après toute cette étape structurelle fastidieuse mais nécessaire. La première étape de segmentation est réalisée par la fonction \texttt{locate}. Elle permet d'obtenir la segmentation, à partir du modèle entraîné, de chaque image dans la vidéo. Il en sort à la fois les images segmenter mais aussi des sous-dossiers contenant les segmentations de chaque macrophage détecté image par image. AUtrement dit, nous obtenons un dossier contenant 266 images en noir et blanc de la segmentation des macrophages, mais aussi un dossier contenant des sous-dossiers par macrophages, qui contiennent chacun les images de la segmentation de ce macrophage précis pour le nombre d'images dans lesquelles il a été repéré. La \figref{mac:locate} nous montre un exemple des deux sorties obtenues à l'issue de cette première segmentation.
+La segmentation de la vidéo peut donc enfin commencer après toute cette étape structurelle fastidieuse mais nécessaire. La première étape de segmentation est réalisée par la fonction \texttt{locate}. Elle permet d'obtenir la segmentation, à partir du modèle entraîné, de chaque image dans la vidéo. Il en sort à la fois les images segmenter mais aussi des sous-dossiers contenant les segmentations de chaque macrophage détecté image par image. Autrement dit, nous obtenons un dossier contenant 266 images en noir et blanc de la segmentation des macrophages, mais aussi un dossier contenant des sous-dossiers par macrophages, qui contiennent chacun les images de la segmentation de ce macrophage précis pour le nombre d'images dans lesquelles il a été repéré. La \figref{mac:locate} nous montre un exemple des deux sorties obtenues à l'issue de cette première segmentation.
 
 \begin{figure}[!ht]
     \centering
@@ -377,11 +379,21 @@ La segmentation de la vidéo peut donc enfin commencer après toute cette étape
     \includegraphics[width=.3\linewidth]{imgs/heatmap_test_1.png}
     \hspace{0.2cm}
     \includegraphics[width=.3\linewidth]{imgs/object_1.png}
-    \caption{Illustrations des différentes sorties de la fonction \texttt{locate}, au milieu pour la segmentation complète et à droite pour la segmentation objet par objet, par rapport à l'image d'origine (à gauche).\\[-0.3em]
-    {\scriptsize\setstretch{0.2} Ces images proviennent de l'observation de la nageoire caudale d'un poisson à 3h post-amputation de celle-ci. Il s'agit de la deuxième image de la vidéo et des segmentations complète et d'un objet de cette même image.}
+    \caption{Illustrations des différentes sorties de la fonction \texttt{locate}, au milieu pour la segmentation complète et à droite pour la segmentation objet par objet, par rapport à l'image d'origine (à gauche).}
+    \vspace{-1em}
+    {
+        \setstretch{0.2}
+        \caption*{\scriptsize Ces images proviennent de l'observation de la nageoire caudale d'un poisson à 3h post-amputation de celle-ci. Il s'agit de la deuxième image de la vidéo et des segmentations complète et d'un objet de cette même image.}
     }
     \label{mac:locate}
 \end{figure}
+
+
+Defuse pour les objets occlus
+Tracking (calcul iou paire par paire de frame pour tous les objets, avec un seuil 0.5 car pas la meme frame et les macro bougent beaucoup donc seuil bas pour un bon compromis, si >0.5, alors on considère la paire comme etant le meme et on les numérote pareil)
+Result : ajout du layer de numérotation et des contours, reconstruction de la video final
+
+
 
 
 
@@ -389,28 +401,32 @@ La segmentation de la vidéo peut donc enfin commencer après toute cette étape
 
 différentes étapes
 
-à partir d'un pipeline (le meilleur de ceux générés)
 
 \subsection{Post-traitement}
 - documentation et site internet, scripts automatiques  pour création et exec de modèles avec dataset exemples
 
 - post traitement pour corriger les erreurs de segmentation
-
+mettre les images en annexe des différents cas
 \subsection{Analyse des signaux calciques}
 le faire pour plusieurs vidéos
 
-\subsection{Limitations <- à enlever / modifier}
-seulement sémantique que l'on force à faire de l'instance, mais ça peut poser problème parfois
-et surtout on fait image par image, on a pas de mémoire réelle des images précédentes
-donc on cherche une méthode qui peut débloquer ce soucis
 
-structure des entrees, fait que ct le travail d'axe et que j'ai mis 1 mois et demi a retrouver comment il avait fait marché ça, manque de docu \dots
+
+
+\
+
+\red{après l'analyse petite conclusion : on a fait une segmentation framewise de vidéos mais ça reste super rapide et avec des bonnes performances, facilement modifiabl et traitable par tout le monde ... pas évident (prise en main (temps, exigence de la structure), accessibilité (docu)) et efficace pour une première étape\\
+    on peut maintenant se poser la question de e qui suit, cad segmenter des vidéos en ayant une mémoire temporelle }
+
+
 
 
 \chapter{Suivi temporel des macrophages et fine-tuning d'un modèle de fondation}
 
 \section{Introduction}
-SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}). Entraîné sur plus de 50 000 vidéos pour 600 000 masques (annotations) \red{parler du type d'images et de vidéos, mettre le modele de fondation ici et paser a la ligne nv paragraphe}, SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers~\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné. Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
+SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}). Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel. Le second est nommé \og \textit{internal dataset}\fg\ pour jeu de données de vidéos disponibles sous licence en interne et Meta AI est moins clair sur l'obtention de ces données. Il comprend 62 900 vidéos pour 69 600 annotations. Il a permis d'étendre le jeu de données d'entraînement. Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondation (\textit{foundation model})~\cite{foundationmodel}, c'est-à-dire un modèle pré-entraîné sur une grande quantité de données, capable de généraliser à de nombreuses tâches différentes. Il est conçu pour être utilisé comme une base pour des tâches de segmentation en gardant de bonnes performances pour l'ensemble des applications de segmentation d'images et de vidéos.\\
+
+SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers~\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné. Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
 
 \begin{figure}[!ht]
     \centering
@@ -419,15 +435,11 @@ SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'image
     \label{sam2:archi}
 \end{figure}
 
-Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondation (\textit{foundation model})~\cite{foundationmodel}, c'est-à-dire un modèle pré-entraîné sur une grande quantité de données, capable de généraliser à de nombreuses tâches différentes. Il est conçu pour être utilisé comme une base pour des tâches de segmentation en gardant de bonnes performances pour l'ensemble des applications de segmentation d'images et de vidéos.
-
 \
 
 Un des problèmes que nous rencontrons avec SAM-2 est que l'utilisateur doit, à la main, sélectionner des objets d'intérêt dans une ou plusieurs images et si durant la vidéo un nouvel objet apparaît, il ne sera pas détecter tant que l'utilisateur ne l'a pas indiqué. Ainsi, nous allons utiliser la génération automatique de masques mise à disposition pour détecter les macrophages de manière automatique sur des images.
 
-performances nulles donc fine tuning
-
-
+De plus, SAM-2 est un modèle de fondation, conçu pour être utilisé dans différents cas. Cependant, si on veut obtenir de bonnes performances dans un domaine spécifique comme le nôtre, il est nécessaire de faire un \textit{fine-tuning}, c'est-à-dire un ré-entraînement des poids du modèle sur un jeu de donnée spécifique de notre domaine. Nous allons ainsi fine-tuner SAM-2 pour qu'il puisse mieux détecter les macrophages dans nos vidéos de microscopie.
 
 \section{Fine-tuning de SAM-2}
 \subsection{Définition}
@@ -480,10 +492,7 @@ $$\text{IoU}(M_k, G_k) = \frac{\lvert M_k \cap G_k\rvert}{\lvert M_k \cup G_k\rv
     \item $\sum_{i,j}G_k[i,j]$ le nombre de pixels du masque de vérité.
 \end{itemize}
 
-
-
-En moyennant sur tous les objets $k$ d'une image, on obtient la mIoU (IoU moyenne), métrique très utilisée, pour cette image :
-$$\text{mIoU} = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}(M_k, G_k)$$
+En moyennant sur tous les objets $k$ d'une image, on obtient la mIoU (IoU moyenne), comme obtenue par~\ref{eq:iou} dans la partie~\ref{evalperf}
 
 Ainsi, nous pouvons définir la \textit{score loss} comme suit :
 $$\mathcal{L}_{\text{score}} = \frac{1}{K}\displaystyle\sum_{k=1}^{K}\lvert s_k - \text{IoU}(M_k, G_k)\rvert$$
