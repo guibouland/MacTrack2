@@ -1,2 +1,14 @@
 __pycache__/
 ./doc/build
+
+report/*.bbl
+report/*.blg
+report/*.bcf
+report/*.lot
+report/*.lof
+report/*.out
+report/*.toc
+report/*.aux
+report/*.fdb_latexmk
+report/*.run.xml
+report/*.synctex.gz
