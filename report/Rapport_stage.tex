@@ -183,14 +183,28 @@ blabla
 \chapter{Introduction}\label{chp:intro}
 \section*{Cadre du stage}
 \addcontentsline{toc}{section}{Cadre du stage}
-\section*{Contexte biologique}
-\addcontentsline{toc}{section}{Contexte}
 
-mehari \dots\\
-lignée transgénique
-obtention des images, microscopie
-\section*{Question}
-\addcontentsline{toc}{section}{Question}
+LPHI, CNRS, tuteurs
+
+but des travaux du labo
+
+pres équipe et collab norma
+
+\section*{Description du problème}%version longue de l'abstract
+description générale des macro et polarisation, on ne connait pas les schéma de flux entre les états
+
+zebrafish, créer des métriques pertinentes pour l'étue des signaux calciques
+
+ce qu'on produit: librairie de segmentation et tracking automatique des macro pour en extraire les données calciques
+
+exploration d'une piste plus générale à travers modèle de fondation SAM-2
+
+production d'une analyse statistique sur les données de calcium
+
+ce à quoi ça va servir
+
+lien vers les objectifs
+
 \section*{Objectifs}
 \addcontentsline{toc}{section}{Objectifs}
 
@@ -219,6 +233,32 @@ La méthode développée, sous la forme d'une librairie Python disponible à tou
 %Les objectifs de ce stage sont multiples. Tout d'abord, nous cherchons à développer un outil de segmentation et de tracking des macrophages à partir de vidéos de microscopie obtenues par l'équipe, en effectuant une segmentation image par image dans un premier temps. Cependant, les macrophages étant des cellules mobiles et qui ont tendance à se rapprocher les une des autres, à fusionner ou à se séparer, nous devons prendre ces paramètres en compte premièrement dans la segmentation mais aussi dans le tracking, c'est-à-dire dans le suivi temporel de la segmentation image par image. Puis, nous voulons, à partir de cette segmentation, étudier les flux calciques dans les macrophages au cours du temps. Avec cette analyse, nous cherchons à répondre à la question biologique posée, à savoir s'il existe une relation entre les flux calciques, et plus particulièrement les flashs calciques en mesurant les intensités de calcium dans chaque macrophage segmenté, et la polarisation des macrophages au cours du temps. De plus, nous souhaitons rendre cette étude accessible et compréhensible par les biologistes du laboratoire, à l'aide d'une documentation et de scripts intuitifs couplés à un jeu de données exemple ce qui les rend exécutables en un clic, afin qu'ils puissent continuer à analyser leurs vidéos de manière autonome à la suite de cette période. C'est pour ces raisons que nous utilisons des méthodes de segmentation automatique. L'outil développé, sous la forme de librairie Python, pourra aussi être utilisé en tant qu'aide à la segmentation de vidéos de microscopie en général, et pas seulement pour les macrophages, mais pour tout type d'imagerie biomédicale. La librairie développée, nommée MacTrack2, permet à la fois d'analyser des vidéos de microscopie de macrophages à partir de modèles que nous fournissons, mais l'utilisateur a aussi la possibilité de créer les siens, étendant le domaine d'application de cette librairie.\\
 
 %La segmentation image par image est rapide, ce qui nous permet de traiter des vidéos entières en peu de temps. Cependant, les macrophages sont des cellules mobiles, il est donc nécessaire de bien suivre leur mouvement au cours du temps. C'est pour cela que nous explorons la possibilité de segmenter les macrophages directement à partir de la vidéo elle-même, en utilisant le modèle de fondation~\cite{foundationmodel} SAM-2~\cite{sam2}, récemment développé par Meta AI en 2024. Cependant, ce modèle est généraliste et a été entraîné sur des données variées, nous cherchons donc à spécialiser ce modèle sur nos données, avec un fine-tuning des poids, pour qu'il puisse au mieux segmenter les macrophages dans les vidéos de microscopie.
+
+\section{Plan du rapport}
+
+description du plan du rapport
+
+
+\chapter{Contexte biologique}
+
+\section{Macrophages, cellules immunitaires}
+polarisation, M1, M2, pro-inflammatoire, anti-inflammatoire \dots
+
+\section{signal calcique}
+
+\section{Zebrafish, modèle animal}
+
+\section{Microscopie confocale et lignée transgénique}
+
+
+
+
+
+
+mehari \dots\\
+lignée transgénique
+obtention des images, microscopie
+
 \chapter{Segmentation automatique d'images microscopiques de macrophages}
 
 %\section{Introduction}
@@ -406,7 +446,7 @@ Pour cette trentaine d'image et pour obtenir un détourage précis, cela nous a 
 \end{figure}
 
 
-\subsubsection*{Différence de segmentation entre deux opérateurs}
+\subsubsection*{Différence de segmentation entre deux opérateurs.}
 
 Les annotations d'images sont souvent sujettes à la subjectivité de chaque opérateur détourant les objets d'intérêt. En effet, deux opérateurs, souvent des experts dans le milieu d'application, peuvent avoir des opinions divergentes ce qui résulte en des annotations différentes. Dans notre cas, comme peut en témoigner la \figref{mac:rv}, les délimitations des macrophages (dans le canal rouge de l'image) sont parfois floues et peuvent porter à confusion. De plus, certains objets pourtant bien colorés en rouge peuvent être confondus pour des macrophages alors qu'il s'agit de pigments de coloration dus à la fluorescence des protéines.
 
@@ -426,7 +466,7 @@ Les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et
 Nous avons donc quand même une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en cause ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
 
 
-\subsubsection*{Comparaison des modèles selon le format d'images}
+\subsubsection*{Comparaison des modèles selon le format d'images.}
 
 Pour des questions de performances et de temps de calculs, nous avons choisi de créer 4 jeux de données issus des mêmes images mais avec des tailles différentes. Dans le premier, l'image était telle quelle, c'est-à-dire de la taille de l'image originale. Dans le second, le modèle \textit{small}, nous avons divisé la taille de l'image par 4, réduisant ainsi le nombre de pixels à traiter par image. Pour le troisième, nous avons retiré, dans les images, les zones noires qui ne sont pas utiles pour la segmentation. Nous avons nommé celui-ci le modèle \textit{cropped}. Dans le dernier cas, nous avons combiné les méthodes du deuxième et du troisième jeu de données, donnant ainsi le modèle \textit{small+cropped}. C'est ce dernier que nous avons gardé pour obtenir les modèles. C'est avec celui-ci que nous avons obtenu les meilleurs résultats dans des temps record. La \tabref{mac:dataset} nous donne une idée des gains entre les différents jeux de données.
 
@@ -447,7 +487,7 @@ Pour des questions de performances et de temps de calculs, nous avons choisi de 
         1h54m                                        & 3s                                         & 7m35s                                        & 0s                                                  & 1h44m          & 2s            & 3m48s                 & 0s                    \\\hline
     \end{tabular}
     \caption{Exemples de performances des modèles entraînées sur les différents jeux de données.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en gras est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet. Les différents modèles sont le modèle \textit{initial} avec les images telles quelles, le modèle \textit{small} où le nombre de pixel dans les images est divisé par 4, le modèle \textit{cropped} où les zones noires en haut et en bas des images qui ne sont pas des parties du poisson ont été retirées, et le modèle \textit{small+cropped} qui combine les deux derniers modèles en divisant par 4 le nombre de pixels dans les images du modèle \textit{cropped}. Les temps de calcul sont données en heures, minutes et secondes.}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en gras est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet. Les différents modèles sont le modèle \textit{initial} avec les images telles quelles, le modèle \textit{small} où le nombre de pixel dans les images est divisé par 4, le modèle \textit{cropped} où les zones noires en haut et en bas des images qui ne sont pas des parties du poisson ont été retirées, et le modèle \textit{small+cropped} qui combine les deux derniers modèles en divisant par 4 le nombre de pixels dans les images du modèle \textit{cropped}. Les temps de calcul sont données en heures (h), minutes (m) et secondes (s).}}
     \label{mac:dataset}
 \end{table}
 
@@ -497,7 +537,10 @@ Notre librairie, MacTrack2 est capable, à partir des modèles entraînés, de s
 
 Nous avons ainsi obtenu la segmentation de chaque macrophage dans l'image. Cependant, les données que nous avons sont des films, c'est-à-dire des séquences d'images. Il est donc nécessaires d'étendre cette segmentation au domaine temporel. Les dimensions des images sont maintenant $2D+t$. Nous pourrons ensuite appliquer un suivi temporel à la segmentation sémantique obtenue pour chaque image de la vidéo.
 
-\chapter{Suivi temporel des macrophages et fine-tuning d'un modèle de fondation}
+\red{figure avec trois images a des frames différentes pour des fusions separations\dots}
+
+
+\chapter{Suivi temporel des macrophages}
 
 Les données que nous traitons sont des vidéos qui sont un empilement d'images. Ces vidéos sont des observations microscopiques d'une quarantaine de minutes, où une image est prise toutes les 9 secondes, résultant en une vidéo de 266 images.
 
@@ -511,7 +554,7 @@ Une fois le modèle généré, visualisé et validé, il est possible de l'appli
 
 En effet, Kartezio s'attend à ce que les images d'entraînement soient présentes dans un dossier \og train\fg\ qui contient les images (dossier \texttt{train\_x}) et les fichiers ZIP (dossier \texttt{train\_y}) de chaque image contenant les annotations des macrophages sous la forme de fichiers ROI.
 
-En revanche pour notre vidéo, nous extrayons chaque image de la vidéo et les plaçons dans le dossier \og test\fg. Il est bon de remarquer qu'il ne s'agit pas d'un test du modèle à proprement parlé. Kartezio a cependant besoin de cette structure pour pouvoir fonctionner normalement. Ainsi, les images extraites du canal rouge de la vidéo sont placées dans le sous-dossier \texttt{text\_x}. Cependant, il n'existe pas de vérité annotée pour ces images puisque nous cherchons à les segmenter. C'est pourquoi nous ajoutons autant de fichiers ZIP vides dans le sous-dossier \texttt{test\_y} qu'il a d'images dans la vidéo.
+En revanche pour notre vidéo, nous extrayons chaque image de la vidéo et les plaçons dans le dossier \og test\fg. Il est bon de remarquer qu'il ne s'agit pas d'un test du modèle à proprement parlé. Kartezio a cependant besoin de cette structure pour pouvoir fonctionner normalement. Ainsi, les images extraites du canal rouge de la vidéo sont placées dans le sous-dossier \texttt{text\_x}. Cependant, il n'existe pas de vérité annotée pour ces images puisque nous cherchons à les segmenter. C'est pourquoi nous ajoutons autant de fichiers ZIP vides dans le sous-dossier \texttt{test\_y} qu'il y a d'images dans la vidéo.
 
 Nous avons aussi besoin d'un fichier \texttt{dataset.csv}, où un extrait est donné par la~\tabref{mac:dataset_csv}. Ce fichier indique les images qu'elles viennent de l'entraînement ou de la vidéo à segmenter ainsi que les masques associés même s'ils sont vides. Finalement une colonne \og set\fg\ indique si l'image est une image d'entraînement ou de la vidéo.\\
 
@@ -529,19 +572,17 @@ Nous avons aussi besoin d'un fichier \texttt{dataset.csv}, où un extrait est do
     \label{mac:dataset_csv}
 \end{table}
 
-\
+\subsubsection*{Segmentation d'une vidéo.}
 
-\subsubsection*{Segmentation d'un vidéo}
+La segmentation de la vidéo peut donc enfin commencer après toute cette étape structurelle fastidieuse, mais nécessaire. La première étape de segmentation est réalisée par la fonction \texttt{locate} que nous avons présentée dans la partie~\ref{segimage}. Nous l'appliquons à chacune des images de la vidéo à segmenter. Nous obtenons donc une première segmentation image par image de la vidéo.
 
-La segmentation de la vidéo peut donc enfin commencer après toute cette étape structurelle fastidieuse mais nécessaire. La première étape de segmentation est réalisée par la fonction \texttt{locate} que nous avons présenté dans la partie~\ref{segimage}. Nous l'appliquons à chacune des images de la vidéo à segmenter. Nous obtenons donc une première segmentation image par image de la vidéo.
+Il en sort à la fois les images segmentées, mais aussi des sous-dossiers contenant les segmentations de chaque macrophage détecté image par image. Autrement dit, nous obtenons un dossier contenant 266 images en noir et blanc de la segmentation des macrophages, mais aussi un dossier contenant des sous-dossiers par macrophages qui contiennent chacun les images de la segmentation de ce macrophage précis pour le nombre d'images dans lesquelles il a été repéré. La \figref{mac:locate} nous montre un exemple des deux sorties obtenues à l'issue de cette première segmentation.
 
-Il en sort à la fois les images segmentées mais aussi des sous-dossiers contenant les segmentations de chaque macrophage détectés image par image. Autrement dit, nous obtenons un dossier contenant 266 images en noir et blanc de la segmentation des macrophages, mais aussi un dossier contenant des sous-dossiers par macrophages qui contiennent chacun les images de la segmentation de ce macrophage précis pour le nombre d'images dans lesquelles il a été repéré. La \figref{mac:locate} nous montre un exemple des deux sorties obtenues à l'issue de cette première segmentation.
-
-La première étape de segmentation est donc terminée. Puisque nous faisons de la segmentation sémantique, les macrophages proches peuvent être segmentés comme un seul objet. De plus, puisque nous faisons de la microscopie confocale en prenant plusieurs images à différentes profondeurs (\textit{z-stacks}), il est possible qu'un macrophage se cache derrière un autre, on parle d'occlusion dans ce cas.
+La première étape de segmentation est donc terminée. Puisque nous faisons de la segmentation sémantique, les macrophages proches peuvent être segmentés comme un seul objet. De plus, puisque nous faisons de la microscopie confocale en prenant plusieurs images à différentes profondeurs (\textit{z-stacks}), il est possible qu'un macrophage se cache derrière un autre; on parle d'occlusion dans ce cas.
 
 Il faut donc traiter ces différents cas de figure afin de ne pas fausser le tracking des macrophages. Nous avons donc mis en place un post-traitement permettant de corriger la segmentation obtenue.
 
-\subsubsection*{Correction de la segmentation}
+\subsubsection*{Correction de la segmentation.}
 Les macrophages sont des cellules qui ont tendance à se regrouper entre eux pour communiquer, on parle de chimio-tactisme. Ce phénomène est particulièrement problématique dans notre cas. En effet, la segmentation que l'on effectue sur les images peut parfois ne pas reconnaître deux objets distincts s'ils sont très proches l'un de l'autre et les experts du domaine ont parfois du mal aussi à les distinguer.
 
 Ainsi, nous allons utiliser l'avantage d'avoir des vidéos et observer ce qu'il se passe dans les images précédant un rapprochement qui résulte en une segmentation unique de deux macrophages différents, à l'aide d'une fonction nommée \texttt{defuse}.
@@ -572,29 +613,78 @@ L'implémentation d'une telle fonction nous a permis de corriger drastiquement l
 
 Cependant, cette implémentation éveille certains problèmes. En effet, lorsque l'on corrige la fusion ou la séparation d'un macrophage, nous perdons en précision, les contours des macrophages sont érodés à cause des seuils utilisés. De plus, appliquer une fonction qui traite à la fois l'image présente mais aussi celle d'avant et d'après, pour toutes les images d'une vidéo, augmente drastiquement le temps de calcul. Plus la vidéo sera longue et plus le temps de calcul sera important. Il est important de prendre ces paramètres en compte.
 
-\subsubsection*{Tracking des macrophages}
+\subsubsection*{Tracking des macrophages.}
 
-Tracking (calcul iou paire par paire de frame pour tous les objets, avec un seuil 0.5 car pas la meme frame et les macro bougent beaucoup donc seuil bas pour un bon compromis, si >0.5, alors on considère la paire comme étant le meme et on les numérote pareil) plus filtres (si ils sont détectés moins d'un certain nombre de frame, on ne les considère pas -> permet de réduire le nombre de macrophages détectés pour coller à la réalité)\\
+Nous avons donc maintenant une segmentation corrigée pour chacune des images de la vidéos. Nous avons aussi une liste de macrophages pour chaque image, chacun étant représenté par un masque binaire. Nous cherchons donc à suivre chacun de ces macrophages à travers le temps. Pour cela, nous avons implémenté une fonction nommée \texttt{track}.
 
-Result : ajout du layer de numérotation et des contours, reconstruction de la video final
+Nous réalisons une analyse par paire d'images comme pour la correction de la segmentation. En effet, nous examinons chaque image $i$ avec $i$ allant de $2$ à $n$, afin de la comparer avec l'image $i-1$. Pour effectuer cette comparaison, nous allons calculer l'IoU entre un macrophage de l'image $i$ et chaque macrophage de l'image $i-1$.
+
+Si un macrophage de l'image $i$ présente une IoU supérieure à un seuil choisi égal à $0.5$ avec un macrophage de l'image $i-1$, alors la fonction \texttt{track} désigne ces deux macrophages comme étant le même. On leur attribue alors le même identifiant. Nous réalisons cette étape pour tous les macrophages de l'image $i$ et ce pour toutes les images de la vidéo.
+
+Si un macrophage de l'image $i$ n'a pas d'IoU supérieure à $0.5$ avec n'importe quel macrophage de l'image $i-1$, alors il est considéré comme un nouveau macrophage. On lui attribue donc un nouvel identifiant. À l'inverse, si un macrophage de l'image $i-1$ n'a pas d'IoU supérieure à $0.5$ avec aucun macrophage de l'image $i$, alors il est considéré comme un macrophage perdu. Le tracking de ce macrophage s'arrête donc à l'image $i-1$.
+
+Nous avons appliqué la correction de la segmentation juste avant le tracking des macrophages. Nous ne sommes donc pas censés obtenir une IoU supérieure à $0.5$ entre un macrophage de l'image $i$ et n'importe quel macrophage de l'image $i-1$ si ce n'est pas le même macrophage. En effet, la correction de la segmentation a pour but de séparer les macrophages qui étaient fusionnés dans l'image $i$ et de les corriger en fonction des macrophages de l'image $i-1$. Ainsi, si un macrophage de l'image $i$ est fusionné avec un macrophage de l'image $i-1$, alors il sera séparé et on ne pourra pas obtenir une IoU supérieure à $0.5$ entre ces deux macrophages. Le tracking est donc très précis. Nous n'avons pas rencontré de cas particuliers où le tracking n'était pas correct.
+
+\subsubsection*{Choix du seuil d'IoU.}
+Nous avons choisi un seuil d'IoU de $0.5$ pour le tracking des macrophages pour plusieurs raisons. Tout d'abord, avoir un seuil tel qu'on l'a choisi nous permet d'avoir un suivi efficace des macrophages à travers le temps. En effet, le tracking suit la correction de la segmentation, ce qui signifie qu'il y a une possibilité que deux macrophages ou plus soient proches les uns des autres. Il se peut donc que, dans l'image suivante, la segmentation d'un macrophage empiète sur la segmentation d'un autre. Ainsi, le choix d'un seuil permet de ne pas identifier deux macrophages comme étant le même si leur IoU est trop faible.
+
+De plus, nous avons vu que les macrophages sont des cellules immunitaires très mobiles. Nous avons aussi vu qu'une IoU de $0.5$ entre une prédiction et la vérité, par exemple, est considérée comme une prédiction correcte. Nous faisons donc un compromis entre la qualité du suivi et la mobilité des macrophages.
+
+\subsubsection*{Photoblanchiment du microscope et seuil sur la durée de tracking.}
+Nous obtenons ainsi un suivi de chaque macrophage à travers le temps. Cependant, en microscopie, le niveaux d'intensité exprimés après activation par le laser peut varier d'un poisson à un autre. De plus, plus un poisson est exposé longtemps à la lumière du laser, plus la fluorescence de la protéine observée diminue; on parle de photoblanchiment (\textit{photobleaching}).
+
+Il est donc possible que certains macrophages soient détectés pendant quelques images puis disparaissent. Nous avons donc mis en place un seuil sur la durée de tracking d'un macrophage. Si un macrophage est détecté pendant moins de 10 images consécutives, alors il est retiré arbitrairement de la liste des macrophages suivis. Cela permet de ne pas avoir de détection d'objets pendant une ou deux images, qui ne sont pas des macrophages dans la plupart des cas. Nous avons choisi ce seuil de 10 images, ce qui correspond à environ 1 minute 30 secondes d'observation au microscope (une image toutes les 9 secondes), après plusieurs essais. C'est avec ce seuil que nous réduisons le nombre de macrophage détectés ce qui nous rapproche du consensus des experts du domaine sur le nombre de macrophages présents au niveau de la nageoire caudale dans les différentes conditions expérimentales (nageoire coupée ou non).
+
+\subsubsection*{Résultats et visualisation du tracking des macrophages}
+
+Pour visualiser les résultats de la segmentation des vidéos de macrophages, nous avons mis en place la fonction \texttt{result}. Celle-ci permet d'ajouter une couche de numérotation et de détourage ce chacun des macrophages détectés dans chaque image de la vidéo d'origine. Nous reportons aussi ce suivi de macrophages dans la vidéo du canal vert. La \figref{mac:result} nous montre un exemple de cette visualisation des résultats sur les deux canaux de la vidéo.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.49\linewidth]{imgs/result.jpg}
+    \includegraphics[width=0.49\linewidth]{imgs/result_v.jpg}
+    \caption{Résultats du tracking des macrophages sur une image de chaque canal de la vidéo.}
+    \vspace{-1em}
+    {
+        \setstretch{0.2}
+        \caption*{\scriptsize À gauche, nous avons le résultat du tracking sur le canal rouge de la vidéo. À droite, nous avons le résultat du tracking sur le canal vert de la vidéo. Les macrophages sont numérotés et les contours sont dessinés avec une couleur unique par macrophage. Les images proviennent de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-aputation. Il s'agit de la première image du film.}
+    }
+    \label{mac:result}
+\end{figure}
+
+\red{paragrpahe lien videos}
+lien vers une vidéo
 
 
 
+\section{Post-traitement}
+Nous avons mis en place un tracking fonctionnel des macrophages à travers le temps, avec l'instauration de filtres pour réduire le nombre de macrophages détectés et ainsi se rapprocher du consensus biologique. Cependant, il est possible que certains macrophages soient perdus pendant un temps, puis réapparaissent. Puisque nous n'avons pas de mémoire temporelle sur l'ensemble des images de la vidéo, si un tel macrophage existe, il sera considéré comme deux macrophages distincts. Il est donc important de regarder la vidéo en sortie dans son ensemble pour vérifier si la qualité de tracking est suffisante.
+
+Nous avons donc implémenté un post-traitement permettant de fusionner les trackings de macrophages qui sont factuellement les mêmes, mais que le tracking a séparé. Cette fonction est nommée \texttt{merge}. Elle permet de fusionner les segmentations de macrophages perçus comme distincts en un seul macrophage. Elle permet de traiter différents cas de figure. Elle agit dans les dossiers contenant la segmentation de chaque macrophage à chaque image de la vidéo. En déplaçant certaines images d'un macrophage (sous-dossier) dans un autre, on effectue la fusions de ces deux.
+
+\red{gaphe premier cas}
+
+Elle fait aussi en sorte de traiter les cas où la segmentation n'est pas continue ou alors si elle chevauche la segmentation d'un autre. Dans le premier cas, si un macrophage est perdu pendant quelques images, puis réapparaît, alors la fonction \texttt{merge} va fusionner les deux segmentations et créer des images entièrement noires pour les images perdues. Le second cas apparaît souvent dans le cas où un macrophage est segmenté en tant que deux macrophages distincts pendant quelques images. Ainsi, avec la fonction \texttt{merge}, nous allons fusionner les deux segmentations. Pour les images où il y a deux segmentations différentes, nous allons garder celle qui apparaît en premier dans les paramètres de la fonction.
+
+En effet, la fonction prend en paramètre une liste d'identifiants de macrophages à fusionner. Si dans le second cas il s'agit des macrophages 13 et 24 qui doivent être fusionnés, alors sur les images où les deux apparaissent, nous allons garder la segmentation du macrophage 13.
+
+Il s'agit là d'un compromis que nous avons réalisé entre avoir un tracking sur l'ensemble de la vidéo, ce qui améliorera nos études par la suite, et une petite perte d'information.
+
+\red{graphique second cas}
+
+\
+
+Comme nous l'avons vu plutôt, la microscopie se fait en prenant des images à différentes profondeurs, on parle de \textit{z-stacks}. Il est donc possible que deux macrophages se chevauchent, que l'un \og passe à travers\fg\ de l'autre. En réalité, il passe soit au dessus soit en-dessous d'un autre macrophage. Nous travaillons sur des données 2D+t et que nous réalisons une projection des images 3D pour obtenir une image 2D. Nous voyons donc sur la vidéo d'origine un macrophage qui fusionne avec un autre et qui se détache de lui quelques images plus tard.
+
+Nous avons donc implémenté la fonction \texttt{merge\_and\_keep} qui permet, comme avec la fonction \texttt{merge}, de fusionner les segmentations de macrophages tout en gardant la segmentation du macrophage traversé, qui serait perdue sinon. En dédoublant la segmentation du macrophage traversé dans le dossier du macrophage traversant, nous obtenons donc une segmentation partagée entre les deux macrophages. La \figref nous montre un exemple de ce phénomène.
+
+\red{graphe merge and keep}
 
 
+\red{
+    graphiques a faire et changer les exemples dans le texte pour coller avec les graphes
+}
 
-
-
-
-\subsection{Post-traitement}
-- documentation et site internet, scripts automatiques  pour création et exec de modèles avec dataset exemples
-
-- post traitement pour corriger les erreurs de segmentation
-mettre les images en annexe des différents cas
-\subsection{Analyse des signaux calciques}
-extraction des données a partir de la segmentation
-
-le faire pour plusieurs vidéos
 
 
 
@@ -605,11 +695,10 @@ le faire pour plusieurs vidéos
     on peut maintenant se poser la question de e qui suit, cad segmenter des vidéos en ayant une mémoire temporelle }
 
 
-
+\chapter{Étude et reparamétrisation d'un modèle de fondation}
 \red{nouvelle partie}
 De plus, nous avons une difficulté en plus car jusqu'à présent, nous avons seulement traité de segmentation d'images et non de vidéos. Or, les macrophages étant des cellules immunitaires très mobiles, ils pourraient se regrouper ou se séparer à tout moment de la vidéo. Donc la qualité de la segmentation est primordiale pour pouvoir au mieux retranscrire les comportements réels des macrophages.
 
-\red{figure avec trois images a des frames différentes pour des fusions separations\dots}
 \section{Introduction}
 SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}). Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel. Le second est nommé \og \textit{internal dataset}\fg\ pour jeu de données de vidéos disponibles sous licence en interne et Meta AI est moins clair sur l'obtention de ces données. Il comprend 62 900 vidéos pour 69 600 annotations. Il a permis d'étendre le jeu de données d'entraînement. Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondation (\textit{foundation model})~\cite{foundationmodel}, c'est-à-dire un modèle pré-entraîné sur une grande quantité de données, capable de généraliser à de nombreuses tâches différentes. Il est conçu pour être utilisé comme une base pour des tâches de segmentation en gardant de bonnes performances pour l'ensemble des applications de segmentation d'images et de vidéos.\\
 
@@ -737,13 +826,25 @@ comp avant apres fine tune, performances et visuel
 
 \section{Propagation dans une vidéo}
 
-\chapter{Conclusion}
-\section*{Disponibilité du code}\label{code}
-\phantomsection
-\addcontentsline{toc}{section}{Disponibilité du code}
+
+\chapter{Analyse des signaux calciques issues de la segmentation des macrophages}
+extraction des données a partir de la segmentation (mactrack pour l'instant sam2 plus tard on espere)
+
+le faire pour plusieurs vidéos
+
+
+
+
+\chapter{Conclusion et perspectives}
+\section{Disponibilité du code}\label{code}
+
 Le code de MacTrack2 est disponible, ainsi que deux scripts détaillés pour la création de modèle et l'analyse d'une vidéo, avec un jeu de données d'exemple pour chacun des deux scripts, à l'adresse suivante : \url{https://github.com/guibouland/MacTrack2}.\\
 
 Un site internet est disponible sur ce dépôt GitHub, regroupant toute la documentation et des instructions détaillées pour les utilisateurs plus novices, notamment les biologistes traitant la même problématique, qui sont la cible principale de ce projet. Il servira aussi aux futurs membres du laboratoire LPHI qui souhaitent utiliser MacTrack2 pour leurs propres projets.
+
+\section{Liens utiles}
+Liens vers les vidéos de résultats de segmentation
+
 
 \chapter{Matériel et Méthodes}\label{matmeth}
 tests tests\cite{kartezio,sam,sam2,adamw}

@@ -8,6 +8,8 @@ report/*.lot
 report/*.lof
 report/*.out
 report/*.toc
+report/*.log
+report/*.fls
 report/*.aux
 report/*.fdb_latexmk
 report/*.run.xml
