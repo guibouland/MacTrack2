@@ -22,6 +22,8 @@
 \addbibresource{ref.bib}
 \usepackage{lipsum}
 
+\usepackage{minted}
+
 \usepackage{letltxmacro}
 \LetLtxMacro{\oldnameref}{\nameref}
 \renewcommand{\nameref}[1]{\textbf{\oldnameref{#1}}}
@@ -181,11 +183,12 @@ blabla
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
-\chapter{Introduction}\label{chp:intro}
+\chapter*{Introduction}\label{chp:intro}
+\addcontentsline{toc}{chapter}{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Cadre du stage}
+\section*{Cadre du stage}
 \addcontentsline{toc}{section}{Cadre du stage}
 
 % Encadrant et lieu.
@@ -204,37 +207,24 @@ L'équipe que j'ai intégrée, dirigée par Mai Nguyen-Chi et Laure Yatime, se c
 J'ai travaillé en collaboration étroite avec une étudiante en M2 Biologie Santé - Infection Biology, Norma Veltz, qui a aussi réalisé son stage de M2 au sein du LPHI sur la même période que le mien. Elle a réalisé les expériences biologiques nécessaires à l'obtention d'images de microscopie dont l'étude fait l'objet de ce rapport.
 
 % Contexte biologique
-\section{Description du problème}%version longue de l'abstract
+\section*{Description du problème}%version longue de l'abstract
+\addcontentsline{toc}{section}{Description du problème}
+
 \blue{objectifs directement ? j'ai l'impression de répéter les objectifs}
 
 % Reponse immunitaire et differents types de macrophage
 Les macrophages sont des cellules immunitaires polyvalentes. Ils jouent un rôle essentiel dans la réponse immunitaire en phagocytant (éliminant) les agents pathogènes et en régulant l'inflammation. Dotés d'une plasticité fonctionnelle, ils peuvent changer d'état en passant d'un état pro-inflammatoire (M1) essentiel pour la défense de l'hôte à un état anti-inflammatoire (M2) servant à la réparation tissulaire. Nous appelons ce processus de changement d'état fonctionnel la polarisation.
 
 % La reponse Calciqu eest un candidat pour comprende la reponse immunitaire
-Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de flux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
+Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de signaux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
 
-\
-% Données : microcopie confocale. Suivie longitudinale apres une inflamation.
-
-description générale des macro et polarisation, on ne connait pas les schéma de flux entre les états
-
-zebrafish, créer des métriques pertinentes pour l'étue des signaux calciques
-
-ce qu'on produit: librairie de segmentation et tracking automatique des macro pour en extraire les données calciques
-
-exploration d'une piste plus générale à travers modèle de fondation SAM-2
-
-production d'une analyse statistique sur les données de calcium
-
-ce à quoi ça va servir
-
-lien vers les objectifs
+% Donnes : microcopie confocale. Suivie longitudinale apres une inflamation.
+À l'aide d'un modèle animal connu, le zebrafish, nous cherchons donc à définir des métriques pertinentes pour l'étude des signaux calciques dans les macrophages. Nous observons au microscope confocal des poissons transgéniques, ce qui nous permet de visualiser les macrophages et la présence de calcium dans ces cellules.
 
 
 % Objectif du stage
-\section{Objectifs}
+\section*{Objectifs}
 \addcontentsline{toc}{section}{Objectifs}
-
 %Les macrophages sont des cellules immunitaires jouant un rôle critique dans de nombreuses maladies. Ils peuvent changer d'état en réponse à une blessure, passant d'un état pro-inflammatoire M1 pour la défense de l'hôte à un état anti-inflammatoire M2 pour la réparation tissulaire. On appelle ce processus la polarisation. Les signaux de calcium dans les macrophages sont un candidat prometteur qui pourrait permettre d'expliquer leur activation. Nous observons donc au microscope confocal ces macrophages et les signaux de calcium à différents temps après blessure chez le zebrafish, un modèle animal choisi pour ces propriétés avantageuses. Nous cherchons donc à savoir s'il existe une relation entre ces flashs calciques, qui sont des élévations intracellulaires de calcium, et la polarisation des macrophages.
 %
 %\
@@ -247,6 +237,19 @@ lien vers les objectifs
 %
 %\
 
+
+
+
+%%Nous développerons donc un outil, \textit{MacTrack2}~\cite{mactrack2}, de segmentation et de suivi (tracking) des macrophages dans les images et vidéos de microscopie mises à disposition par l'équipe. À l'aide de cet outil, nous pourrons ensuite quantifier les intensités de calcium présentes dans les macrophages afin d'établir la signature de ce signal, en comparant différentes conditions expérimentales. Un e analyse statistique sera ensuite produite à partir des données extraites.
+
+%%Une piste d'amélioration de la segmentation sera aussi explorée à l'aide d'un outil récemment développé, un modèle de fondation nommé SAM-2~\cite{sam2}. Ce modèle, à travers la mémoire temporelle qu'il contient, pourrait nous aider dans le suivi parfois compliqué des macrophages, qui sont des cellules mobiles qui ont tendance à se rapprocher les unes des autres.
+
+\
+
+%%Ces travaux ont pour vocation de mieux comprendre la dynamique des signaux calciques dans les macrophages et leur rôle dans la polarisation de ces derniers.
+
+
+
 % Developpement de methodes originales pour faire le tracking de macrophage pour mesurer la réponse calcique.
 Les macrophages sont des cellules immunitaires jouant un rôle critique dans de nombreuses maladies. Ils peuvent changer d'état suite à une blessure par un processus appelé la polarisation. Les signaux de calcium sont des candidats prometteurs pour réguler ce processus, bien que leur lien avec les différents états fonctionnels reste à clarifier. Mieux comprendre la dynamique des signaux calciques pourrait aider à identifier ces états. Nous cherchons donc à développer un outil permettant d'identifier (segmenter), et suivre automatiquement chaque macrophage individuel dans des images et vidéos de microscopie et mesurer l'activité calcique dans ces cellules afin d'établir la signature de ce signal dans les différents macrophages.
 
@@ -258,55 +261,77 @@ Nous commencerons par segmenter automatiquement des macrophages dans des images 
 La méthode développée, sous la forme d'une librairie Python disponible à tous nommée MacTrack2, aura pour but d'être intuitive car destinée à être utilisée par des biologistes. Elle contiendra des exemples exécutables en un clic et avec une documentation détaillée sur un site internet.
 
 \
-% 2eme etape : un film est un enchaineement d'images. Chaque image étant segmentée, il faut suivre les objets: fine tuning de Sam2
+% 2eme etape : un film est un enchaineement d'images. Chaque image étant segmentée, il faut suivre les objets: fine tuning de Sam2. Eviter "piste d'amélioration"
 Une piste d'amélioration de la segmentation sera aussi étudiée en spécialisant un modèle de fondation, SAM-2, sur nos données de macrophages. Nous espérons ainsi améliorer le tracking des macrophages en segmentant directement la vidéo entière, plutôt que séquentiellement.
 
 %Les objectifs de ce stage sont multiples. Tout d'abord, nous cherchons à développer un outil de segmentation et de tracking des macrophages à partir de vidéos de microscopie obtenues par l'équipe, en effectuant une segmentation image par image dans un premier temps. Cependant, les macrophages étant des cellules mobiles et qui ont tendance à se rapprocher les une des autres, à fusionner ou à se séparer, nous devons prendre ces paramètres en compte premièrement dans la segmentation mais aussi dans le tracking, c'est-à-dire dans le suivi temporel de la segmentation image par image. Puis, nous voulons, à partir de cette segmentation, étudier les flux calciques dans les macrophages au cours du temps. Avec cette analyse, nous cherchons à répondre à la question biologique posée, à savoir s'il existe une relation entre les flux calciques, et plus particulièrement les flashs calciques en mesurant les intensités de calcium dans chaque macrophage segmenté, et la polarisation des macrophages au cours du temps. De plus, nous souhaitons rendre cette étude accessible et compréhensible par les biologistes du laboratoire, à l'aide d'une documentation et de scripts intuitifs couplés à un jeu de données exemple ce qui les rend exécutables en un clic, afin qu'ils puissent continuer à analyser leurs vidéos de manière autonome à la suite de cette période. C'est pour ces raisons que nous utilisons des méthodes de segmentation automatique. L'outil développé, sous la forme de librairie Python, pourra aussi être utilisé en tant qu'aide à la segmentation de vidéos de microscopie en général, et pas seulement pour les macrophages, mais pour tout type d'imagerie biomédicale. La librairie développée, nommée MacTrack2, permet à la fois d'analyser des vidéos de microscopie de macrophages à partir de modèles que nous fournissons, mais l'utilisateur a aussi la possibilité de créer les siens, étendant le domaine d'application de cette librairie.\\
 
 %La segmentation image par image est rapide, ce qui nous permet de traiter des vidéos entières en peu de temps. Cependant, les macrophages sont des cellules mobiles, il est donc nécessaire de bien suivre leur mouvement au cours du temps. C'est pour cela que nous explorons la possibilité de segmenter les macrophages directement à partir de la vidéo elle-même, en utilisant le modèle de fondation~\cite{foundationmodel} SAM-2~\cite{sam2}, récemment développé par Meta AI en 2024. Cependant, ce modèle est généraliste et a été entraîné sur des données variées, nous cherchons donc à spécialiser ce modèle sur nos données, avec un fine-tuning des poids, pour qu'il puisse au mieux segmenter les macrophages dans les vidéos de microscopie.
 
-\section{Plan du rapport}
-
+\section*{Plan du rapport}
+\addcontentsline{toc}{section}{Plan du rapport}
 % dire que l'on suit la description des objectifs.
-description du plan du rapport
-
+Ce rapport est organisé en plusieurs chapitres qui suivent les objectifs décrits. Le premier portera sur le contexte biologique de ce stage ain de décrire les enjeux de la polarisation de macrophages, l'importance des signaux calciques et l'obtention des images de microscopie. Le second chapitre présentera la méthode choisie permettant de segmenter automatiquement des objets dans des images. Nous verrons ensuite comment nous avons étendu cette segmentation au domaine temporel, en réalisant un suivi des macrophages au travers de vidéos. Le quatrième chapitre se concentre sur une piste d'amélioration de ce suivi en utilisant un modèle de fondation, que nous spécifierons à nos données. Le dernier chapitre présentera une analyse statistique des données obtenues en quantifiant l'intensité de calcium dans les macrophages suivis. Enfin, nous finirons par évoquer une conclusion et une discussion sur les perspectives de ce travail, suivi par les matériels et méthodes utilisés, les annexes et les références utilisées.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Contexte biologique}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Macrophages, cellules immunitaires dynamiques}
 
-\section{Macrophages, cellules immunitaires}
-polarisation, M1, M2, pro-inflammatoire, anti-inflammatoire \dots
+% Rponse immunitaire est un processus complexe. En décrire les très grandes lignes
+ , \dots
 
-\section{Signal calcique}
+% Les Macrophages en sont un élémenent important. Il y en a different types. (mettre une figure ?)
+M1, M2, pro-inflammatoire, anti-inflammatoire
+
+% Les macrophages changent de role au cours du temps. polarisation -> necessité d'observe la reponse immunitaire dans le temps
+polarisation,
+
+\section{Signal calcique, candidat prometteur}
+
+% Pourquoi c'est pertinent ?
+
+% comment on le mesure
 
 \section{Zebrafish, modèle animal idoine}
 
-\section{Microscopie confocale et lignée transgénique}
+% animale modèle: trnasparent, reproduction rapide, etcc...
 
-
-De plus, pour pouvoir segmenter autant d'images, il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction de la condition que l'on cherche à observer, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables. Cela demande un coût humain et financier énorme.
-
-
-
-
-
+% Création de lignées pour permettre l'observbation de la reponse calcique.
 mehari \dots\\
 lignée transgénique
+
+
+\section{Microscopie confocale}
+
+% dércire l'appareil (photo !).
 obtention des images, microscopie
 
+% le principe de fonctionnement (2 canaux avec acquisition successives)
+Il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction de la condition que l'on cherche à observer
+
+
+% le processus  d'acquisition
+, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables.  Cela demande un coût humain et financier énorme.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Segmentation automatique d'images microscopiques de macrophages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% faire quelques ligne d'introduction décrivant TA contribution.: 
+%1/pris en main un code existant (Macktrack) basé sur une solution logiciel appelé Kartzion. 2/Créer un nouveau jeu de donnée pour la qualibration des modèle de segmentation. 3/ fait une nouvelle release de MAcktrack avec un retour utilisateur (donner). Cette nouvelle version facilite  l'utilisation en routine d'un traitement automatique de nouvelles acquisition au sein de l'équipe ... du LPHI 
 
 %\section{Introduction}
 %Nous avons développé un outil qui permet de segmenter des macrophages dans des vidéos. Pour ce faire, nous avons tout d'abord réfléchi au problème de manière séquentielle, c'est-à-dire image par image (\textit{framewise} en anglais). En poursuivant le travail déjà effectué au laboratoire par l'ancien stagiaire Axel de Montgolfier \cite{axel}, étudiant en Master 2 Statistiques et Sciences des Données qui était présent durant l'année 2023-2024, nous avons amélioré le programme MacTrack créé par ses soins, en le rendant plus robuste avec notamment un meilleur jeu de données pour l'entraînement des modèles. Nous pouvons maintenant visualiser la qualité des modèles entraînés. Des scripts plus intuitifs pour les débutants, qui sont la cible de ce projet, ont été ajoutés ainsi qu'une documentation complète sur un site internet, disponible sur le dépôt GitHub du projet (\cite{mactrack2}). Un post-processing a été implémenté pour corriger les erreurs de segmentation des macrophages. Ces erreurs que nous avons rencontrées étaient souvent dues à des problèmes au niveau de l'image de microscopie, comme par exemple la présence d'un fond bruité. Ce process sert aussi pour obtenir une segmentation continue dans le temps, sans changement de numérotation, afin d'obtenir la meilleure analyse possible des flux calciques présent dans ces macrophages.
 %
 %Ainsi, toutes ces améliorations constituent \textbf{MacTrack2}, une librairie développée en Python, téléchargeable et utilisable simplement via les scripts et le jeu de données que nous fournissons en exemples. Elle se base principalement sur la librairie \textit{Kartezio} \cite{kartezio}, qui a été créée pour proposer une nouvelle approche de la segmentation d'objets dans des images microscopiques en se basant sur les principes du \textit{Cartesian Genetic Programming} (CGP) \cite{cgp}. À l'aide de cette méthode, \textit{Kartezio} est capable de générer des pipelines de segmentations qui sont à la fois peu gourmands en ressources, notamment en quantité d'images pour l'entraînement ou en temps computationnel, interprétables puisque cette librairie utilise une liste de fonction issues d'\textit{OpenCV} \cite{opencv,opencv-python}, une bibliothèque libre de fonctions spécialisées dans le traitement d'images, et performants.
 
-
 \section{Segmentation d'images}
+
 \subsection{Image numérique}
 %ayant été génétiquement modifiés par la double lignée transgénique,
 
@@ -358,6 +383,90 @@ Cependant, la segmentation d'instances fait appel à beaucoup de paramètres et 
 
 Parmi les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio} \cite{kartezio}, une méthode développée en 2023 basée sur le \textit{Cartesian Genetic Programming} (CGP) \cite{cgp}. Elle permet de segmenter des objets dans des images de microscopie et présente de nombreux avantages.
 
+
+
+
+
+
+
+\subsection{Évaluation des performances}\label{evalperf}
+
+\subsubsection{Critère de Dice (a.k.a IoU)}
+
+
+Dans toute méthode de segmentation d'images, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. La métrique la plus utilisée est l'\textbf{IoU} (\textit{Intersection over Union}). On peut la définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{mac:iou}) :
+$$\text{IoU}(M_k, G_k) = \frac{\lvert M_k \cap G_k\rvert}{\lvert M_k \cup G_k\rvert}= \frac{\displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}{\displaystyle\sum_{i,j}M_k[i,j]+ \displaystyle\sum_{i,j}G_k[i,j] - \displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}$$
+
+\noindent avec :
+\begin{itemize}
+    \item $i\in \{1, \ldots, H\}$ et $j\in \{1, \ldots, W\}$ la hauteur et la largeur respectivement de l'image,
+    \item $M_k = \left(M_k[i,j]\right)_{i,j}$ le masque prédit pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel vaut 1 s'il est dans le masque prédit, c'est-à-dire que si la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$ est supérieure à $0.5$, sinon il vaut 0. On a donc :
+          $$M_k[i,j] = \begin{cases}
+                  1 & \text{si } p > 0.5, \\
+                  0 & \text{sinon}.
+              \end{cases}$$
+          avec $p$ la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$,
+    \item $G_k=\left(G_k[i,j]\right)_{i,j}$ le masque de vérité pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel (élément de la matrice) vaut 1 s'il est dans le masque de vérité, sinon il vaut 0,
+    \item $\lvert M_k \cap G_k\rvert = \sum_{i,j}M_k[i,j]\cdot G_k[i,j]$ l'intersection entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels en commun entre les deux masques,
+    \item $\lvert M_k \cup G_k\rvert = \sum_{i,j}M_k[i,j]+ \sum_{i,j}G_k[i,j] - \sum_{i,j}M_k[i,j]\cdot G_k[i,j] $ l'union entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels dans au moins un des deux masques,
+    \item $\sum_{i,j}M_k[i,j]$ le nombre de pixels du masque prédit,
+    \item $\sum_{i,j}G_k[i,j]$ le nombre de pixels du masque de vérité.
+\end{itemize}
+
+\
+
+Pour obtenir la valeur de l'IoU pour une image entière, on fait la moyenne des IoUs de tous les objets $k$ segmentés dans l'image :
+
+\begin{align}\label{eq:iou}
+    \text{mIoU}(M,G) = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}(M_k,G_k)
+\end{align}
+
+\noindent où $K$ est le nombre total d'objet dans une image, $M=\left(M[i,j]\right)_{i,j}$ le masque prédit pour l'image (sous la forme d'une matrice binaire de taille $H\times W$) et $G=\left(G[i,j]\right)_{i,j}$ le masque de vérité pour l'image (sous la même forme que $M$).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.8\linewidth]{imgs/iou.png}
+    \caption{Schématisation de l'IoU (figure issue de \cite{iou}).}
+    \label{mac:iou}
+\end{figure}
+
+
+Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, l'mIoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
+
+Dans la pratique, obtenir une segmentation parfaite, signifiant que l'mIoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. À travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité.
+
+\
+
+Ainsi il est considéré, dans la pratique, qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg et on considère que si l'mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise l'mIoU comme métrique principale, utilise un seuil de 0.5 ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
+
+\subsubsection{Différence de segmentation entre deux opérateurs.}
+
+Les annotations d'images sont souvent sujettes à la subjectivité de chaque opérateur détourant les objets d'intérêt. En effet, deux opérateurs, souvent des experts dans le milieu d'application, peuvent avoir des opinions divergentes ce qui résulte en des annotations différentes. Dans notre cas, comme peut en témoigner la \figref{mac:rv}, les délimitations des macrophages (dans le canal rouge de l'image) sont parfois floues et peuvent porter à confusion. De plus, certains objets pourtant bien colorés en rouge peuvent être confondus pour des macrophages alors qu'il s'agit de pigments de coloration dus à l'autofluorescence de ces derniers.
+
+\
+
+Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qui ai annoté l'entièreté des images utilisées pour entraîner les différents modèles, et une membre de l'équipe avec qui j'ai travaillé en collaboration sur ce projet, qui a annoté quelques images. La \figref{mac:comp} montre en bleu mes annotations et en jaune celles de ma collègue.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{imgs/comp_op.png}
+    \caption{}
+    \label{mac:comp}
+\end{figure}
+
+Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de l'mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
+
+Nous avons donc une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
+
+
+
+
+\section{Qualibration de modèles de segmentation avec Mactrack2}\label{creamodel}
+
+% Expliquer que l'on décrit la phase d'apprentissage.  Besoin de données annotés pour optimiser une fonction de perte de Kartezio
+
+
+La particularité de MacTrack2 (voir~\nameref{code}), la librairie que nous avons développé en utilisant principalement Kartezio, est la facilité à entraîner des modèles. En effet, à l'aide d'un script simple nous pouvons entraîner un modèle de segmentation d'images à partir d'un jeu de données d'images annotées. 
 
 
 
@@ -430,55 +539,12 @@ La dernière opération du pipeline est nommée \textit{Endpoint} et est l'appli
 
 L'efficacité, la rapidité, l'interprétabilité de Kartezio nous ont poussé à choisir cette méthode pour effectuer la segmentation automatique des macrophages dans des images de microscopie. Sachant que ce projet est destiné à être utilisé ultérieurement par les membres de l'équipe, il était primordial d'utiliser une méthode rapide, efficace, compréhensible et intelligible pour les biologistes.
 
+\subsection{En pratique}
+    
 
-\section{Évaluation des performances}\label{evalperf}
-Dans toute méthode de segmentation d'images, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. La métrique la plus utilisée est l'\textbf{IoU} (\textit{Intersection over Union}). On peut la définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{mac:iou}) :
-$$\text{IoU}(M_k, G_k) = \frac{\lvert M_k \cap G_k\rvert}{\lvert M_k \cup G_k\rvert}= \frac{\displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}{\displaystyle\sum_{i,j}M_k[i,j]+ \displaystyle\sum_{i,j}G_k[i,j] - \displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}$$
+\subsubsection{Création d'un jeu de données d'entraînement}
 
-\noindent avec :
-\begin{itemize}
-    \item $i\in \{1, \ldots, H\}$ et $j\in \{1, \ldots, W\}$ la hauteur et la largeur respectivement de l'image,
-    \item $M_k = \left(M_k[i,j]\right)_{i,j}$ le masque prédit pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel vaut 1 s'il est dans le masque prédit, c'est-à-dire que si la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$ est supérieure à $0.5$, sinon il vaut 0. On a donc :
-          $$M_k[i,j] = \begin{cases}
-                  1 & \text{si } p > 0.5, \\
-                  0 & \text{sinon}.
-              \end{cases}$$
-          avec $p$ la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$,
-    \item $G_k=\left(G_k[i,j]\right)_{i,j}$ le masque de vérité pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel (élément de la matrice) vaut 1 s'il est dans le masque de vérité, sinon il vaut 0,
-    \item $\lvert M_k \cap G_k\rvert = \sum_{i,j}M_k[i,j]\cdot G_k[i,j]$ l'intersection entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels en commun entre les deux masques,
-    \item $\lvert M_k \cup G_k\rvert = \sum_{i,j}M_k[i,j]+ \sum_{i,j}G_k[i,j] - \sum_{i,j}M_k[i,j]\cdot G_k[i,j] $ l'union entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels dans au moins un des deux masques,
-    \item $\sum_{i,j}M_k[i,j]$ le nombre de pixels du masque prédit,
-    \item $\sum_{i,j}G_k[i,j]$ le nombre de pixels du masque de vérité.
-\end{itemize}
-
-\
-
-Pour obtenir la valeur de l'IoU pour une image entière, on fait la moyenne des IoUs de tous les objets $k$ segmentés dans l'image :
-
-\begin{align}\label{eq:iou}
-    \text{mIoU}(M,G) = \frac{1}{K}\sum_{k=1}^{K}\text{IoU}(M_k,G_k)
-\end{align}
-
-\noindent où $K$ est le nombre total d'objet dans une image, $M=\left(M[i,j]\right)_{i,j}$ le masque prédit pour l'image (sous la forme d'une matrice binaire de taille $H\times W$) et $G=\left(G[i,j]\right)_{i,j}$ le masque de vérité pour l'image (sous la même forme que $M$).
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=.8\linewidth]{imgs/iou.png}
-    \caption{Schématisation de l'IoU (figure issue de \cite{iou}).}
-    \label{mac:iou}
-\end{figure}
-
-
-Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, l'mIoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
-
-Dans la pratique, obtenir une segmentation parfaite, signifiant que l'mIoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. À travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité.
-
-\
-
-Ainsi il est considéré, dans la pratique, qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg et on considère que si l'mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise l'mIoU comme métrique principale, utilise un seuil de 0.5 ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
-
-\section{Création de modèles de segmentation}\label{creamodel}
-La particularité de MacTrack2 (voir~\nameref{code}), la librairie que nous avons développé en utilisant principalement Kartezio, est la facilité à entraîner des modèles. En effet, à l'aide d'un script simple nous pouvons entraîner un modèle de segmentation d'images à partir d'un jeu de données d'images annotées. Nous avons utilisé ImageJ~\cite{imagej} pour annoter nos données. ImageJ est un logiciel permettant de modifier et analyser manuellement les images issues de microscopie. Il est communément utilisé par les biologistes. À l'aide de ce logiciel, nous avons pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies aléatoirement parmi les différents films que nous disposions (\figref{mac:train}).
+Nous avons utilisé ImageJ~\cite{imagej} pour annoter nos données. ImageJ est un logiciel permettant de modifier et analyser manuellement les images issues de microscopie. Il est communément utilisé par les biologistes. À l'aide de ce logiciel, nous avons pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies aléatoirement parmi les différents films que nous disposions (\figref{mac:train}).
 
 
 \begin{figure}[!ht]
@@ -502,27 +568,93 @@ Les images que nous avons choisies, provenant de films générés dans différen
 \end{figure}
 
 
-\subsubsection*{Différence de segmentation entre deux opérateurs.}
+\subsubsection{Qualibration du modèle (entraînement)}
 
-Les annotations d'images sont souvent sujettes à la subjectivité de chaque opérateur détourant les objets d'intérêt. En effet, deux opérateurs, souvent des experts dans le milieu d'application, peuvent avoir des opinions divergentes ce qui résulte en des annotations différentes. Dans notre cas, comme peut en témoigner la \figref{mac:rv}, les délimitations des macrophages (dans le canal rouge de l'image) sont parfois floues et peuvent porter à confusion. De plus, certains objets pourtant bien colorés en rouge peuvent être confondus pour des macrophages alors qu'il s'agit de pigments de coloration dus à l'autofluorescence de ces derniers.
+% donner des snippet de code 
 
-\
+Une fois le jeu de données d'entrainement sauvegardé dans le répertoire \mintinline{python3}{DATASET = "examples/input_model/dataset"}. L'entrainment se lance avec unc vommande 
+\begin{minted}[bgcolor=blue!4,fontsize=\small,mathescape,tabsize=4, escapeinside=||]{python3}
+from kartezio.dataset import read_dataset
+from kartezio.training import train_model
 
-Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qui ai annoté l'entièreté des images utilisées pour entraîner les différents modèles, et une membre de l'équipe avec qui j'ai travaillé en collaboration sur ce projet, qui a annoté quelques images. La \figref{mac:comp} montre en bleu mes annotations et en jaune celles de ma collègue.
+dataset = read_dataset(DATASET)
+elite, a = train_model(model, dataset, OUTPUT, callback_frequency=frequency)
+\end{minted}
+
+Les hyper-parametres ont été choisi comme cela
+\begin{minted}[bgcolor=blue!4,fontsize=\small,mathescape,tabsize=4, escapeinside=||]{python3}
+
+generations = 1000 #dgljdfmlkj
+_lambda = 5
+frequency = 5
+rate = 0.1
+
+model = create_segmentation_model(
+    generations,
+    _lambda,
+    inputs=3,
+    nodes=30,
+    node_mutation_rate=rate,
+    output_mutation_rate=rate,
+    outputs=1,
+    fitness="IOU",
+    endpoint=EndpointThreshold(threshold=4),
+)
+\end{minted}
+
+
+% donner succintement une idée des temps de calcul (cela prend quelques minutes )
+
+
+
+\section{Résultats}\label{segimage}
+
+\subsection{Segmentation automatique d'images avec MacTrack2}
+
+Notre librairie, MacTrack2 est capable, à partir des modèles entraînés, de segmenter des images. En effet, la fonction \texttt{locate} permet de la faire. À partir d'une image, on effectue la prédiction du modèle sur celle-ci pour obtenir une première segmentation. Nous appliquons un filtre de taille sur les objets détectés afin de laisser de coté les objets trop petits qui ne sont pas des macrophages. Souvent, il s'agit d'artefacts que l'on obtient lors de la prise d'image et ne sont pas visibles à l'œil nu sur l'image d'origine. Nous séparons aussi chacun des objets détourés pour les représenter dans des images différentes. Nous pouvons ainsi observer exclusivement la segmentation de chacun des macrophages. La \figref{mac:locate} nous montre les différentes sorties de la fonction \texttt{locate}. À gauche, nous retrouvons l'image d'origine, au milieu la segmentation obtenue après application du filtre de taille et à droite la segmentation binaire d'un des macrophages détourés.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{imgs/comp_op.png}
-    \caption{}
-    \label{mac:comp}
+    \includegraphics[width=.3\linewidth]{imgs/001_image.png}
+    \hspace{0.2cm}
+    \includegraphics[width=.3\linewidth]{imgs/heatmap_test_1.png}
+    \hspace{0.2cm}
+    \includegraphics[width=.3\linewidth]{imgs/object_1.png}
+    \caption{Illustrations des différentes sorties de la fonction \texttt{locate}}
+    \vspace{-1em}
+    {
+        \setstretch{0.2}
+        \caption*{\scriptsize Nous retrouvons à gauche l'image d'origine, au milieu la segmentation complète après application du filtre de taille des objets détectés et à droite la segmentation objet par objet. Ces images proviennent de l'observation de la nageoire caudale d'un poisson à 3h post-amputation. Il s'agit de la deuxième image du film.}
+    }
+    \label{mac:locate}
 \end{figure}
 
-Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de l'mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
+\
 
-Nous avons donc une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
+Nous avons ainsi obtenu la segmentation de chaque macrophage dans l'image. Cependant, les données que nous avons sont des films, c'est-à-dire des séquences d'images. Il est donc nécessaires d'étendre cette segmentation au domaine temporel. Les dimensions des images sont maintenant $2D+t$. Nous pourrons ensuite appliquer un suivi temporel à la segmentation sémantique obtenue pour chaque image de la vidéo.
+
+\red{figure avec trois images a des frames différentes pour des fusions separations\dots}
 
 
-\subsubsection*{Comparaison des modèles selon le format d'images.}
+\subsection{Visualisation de la qualité de segmentation}
+Nous avons mis en place un outil permettant de visualiser la qualité des modèles entraînés. En superposant les prédictions données par le modèle et la vérité sur les images ayant permis d'obtenir ce dernier, nous pouvons visualiser la qualité de la segmentation qu'a le modèle que nous venons de créer. La \figref{mac:viz_model} nous montre, pour une image venant de l'échantillon d'entraînement et une venant de l'échantillon de test, la superposition des prédictions du meilleur modèle, celui écrit en rouge dans la \tabref{mac:dataset}, et de la vérité annotée.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/viz_model.PNG}
+    \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).}
+    \vspace{-1em}{\setstretch{0.2}
+        \caption*{\scriptsize Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.}}
+    \label{mac:viz_model}
+\end{figure}
+
+Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire, on peut observer des petites taches considérées comme macrophages. Il est possible que le modèle, entraîné pour détecter des niveaux de gris sur les images, détecte du bruit de fond ou des artefacts créés par le microscope.
+
+C'est pour cela que la préparation des images au préalable est une étape primordiale à ne pas négliger. Préparées par l'équipe sur le logiciel ImageJ, les images ont été soigneusement traitées pour faire en sorte de ne pas avoir d'artefacts dans le fond de l'image, et ainsi le fond a une moyenne de gris proche de 0.
+
+
+
+\subsection{Performance/Résultat Comparaison des modèles selon le format d'images}
 
 Pour des questions de performances et de temps de calculs, nous avons choisi de créer 4 jeux de données issus des mêmes images mais avec des tailles différentes. Dans le premier, \textit{modèle initial}, l'image n'a pas été modifiée, c'est-à-dire de la taille de l'image originale. Dans le second, le modèle \textit{small}, nous avons divisé la taille de l'image par 4, réduisant ainsi le nombre de pixels à traiter par image. Pour le troisième, nous avons retiré, dans les images, les zones noires dans lesquelles il n'y a pas d'objets à segmenter car ces zones ne font pas partie du poisson (il s'agit seulement du champ d'observation du microscope). Nous avons nommé celui-ci le modèle \textit{cropped}. Dans le dernier cas, nous avons combiné les modifications d'images du deuxième et du troisième jeu de données, donnant ainsi le modèle \textit{small+cropped}. C'est avec celui-ci que nous avons obtenu les meilleurs résultats dans des temps record donc nous conservons ce dernier pour générer des modèles. La \tabref{mac:dataset} nous donne une idée des gains entre les différents jeux de données.
 
@@ -551,56 +683,26 @@ Le meilleur modèle obtenu a un score d'mIoU de 0.712 sur l'échantillon d'entra
 
 Nous avons donc réussi à obtenir un modèle qui est meilleur que celui de l'année dernière sur l'échantillon de test. Cela peut s'expliquer par la diversité des données que nous avons sélectionnées pour constituer notre jeu de données. En effet, nous avons choisi des images provenant de différents poissons, à différents temps post-amputation. Nous avons même choisi des images provenant de poissons contrôle dont la nageoire caudale n'a pas été coupée. Nous avons donc un modèle plus généraliste et nous avons évité le sur-ajustement.
 
-\section{Visualisation de la qualité des modèles}
-Nous avons mis en place un outil permettant de visualiser la qualité des modèles entraînés. En superposant les prédictions données par le modèle et la vérité sur les images ayant permis d'obtenir ce dernier, nous pouvons visualiser la qualité de la segmentation qu'a le modèle que nous venons de créer. La \figref{mac:viz_model} nous montre, pour une image venant de l'échantillon d'entraînement et une venant de l'échantillon de test, la superposition des prédictions du meilleur modèle, celui écrit en rouge dans la \tabref{mac:dataset}, et de la vérité annotée.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{imgs/viz_model.PNG}
-    \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).}
-    \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.}}
-    \label{mac:viz_model}
-\end{figure}
-
-Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire, on peut observer des petites taches considérées comme macrophages. Il est possible que le modèle, entraîné pour détecter des niveaux de gris sur les images, détecte du bruit de fond ou des artefacts créés par le microscope.
-
-C'est pour cela que la préparation des images au préalable est une étape primordiale à ne pas négliger. Préparées par l'équipe sur le logiciel ImageJ, les images ont été soigneusement traitées pour faire en sorte de ne pas avoir d'artefacts dans le fond de l'image, et ainsi le fond a une moyenne de gris proche de 0.
-
-\section{Segmentation automatique d'images avec MacTrack2}\label{segimage}
-
-Notre librairie, MacTrack2 est capable, à partir des modèles entraînés, de segmenter des images. En effet, la fonction \texttt{locate} permet de la faire. À partir d'une image, on effectue la prédiction du modèle sur celle-ci pour obtenir une première segmentation. Nous appliquons un filtre de taille sur les objets détectés afin de laisser de coté les objets trop petits qui ne sont pas des macrophages. Souvent, il s'agit d'artefacts que l'on obtient lors de la prise d'image et ne sont pas visibles à l'œil nu sur l'image d'origine. Nous séparons aussi chacun des objets détourés pour les représenter dans des images différentes. Nous pouvons ainsi observer exclusivement la segmentation de chacun des macrophages. La \figref{mac:locate} nous montre les différentes sorties de la fonction \texttt{locate}. À gauche, nous retrouvons l'image d'origine, au milieu la segmentation obtenue après application du filtre de taille et à droite la segmentation binaire d'un des macrophages détourés.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=.3\linewidth]{imgs/001_image.png}
-    \hspace{0.2cm}
-    \includegraphics[width=.3\linewidth]{imgs/heatmap_test_1.png}
-    \hspace{0.2cm}
-    \includegraphics[width=.3\linewidth]{imgs/object_1.png}
-    \caption{Illustrations des différentes sorties de la fonction \texttt{locate}}
-    \vspace{-1em}
-    {
-        \setstretch{0.2}
-        \caption*{\scriptsize Nous retrouvons à gauche l'image d'origine, au milieu la segmentation complète après application du filtre de taille des objets détectés et à droite la segmentation objet par objet. Ces images proviennent de l'observation de la nageoire caudale d'un poisson à 3h post-amputation. Il s'agit de la deuxième image du film.}
-    }
-    \label{mac:locate}
-\end{figure}
-
-\
-
-Nous avons ainsi obtenu la segmentation de chaque macrophage dans l'image. Cependant, les données que nous avons sont des films, c'est-à-dire des séquences d'images. Il est donc nécessaires d'étendre cette segmentation au domaine temporel. Les dimensions des images sont maintenant $2D+t$. Nous pourrons ensuite appliquer un suivi temporel à la segmentation sémantique obtenue pour chaque image de la vidéo.
-
-\red{figure avec trois images a des frames différentes pour des fusions separations\dots}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Suivi temporel des macrophages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1. Intro: descriotion de la tache. 
+%2   Manuelle :Solution deja implementée dans MAcktrack (alleger et mettre le surplu dans l'appendix). Decrire ta contribution au post-processing
+% 2. Deep Learning: Presente SAM2, le principe des modèle de fondation.
+% 3. Finetuning et Resultat. (comparer Manuelle et DL ?)
+
+
+
 
 Les données que nous traitons sont des vidéos qui sont un empilement d'images. Ces vidéos sont des observations microscopiques d'une quarantaine de minutes, où une image est prise toutes les 9 secondes, résultant en une vidéo de 266 images.
 
 Nous allons commencé par étendre la segmentation sémantique obtenue par la librairie MacTrack2 à l'ensemble des images de la vidéo. Nous allons ensuite appliquer un suivi temporel sur chacun d'eux afin de traquer chacun des macrophages de la vidéo. Nous obtiendrons ensuite un tracking des macrophages, c'est-à-dire un suivi de chacun des macrophages de la vidéo, nous rapprochant ainsi de la segmentation d'instances.
 
 D'un autre côté, nous allons utiliser un modèle de fondation afin de traiter la vidéo directement et non pas image par image. Ce modèle étant généraliste, il nous sera nécessaire de l'adapter à notre problème en modifiant ses paramètres à travers un \textit{fine-tuning}.
+
+
 
 \section{Tracking à partir de la segmentation d'images}
 
@@ -940,15 +1042,23 @@ dropbox ou lien similaire
 
 \cleardoublepage
 \chapter{Matériel et Méthodes}\label{matmeth}
-tests tests\cite{kartezio,sam,sam2,adamw}
 \section*{Acquisition des images}
-microscope \dots norma merci
+partie contexte biologique
 \section*{Format des vidéos}
 reconstitution sur imagej... par norma
 images toutes les 9sec donc sur 40 min de prise de vidéo on a que 266 images
+\section*{Entraînement des modèles Kartezio}
+Les modèles Kartezio ont été entraîné sur le serveur de calcul Oban de l'Université de Montpellier, avec des processeurs possédant 32 cœurs et et 64 Go de RAM.
+
 \section*{Fine-tuning de SAM-2}
 L'optimiseur AdamW a été utilisé avec comme hyper-paramètres un taux d'apprentissage (\textit{learning rate}) de 0.0001, une dégradation de pondération (\textit{weight decay}) de 0.0001.
 L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un GPU Nvidia A10 Tensor Core avec 24 Go de mémoire.
+
+\newpage
+
+\printbibliography
+\addcontentsline{toc}{chapter}{Bibliographie}
+
 \newpage
 
 \cleardoublepage
@@ -958,8 +1068,8 @@ L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{imgs/cut_tail_both.jpg}
-    \caption{Superposition de deux canaux de couleurs.}
+    \includegraphics[width=.8\linewidth]{imgs/cut_tail_both.jpg}
+    \caption{Superposition de deux canaux de couleurs, macrophages en rouge et calcium en vert.}
     \label{ann:canaux}
 \end{figure}
 \section{Liste des fonctions de traitement d'images disponibles dans Kartezio}\label{ann:1}
@@ -1029,7 +1139,5 @@ L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un
 \captionof{table}{Fonctions et descriptions}\label{ann:func}
 
 
-\newpage
 
-\printbibliography
 \end{document}
