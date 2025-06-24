@@ -179,35 +179,42 @@ blabla
 \listoftables
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Introduction}\label{chp:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Cadre du stage}
 \addcontentsline{toc}{section}{Cadre du stage}
 
+% Encadrant et lieu.
 L'ensemble des travaux de ce stage a été réalisé au sein du LPHI (\textit{Laboratory of Pathogen Host Immunity}), un laboratoire mixte du CNRS (Centre National de la Recherche Scientifique) et de l'Université de Montpellier, situé sur le campus Triolet. Ce stage a été réalisé sous la supervision de Mai Nguyen-Chi, chercheuse CNRS au LPHI, et Benjamin Charlier, chercheur à l'INRAE (Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement) à Toulouse et anciennement enseignant-chercheur à l'Université de Montpellier.
 
 \
-
+% Dércrire le labo: les équipes, taille, materiel d'acquisition, 
 Les différentes équipes du LPHI ont pour but d'apporter de nouvelles connaissances sur les interactions entre les pathogènes et l'hôte, en particulier lors d'infections parasitaires, bactériennes et virales.
 
 \
-
+% décrire ton environement proche:
 L'équipe que j'ai intégrée, dirigée par Mai Nguyen-Chi et Laure Yatime, se concentre sur les mécanismes d'inflammations physiologique (blessure) et pathologique (infection), en particulier sur les macrophages, des cellules immunitaires jouant un rôle clé dans la réponse immunitaire.
 
 \
-
+% Un autre stage de M2 relié: decrire en une phrase la complementatrité du stage de Norma !!
 J'ai travaillé en collaboration étroite avec une étudiante en M2 Biologie Santé - Infection Biology, Norma Veltz, qui a aussi réalisé son stage de M2 au sein du LPHI sur la même période que le mien. Elle a réalisé les expériences biologiques nécessaires à l'obtention d'images de microscopie dont l'étude fait l'objet de ce rapport.
 
+% Contexte biologique
 \section{Description du problème}%version longue de l'abstract
 \blue{objectifs directement ? j'ai l'impression de répéter les objectifs}
 
+% Reponse immunitaire et differents types de macrophage
 Les macrophages sont des cellules immunitaires polyvalentes. Ils jouent un rôle essentiel dans la réponse immunitaire en phagocytant (éliminant) les agents pathogènes et en régulant l'inflammation. Dotés d'une plasticité fonctionnelle, ils peuvent changer d'état en passant d'un état pro-inflammatoire (M1) essentiel pour la défense de l'hôte à un état anti-inflammatoire (M2) servant à la réparation tissulaire. Nous appelons ce processus de changement d'état fonctionnel la polarisation.
 
+% La reponse Calciqu eest un candidat pour comprende la reponse immunitaire
 Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de flux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
 
 \
-
+% Données : microcopie confocale. Suivie longitudinale apres une inflamation.
 
 description générale des macro et polarisation, on ne connait pas les schéma de flux entre les états
 
@@ -223,6 +230,8 @@ ce à quoi ça va servir
 
 lien vers les objectifs
 
+
+% Objectif du stage
 \section{Objectifs}
 \addcontentsline{toc}{section}{Objectifs}
 
@@ -238,18 +247,18 @@ lien vers les objectifs
 %
 %\
 
+% Developpement de methodes originales pour faire le tracking de macrophage pour mesurer la réponse calcique.
 Les macrophages sont des cellules immunitaires jouant un rôle critique dans de nombreuses maladies. Ils peuvent changer d'état suite à une blessure par un processus appelé la polarisation. Les signaux de calcium sont des candidats prometteurs pour réguler ce processus, bien que leur lien avec les différents états fonctionnels reste à clarifier. Mieux comprendre la dynamique des signaux calciques pourrait aider à identifier ces états. Nous cherchons donc à développer un outil permettant d'identifier (segmenter), et suivre automatiquement chaque macrophage individuel dans des images et vidéos de microscopie et mesurer l'activité calcique dans ces cellules afin d'établir la signature de ce signal dans les différents macrophages.
 
 \
-
+% 1ere étape: Tout d'abors, faire la segmentation d'une image. Dire 2 mots sur la méthode. et ensuite sur le logiciel qui l'instancie.
 Nous commencerons par segmenter automatiquement des macrophages dans des images issues de vidéos réalisées par microscopie. Nous étendrons ensuite cette segmentation au domaine temporel, en réalisant un tracking des macrophages dans ces vidéos. Nous quantifierons ensuite les intensités du signal calcium dans chacun des macrophages segmentés afin d'en déduire leur signature à travers une analyse statistique.
 
 \
-
 La méthode développée, sous la forme d'une librairie Python disponible à tous nommée MacTrack2, aura pour but d'être intuitive car destinée à être utilisée par des biologistes. Elle contiendra des exemples exécutables en un clic et avec une documentation détaillée sur un site internet.
 
 \
-
+% 2eme etape : un film est un enchaineement d'images. Chaque image étant segmentée, il faut suivre les objets: fine tuning de Sam2
 Une piste d'amélioration de la segmentation sera aussi étudiée en spécialisant un modèle de fondation, SAM-2, sur nos données de macrophages. Nous espérons ainsi améliorer le tracking des macrophages en segmentant directement la vidéo entière, plutôt que séquentiellement.
 
 %Les objectifs de ce stage sont multiples. Tout d'abord, nous cherchons à développer un outil de segmentation et de tracking des macrophages à partir de vidéos de microscopie obtenues par l'équipe, en effectuant une segmentation image par image dans un premier temps. Cependant, les macrophages étant des cellules mobiles et qui ont tendance à se rapprocher les une des autres, à fusionner ou à se séparer, nous devons prendre ces paramètres en compte premièrement dans la segmentation mais aussi dans le tracking, c'est-à-dire dans le suivi temporel de la segmentation image par image. Puis, nous voulons, à partir de cette segmentation, étudier les flux calciques dans les macrophages au cours du temps. Avec cette analyse, nous cherchons à répondre à la question biologique posée, à savoir s'il existe une relation entre les flux calciques, et plus particulièrement les flashs calciques en mesurant les intensités de calcium dans chaque macrophage segmenté, et la polarisation des macrophages au cours du temps. De plus, nous souhaitons rendre cette étude accessible et compréhensible par les biologistes du laboratoire, à l'aide d'une documentation et de scripts intuitifs couplés à un jeu de données exemple ce qui les rend exécutables en un clic, afin qu'ils puissent continuer à analyser leurs vidéos de manière autonome à la suite de cette période. C'est pour ces raisons que nous utilisons des méthodes de segmentation automatique. L'outil développé, sous la forme de librairie Python, pourra aussi être utilisé en tant qu'aide à la segmentation de vidéos de microscopie en général, et pas seulement pour les macrophages, mais pour tout type d'imagerie biomédicale. La librairie développée, nommée MacTrack2, permet à la fois d'analyser des vidéos de microscopie de macrophages à partir de modèles que nous fournissons, mais l'utilisateur a aussi la possibilité de créer les siens, étendant le domaine d'application de cette librairie.\\
@@ -258,10 +267,15 @@ Une piste d'amélioration de la segmentation sera aussi étudiée en spécialisa
 
 \section{Plan du rapport}
 
+% dire que l'on suit la description des objectifs.
 description du plan du rapport
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Contexte biologique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Macrophages, cellules immunitaires}
 polarisation, M1, M2, pro-inflammatoire, anti-inflammatoire \dots
