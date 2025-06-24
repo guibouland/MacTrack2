@@ -178,12 +178,11 @@ blabla
 \newpage
 \listoftables
 
-
+\setcounter{chapter}{-1}
 
 \cleardoublepage
 \chapter{Introduction}\label{chp:intro}
 \section{Cadre du stage}
-\addcontentsline{toc}{section}{Cadre du stage}
 
 L'ensemble des travaux de ce stage a été réalisé au sein du LPHI (\textit{Laboratory of Pathogen Host Immunity}), un laboratoire mixte du CNRS (Centre National de la Recherche Scientifique) et de l'Université de Montpellier, situé sur le campus Triolet. Ce stage a été réalisé sous la supervision de Mai Nguyen-Chi, chercheuse CNRS au LPHI, et Benjamin Charlier, chercheur à l'INRAE (Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement) à Toulouse et anciennement enseignant-chercheur à l'Université de Montpellier.
 
@@ -204,27 +203,22 @@ J'ai travaillé en collaboration étroite avec une étudiante en M2 Biologie San
 
 Les macrophages sont des cellules immunitaires polyvalentes. Ils jouent un rôle essentiel dans la réponse immunitaire en phagocytant (éliminant) les agents pathogènes et en régulant l'inflammation. Dotés d'une plasticité fonctionnelle, ils peuvent changer d'état en passant d'un état pro-inflammatoire (M1) essentiel pour la défense de l'hôte à un état anti-inflammatoire (M2) servant à la réparation tissulaire. Nous appelons ce processus de changement d'état fonctionnel la polarisation.
 
-Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de flux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
+Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de signaux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
 
 \
 
+À l'aide d'un modèle animal connu, le zebrafish, nous cherchons donc à définir des métriques pertinentes pour l'étude des signaux calciques dans les macrophages. Nous observons au microscope confocal des poissons transgéniques, ce qui nous permet de visualiser les macrophages et la présence de calcium dans ces cellules.
 
-description générale des macro et polarisation, on ne connait pas les schéma de flux entre les états
+Nous développerons donc un outil, \textit{MacTrack2}~\cite{mactrack2}, de segmentation et de suivi (tracking) des macrophages dans les images et vidéos de microscopie mises à disposition par l'équipe. À l'aide de cet outil, nous pourrons ensuite quantifier les intensités de calcium présentes dans les macrophages afin d'établir la signature de ce signal, en comparant différentes conditions expérimentales. Un e analyse statistique sera ensuite produite à partir des données extraites.
 
-zebrafish, créer des métriques pertinentes pour l'étue des signaux calciques
+Une piste d'amélioration de la segmentation sera aussi explorée à l'aide d'un outil récemment développé, un modèle de fondation nommé SAM-2~\cite{sam2}. Ce modèle, à travers la mémoire temporelle qu'il contient, pourrait nous aider dans le suivi parfois compliqué des macrophages, qui sont des cellules mobiles qui ont tendance à se rapprocher les unes des autres.
 
-ce qu'on produit: librairie de segmentation et tracking automatique des macro pour en extraire les données calciques
+\
 
-exploration d'une piste plus générale à travers modèle de fondation SAM-2
+Ces travaux ont pour vocation de mieux comprendre la dynamique des signaux calciques dans les macrophages et leur rôle dans la polarisation de ces derniers.
 
-production d'une analyse statistique sur les données de calcium
-
-ce à quoi ça va servir
-
-lien vers les objectifs
 
 \section{Objectifs}
-\addcontentsline{toc}{section}{Objectifs}
 
 %Les macrophages sont des cellules immunitaires jouant un rôle critique dans de nombreuses maladies. Ils peuvent changer d'état en réponse à une blessure, passant d'un état pro-inflammatoire M1 pour la défense de l'hôte à un état anti-inflammatoire M2 pour la réparation tissulaire. On appelle ce processus la polarisation. Les signaux de calcium dans les macrophages sont un candidat prometteur qui pourrait permettre d'expliquer leur activation. Nous observons donc au microscope confocal ces macrophages et les signaux de calcium à différents temps après blessure chez le zebrafish, un modèle animal choisi pour ces propriétés avantageuses. Nous cherchons donc à savoir s'il existe une relation entre ces flashs calciques, qui sont des élévations intracellulaires de calcium, et la polarisation des macrophages.
 %
@@ -258,19 +252,19 @@ Une piste d'amélioration de la segmentation sera aussi étudiée en spécialisa
 
 \section{Plan du rapport}
 
-description du plan du rapport
+Ce rapport est organisé en plusieurs chapitres. Le premier portera sur le contexte biologique de ce stage ain de bien comprendre les enjeux de la polarisation de macrophages, l'importance des signaux calciques et l'obtention des images de microscopie. Le second chapitre présentera la méthode choisie permettant de segmenter automatiquement des objets dans des images. Nous verrons ensuite comment nous avons étendu cette segmentation au domaine temporel, en réalisant un suivi des macrophages au travers de vidéos. Le quatrième chapitre se concentre sur une piste d'amélioration de ce suivi en utilisant un modèle de fondation, que nous spécifierons à nos données. Le dernier chapitre présentera une analyse statistique des données obtenues en quantifiant l'intensité de calcium dans les macrophages suivis. Enfin, nous finirons par évoquer une conclusion et une discussion sur les perspectives de ce travail, suivi par les matériels et méthodes utilisés, les annexes et les références utilisées.
 
 \cleardoublepage
 \chapter{Contexte biologique}
 
-\section{Macrophages, cellules immunitaires}
+\section{Macrophages, cellules immunitaires dynamiques}
 polarisation, M1, M2, pro-inflammatoire, anti-inflammatoire \dots
 
-\section{Signal calcique}
+\section{Signal calcique, candidat prometteur}
 
 \section{Zebrafish, modèle animal idoine}
 
-\section{Microscopie confocale et lignée transgénique}
+\section{Microscopie confocale}
 
 
 De plus, pour pouvoir segmenter autant d'images, il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction de la condition que l'on cherche à observer, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables. Cela demande un coût humain et financier énorme.
@@ -926,15 +920,23 @@ dropbox ou lien similaire
 
 \cleardoublepage
 \chapter{Matériel et Méthodes}\label{matmeth}
-tests tests\cite{kartezio,sam,sam2,adamw}
 \section*{Acquisition des images}
-microscope \dots norma merci
+partie contexte biologique
 \section*{Format des vidéos}
 reconstitution sur imagej... par norma
 images toutes les 9sec donc sur 40 min de prise de vidéo on a que 266 images
+\section*{Entraînement des modèles Kartezio}
+Les modèles Kartezio ont été entraîné sur le serveur de calcul Oban de l'Université de Montpellier, avec des processeurs possédant 32 cœurs et et 64 Go de RAM.
+
 \section*{Fine-tuning de SAM-2}
 L'optimiseur AdamW a été utilisé avec comme hyper-paramètres un taux d'apprentissage (\textit{learning rate}) de 0.0001, une dégradation de pondération (\textit{weight decay}) de 0.0001.
 L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un GPU Nvidia A10 Tensor Core avec 24 Go de mémoire.
+
+\newpage
+
+\printbibliography
+\addcontentsline{toc}{chapter}{Bibliographie}
+
 \newpage
 
 \cleardoublepage
@@ -944,8 +946,8 @@ L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{imgs/cut_tail_both.jpg}
-    \caption{Superposition de deux canaux de couleurs.}
+    \includegraphics[width=.8\linewidth]{imgs/cut_tail_both.jpg}
+    \caption{Superposition de deux canaux de couleurs, macrophages en rouge et calcium en vert.}
     \label{ann:canaux}
 \end{figure}
 \section{Liste des fonctions de traitement d'images disponibles dans Kartezio}\label{ann:1}
@@ -1015,7 +1017,5 @@ L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un
 \captionof{table}{Fonctions et descriptions}\label{ann:func}
 
 
-\newpage
 
-\printbibliography
 \end{document}
