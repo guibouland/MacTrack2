@@ -14,3 +14,5 @@ report/*.aux
 report/*.fdb_latexmk
 report/*.run.xml
 report/*.synctex.gz
+report/*.data.minted
+report/_minted-*
