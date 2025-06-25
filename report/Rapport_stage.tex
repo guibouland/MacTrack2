@@ -24,6 +24,7 @@
 
 \usepackage{xcolor} 
 \usepackage{minted2} 
+\usemintedstyle{friendly}
 
 \usepackage{letltxmacro}
 \LetLtxMacro{\oldnameref}{\nameref}
@@ -621,7 +622,7 @@ Les images que nous avons choisies, provenant de films générés dans différen
 % Préparation du jeu de données pour Kartezio
 Nous avons ensuite organisé le jeu de données dans un répertoire ayant une structure spécifique pour que Kartezio puisse le lire correctement. La structure du répertoire est la suivante :
 
-\begin{minted}[fontsize=\small,frame=lines,bgcolor=blue!4]{text}
+\begin{minted}[fontsize=\small,frame=lines]{text}
 dataset/
 │── train/
 │   │── train_x/
@@ -676,7 +677,7 @@ Ainsi, le jeu de données est finalisé et prêt à l'emploi pour l'apprentissag
 % donner des snippet de code 
 
 Une fois le jeu de données d'entraînement sauvegardé dans le répertoire~\mintinline[breaklines]{python}{DATASET = "examples/input_model/dataset"}. L'entrainment se lance avec une commande simple.
-\begin{minted}[bgcolor=blue!4,fontsize=\small,mathescape,tabsize=4, escapeinside=||, breaklines]{python}
+\begin{minted}[fontsize=\small,mathescape,tabsize=4, escapeinside=||, breaklines]{python}
 from kartezio.dataset import read_dataset
 from kartezio.training import train_model
 
@@ -686,7 +687,7 @@ elite, a = train_model(model, dataset, OUTPUT, callback_frequency=frequency)    
 
 Nous avons choisi les hyperparamètres servant à l'entraînement du modèle de la manière suivante.
 
-\begin{minted}[bgcolor=blue!4,fontsize=\small,mathescape,tabsize=4, escapeinside=||, breaklines]{python}
+\begin{minted}[fontsize=\small,mathescape,tabsize=4, escapeinside=||, breaklines]{python}
 from kartezio.apps.segmentation import create_segmentation_model
 from kartezio.endpoint import EndpointThreshold
 
@@ -1001,7 +1002,7 @@ Dans le premier cas, si un macrophage est perdu pendant quelques images, puis r�
 % desc second cas
 Le second cas apparaît souvent dans le cas où un macrophage est segmenté en tant que deux macrophages distincts pendant quelques images. Ainsi, avec la fonction \texttt{merge}, nous allons fusionner les deux segmentations. Pour les images où il y a deux segmentations différentes, nous allons garder celle qui apparaît en premier dans les paramètres de la fonction, en supprimant l'autre définitivement.
 
-\begin{minted}[bgcolor=blue!4,breaklines,fontsize=\footnotesize]{python}
+\begin{minted}[breaklines,fontsize=\footnotesize]{python}
 merge(macro_list=[4,31])
 \end{minted}
 
@@ -1026,7 +1027,7 @@ Comme nous l'avons vu plutôt, la microscopie se fait en prenant des images à d
 
 Nous avons donc implémenté la fonction \texttt{merge\_and\_keep} qui permet, comme avec la fonction \texttt{merge}, de fusionner les segmentations de macrophages tout en gardant la segmentation du macrophage traversé, qui serait perdue sinon. En dédoublant la segmentation du macrophage traversé dans le dossier du macrophage traversant, nous obtenons donc une segmentation partagée entre les deux macrophages. La \figref{mac:merge_keep_zoom} nous montre un exemple de ce phénomène.
 
-\begin{minted}[bgcolor=blue!4,breaklines,fontsize=\footnotesize]{python}
+\begin{minted}[breaklines,fontsize=\footnotesize]{python}
 merge_and_keep(macro_list=[21,23,38], keep=[23])
 \end{minted}
 
@@ -1042,31 +1043,41 @@ merge_and_keep(macro_list=[21,23,38], keep=[23])
     \label{mac:merge_keep_zoom}
 \end{figure}
 
-\red{
-    graphiques a faire et changer les exemples dans le texte pour coller avec les graphes
-}
+\
 
+Nous avons ainsi mis en place un suivi image par image des macrophages dans les vidéos. Cette approche présente l'avantage d'être rapide, performante et facilement modifiable ou reproductible. Bien que la prise en main puisse paraître complexe au premier abord, en raison notamment de la structure des données, des scripts automatisés sont fournis pour accompagner l'utilisateur et simplifier l'utilisation.
 
+Nous avons donc réussi à concevoir un outil accessible de segmentation et de suivi des macrophages, soutenu par une documentation claire (voir~\nameref{code}), qui constitue une première étape robuste dans l'analyse des images. Cependant, comme pour la segmentation, une solution manuelle ne généralise pas bien.
 
+Dans la suite, nous chercherons à aller plus loin en traitant directement les vidéos dans leur globalité, plutôt qu'image par image. Pour cela, nous exploiterons un modèle de fondation intégrant une mémoire temporelle, que nous adapterons à nos données par un \textit{fine-tuning}.
 
+\section{Étude et reparamétrisation d'un modèle de fondation}
+
+Passer d'images indépendantes à des vidéos implique de nouveaux défis, notamment liés à la continuité temporelle et à la cohérence du suivi. Les macrophages étant des cellules immunitaires très mobiles, les solutions précédemment mises en œuvre, comme le seuillage de l'IoU entre images consécutives, montrent leurs limites. Cela se traduit notamment par des erreurs de correspondance ou des ruptures de suivi, qui nécessitent une étape de post-traitement conséquente pour être corrigées.
+
+Il apparaît donc pertinent de considérer les vidéos dans leur globalité, en intégrant explicitement l'information temporelle. Pour ce faire, nous proposons d'explorer un modèle de fondation~\cite{foundationmodel}, SAM-2~\cite{sam2} (\textit{Segment Anything Model 2}), qui étend les capacités de segmentation au domaine des vidéos grâce à une mémoire temporelle intégrée.
+
+\subsection{SAM-2: Modèle de fondation pour la segmentation d'images et de vidéos}
+% pres SAM2
+SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
+
+% Données d'entrainement, société tierce
+Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
+
+\red{donner un exemple de masque et image issue d'un vidéo}
+
+% second jeu de données, moins clair sur la provenance
+Le second est nommé \og \textit{internal dataset}\fg\ pour jeu de données de vidéos disponibles sous licence en interne et Meta AI est moins clair sur l'obtention de ces données. Il comprend 62 900 vidéos pour 69 600 annotations. Il a permis d'étendre le jeu de données d'entraînement.
 
 \
 
-\red{après l'analyse petite conclusion : on a fait une segmentation framewise de vidéos mais ça reste super rapide et avec des bonnes performances, facilement modifiabl et traitable par tout le monde ... pas évident (prise en main (temps, exigence de la structure), accessibilité (docu)) et efficace pour une première étape\\
-    on peut maintenant se poser la question de e qui suit, cad segmenter des vidéos en ayant une mémoire temporelle }
-
-
-\cleardoublepage
-\chapter{Étude et reparamétrisation d'un modèle de fondation}
-\red{nouvelle partie}
-De plus, nous avons une difficulté en plus car jusqu'à présent, nous avons seulement traité de segmentation d'images et non de vidéos. Or, les macrophages étant des cellules immunitaires très mobiles, ils pourraient se regrouper ou se séparer à tout moment de la vidéo. Donc la qualité de la segmentation est primordiale pour pouvoir au mieux retranscrire les comportements réels des macrophages.
-
-\section{Introduction}
-SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}). Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel. Le second est nommé \og \textit{internal dataset}\fg\ pour jeu de données de vidéos disponibles sous licence en interne et Meta AI est moins clair sur l'obtention de ces données. Il comprend 62 900 vidéos pour 69 600 annotations. Il a permis d'étendre le jeu de données d'entraînement. Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondation (\textit{foundation model})~\cite{foundationmodel}, c'est-à-dire un modèle pré-entraîné sur une grande quantité de données, capable de généraliser à de nombreuses tâches différentes. Il est conçu pour être utilisé comme une base pour des tâches de segmentation en gardant de bonnes performances pour l'ensemble des applications de segmentation d'images et de vidéos.
+% modèle de fondation
+Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondation (\textit{foundation model})~\cite{foundationmodel}, c'est-à-dire un modèle pré-entraîné sur une grande quantité de données, capable de généraliser à de nombreuses tâches différentes. Il est conçu pour être utilisé comme une base pour des tâches de segmentation en gardant de bonnes performances pour l'ensemble des applications de segmentation d'images et de vidéos.
 
 \
 
-SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers~\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné. Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
+% architecture: transformers, prompt encoder, mask decoder
+SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers~\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné.
 
 \begin{figure}[!ht]
     \centering
@@ -1075,20 +1086,33 @@ SAM-2 est capable de segmenter des objets dans des vidéos de manière précise 
     \label{sam2:archi}
 \end{figure}
 
+% streaming memory: attention, bank
+Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
+
 \
 
+%génération auto de masques
 Un des problèmes que nous rencontrons avec SAM-2 est que l'utilisateur doit, à la main, sélectionner des objets d'intérêt dans une ou plusieurs images et si durant la vidéo un nouvel objet apparaît, il ne sera pas détecter tant que l'utilisateur ne l'a pas indiqué. Ainsi, nous allons utiliser la génération automatique de masques mise à disposition pour détecter les macrophages de manière automatique sur des images.
 
+% ce qui nous pousse à le fine tuner
 De plus, SAM-2 est un modèle de fondation, conçu pour être utilisé dans différents cas. Cependant, si on veut obtenir de bonnes performances dans un domaine spécifique comme le nôtre, il est nécessaire de faire un \textit{fine-tuning}, c'est-à-dire un ré-entraînement des poids du modèle sur un jeu de donnée spécifique de notre domaine. Nous allons ainsi fine-tuner SAM-2 pour qu'il puisse mieux détecter les macrophages dans nos vidéos de microscopie.
 
-\section{Fine-tuning de SAM-2}
-\subsection{Définition}
-Le \textit{fine-tuning} (ou \textit{affinage} en français) est une technique d'apprentissage supervisé qui consiste à modifier les poids d'un modèle pré-entraîné sur une tache spécifique. Elle est souvent utilisé pour adapter un modèle généraliste à une tache particulière. Ici, SAM-2 a été entraîné sur des photos qui n'ont rien à voir avec la problématique biologique que nous rencontrons. Par conséquent, afin d'obtenir une bonne segmentation des macrophages, il est nécessaire de modifier les poids du modèle pour obtenir une version spécialisée dans la détection de macrophages. Cela nous évite de devoir entraîner notre propre modèle en partant de rien, ce qui nous demanderait beaucoup trop de données que nous n'avons pas. Mais le nombre de données nécessaires pour obtenir un bon affinage n'est pas négligeable.
+\subsection{Fine-tuning de SAM-2}
+\subsubsection{Définition}
+% DEF GLOBALE
+Le \textit{fine-tuning} (ou \textit{affinage} en français) est une technique d'apprentissage supervisé qui consiste à modifier les poids d'un modèle pré-entraîné sur une tache spécifique. Elle est souvent utilisé pour adapter un modèle généraliste à une tache particulière.
 
+%LIEN AVEC SAM2 ET UTILITE DANS NOTRE CAS
+Ici, SAM-2 a été entraîné sur des photos qui n'ont rien à voir avec la problématique biologique que nous rencontrons. Par conséquent, afin d'obtenir une bonne segmentation des macrophages, il est nécessaire de modifier les poids du modèle pour obtenir une version spécialisée dans la détection de macrophages. Cela nous évite de devoir entraîner notre propre modèle en partant de rien, ce qui nous demanderait beaucoup trop de données que nous n'avons pas. Mais le nombre de données nécessaires pour obtenir un bon affinage n'est pas négligeable.
+
+\
+
+%ce qui est fine-tuné
 Le fine-tuning de SAM-2 agit seulement sur les poids du \textit{prompt encoder} et du \textit{mask encoder}, c'est-à-dire les parties du modèle qui prennent en entrée les points, masques, boites, et qui génèrent les masques de segmentation. Nous spécifions donc la prise en charge des entrées données par l'utilisateur, mais pas la partie qui encode l'image ni la partie qui mémorise les images précédente une fois le fine-tuning fini et que l'on cherche à segmenter une vidéo entière.
 
-\subsection{Jeu de données}
-Les annotations sont sous la forme d'images où chaque macrophage est détouré à la main sur le logiciel \textit{ImageJ} (et plus particulièrement \textit{Fiji}~\cite{fiji}). Les détourages sont ensuite séparés par label, afin de s'assurer qu'un macrophage ne soit pas confondu avec un autre (\figref{sam2:labels}).
+\subsubsection{Jeu de données}
+%  comment, quel forme les masques
+Les annotations sont sous la forme d'images où chaque macrophage est détouré à la main sur le logiciel \textit{ImageJ} (et plus particulièrement \textit{Fiji}~\cite{fiji}). Les détourages sont ensuite séparés par label, afin de s'assurer qu'un macrophage ne soit pas confondu avec un autre. Puis, contrairement à la méthode présenté précédemment, les annotations sont sous la forme d'images, et non de fichiers ROI (\figref{sam2:labels}).
 
 \begin{figure}[!ht]
     \centering
@@ -1101,34 +1125,53 @@ Les annotations sont sous la forme d'images où chaque macrophage est détouré 
 
 \
 
-Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages. Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
+% fine tuning demande moins de données que l'entrainement d'un modèle complet, mais quand meme un nombre conséquent ---> on utilise la segmentation de mactrack
+Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages.
 
-\subsection{hyperparamètres}\label{sec:hyperparameters}
-Les hyperparamètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyperparamètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier~\cite{sam2} page 19.
+Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
+
+\subsubsection{hyperparamètres}\label{sec:hyperparameters}
+% hyperparamètres, def glob
+Les hyperparamètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyperparamètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier~\cite{sam2}, à la page 19. Les sous-modules affectés par le fine-tuning sont le \textit{mask decoder} et le \textit{prompt encoder}.
 
 \
 
-Pour le fine-tuning, les sous-modules affectés sont le \textit{mask decoder} et le \textit{prompt encoder}. Nous utilisons l'optimiseur AdamW~\cite{adamw} avec un taux d'apprentissage (\textit{learning rate}) de 0.0001 et une dégradation des poids (\textit{weight decay}) de 0.00001, utile pour la régularisation L2. Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler} permet d'ajuster le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=500$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 500 pas.
+%  optimiseur
+Nous utilisons l'optimiseur AdamW~\cite{adamw} avec un taux d'apprentissage (\textit{learning rate}) de 0.0001 et une dégradation des poids (\textit{weight decay}) de 0.00001, utile pour la régularisation L2.
 
-Contrairement à ce que l'on peut retrouver habituellement dans l'entraînement de modèles, la taille du batch est égale à une seule image. En effet, à chaque pas \dots
+%listing des param
+Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler} permet d'ajuster le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=250$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 250 pas.
 
-\subsection{Fonctions de perte}
-Pour entraîner un modèle, il est nécessaire de définir une fonction de perte $\mathcal{L}$ à minimiser. Elle est utilisée pour quantifier la qualité des prédictions du modèle par rapport à la \og vérité\fg (ground truth). Dans le cas du fine-tuning de SAM-2, nous utilisons une combinaison de deux fonctions de perte : la \textit{binary cross-entropy loss} qui sert de perte pour la segmentation et la \textit{score loss} qui est utilisée en complément pour évaluer la qualité des prédictions des masques à partir de la métrique IoU (\textit{Intersection over Union}). L'IoU est une métrique grandement utilisée dans les problèmes de segmentation d'images. Elle est définie dans la partie~\ref{evalperf} et peut être illustrée par la \figref{mac:iou}.
+%taille du batch
+Contrairement à ce que l'on peut retrouver habituellement dans l'entraînement de modèles, la taille du batch est égale à une seule image. En effet, à chaque pas d'entraînement, nous ne prenons qu'une seule image et la taille du batch correspond au nombre d'objets dans l'image. Ainsi, si l'image comprend 13 macrophages, la taille du batch sera 13. Cela permet de ne pas surcharger les mémoires GPU.
+
+\subsubsection{Fonctions de perte}
+% définition de la fonction de perte
+Pour entraîner un modèle, il est nécessaire de définir une fonction de perte $\mathcal{L}$ à minimiser. Elle est utilisée pour quantifier la qualité des prédictions du modèle par rapport à la \og vérité\fg (ground truth).
+
+% pour sam2 : combi de deux pertes
+Dans le cas du fine-tuning de SAM-2, nous utilisons une combinaison de deux fonctions de perte : la \textit{binary cross-entropy loss} qui sert de perte pour la segmentation et la \textit{score loss} qui est utilisée en complément pour évaluer la qualité des prédictions des masques à partir de la métrique IoU (\textit{Intersection over Union}).
+
+% iou
+L'IoU est une métrique grandement utilisée dans les problèmes de segmentation d'images. Elle est définie dans la partie~\ref{evalperf} et peut être illustrée par la \figref{mac:iou}.
 
 En moyennant sur tous les objets d'une image, on obtient la mIoU (IoU moyenne), comme obtenue par~(\ref{eq:iou}) dans la partie~\ref{evalperf}.
 
 \
 
+%score loss
 Ainsi, nous pouvons définir la \textit{score loss} comme suit :
 $$\mathcal{L}_{\text{score}} = \frac{1}{K}\displaystyle\sum_{k=1}^{K}\lvert s_k - \text{IoU}(M_k, G_k)\rvert$$
 \noindent avec $K$ le nombre total de masques (donc de macrophages ou d'objets) dans l'image et $s_k$ le score prédit pour l'objet $k$ à partir de $M_k$.
 
+%interprétations
 Nous comparons donc le score prédit par le modèle pour chaque masque à la véritable qualité de chacun d'eux (l'IoU). Puisque'on cherche à minimiser cette perte, on aimerait que pour tout $k$, $s_k\simeq \text{IoU}(M_k,G_k)$ pour que la perte soit proche de 0.
 
 Si $K=0$, alors cela signifie qu'il n'y a pas de masques dans l'image, donc pas de macrophages. Un tel cas peut être rencontré, mais nous avons décidé de ne pas l'inclure dans le fine-tuning, car il n'apporte pas d'information utile concernant la segmentation des macrophages.
 
 \
 
+% bce loss
 D'un autre côté, la \textit{binary cross-entropy loss} $\mathcal{L}_{BCE}$ est une fonction de perte généralement utilisée dans des problèmes de classification binaire, et notamment dans les problèmes de segmentation d'images. Elle est utilisée pour quantifier la différence entre les prédictions du modèle et les véritables annotations (masques de vérité). Elle est définie comme suit :
 
 $$\mathcal{L}_{BCE} = -\frac{1}{K\times H\times W}\displaystyle\sum_{k=1}^{K}\sum_{i=1}^{H}\sum_{j=1}^{W}y_{k,i,j}\log\hat{y}_{k,i,j} + (1-y_{k,i,j})\log(1-\hat{y}_{k,i,j})$$
@@ -1161,19 +1204,22 @@ avec :
 
 \
 
-Interprétations fonction de perte \dots
-ressemble a kullbackleibler mais différences \dots
+\red{Interprétations fonction de perte \dots}
 
 \
 
+% Fonction de perte finale
 Finalement, la fonction de perte totale est une combinaison de ces deux dernières :
 $$\mathcal{L} = \mathcal{L}_{BCE} + \lambda\mathcal{L}_{\text{score}}$$
 \noindent avec $\lambda$ un hyperparamètre qui permet de pondérer l'importance de la \textit{score loss} par rapport à la \textit{binary cross-entropy loss}. Dans notre cas, nous avons fixé $\lambda$ à $0.05$.
 
-\subsection{Optimisation}
-Une fois la perte calculée, elle est divisée par le nombre de pas d'accumulation des gradients, soit 4 dans notre cas, comme défini dans la partie~\ref{sec:hyperparameters} introduisant les hyperparamètres. Cela nous permet d'éviter de multiplier le gradient total par ce facteur. C'est utilisé lorsque l'on accumule des gradients sur plusieurs images (ici 4 fois une image) pour que la somme finale corresponde en réalité à une moyenne sur ce batch étendu. Ainsi, nous simulons un batch de taille 4 alors qu'en réalité nous n'avons qu'une seule image par step.
+\subsubsection{Optimisation}
 
-Ensuite, les gradients sont calculés en utilisant la méthode \textit{backward} du package PyTorch~\cite{pytorch}, à partir de la perte totale $\mathcal{L}$ divisée par cet \textit{accumulation step}. Puis, tous ces 4 steps, nous mettons à jour l'optimiseur AdamW. Le nombre de pas avant la mise à jour du \textit{learning rate} est de 500. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 500 pas. Ensuite, les gradients sont remis à zéro pour le prochain pas d'accumulation.
+% accumulation de gradient, taille effective du batch, moyenne des gradients
+Une fois la perte $\mathcal{L}$ calculée, elle est divisée par le nombre de pas d'accumulation des gradients, fixé à 4 dans notre cas, comme mentionné dans la section~\ref{sec:hyperparameters}. Cette division permet de simuler un batch de taille 4 images, bien que l'on traite effectivement une seule image à chaque étape. En accumulant les gradients sur plusieurs étapes (ici 4), puis en les sommant (puisque les gradients sont déjà divisés par le nombre de pas d'accumulation, nous obtenons la moyenne des gradients), on obtient un comportement équivalent à celui d'un entraînement avec un batch plus grand, tout en respectant les contraintes mémoires des GPU.
+
+% backward, mise a jour du modèle
+Les gradients sont ensuite calculés via la méthode \texttt{backward} de PyTorch~\cite{pytorch}. Tous les 4 pas d'accumulation, l'optimiseur AdamW est mis à jour. Par ailleurs, le taux d'apprentissage (\textit{learning rate}) est ajusté tous les 250 pas, avec une réduction de 90~\% à chaque mise à jour. Enfin, les gradients sont remis à zéro avant de commencer le cycle suivant d'accumulation.
 
 Pour finir, nous calculons l'IoU moyenne au pas $\ell$ comme étant :
 
@@ -1183,12 +1229,12 @@ $$\text{mIoU}_\ell = \begin{cases}
     \end{cases}
 $$
 
-\subsection{Résultats et comparaisons}
+\subsubsection{Résultats et comparaisons}
 graphes miou et loss
 comp avant apres fine tune, performances et visuel
 
 
-\section{Propagation dans une vidéo}
+\subsection{Propagation dans une vidéo}
 
 
 \cleardoublepage
