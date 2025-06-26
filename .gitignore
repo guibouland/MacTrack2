@@ -16,3 +16,4 @@ report/*.run.xml
 report/*.synctex.gz
 report/*.data.minted
 report/_minted-*
+report/_minted
