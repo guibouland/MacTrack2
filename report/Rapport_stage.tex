@@ -145,14 +145,14 @@
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        \textit{Tuteur académique : }\\[0.2cm]
+        Tuteur académique \\[0.2cm]
         \textbf{Nicolas Meyer}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        \textit{Tuteurs professionnels : }\\[0.2cm]
+        Tuteurs professionnels \\[0.2cm]
         \textbf{Mai Nguyen-Chi}\\[0.2cm]
         \textbf{Benjamin Charlier}
     \end{minipage}
@@ -160,7 +160,7 @@
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        \textit{Jury : }\\[0.2cm]
+        Jury : \\[0.2cm]
         \textbf{Ali Gannoun}\\[0.2cm]
         \textbf{Élodie Brunel}\\[0.2cm]
         \textbf{Nicolas Meyer}
@@ -175,7 +175,7 @@
     \includegraphics[width=0.25\textwidth]{logo/logo-lphi-1024x614.png}
     \vspace{1cm}
 
-    {\large \textbf{2023 -- 2024}}
+    {\large \textbf{2024 -- 2025}}
 \end{titlepage}
 
 
@@ -300,28 +300,136 @@ Enfin, nous finirons par évoquer une conclusion et une discussion sur les persp
 \chapter{Contexte biologique}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Macrophages, cellules immunitaires dynamiques}
+\section{Macrophages, des cellules immunitaires dynamiques}
 
+\subsection{La réponse immunitaire : un processus complexe}
 % Réponse immunitaire est un processus complexe. En décrire les très grandes lignes
-, \dots
+La \textbf{réponse immunitaire}~\cite{sysimmun} est l'ensemble des mécanismes par lesquels l'organisme détecte et élimine les agents pathogènes (bactéries, virus, champignons, parasites) tout en maintenant l'intégrité des tissus. Elles se déroule en plusieurs étapes coordonnées, qui impliquent différents types de cellules et de molécules.
 
-% Les Macrophages en sont un élément important. Il y en a different types. (mettre une figure ?)
-M1, M2, pro-inflammatoire, anti-inflammatoire
+\
 
-% Les macrophages changent de role au cours du temps. polarisation -> necessité d'observe la réponse immunitaire dans le temps
-polarisation,
+%immunité innée et adaptative
+Si ces défenses sont franchies, l'\textbf{immunité innée} intervient rapidement pour contenir l'invasion. C'est à ce stade que les \textbf{macrophages}~\cite{macro} jouent un rôle essentiel : ils font parties des toutes premières cellules à répondre à une infection. Si l'agent pathogène persiste, l'\textbf{immunité adaptative} prend le relais avec les lymphocytes T et B, qui offre une réponse plus spécifique. Les T tuent les cellules infectées et coordonnent la réponse, tandis que les B produisent des anticorps spécifiques pour neutraliser le pathogène. Une fois l'infection éliminée, le système immunitaire garde en mémoire le pathogène grâce à des cellules mémoire, permettant une réponse plus rapide et efficace en cas de nouvelle exposition. C'est ce principe qui est utilisé dans la vaccination.
 
-\section{Signal calcique, candidat prometteur}
 
-% Pourquoi c'est pertinent ?
-mehari, chen \dots\\
-% comment on le mesure
+\subsection{Macrophages, acteurs clés du système immunitaire}
+% macrophages : def globale
+Les macrophages~\cite{macro} sont des cellules immunitaires de l'immunité innée, dérivées des monocytes (globules blancs)~\cite{monocyte} présents dans le sang. Une fois dans les tissus, ces monocytes se différencient en macrophages. Présents dans presque tous les organes, ils assurent une surveillance constante de l'organisme.
 
-\section{Zebrafish, modèle animal idoine}
+% macros résidents
+Beaucoup de macrophages, que l'on nomme parfois \textit{macrophages résidents}, sont d'origine fœtale, c'est-à-dire que les monocytes se sont différenciés en macrophages dans des zones spécifiques chez le fœtus. En fonction de l'organe dans lequel ils se trouvent, ils portent des noms différents : microglies (cerveau), macrophages alvéolaires (poumons), cellules de Kupffer (foie), cellules de Langerhans (peau) \dots
 
-% animale modèle: transparent, reproduction rapide, etc...
+\subsection{Fonctions des macrophages}
+% fonctions principale et rôle 
+La fonction principale des macrophages est la \textbf{phagocytose}, c'est-à-dire l'ingestion et la destruction des agents pathogènes, des cellules mortes ou des débris. Mais leur rôle va bien au-delà : ils déclenchent et modulent l'inflammation, présentent des antigènes aux lymphocytes T pour activer l'immunité adaptative, et participent à la réparation tissulaire après l'infection.
 
+% le reste des fonctions connues
+En effet, leurs fonctions sont multiples et variées. Ils peuvent sécréter des cytokines, des molécules de signalisation servant à recruter et activer d'autres cellules immunitaires. Ils peuvent présenter des antigènes pour activer les lymphocytes T, comme dit précédemment. Ils jouent un rôle dans la régulation de l'inflammation en produisant des médiateurs pro- et anti-inflammatoires. Enfin, ils participent à la réparation des tissus en produisant des facteurs de croissance par exemple.
+
+\subsection{Profils fonctionnels et polarisation des macrophages}
+\subsubsection{Les différents profils fonctionnels des macrophages}
+
+% Il y en a different types. (mettre une figure ?)
+En fonction ede l'environnement das lequel ils se trouvent, les macrophages peuvent adopter différents \textbf{profils fonctionnels} que l'on classe en deux grandes catégories : les macrophages \textbf{M1} et les macrophages \textbf{M2}. Les macrophages M2 sont en réalité un ensemble de sous-types, mais nous ne les détaillerons pas ici.
+
+\
+
+Les macrophages M1 ou \og classiquement activés\fg, sont induits par des signaux pro-inflammatoires et produisent des cytokines pro-inflammatoires et du monoxyde d'azote. Ils sont spécialiser dans la destruction des pathogènes.
+
+Les macrophages M2, ou \og alternativement activés\fg, sont inuits par des cytokines et produisent des cytokines anti-inflammatoires. Ils favorisent la réparation tissulaire, la résolution de l'inflammation et parfois la tolérance immunitaire.
+
+Cette notation M1/M2 est utile pour comprendre et classer les fonctions que peuvent avoir les macrophages, mais il est important de noter qu'en réalité, les macrophages forment un continuum de phénotypes intermédiaires plus complexes.
+
+\subsubsection{Changement de profils : la polarisation des macrophages}
+
+% Les macrophages changent de role au cours du temps. polarisation -> nécessité d'observe la réponse immunitaire dans le temps
+La \textbf{polarisation} désigne le processus par lequel un macrophage adopte un programme fonctionnel donné en réponse aux signaux des son environnement (pathogènes, cytokines, etc\dots), comme le montre la \figref{ctx:poli_macros}.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/poli_macros.jpg}
+    \caption{}
+    \label{ctx:poli_macros}
+\end{figure}
+
+
+C'est un processus \textbf{réversible et dynamique}, un macrophage peut changer de profil fonctionnel à tout moment en fonction des besoins de l'organisme. Par exemple, lors d'une blessure, un macrophage M0 se polarise en M1 pour éliminer les agents pathogènes et les débris. Une fois l'inflammation contrôlée, il peut adopter un profil M2 pour favoriser la régénération tissulaire.
+
+\
+
+Ainsi, les macrophages assurent un équilibre entre destruction, régulation et réparation, ce qui en fait des acteurs clés de la réponse immunitaire, aussi bien dans la phase initiale de l'infection que dans la résolution de l'inflammation et la réparation tissulaire.
+
+
+
+\section{Signal calcique, candidat prometteur pour l'explication de ce phénomène}
+
+\subsection{Le calcium, une molécule clé à utilité multiple}
+
+% lien avec calcium article qui dit que c'est un déterminant essentiel, augment chez les M1
+Dans des études récentes, il a été montré que les signaux de calcium (Ca$^{2+}$), déjà connus comme élément clé de l'immunité innée, seraient exprimés dans les macrophages M1~\cite{atcha}. Cela a été confirmé plus tard dans des études sur la souris~\cite{mehari, sipka}, suggérant que les signaux de calcium joueraient un rôle significatif dans leur polarisation.
+
+\
+
+% les différente simplications du calcium
+Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez les macrophages, il est essentiel pour la production de cytokines pro- et anti-inflammatoires, la migration cellulaire, la communication cellulaire~\cite{taghdiri} ou encore dans le processus de phagocytose\cite{nunes, watanabe, yan}. Les macrophages possèdent une grande variétés de canaux calciques situés au niveau de la membrane cellulaire. Nous n'en parlerons pas ici, mais certains sont représentés dans la \figref{ctx:flash}.
+
+\subsection{Le flash calcique, un signal rapide et transitoire}
+
+%second messager
+Le calcium (Ca$^{2+}$) sert en tant que \textbf{second messager} dans de nombreuses voies de signalisation cellulaire. Dans les macrophages, lorsqu'une blessure est infligée, des signaux primaires sont émis, ouvrant les pompes de calcium dans la membrane cellulaire des macrophages.
+
+%flash
+Cela entraîne un influx important de calcium dans le cytoplasme, où la quantité de calcium (intracellulaire) présent augmente rapidement, entraînant un transient de calcium, que l'on nomme \textbf{flash calcique}, dont l'intensité est caractéristique d'une fonction cellulaire précise. La durée de ce flash peut varier mais est généralement considéré comme rapide (environ \red{combien de s} en moyenne).
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/flash.png}
+    \caption{image de norma}
+    \label{ctx:flash}
+\end{figure}
+
+\subsection{Comment mesurer les signaux calciques ?}
+%interet de mesurer
+Il est donc important de pouvoir quantifier la quantité de calcium rentrant dans le cytoplasme des macrophages à la suite d'une blessure. Cela permettrait de mieux comprendre la réponse immunitaire et plus précisément la polarisation des macrophages.
+
+%comment : biosenseurs GCAMPs GECI
+Pour ce faire, nous utilisons des indicateurs de calcium génétiquement encodés (ou \textbf{GECI} pour \textit{Genetically Encoded Calcium Indicators}), introduits dans~\cite{nakai}, et plus particulièrement les biosenseurs \textbf{GCAMPs} (G pour la protéine fluorescente verte GFP, Ca pour la protéine calmoduline, M pour la protéine M13 et P pour le peptide d'une kinase).
+
+\
+
+%lien modèle animal
+Une fois introduit dans un modèle animal, le GCaMP est exprimé dans les cellules cibles. Il est ensuite possible de mesurer la fluorescence de ce capteur de calcium à l'aide de la microscopie à fluorescence. Plus le calcium intracellulaire augmente, et plus la protéine fluorescente émet une fluorescence élevée~\cite{speirs, chen}.
+
+Puis, nous pouvons analyser le signal calcique numériquement dans les images de microscopie, en mesurant l'amplitude des flashs que nous venons de définir~\cite{catheory}. En le faisant à travers le temps, suite à une blessure, nous pouvons ainsi suivre la réponse calcique des macrophages et en déduire leur état fonctionnel.
+
+Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, c'est-à-dire la courbe de l'intensité de calcium dans le temps, nous permettant de déduire les moments où le macrophage change d'état fonctionnel.
+
+%faire le lien avec la microscopie et donc le besoin d'un modèle pour l'observer: le zebra
+
+\section{Le zebrafish, modèle animal idoine}
+
+% lien avec avant
+Comme mentionné précédemment, l'étude de la réponse calcique des macrophages \textit{in vivo} nécessite un modèle animal adapté. Le \textbf{zebrafish} (\textit{Danio rerio}) est aujourd'hui largement reconnu, aux côtés de la souris, comme un modèle pertinent pour l'étude de la réponse immunitaire, en raison des nombreux avantages qu'il présente.
+
+\subsection{Un modèle animal pertinent pour l'étude de la réponse immunitaire}
+% animale modèle:  etc...
+Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$cm de long, possède environ 80\% des gênes présents dans les maladies humaines, ce qui en fait un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
+
+%transparent, reproduction rapide,
+Son principal atout réside dans la transparence de ses larves, qui permet l'observation directe des organes internes tout en manipulant l'animal vivant~\cite{sipka}. De plus, il se reproduit rapidement (50 à 200 embryons pa ponte) et sa petite taille facilite son élevage à faible coût.
+
+Chez le zebrafish, les macrophages présentent de nombreuses similarités fonctionnelles avec ceux des mammifères : ils sont capables de phagocyter des pathogènes, de migrer dans les tissus, et présentent des profils de polarisation ainsi qu'une expression génique comparables.
+
+Enfin, ce modèle est facilement manipulable génétiquement, ce qui a permis le développement de lignées transgéniques exprimant des protéines fluorescentes pour marquer spécifiquement les macrophages et/ou le calcium intracellulaire~\cite{speirs}.
+
+
+\subsection{La double lignée transgénique}
 % Création de lignées pour permettre l'observation de la réponse calcique.
+\textit{Tg(mfap4:mCherry/mfap4:GCaMP6f)}
 
 lignée transgénique
 
@@ -368,9 +476,11 @@ Les images dont nous disposons pour analyser la réponse immunitaire dans le zeb
 
 Nous \og colorons\fg\ artificiellement les images afin de différencier les macrophages des signaux calciques. Le choix des couleurs est fait en accord avec les longueurs d'onde des protéines fluorescentes utilisées pour le marquage. Ainsi, nous avons un canal rouge pour la présence des macrophages et un canal vert pour la présence de calcium dans le cytoplasme de ces cellules (\figref{mac:rv}). Nous parlerons ci-après de \og canal rouge\fg\ et de \og canal vert\fg. Il est important de noter que chaque image est une vue en deux dimensions de l'échantillon, parfaitement nette en tout point et en format 8 bits.
 
+\
+
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\linewidth]{imgs/rouge_vert.png}
+    \includegraphics[width=\linewidth]{imgs/rouge_vert.png}
     \caption{Images en 2-dimension de la nageoire blessée d'une larve de zebrafish réalisée par microscopie confocale.}
     \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'image rouge montre les macrophages (fluorescence de la \textit{mCherry}) et l'image verte montre le signal calcique (fluorescence de la protéine fluorescente \textit{GCamP6f}). Voir la~\figref{ann:canaux} pour la superposition des deux canaux.}}
     \label{mac:rv}
@@ -408,7 +518,7 @@ Cependant, la segmentation d'instances fait appel à beaucoup de paramètres et 
 
 \
 
-Parmi les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio} \cite{kartezio}, une méthode développée en 2023 basée sur le \textit{Cartesian Genetic Programming} (CGP) \cite{cgp}. Elle permet de segmenter des objets dans des images de microscopie et présente de nombreux avantages.
+Parmi les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio}~\cite{kartezio}, une méthode développée en 2023 basée sur le \textit{Cartesian Genetic Programming} (CGP)~\cite{cgp}. Elle permet de segmenter des objets dans des images de microscopie et présente de nombreux avantages.
 
 
 
@@ -502,12 +612,14 @@ En effet, nous utilisons principalement Kartezio~\cite{kartezio}, une librairie 
 
 \subsection{Programmation génétique cartésienne}
 
-Le CGP \cite{cgp}, initialement créé pour optimiser des circuits électroniques \cite{circuit}, est une approche de programmation génétique \cite{gp} (\textit{Genetic Programming} (GP)) qui utilise des graphes pour coder des programmes informatiques (\figref{mac:cgp}). La GP est un algorithme évolutif, c'est-à-dire qu'il s'inspire des éléments de la biologie évolutive (génotype, génome, phénotype, sélection, recombinaison ou \textit{crossover}, reproduction, mutation, \dots) pour résoudre des problèmes d'optimisation discrète complexes. Le terme \og cartésien\fg\ du CGP vient du fait que les modèles générés sont représentés grâce à une grille de nœuds, où chaque nœud représente une fonction ou une opération. Chaque nœud est connecté à d'autres nœuds, formant ainsi un graphe orienté acyclique (\figref{mac:dagitty}). Le CGP est particulièrement adapté pour les problèmes de classification et de régression, mais il peut également être utilisé pour la segmentation d'images.
+Le CGP \cite{cgp}, initialement créé pour optimiser des circuits électroniques~\cite{circuit}, est une approche de programmation génétique \cite{gp} (\textit{Genetic Programming} (GP)) qui utilise des graphes pour coder des programmes informatiques. La GP (\figref{mac:cgp}) est un algorithme évolutif, c'est-à-dire qu'il s'inspire des éléments de la biologie évolutive (génotype, génome, phénotype, sélection, recombinaison ou \textit{crossover}, reproduction, mutation, \dots) pour résoudre des problèmes d'optimisation discrète complexes. Le terme \og cartésien\fg\ du CGP vient du fait que les modèles générés sont représentés grâce à une grille de nœuds, où chaque nœud représente une fonction ou une opération. Chaque nœud est connecté à d'autres nœuds, formant ainsi un graphe orienté acyclique (\figref{mac:dagitty}). Le CGP est particulièrement adapté pour les problèmes de classification et de régression, mais il peut également être utilisé pour la segmentation d'images.
+
+\
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[height=10cm]{imgs/cgp.png}
-    \caption{}
+    \includegraphics[height=10cm]{imgs/algo_gen.png}
+    \caption{Schéma représentant le fonctionnement d'un algorithme génétique (issue de~\cite{ag}).}
     \label{mac:cgp}
 \end{figure}
 
@@ -1026,7 +1138,7 @@ Il apparaît donc pertinent de considérer les vidéos dans leur globalité, en 
 
 \subsection{SAM-2: Modèle de fondation pour la segmentation d'images et de vidéos}
 % pres SAM2
-SAM-2 (\textit{Segment Anything Model 2}) est un modèle de segmentation d'images et de vidéos développé par Meta AI \red{sorti récemment, en 2024}. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
+SAM-2 (\textit{Segment Anything Model 2})~\cite{sam2} est un modèle de segmentation d'images et de vidéos développé par Meta AI publié récemment, en 2024. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
 
 % Données d'entrainement, société tierce
 Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
@@ -1097,7 +1209,7 @@ Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'e
 
 Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
 
-\subsubsection{hyperparamètres}\label{sec:hyperparameters}
+\subsubsection{Hyperparamètres}\label{sec:hyperparameters}
 % hyperparamètres, def glob
 Les hyperparamètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyperparamètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier~\cite{sam2}, à la page 19. Les sous-modules affectés par le fine-tuning sont le \textit{mask decoder} et le \textit{prompt encoder}.
 
