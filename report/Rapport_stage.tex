@@ -408,6 +408,14 @@ Puis, nous pouvons analyser le signal calcique numériquement dans les images de
 
 Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, c'est-à-dire la courbe de l'intensité de calcium dans le temps, nous permettant de déduire les moments où le macrophage change d'état fonctionnel.
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/flash_cal.png}
+    \caption{Représentation d'un flash calcique observé par microscopie.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente un flash calcique observé par microscopie, avec l'intensité de calcium en fonction du temps. Le pic représente le flash calcique, et la courbe décroît ensuite rapidement. Pour plus d'informations sur l'obtention de ces images, voir la Section~\ref{acquisition}}}
+    \label{ctx:flash_cal}
+\end{figure}
+
 %faire le lien avec la microscopie et donc le besoin d'un modèle pour l'observer: le zebra
 
 \section{Le zebrafish, modèle animal idoine}
@@ -420,32 +428,108 @@ Comme mentionné précédemment, l'étude de la réponse calcique des macrophage
 Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$cm de long, possède environ 80\% des gênes présents dans les maladies humaines, ce qui en fait un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
 
 %transparent, reproduction rapide,
-Son principal atout réside dans la transparence de ses larves, qui permet l'observation directe des organes internes tout en manipulant l'animal vivant~\cite{sipka}. De plus, il se reproduit rapidement (50 à 200 embryons pa ponte) et sa petite taille facilite son élevage à faible coût.
+Son principal atout réside dans la transparence de ses larves, qui permet l'observation directe des organes internes tout en manipulant l'animal vivant~\cite{sipka}. De plus, il se reproduit rapidement (50 à 200 embryons par ponte) et sa petite taille facilite son élevage à faible coût.
 
-Chez le zebrafish, les macrophages présentent de nombreuses similarités fonctionnelles avec ceux des mammifères : ils sont capables de phagocyter des pathogènes, de migrer dans les tissus, et présentent des profils de polarisation ainsi qu'une expression génique comparables.
+Chez le zebrafish, les macrophages présentent de nombreuses similarités fonctionnelles avec ceux des mammifères : ils sont capables de phagocyter des pathogènes, de migrer dans les tissus, et présentent des profils de polarisation (voir \figref{ctx:exp_pola}) ainsi qu'une expression génique comparables.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.7\linewidth]{imgs/exp_pola.png}
+    \caption{Schéma explicatif du rôle des macrophages et de la polarisation dans la réponse immunitaire du zebrafish, de la blessure à la régénération.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente les différents temps d'observation post-amputation, avec les profils fonctionnels des macrophages, permettant de visualiser les effets de la polarisation. Les macrophages en bleu sont les macrophages M1, et ceux en rouge sont les macrophages M2. Cette figure a été réalisée par l'équipe (Norma Veltz)}}
+    \label{ctx:exp_pola}
+\end{figure}
 
 Enfin, ce modèle est facilement manipulable génétiquement, ce qui a permis le développement de lignées transgéniques exprimant des protéines fluorescentes pour marquer spécifiquement les macrophages et/ou le calcium intracellulaire~\cite{speirs}.
 
 
-\subsection{La double lignée transgénique}
+\subsection{La lignée transgénique double}
 % Création de lignées pour permettre l'observation de la réponse calcique.
-\textit{Tg(mfap4:mCherry/mfap4:GCaMP6f)}
 
-lignée transgénique
+Une lignée transgénique est une lignée de poissons génétiquement modifiés pour contenir un ou plusieurs gènes étrangers (transgène) insérés dans leur génome. Ces gènes peuvent provenir d'autres espèces ou être des versions modifiées de gênes du zebrafish lui-même.
+
+Souvent, et c'est le cas pour nous aussi, les lignées transgéniques sont créées pour observer un phénomène, en modifiant les gênes exprimées dans la zone recherchée pour qu'ils expriment une protéine fluorescente.
+
+\
+
+Dans notre cas, nous avons une lignée transgénique double, c'est-à-dire que l'on observe deux phénomène simultanément. La lignée est nommée :
+
+\begin{center}
+    \large \textbf{\textit{Tg(mfap4:mCherry/mfap4:GCaMP6f)}}
+\end{center}
+
+À laide d'un promoteur spécifique (\textbf{\textit{mfap4}}) --- un gène exprimé spécifiquement dans les macrophages du zebrafish --- nous pouvons cibler l'expression de transgènes uniquement dans ces cellules. Nous avons ainsi inséré deux gènes codant pour des protéines fluorescentes : \textbf{\textit{mCherry}}, une protéine fluorescente rouge utilisée comme marqueur pour visualiser les macrophages, et \textbf{\textit{GCaMP6f}}, une sonde calcique génétiquement codée (un biosenseur) qui devient fluorescente en présence de calcium intracellulaire. Cela permet de mesurer en temps réel l'activité calcique des macrophages.
 
 
-\section{Microscopie confocale}\label{micro}
+\section{Microscopie confocale pour observer des phénomènes}\label{micro}
 %décrire l'appareil (avec photo), expérience coupage de queues
-% décrire l'appareil (photo du microscope!).
-obtention des images, microscopie
+\subsection{La microscopie confocale à \textit{spinning disk}}
+La microscopie confocale à \textit{spinning disk} (disque tournant) (\figref{ctx:spinning}) est une technique d'imagerie optique qui permet d'observer des échantillons biologiques en haute résolution, avec une meilleure section optique et moins de phototoxicité (toxicité sur les cellules due à la lumière) que le microscope à champ large.
 
-% le principe de fonctionnement (2 canaux avec acquisition successives)
-Il faut au préalable réaliser toutes les manipulations telles que la reproduction de poissons, le triage des œufs, la sélection des larves, la coupe de la nageoire caudale en fonction de la condition que l'on cherche à observer
+Contrairement à la microscopie confocale classique (à balayage laser), qui scanne un point à la fois, le système \textit{spinning disk} utilise un disque percé de centaines de micro-trous tournant rapidement. Ces orifices agissent comme des filtres qui bloquent la lumière hors foyer, ce qui améliore le contraste et permet de reconstruire des images nettes de coupes optiques.
+
+\
+
+%principe de fonctionnement
+Un laser illumine l'échantillon à travers le disque, et seules les zones focalisées à travers les trous du disque sont détectés, ce qui élimine la lumière parasite provenant des zones hors foyer. Comme plusieurs points sont illuminés et détectés en parallèle, cette méthode permet une acquisition très rapide d'images confocales, idéale pour l'observation en temps réel de cellules vivantes.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.7\linewidth]{imgs/spinning_petit.jpg}
+    \caption{changer la photo}
+    \label{ctx:spinning}
+\end{figure}
 
 
-% le processus  d'acquisition
-, l'observation et l'enregistrement microscopique pendant 40 minutes (durée des films que nous avons) à 3, 6, 24, 48 et 72 heures post-amputation, pour chacun des poissons sélectionnées et pour finir le traitement des films sorties de microscopie pour qu'ils soient exécutables.  Cela demande un coût humain et financier énorme.
+\subsection{Acquisition des images}\label{acquisition}
+%préparation de l'experience
+\subsubsection{Préparation à l'acquisition : mise en place de l'expérience}
+Une fois notre lignée transgénique établie et la reproduction des poissons réalisée, les œufs fécondés sont récupérés. À 3 jours post-fertilisation (3 dpf), les larves exprimant correctement les transgènes sont sélectionnées à l'aide d'un microscope à fluorescence.
 
+Deux conditions expérimentales sont mises en place :
+\begin{itemize}
+    \item un groupe témoin sans intervention,
+    \item un groupe blessé, où une amputation de la nageoire caudale est réalisée à l'aide d'un scalpel (voir \figref{ctx:exp}), créant une inflammation stérile.
+\end{itemize}
+
+\red{figure blessure poisson}
+
+Les larves sont ensuite prêtes pour l'acquisition des images.
+
+\subsubsection{Acquisition des images}
+L'imagerie est réalisée à l'aide d'un microscope confocal à \textit{spinning disk} (voir \figref{ctx:spinning}). L'expression des transgènes dans les larves est détectée par excitation au laser à des longueurs d'onde spécifiques:
+\begin{itemize}
+    \item la protéine fluorescente \textbf{\textit{mCherry}} est excitée et émet une fluorescence rouge,
+    \item la sonde calcique \textbf{\textit{GCaMP6f}} devient fluorescente en vert lorsqu'elle détecte du calcium intracellulaire.
+\end{itemize}
+
+L'acquisition se fait en deux canaux : rouge (mCherry) et vert (GCaMP6f), comme nous pouvons le voir dans la \figref{ctx:exp_obs}. Les images sont capturées en niveau de gris, puis colorées numériquement pour distinguer visuellement les deux signaux. L'acquisition se fait en mode \textit{z-stack}, c'est-à-dire par une série d'images à différentes profondeurs, permettant de reconstruire un volume 3D de l'échantillon.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/exp_obs2.png}
+    \caption{Observation des macrophages et de calcium intracellulaire dans une larve transgénique blessée.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré dans la figure fait écho à la \figref{ctx:flach_cal}, montrant un flash calcique dans un macrophage. La larve (à gauche est blessée) et nous observons (à droite) les macrophages (en rouge) et le calcium intracellulaire (en vert).}}
+    \label{ctx:exp_obs}
+\end{figure}
+
+Chaque observation dure 40 minutes, avec une acquisition environ toutes les 9 secondes. À chaque intervalle, un stack complet est acquis. La caméra étant unique, les deux canaux sont acquis en alternance (rouge, vert, rouge, etc\dots).
+
+Les acquisitions sont réalisées à 3, 6, 24, 48 et 72 heures post-amputation (hpa), à la fois dans les groupes blessés et contrôles (voir \figref{mac:macros}). Ce protocole permet de suivre l'évolution spatio-temporelle de l'activité calcique des macrophages au cours d ela réponse à la blessure.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/hpa.png}
+    \caption{Macrophages observés à différents temps post-amputation pour un même poisson.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages sont observés, de gauche à droite, à 3, 6, 24, 48 et 72 heures post-amputation (hpa). Il s'agit d'un poisson dont la nageoire caudale a été coupée (ne faisait pas partie du groupe contrôle).}}
+    \label{mac:macros}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
@@ -724,15 +808,8 @@ Les annotations sont données sous la forme de fichiers ROI (Region Of Interest)
 % Provenance des images
 Les images que nous avons choisies, provenant de films générés dans différentes conditions (nageoire coupée ou contrôle) et à des temps différents, sont représentatives de la diversité des images de macrophages que l'on peut obtenir. En effet, comme nous l'avons évoqué plus tôt, les macrophages peuvent être plus ou moins proches les uns des autres. De plus, ils ont des formes extrêmement variables en fonction de leur état de polarisation (\figref{mac:macros}). Par exemple, un macrophage dit M1 (pro-inflammatoire) aura tendance à être plutôt rond et compact, on peut l'observer à 3hpa (heures post-amputation), tandis qu'un macrophage M2 (anti-inflammatoire) aura tendance à être plus \og filamenteux\fg\ et allongé, on peut l'observer à 24hpa.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{imgs/hpa.png}
-    \caption{Macrophages observés à différents temps post-amputation pour un même poisson.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages sont observés, de gauche à droite, à 3, 6, 24, 48 et 72 heures post-amputation (hpa). Il s'agit d'un poisson dont la nageoire caudale a été coupée (ne faisait pas partie du groupe contrôle).}}
-    \label{mac:macros}
-\end{figure}
 
-\red{mettre la figure dans le contexte biologique et y faire référence ici aussi}
+
 
 \subsubsection{Préparatifs pour l'entraînement}
 
