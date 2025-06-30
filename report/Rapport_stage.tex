@@ -145,14 +145,14 @@
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        Tuteur académique \\[0.2cm]
+        Tuteur académique :\\[0.2cm]
         \textbf{Nicolas Meyer}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        Tuteurs professionnels \\[0.2cm]
+        Tuteurs professionnels :\\[0.2cm]
         \textbf{Mai Nguyen-Chi}\\[0.2cm]
         \textbf{Benjamin Charlier}
     \end{minipage}
@@ -201,6 +201,8 @@
 \cleardoublepage
 \markboth{}{Remerciements}
 \section*{Remerciements}
+
+
 blabla
 \newpage
 % Table of Contents
@@ -222,7 +224,7 @@ blabla
 \customsectionstar{Cadre du stage}
 
 % Encadrant et lieu.
-L'ensemble des travaux de ce stage a été réalisé au sein du LPHI (\textit{Laboratory of Pathogen Host Immunity}), un laboratoire mixte du CNRS (Centre National de la Recherche Scientifique) et de l'Université de Montpellier, situé sur le campus Triolet. Ce stage a été réalisé sous la supervision de Mai Nguyen-Chi, chercheuse CNRS au LPHI, et Benjamin Charlier, chercheur à l'INRAE (Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement) à Toulouse.
+L'ensemble des travaux de ce stage a été réalisé au sein du LPHI (\textit{Laboratory of Pathogen Host Immunity}), un laboratoire mixte du CNRS (Centre National de la Recherche Scientifique), de l'INSERM (Institut National de la Santé Et de la Recherche Médicale) et de l'Université de Montpellier, situé sur le campus Triolet de l'Université de Montpellier. Ce stage a été réalisé sous la supervision de Mai Nguyen-Chi, chercheuse CNRS au LPHI, et Benjamin Charlier, chercheur à l'INRAE (Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement) à Toulouse.
 
 \
 
@@ -232,12 +234,12 @@ Les différentes équipes du LPHI, au nombre de 8 pour une quarantaine de cherch
 \
 
 % décrire ton environnement proche:
-L'équipe que j'ai intégrée, dirigée par Mai Nguyen-Chi et Laure Yatime, se concentre sur les mécanismes d'inflammations physiologique (blessure) et pathologique (infection), en particulier sur les macrophages, des cellules immunitaires jouant un rôle clé dans la réponse immunitaire. Elle est composée de trois groupes de chercheurs avec les deux premiers respectivement dirigés par Mai Nguyen-Chi et Laure Yatime, et le troisième par Étienne Lelièvre.
+L'équipe que j'ai intégrée, dirigée par Mai Nguyen-Chi et Laure Yatime, se concentre sur les mécanismes d'inflammations physiologique et pathologique, en particulier sur les macrophages, des cellules immunitaires jouant un rôle clé dans la réponse immunitaire. Elle est composée de trois groupes de recherche avec les deux premiers respectivement dirigés par Mai Nguyen-Chi et Laure Yatime, et le troisième par Étienne Lelièvre.
 
 \
 
 % Un autre stage de M2 relié: décrire en une phrase la complementarité du stage de Norma !!
-J'ai travaillé en collaboration étroite avec une étudiante en M2 Biologie Santé - Infection Biology, Norma Veltz, qui a aussi réalisé son stage de M2 au sein du LPHI sur la même période que le mien. Son travail, centré sur l'imagerie intravitale des signaux calciques (Ca$^{2+}$) pour étudier les fonctions des macrophages (cellules immunitaires) lors d'inflammations stériles (blessure) et pathologiques (infection), a fourni les images nécessaires à mon stage. Ainsi, nos stages sont complémentaires: elle a réalisé les expériences biologiques et acquis les données microscopiques, tandis que mon travail a consisté à traiter et interpréter ces images.
+J'ai travaillé en collaboration étroite avec une étudiante en M2 Biologie Santé - Infection Biology, Norma Veltz, qui a aussi réalisé son stage de M2 au sein du LPHI sur la même période que le mien. Son travail, centré sur l'imagerie intravitale des signaux calciques (Ca$^{2+}$) pour étudier les fonctions des macrophages (cellules immunitaires) lors d'inflammations stériles (blessure) et pathologiques (infection), a fourni les images nécessaires à mon stage. Ainsi, nos travaux ont été complémentaires: elle a réalisé les expériences biologiques et acquis les données de microscopie, tandis que mon travail a consisté à traiter et interpréter ces images.
 
 % Contexte biologique
 \phantomsection
@@ -250,12 +252,16 @@ Les macrophages sont des cellules immunitaires polyvalentes. Ils jouent un rôle
 \
 
 % La réponse Calcique est un candidat pour comprendre la réponse immunitaire
-Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de signaux calcique entre les différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
+Des études récentes \cite{mehari} ont montré que les signaux de calcium intracellulaires auraient un rôle dans l'activation des macrophages M1. Cependant, le lien entre les signaux calciques et la polarisation reste flou. En effet, nous ne connaissons pas les schémas de signaux calcique des différents états fonctionnels des macrophages. L'étude de ces signaux calciques semble être une voie prometteuse et pourrait permettre d'identifier ces états.
 
 \
 
 % Donnes : microcopie confocale. Suivie longitudinale apres une inflammation.
-À l'aide d'un modèle animal de renom, le zebrafish, nous cherchons donc à définir des métriques pertinentes pour l'étude des signaux calciques dans les macrophages. Nous observons au microscope confocal des poissons transgéniques, ce qui nous permet de visualiser les macrophages et la présence de calcium dans ces cellules, en ayant un suivi longitudinal après une inflammation.
+À l'aide d'un modèle animal, le zebrafish, particulièrement adapté à l'observation en temps réel de processus dynamiques, nous cherchons à définir des métriques pertinentes pour l'étude des signaux calciques dans les macrophages.
+
+\
+
+Avant mon arrivée dans le laboratoire, l'équipe a utilisé la microscopie confocale pour imager des larves de zebrafish transgéniques, permettant de visualiser simultanément,, et à haute résolution, les macrophages ainsi que la dynamique du calcium intracellulaire. Ce protocole permet un suivi longitudinal des réponses cellulaires, notamment après l'induction d'une inflammation. Les séries d'images (vidéos) obtenues ont été analysées au cours de mon stage.
 
 
 % Objectif du stage
@@ -263,37 +269,39 @@ Des études récentes \cite{mehari} ont montré que les signaux de calcium intra
 \customsectionstar{Objectifs du stage}
 
 % Développement de méthodes originales pour faire le tracking de macrophage pour mesurer la réponse calcique.
-Afin de mieux comprendre la dynamique des signaux calciques, qui pourrait aider à identifier ces différents états, nous cherchons donc à développer un outil permettant d'identifier (segmenter), et suivre automatiquement chaque macrophage individuellement dans des images et vidéos de microscopie et mesurer l'activité calcique dans ces cellules afin d'établir la signature de ce signal dans les différents macrophages.
+Afin d'identifier les dynamiques calciques dans les différents états des macrophages, nous cherchons à développer un outil permettant 1/ d'identifier et délimiter les contours des macrophages (segmenter) dans de images obtenues obtenues par microscopie, et 2/ de suivre automatiquement chaque macrophage individuellement dans les vidéos. Il est important de noter que les macrophages sont caractérisés par une hétérogénéité de forme et une grande diversité de comportements migratoires au cours du temps, ce qui complique l'analyse. Finalement, mesurer l'activité calcique dans ces cellules permettra d'établir la signature de ce signal dans les différents macrophages.
 
 \
 
 % 1ere étape: Tout d'abord, faire la segmentation d'une image. Dire 2 mots sur la méthode. et ensuite sur le logiciel qui l'instancie.
-Tout d'abord, nous commencerons par réaliser la segmentation automatique d'une image réalisée par microscopie en utilisant \textit{Kartezio}, un algorithme basé sur la programmation génétique cartésienne permettant de générer des pipelines de segmentation d'images efficaces et interprétables.
-
-La librairie Python MacTrack2, qui instancie cette méthode, aura pour but d'être intuitive, car destinée à être utilisée par des biologistes. Elle contiendra des scripts exécutables en un clic et avec une documentation détaillée disponible sur un site internet (voir~\nameref{code}).
+Mon premier objectif est donc de réaliser la segmentation automatique d'images issues de la microscopie, en utilisant \textit{Kartezio}, un algorithme basé sur la programmation génétique cartésienne permettant de générer des pipelines de segmentation d'images efficaces et interprétables.
 
 \
 
-% 2eme etape : un film est un enchainement d'images. Chaque image étant segmentée, il faut suivre les objets: fine tuning de Sam2. Eviter "piste d'amélioration"
-Un film (ou vidéo) est un enchaînement d'images. Chaque image étant déjà segmentée, nous étendrons cette segmentation au domaine temporel, en réalisant un tracking des macrophages dans ces vidéos. Pour ce faire, nous utiliserons un modèle de fondation, SAM-2, que nous affinerons à l'aide d'un \textit{fine-tuning} sur nos données vidéos. Nous espérons ainsi améliorer le suivi (tracking) des macrophages en segmentant directement la vidéo entière, plutôt que de traiter les images une par une.
+Mon second objectif est d'étendre cette segmentation au domaine temporel, en réalisant un suivi (tracking) des macrophages dans les vidéos, qui sont des séries d'images. Pour ce faire, nous procèderons dans un premier temps manuellement, en appliquant un post-processing sur les résultats de la segmentation des images de toute une vidéo. Dans un second temps, nous automatiserons ce processus en exploitant un modèle de fondation, SAM-2, qui utilise une mémoire en continu, afin de segmenter les macrophages dans les vidéos. Nous adapterons ce modèle à nos données à l'aide d'un \textit{fine-tuning} de ses parmaètres.
 
 \
 
-L'objectif final de ce travail est donc de proposer une solution complète, automatisée et adaptée aux besoins des biologistes pour étudier la signature calcique des macrophages à travers l'espace et le temps.
-%Nous quantifierons ensuite les intensités du signal calcium dans chacun des macrophages segmentés afin d'en déduire leur signature à travers une analyse statistique.
+Mon troisième objectif est de rendre ce travail le plus accessible pour les praticiens. Ainsi, une librairie Python, MacTrack2\footnote{Lien de la librairie : \url{https://github.com/guibouland/MacTrack2}}, sera développée et contiendra des scripts intuitifs et exécutables en un clic, accompagnés d'une documentation claire disponible sur un site internet\footnote{Lien du site contentant la documentation : \url{https://guibouland.github.io/MacTrack2/}}.
+
+\
+
+À terme, ce projet permettra d'obtenir un outil spécifique complet, automatisé et robuste pour le suivi des macrophages, en segmentant directement l'ensemble de la vidéo plutôt que de traiter les images unes à unes. Cette approche vise à améliorer considérablement la qualité et la cohérence du tracking des macrophages, chose que les méthodes actuelles ne permettent pas de faire pour des données de microscopie de macrophages.
+
+
 
 \phantomsection
 \customsectionstar{Plan du rapport}
 
 % dire que l'on suit la description des objectifs.
-Le plan du rapport suivra la description des objectifs présentés ci-dessus. Le premier chapitre portera sur le contexte biologique de ce stage afin de décrire les enjeux de la polarisation de macrophages, l'importance des signaux calciques et les méthodes d'acquisition des images de microscopie.
+Le plan du rapport suivra la description des objectifs présentés ci-dessus. Le premier chapitre portera sur le contexte biologique de ce stage afin de décrire les enjeux de la polarisation des macrophages, l'importance des signaux calciques et le protocol expérimental, de l'échantillon biologiques à l'acquisition des images par microscopie, qui a permis à l'équipe d'obtenir un jeu de données.
 
 Le second chapitre comprendra une introduction sur la segmentation d'images et présentera la méthode choisie permettant de segmenter automatiquement des objets dans des images, suivi des résultats obtenus sur nos données.
 
 Nous aborderons ensuite l'extension de cette segmentation au domaine temporel, en présentant d'abord les améliorations apportées à la librairie MacTrack~\cite{axel}, puis l'utilisation d'un modèle de fondation, que nous avons affiné à nos données. Nous présenterons les résultats de ce fine-tuning et de la segmentation sur une vidéo.
 %Le dernier chapitre présentera une analyse statistique des données obtenues en quantifiant l'intensité de calcium dans les macrophages suivis. 
 
-Enfin, nous finirons par évoquer une conclusion et une discussion sur les perspectives de ce travail, suivies des matériels et méthodes utilisés, des références bibliographiques et des annexes.
+Enfin, nous évoquerons une conclusion accompagnée d'une discussion sur les perspectives futures, suivies des références bibliographiques et des annexes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
@@ -309,41 +317,41 @@ La \textbf{réponse immunitaire}~\cite{sysimmun} est l'ensemble des mécanismes 
 \
 
 %immunité innée et adaptative
-Si ces défenses sont franchies, l'\textbf{immunité innée} intervient rapidement pour contenir l'invasion. C'est à ce stade que les \textbf{macrophages}~\cite{macro} jouent un rôle essentiel : ils font parties des toutes premières cellules à répondre à une infection. Si l'agent pathogène persiste, l'\textbf{immunité adaptative} prend le relais avec les lymphocytes T et B, qui offre une réponse plus spécifique. Les T tuent les cellules infectées et coordonnent la réponse, tandis que les B produisent des anticorps spécifiques pour neutraliser le pathogène. Une fois l'infection éliminée, le système immunitaire garde en mémoire le pathogène grâce à des cellules mémoire, permettant une réponse plus rapide et efficace en cas de nouvelle exposition. C'est ce principe qui est utilisé dans la vaccination.
+La première ligne de défense est l'\textbf{immunité innée}, qui intervient rapidement pour contenir l'invasion. C'est à ce stade que les \textbf{macrophages}~\cite{macro} jouent un rôle essentiel : ils font partie des toutes premières cellules à répondre à une infection. Si l'agent pathogène persiste, l'\textbf{immunité adaptative} prend le relais avec les lymphocytes T et B, qui offrent une réponse plus spécifique. Les T tuent les cellules infectées et coordonnent la réponse, tandis que les B produisent des anticorps spécifiques pour neutraliser le pathogène. Une fois l'infection éliminée, le système immunitaire garde en mémoire le pathogène grâce à des cellules mémoire, permettant une réponse plus rapide et efficace en cas de nouvelle exposition. C'est ce principe qui est utilisé dans la vaccination.
 
 
 \subsection{Macrophages, acteurs clés du système immunitaire}
 % macrophages : def globale
 Les macrophages~\cite{macro} sont des cellules immunitaires de l'immunité innée, dérivées des monocytes (globules blancs)~\cite{monocyte} présents dans le sang. Une fois dans les tissus, ces monocytes se différencient en macrophages. Présents dans presque tous les organes, ils assurent une surveillance constante de l'organisme.
 
-% macros résidents
-Beaucoup de macrophages, que l'on nomme parfois \textit{macrophages résidents}, sont d'origine fœtale, c'est-à-dire que les monocytes se sont différenciés en macrophages dans des zones spécifiques chez le fœtus. En fonction de l'organe dans lequel ils se trouvent, ils portent des noms différents : microglies (cerveau), macrophages alvéolaires (poumons), cellules de Kupffer (foie), cellules de Langerhans (peau) \dots
+% nbx sstypes de macrophages
+Il existe de nombreux sous-types de macrophages en fonction du tissu dans lequel ils se trouvent, de leur état physiologique ou pathologique. Ils vont ainsi avoir des formes et des compositions différentes.
 
-\subsection{Fonctions des macrophages}
+\
+
 % fonctions principale et rôle 
-La fonction principale des macrophages est la \textbf{phagocytose}, c'est-à-dire l'ingestion et la destruction des agents pathogènes, des cellules mortes ou des débris. Mais leur rôle va bien au-delà : ils déclenchent et modulent l'inflammation, présentent des antigènes aux lymphocytes T pour activer l'immunité adaptative, et participent à la réparation tissulaire après l'infection.
-
-% le reste des fonctions connues
-En effet, leurs fonctions sont multiples et variées. Ils peuvent sécréter des cytokines, des molécules de signalisation servant à recruter et activer d'autres cellules immunitaires. Ils peuvent présenter des antigènes pour activer les lymphocytes T, comme dit précédemment. Ils jouent un rôle dans la régulation de l'inflammation en produisant des médiateurs pro- et anti-inflammatoires. Enfin, ils participent à la réparation des tissus en produisant des facteurs de croissance par exemple.
+La fonction principale des macrophages est la \textbf{phagocytose}, c'est-à-dire l'ingestion et la destruction des agents pathogènes, des cellules mortes ou des débris. Mais leur rôle va bien au-delà : ils déclenchent et modulent l'inflammation en produisant des médiateurs pro- et anti-inflammatoires, présentent des antigènes aux lymphocytes T pour activer l'immunité adaptative, et participent à la réparation tissulaire après l'infection. Ils peuvent sécréter des cytokines, des molécules de signalisation servant à recruter et activer d'autres cellules immunitaires.
 
 \subsection{Profils fonctionnels et polarisation des macrophages}
 \subsubsection{Les différents profils fonctionnels des macrophages}
 
 % Il y en a different types. (mettre une figure ?)
-En fonction ede l'environnement das lequel ils se trouvent, les macrophages peuvent adopter différents \textbf{profils fonctionnels} que l'on classe en deux grandes catégories : les macrophages \textbf{M1} et les macrophages \textbf{M2}. Les macrophages M2 sont en réalité un ensemble de sous-types, mais nous ne les détaillerons pas ici.
+En fonction de l'environnement dans lequel ils se trouvent, les macrophages peuvent adopter différents \textbf{profils fonctionnels} que l'on classe en deux grandes catégories : les macrophages \textbf{M1} et les macrophages \textbf{M2}. Les macrophages M2 sont en réalité un ensemble de sous-types, mais nous ne les détaillerons pas ici.
 
 \
 
-Les macrophages M1 ou \og classiquement activés\fg, sont induits par des signaux pro-inflammatoires et produisent des cytokines pro-inflammatoires et du monoxyde d'azote. Ils sont spécialiser dans la destruction des pathogènes.
+Les macrophages M1 ou \og classiquement activés\fg, sont induits par des signaux pro-inflammatoires et produisent des cytokines pro-inflammatoires. Ils sont spécialisés dans la destruction des pathogènes.
 
 Les macrophages M2, ou \og alternativement activés\fg, sont inuits par des cytokines et produisent des cytokines anti-inflammatoires. Ils favorisent la réparation tissulaire, la résolution de l'inflammation et parfois la tolérance immunitaire.
+
+\
 
 Cette notation M1/M2 est utile pour comprendre et classer les fonctions que peuvent avoir les macrophages, mais il est important de noter qu'en réalité, les macrophages forment un continuum de phénotypes intermédiaires plus complexes.
 
 \subsubsection{Changement de profils : la polarisation des macrophages}
 
 % Les macrophages changent de role au cours du temps. polarisation -> nécessité d'observe la réponse immunitaire dans le temps
-La \textbf{polarisation} désigne le processus par lequel un macrophage adopte un programme fonctionnel donné en réponse aux signaux des son environnement (pathogènes, cytokines, etc\dots), comme le montre la \figref{ctx:poli_macros}.
+La \textbf{polarisation} désigne le processus par lequel un macrophage adopte un profil fonctionnel donné en réponse aux signaux des son environnement (pathogènes, cytokines, etc\dots), comme le montre la \figref{ctx:poli_macros}.
 
 \
 
@@ -355,7 +363,7 @@ La \textbf{polarisation} désigne le processus par lequel un macrophage adopte u
 \end{figure}
 
 
-C'est un processus \textbf{réversible et dynamique}, un macrophage peut changer de profil fonctionnel à tout moment en fonction des besoins de l'organisme. Par exemple, lors d'une blessure, un macrophage M0 se polarise en M1 pour éliminer les agents pathogènes et les débris. Une fois l'inflammation contrôlée, il peut adopter un profil M2 pour favoriser la régénération tissulaire.
+C'est un processus \textbf{réversible et dynamique}, un macrophage peut changer de profil fonctionnel à tout moment en fonction des besoins de l'organisme. Par exemple, lors d'une blessure, un macrophage M0 se polarise en M1 pour éliminer les agents pathogènes et les débris. Une fois l'inflammation contrôlée, il peut adopter un profil M2 pour favoriser la régénération tissulaire (voir \figref{ctx:exp_pola}).
 
 \
 
@@ -368,12 +376,12 @@ Ainsi, les macrophages assurent un équilibre entre destruction, régulation et 
 \subsection{Le calcium, une molécule clé à utilité multiple}
 
 % lien avec calcium article qui dit que c'est un déterminant essentiel, augment chez les M1
-Dans des études récentes, il a été montré que les signaux de calcium (Ca$^{2+}$), déjà connus comme élément clé de l'immunité innée, seraient exprimés dans les macrophages M1~\cite{atcha}. Cela a été confirmé plus tard dans des études sur la souris~\cite{mehari, sipka}, suggérant que les signaux de calcium joueraient un rôle significatif dans leur polarisation.
+Dans des études récentes, il a été montré que les signaux de calcium (Ca$^{2+}$), déjà connus comme élément clé de l'immunité innée, seraient présents dans les macrophages M1~\cite{atcha}. Cela a été confirmé plus tard dans des études sur la souris~\cite{mehari, sipka}, suggérant que les signaux de calcium joueraient un rôle significatif dans leur polarisation.
 
 \
 
 % les différente simplications du calcium
-Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez les macrophages, il est essentiel pour la production de cytokines pro- et anti-inflammatoires, la migration cellulaire, la communication cellulaire~\cite{taghdiri} ou encore dans le processus de phagocytose\cite{nunes, watanabe, yan}. Les macrophages possèdent une grande variétés de canaux calciques situés au niveau de la membrane cellulaire. Nous n'en parlerons pas ici, mais certains sont représentés dans la \figref{ctx:flash}.
+Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez les macrophages, il est essentiel pour la production de cytokines pro- et anti-inflammatoires, la migration cellulaire, la communication cellulaire~\cite{taghdiri} ou encore dans le processus de phagocytose\cite{nunes, watanabe, yan}. Les macrophages possèdent une grande variété de canaux calciques situés au niveau de la membrane cellulaire. Ces canaux régulent l'entrée de calcium vers l'intérieur de la cellule. Nous n'en parlerons pas ici, mais certains sont représentés dans la \figref{ctx:flash}.
 
 \subsection{Le flash calcique, un signal rapide et transitoire}
 
@@ -381,7 +389,9 @@ Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez
 Le calcium (Ca$^{2+}$) sert en tant que \textbf{second messager} dans de nombreuses voies de signalisation cellulaire. Dans les macrophages, lorsqu'une blessure est infligée, des signaux primaires sont émis, ouvrant les pompes de calcium dans la membrane cellulaire des macrophages.
 
 %flash
-Cela entraîne un influx important de calcium dans le cytoplasme, où la quantité de calcium (intracellulaire) présent augmente rapidement, entraînant un transient de calcium, que l'on nomme \textbf{flash calcique}, dont l'intensité est caractéristique d'une fonction cellulaire précise. La durée de ce flash peut varier mais est généralement considéré comme rapide (environ \red{combien de s} en moyenne).
+Cela entraîne un influx important de calcium dans le cytoplasme, où la quantité de calcium (intracellulaire) présent augmente rapidement, entraînant un transient de calcium, que l'on nomme \textbf{flash calcique}, dont l'intensité est caractéristique d'une fonction cellulaire précise. La durée de ce flash peut varier mais est généralement considéré comme rapide (de quelques secondes à plusieurs minutes pour les plus longs).
+
+Cependant, il reste encore incertain que les différents états des macrophages présentent des profils spécifiques de flux calciques. Comprendre ces dynamiques calciques pourrait permettre d'identifier les états fonctionnels des macrophages et de suivre leur activité.
 
 \
 
@@ -394,17 +404,15 @@ Cela entraîne un influx important de calcium dans le cytoplasme, où la quantit
 
 \subsection{Comment mesurer les signaux calciques ?}
 %interet de mesurer
-Il est donc important de pouvoir quantifier la quantité de calcium rentrant dans le cytoplasme des macrophages à la suite d'une blessure. Cela permettrait de mieux comprendre la réponse immunitaire et plus précisément la polarisation des macrophages.
+Il est donc important de pouvoir quantifier la quantité de calcium rentrant dans le cytoplasme des macrophages à la suite d'une blessure. Cela permettrait de cartographier la dynamique de signalisation du calcium dans les macrophages en fonction de leur état de polarisation.
 
 %comment : biosenseurs GCAMPs GECI
-Pour ce faire, nous utilisons des indicateurs de calcium génétiquement encodés (ou \textbf{GECI} pour \textit{Genetically Encoded Calcium Indicators}), introduits dans~\cite{nakai}, et plus particulièrement les biosenseurs \textbf{GCAMPs} (G pour la protéine fluorescente verte GFP, Ca pour la protéine calmoduline, M pour la protéine M13 et P pour le peptide d'une kinase).
+Pour ce faire, nous utilisons des indicateurs de calcium génétiquement codés (ou \textbf{GECI} pour \textit{Genetically Encoded Calcium Indicators}), introduits dans~\cite{nakai}, et plus particulièrement les biosenseurs \textbf{GCAMPs} (G pour la protéine fluorescente verte GFP, Ca pour la protéine calmoduline, M pour la protéine M13 et P pour le peptide d'une kinase). Le GCaMP est donc un indicateur calcique dont la fluorescence augmente lorsqu'il se lie aux ions calcium~\cite{speirs, chen}.
 
 \
 
 %lien modèle animal
-Une fois introduit dans un modèle animal, le GCaMP est exprimé dans les cellules cibles. Il est ensuite possible de mesurer la fluorescence de ce capteur de calcium à l'aide de la microscopie à fluorescence. Plus le calcium intracellulaire augmente, et plus la protéine fluorescente émet une fluorescence élevée~\cite{speirs, chen}.
-
-Puis, nous pouvons analyser le signal calcique numériquement dans les images de microscopie, en mesurant l'amplitude des flashs que nous venons de définir~\cite{catheory}. En le faisant à travers le temps, suite à une blessure, nous pouvons ainsi suivre la réponse calcique des macrophages et en déduire leur état fonctionnel.
+Une fois introduit dans un modèle animal, le GCaMP est exprimé dans les cellules d'intérêts. Il est ensuite possible de mesurer l'activité calcique à l'aide de la microscopie à fluorescence en temps réel et à l'échelle cellulaire. L'analyse des intensités de fluorescence se fait ensuite numériquement à partir des images de microscopie, en particulier la mesure de l'amplitude, la fréquence et la durée des flashs~\cite{catheory}.
 
 Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, c'est-à-dire la courbe de l'intensité de calcium dans le temps, nous permettant de déduire les moments où le macrophage change d'état fonctionnel.
 
@@ -412,7 +420,7 @@ Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, 
     \centering
     \includegraphics[width=\linewidth]{imgs/flash_cal.png}
     \caption{Représentation d'un flash calcique observé par microscopie.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente un flash calcique observé par microscopie, avec l'intensité de calcium en fonction du temps. Le pic représente le flash calcique, et la courbe décroît ensuite rapidement. Pour plus d'informations sur l'obtention de ces images, voir la Section~\ref{acquisition}}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente un macrophage (en rouge) et un flash calcique (en vert) observé par microscopie, avec l'intensité de calcium (Vert) en fonction du temps. Pour plus d'informations sur l'obtention de ces images, voir la Section~\ref{acquisition}}}
     \label{ctx:flash_cal}
 \end{figure}
 
@@ -425,7 +433,7 @@ Comme mentionné précédemment, l'étude de la réponse calcique des macrophage
 
 \subsection{Un modèle animal pertinent pour l'étude de la réponse immunitaire}
 % animale modèle:  etc...
-Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$cm de long, possède environ 80\% des gênes présents dans les maladies humaines, ce qui en fait un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
+Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$cm de long, partage environ 70\% de ses gènes avec l'humain et plus de 80\% de ces gènes ont un équivalent chez l'Homme, impliqués dans les maladies humaines. Pour ces raisons, le zebrafish est un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
 
 %transparent, reproduction rapide,
 Son principal atout réside dans la transparence de ses larves, qui permet l'observation directe des organes internes tout en manipulant l'animal vivant~\cite{sipka}. De plus, il se reproduit rapidement (50 à 200 embryons par ponte) et sa petite taille facilite son élevage à faible coût.
@@ -442,36 +450,40 @@ Chez le zebrafish, les macrophages présentent de nombreuses similarités foncti
 
 Enfin, ce modèle est facilement manipulable génétiquement, ce qui a permis le développement de lignées transgéniques exprimant des protéines fluorescentes pour marquer spécifiquement les macrophages et/ou le calcium intracellulaire~\cite{speirs}.
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/larve.png}
+    \caption{Observation au microscope d'une larve entière de zebrafish à 3 jours post-fertilisation (dpf).}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré rouge représente la région dite caudale, et le trait bleu représente la blessure induite pour simuler une inflammation. Plus de détails sur l'induction de la blessure dans la Section~\ref{acquisition}.}}
+\end{figure}
+
 
 \subsection{La lignée transgénique double}
 % Création de lignées pour permettre l'observation de la réponse calcique.
 
 Une lignée transgénique est une lignée de poissons génétiquement modifiés pour contenir un ou plusieurs gènes étrangers (transgène) insérés dans leur génome. Ces gènes peuvent provenir d'autres espèces ou être des versions modifiées de gênes du zebrafish lui-même.
 
-Souvent, et c'est le cas pour nous aussi, les lignées transgéniques sont créées pour observer un phénomène, en modifiant les gênes exprimées dans la zone recherchée pour qu'ils expriment une protéine fluorescente.
+Souvent, et c'est le cas pour nous aussi, les lignées transgéniques sont créées pour observer un phénomène, .en ajoutant par transgenèse un gène codant pour une protéine fluorescente sous le contrôle de séquences régulatrices d'un gène spécifique d'une population cellulaire. Ainsi la lignée transgénique est dite \og rapportrice\fg\ car en effet elle permet de marquer par la fluorescence une population cellulaire donnée.
 
 \
 
-Dans notre cas, nous avons une lignée transgénique double, c'est-à-dire que l'on observe deux phénomène simultanément. La lignée est nommée :
+Dans notre cas, nous avons une lignée transgénique double, c'est-à-dire que l'on observe deux phénomènes simultanément. La lignée est nommée :
 
 \begin{center}
     \large \textbf{\textit{Tg(mfap4:mCherry/mfap4:GCaMP6f)}}
 \end{center}
 
-À laide d'un promoteur spécifique (\textbf{\textit{mfap4}}) --- un gène exprimé spécifiquement dans les macrophages du zebrafish --- nous pouvons cibler l'expression de transgènes uniquement dans ces cellules. Nous avons ainsi inséré deux gènes codant pour des protéines fluorescentes : \textbf{\textit{mCherry}}, une protéine fluorescente rouge utilisée comme marqueur pour visualiser les macrophages, et \textbf{\textit{GCaMP6f}}, une sonde calcique génétiquement codée (un biosenseur) qui devient fluorescente en présence de calcium intracellulaire. Cela permet de mesurer en temps réel l'activité calcique des macrophages.
+À l'aide d'un promoteur spécifique (\textbf{\textit{mfap4}}) --- un gène exprimé spécifiquement dans les macrophages du zebrafish --- nous pouvons induire l'expression de protéines fluorescentes : \textbf{\textit{mCherry}} qui fluoresce dans le rouge, uniquement dans les macrophages (transgène 1). Ainsi, ce transgène permet de marquer/suivre les macrophages. Pour le transgène 2, toujours à l'aide du même promoteur, nous induisons l'expression du \textbf{\textit{GCaMP6f}}, une sonde calcique génétiquement codée (un biosenseur) dans les macrophages. GCaMP6f est une protéine qui devient fluorescente en présence de calcium intracellulaire. Cela permet de mesurer en temps réel l'activité calcique des macrophages.
 
 
 \section{Microscopie confocale pour observer des phénomènes}\label{micro}
 %décrire l'appareil (avec photo), expérience coupage de queues
 \subsection{La microscopie confocale à \textit{spinning disk}}
-La microscopie confocale à \textit{spinning disk} (disque tournant) (\figref{ctx:spinning}) est une technique d'imagerie optique qui permet d'observer des échantillons biologiques en haute résolution, avec une meilleure section optique et moins de phototoxicité (toxicité sur les cellules due à la lumière) que le microscope à champ large.
+La microscopie confocale (\figref{ctx:spinning}) est une technique d'imagerie photonique qui permet 'observer la fluorescence dans des échantillons biologiques en haute résolution, avec une meilleure section optique que le microscope à fluorescence à champ large. Son principe consiste à focaliser, par l'intermédiaire d'un objectif, un faisceau laser qui va exciter les fluorochromes en un point de l'échantillon, puis à récupérer, sur un photomultiplicatuer, le signal lumineux émis en ce point.
 
-Contrairement à la microscopie confocale classique (à balayage laser), qui scanne un point à la fois, le système \textit{spinning disk} utilise un disque percé de centaines de micro-trous tournant rapidement. Ces orifices agissent comme des filtres qui bloquent la lumière hors foyer, ce qui améliore le contraste et permet de reconstruire des images nettes de coupes optiques.
+Contrairement à la microscope confocale classique (à balayage laser), qui scanne un point à la fois, le système confocale \textit{spinning disk} utilise un disque de microlentilles tournant rapidement, ce qui permet de scanner rapidement l'échantillon en une multitude de points. Ce système est particulièrement adapté à l'imagerie de processus dynamiques comme l'activité calcique car il est très rapide et peu phototoxique.
 
-\
 
-%principe de fonctionnement
-Un laser illumine l'échantillon à travers le disque, et seules les zones focalisées à travers les trous du disque sont détectés, ce qui élimine la lumière parasite provenant des zones hors foyer. Comme plusieurs points sont illuminés et détectés en parallèle, cette méthode permet une acquisition très rapide d'images confocales, idéale pour l'observation en temps réel de cellules vivantes.
 
 \
 
@@ -483,43 +495,12 @@ Un laser illumine l'échantillon à travers le disque, et seules les zones focal
 \end{figure}
 
 
-\subsection{Acquisition des images}\label{acquisition}
+
+\subsection{Acquisition des images de microscopie}\label{acquisition}
 %préparation de l'experience
 \subsubsection{Préparation à l'acquisition : mise en place de l'expérience}
-Une fois notre lignée transgénique établie et la reproduction des poissons réalisée, les œufs fécondés sont récupérés. À 3 jours post-fertilisation (3 dpf), les larves exprimant correctement les transgènes sont sélectionnées à l'aide d'un microscope à fluorescence.
 
-Deux conditions expérimentales sont mises en place :
-\begin{itemize}
-    \item un groupe témoin sans intervention,
-    \item un groupe blessé, où une amputation de la nageoire caudale est réalisée à l'aide d'un scalpel (voir \figref{ctx:exp}), créant une inflammation stérile.
-\end{itemize}
-
-\red{figure blessure poisson}
-
-Les larves sont ensuite prêtes pour l'acquisition des images.
-
-\subsubsection{Acquisition des images}
-L'imagerie est réalisée à l'aide d'un microscope confocal à \textit{spinning disk} (voir \figref{ctx:spinning}). L'expression des transgènes dans les larves est détectée par excitation au laser à des longueurs d'onde spécifiques:
-\begin{itemize}
-    \item la protéine fluorescente \textbf{\textit{mCherry}} est excitée et émet une fluorescence rouge,
-    \item la sonde calcique \textbf{\textit{GCaMP6f}} devient fluorescente en vert lorsqu'elle détecte du calcium intracellulaire.
-\end{itemize}
-
-L'acquisition se fait en deux canaux : rouge (mCherry) et vert (GCaMP6f), comme nous pouvons le voir dans la \figref{ctx:exp_obs}. Les images sont capturées en niveau de gris, puis colorées numériquement pour distinguer visuellement les deux signaux. L'acquisition se fait en mode \textit{z-stack}, c'est-à-dire par une série d'images à différentes profondeurs, permettant de reconstruire un volume 3D de l'échantillon.
-
-\
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{imgs/exp_obs2.png}
-    \caption{Observation des macrophages et de calcium intracellulaire dans une larve transgénique blessée.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré dans la figure fait écho à la \figref{ctx:flach_cal}, montrant un flash calcique dans un macrophage. La larve (à gauche est blessée) et nous observons (à droite) les macrophages (en rouge) et le calcium intracellulaire (en vert).}}
-    \label{ctx:exp_obs}
-\end{figure}
-
-Chaque observation dure 40 minutes, avec une acquisition environ toutes les 9 secondes. À chaque intervalle, un stack complet est acquis. La caméra étant unique, les deux canaux sont acquis en alternance (rouge, vert, rouge, etc\dots).
-
-Les acquisitions sont réalisées à 3, 6, 24, 48 et 72 heures post-amputation (hpa), à la fois dans les groupes blessés et contrôles (voir \figref{mac:macros}). Ce protocole permet de suivre l'évolution spatio-temporelle de l'activité calcique des macrophages au cours d ela réponse à la blessure.
+Dans des travaux précédents, mon laboratoire a montré qu'après une blessure des larves, les macrophages sont activés et présentent des phénotypes de polarisation distincts : à 3 heures post-amputation (hpa), ils sont fortement pro-inflammatoires. Par la suite, ils évoluent progressivement vers un état pro-résolutif à 6 hpa, puis vers un état régénératif à partir de 24 hpa jusqu'à 72 hpa. Afin de visualiser simultanément la localisation des macrophages et le signal calcique, dans un contexte inflammatoire, l'équipe a réalisé une blessure de la nageoire caudale chez des larves transgéniques, décrites ci-dessus, puis a imagé les nageoires blessées à différents temps après la lésion à l'aide de microscopie intravitale de type \textit{spinning disk} : 3, 6, 24, 48, 72 hpa. La \figref{mac:macros} illustre la grande diversité des morphologies adoptées par les macrophages au cours de la réponse à la blessure.
 
 \
 
@@ -530,6 +511,27 @@ Les acquisitions sont réalisées à 3, 6, 24, 48 et 72 heures post-amputation (
     \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages sont observés, de gauche à droite, à 3, 6, 24, 48 et 72 heures post-amputation (hpa). Il s'agit d'un poisson dont la nageoire caudale a été coupée (ne faisait pas partie du groupe contrôle).}}
     \label{mac:macros}
 \end{figure}
+
+Deux témoins négatifs représentant des conditions homéostatiques ont été utilisées : des larves avec des queues intactes, imagées au niveau de la région caudale (contrôle 1) et au niveau du sac vitellin (contrôle 2). Dans les deux témoins, les macrophages sont non-activés.
+Une fois notre lignée transgénique établie et la reproduction des poissons réalisée, les œufs fécondés sont récupérés. À 3 jours post-fertilisation (3 dpf), les larves exprimant correctement les transgènes sont sélectionnées à l'aide d'un microscope à fluorescence.
+
+
+\subsubsection{Acquisition des images}
+
+
+L'imagerie des macrophages et du calcium est réalisée à l'aide d'un microscope confocal à \textit{spinning disk} (voir \figref{ctx:spinning}). Ce microscope permet de capturer la fluorescence de la \textit{mCherry} et du \textit{GCaMP6f} sur toute la profondeur de l'échantillon. Chaque acquisition se fait environ toutes les 9 secondes, sur une durée totale de 40 minutes. Un pré-traitement de l'image permet de projeter les piles (stacks) d'images en 2 dimensions. De plus, le bruit de fond de l'image (artefact de l'acquisition) est amené à 0 pour améliorer de façon significative la qualité visuelle et lus particulièrement les contrastes et les contours des objets, comme nous pouvons le voir dans la \figref{ctx:exp_obs}.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.8\linewidth]{imgs/exp_obs2.png}
+    \caption{Observation des macrophages et de calcium intracellulaire dans une larve transgénique blessée.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré dans la figure fait écho à la \figref{ctx:flash_cal}, montrant un flash calcique dans un macrophage. La larve (à gauche est blessée) et nous observons (à droite) les macrophages (en rouge) et le calcium intracellulaire (en vert).}}
+    \label{ctx:exp_obs}
+\end{figure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
@@ -677,6 +679,8 @@ Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qu
     \label{mac:comp}
 \end{figure}
 
+\
+
 Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de l'mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
 
 Nous avons donc une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
@@ -719,7 +723,7 @@ Chaque graphe peut être représenté par une chaîne d'entiers, qu'on appelle l
 
 \
 
-Un modèle CGP utilise une stratégie évolutive (\textit{evolutionary strategy} (ES)) qui va décider de quel opérateur génétique appliquer à chaque génération. Nous avons par exemple la stratégie ($1+\lambda$) où un individu (\textit{parent}) génère $\lambda$ descendants (\textit{offspring}) par mutation et le meilleur de ceux-ci, selon une fonction d'adaptation (\textit{fitness}), est conservé et deviendra l'individu parent de la génération suivante. Si les performances du meilleur descendant sont inférieures à celles du parent, alors la descendance complète est rejetée. On parle de remplacement strict. On peut aussi avoir une stratégie de mutation ciblée, où on altère aléatoirement les gènes (nœuds), en modifiant les fonctions et les connexions, avec un taux de mutation ciblée. Il existe une stratégie de sélection par tournoi, où l'on compare des sous-ensembles d'individus et on sélectionne le plus performant de chacun des groupes, qui est ensuite utilisé pour la reproduction. Il existe des stratégies hybrides qui combinent le CGP avec des méthodes d'apprentissage automatique comme le Deep Learning.
+Un modèle CGP utilise une stratégie évolutive (\textit{evolutionary strategy} (ES)) qui va décider de quel opérateur génétique appliquer à chaque génération. Nous avons par exemple la stratégie ($1+\lambda$) où un individu (\textit{parent}) génère $\lambda$ descendants (\textit{offspring}) par mutation et le meilleur de ceux-ci, selon une fonction de perte (\textit{fitness}), est conservé et deviendra l'individu parent de la génération suivante. Si les performances du meilleur descendant sont inférieures à celles du parent, alors la descendance complète est rejetée et le parent est conservé pour la génération suivante. On parle de remplacement strict. On peut aussi avoir une stratégie de mutation ciblée, où on altère aléatoirement les gènes (nœuds), en modifiant les fonctions et les connexions, avec un taux de mutation ciblée. Il existe une stratégie de sélection par tournoi, où l'on compare des sous-ensembles d'individus et on sélectionne le plus performant de chacun des groupes, qui est ensuite utilisé pour la reproduction. Il existe des stratégies hybrides qui combinent le CGP avec des méthodes d'apprentissage automatique comme le Deep Learning.
 
 \
 
@@ -1385,19 +1389,22 @@ $$\text{mIoU}_\ell = \begin{cases}
     \end{cases}
 $$
 
-\subsubsection{Résultats et comparaisons}
+\subsection{Résultats et comparaisons}
+
+
 graphes miou et loss
+
+
 comp avant apres fine tune, performances et visuel
 
 
-\subsection{Propagation dans une vidéo}
 
 
 
 \cleardoublepage
 \customchapterstar{Conclusion et perspectives}
-\customsectionstar{Disponibilité du code}
-\label{code}
+
+\customsectionstar{Disponibilité du code}\label{code}
 
 Le code de MacTrack2 est disponible, ainsi que deux scripts détaillés pour la création de modèle et l'analyse d'une vidéo, avec un jeu de données d'exemple pour chacun des deux scripts, à l'adresse suivante :~\url{https://github.com/guibouland/MacTrack2}.
 
