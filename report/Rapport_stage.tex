@@ -654,13 +654,13 @@ Pour obtenir la valeur de l'IoU pour une image entière, on fait la moyenne des 
 \end{figure}
 
 
-Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, l'mIoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
+Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, la mIoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
 
-Dans la pratique, obtenir une segmentation parfaite, signifiant que l'mIoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. À travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité.
+Dans la pratique, obtenir une segmentation parfaite, signifiant que la mIoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. À travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité.
 
 \
 
-Ainsi il est considéré, qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg\ et on considère que si l'mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise l'mIoU comme métrique principale, utilise un seuil de 0.5, ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
+Ainsi il est considéré, qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg\ et on considère que si la mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise la mIoU comme métrique principale, utilise un seuil de 0.5, ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
 
 \subsubsection{Différence de segmentation entre deux opérateurs.}
 
@@ -681,7 +681,7 @@ Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qu
 
 \
 
-Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de l'mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
+Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de la mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
 
 Nous avons donc une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
 
@@ -1270,7 +1270,7 @@ Ici, SAM-2 a été entraîné sur des photos qui n'ont rien à voir avec la prob
 %ce qui est fine-tuné
 Le fine-tuning de SAM-2 agit seulement sur les poids du \textit{prompt encoder} et du \textit{mask encoder}, c'est-à-dire les parties du modèle qui prennent en entrée les points, masques, boites, et qui génèrent les masques de segmentation. Nous spécifions donc la prise en charge des entrées données par l'utilisateur, mais pas la partie qui encode l'image ni la partie qui mémorise les images précédente une fois le fine-tuning fini et que l'on cherche à segmenter une vidéo entière.
 
-\subsubsection{Jeu de données}
+\subsubsection{Jeu de données}\label{data}
 %  comment, quel forme les masques
 Les annotations sont sous la forme d'images où chaque macrophage est détouré à la main sur le logiciel \textit{ImageJ} (et plus particulièrement \textit{Fiji}~\cite{fiji}). Les détourages sont ensuite séparés par label, afin de s'assurer qu'un macrophage ne soit pas confondu avec un autre. Puis, contrairement à la méthode présenté précédemment, les annotations sont sous la forme d'images, et non de fichiers ROI (\figref{sam2:labels}).
 
@@ -1289,6 +1289,11 @@ Les annotations sont sous la forme d'images où chaque macrophage est détouré 
 Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages.
 
 Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
+
+\
+
+Puisque le fine-tuning n'agit pas sur le tracking des objets dans une vidéo, les annotations des images dans la vidéo sont faites de manière indépendante par MacTrack2, nous n'avons pas de suivi dans les identifiants.
+
 
 \subsubsection{Hyperparamètres}\label{sec:hyperparameters}
 % hyperparamètres, def glob
@@ -1391,14 +1396,134 @@ $$
 
 \subsection{Résultats et comparaisons}
 
+\subsubsection{Quantification et visualisation des performances de SAM-2 sur l'échantillon d'entraînement}
+Avant de présenter les résultats du fine-tuning des paramètres de SAM-2, nous commençons par évaluer les performances du modèle pré-entraîné par Meta AI sur notre échantillon d'entraînement. En effet, les poids du modèle de SAM-2 --- en particulier la version complète \textit{sam2.1\_hiera\_large.pt} --- ont été obtenues à partir d'un jeu de données qui ne contient pas des images similaires de notre propre jeu de données. Il est donc essentiel de vérifier dans quelle mesure le modèle est capable de segmenter les macrophages ur notre échantillon avant toute adaptation.
 
-graphes miou et loss
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/hist_iou_sam2_orig.png}
+    \caption{Histogramme des performances du modèle SAM-2 avec les poidds initiaux sur l'échantillon d'entraîneemnt.}
+    \label{sam2:eval}
+\end{figure}
+
+Comme l'illustre la \figref{sam2:eval}, les performances de SAM-2 avec les poids initiaux restent globalement correctes, avec un mIoU moyen de 0.56. Pour rappel, une valeur de mIoU supérieure à 0.5 est généralement considérée comme acceptable. Toutefois, ce niveau de performance ne peut pas être qualifié de satisfaisant dans notre contexte, et les paramètres actuels du modèle ne permettent pas une segmentation sufisamment précise des macrophages.
+
+Par ailleurs, l'écart-type observé est de $0.06$, avec des scores individuels allant de $0.25$ à $0.70$ --- cette dernière valeur pouvant commencer à être considérée comme une bonne performance.
+
+La \figref{sam2:eval2} propose un exemple visuel de la segmentation obtenue à l'aide des poids initiaux de SAM-2 sur une image issue de l'échantillon d'entraînement.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/005_frame.png}
+    \caption{Visualisation des performances de SAM-2 avec le spoids initiaux sur une image du jeu d'entraînement.}
+    \vspace{-1em}{\setstretch{0.2}
+        \caption*{\scriptsize On retrouve à gauche l'image d'origine, au centre la vérité annotée par MacTrack2 et à droite le masque obtenu par SAM-2. Pour cette image, la mIoU est de $0.562$.}
+    }
+    \label{sam2:eval2}
+\end{figure}
+
+On observe ainsi que certaines structures ne sont pas segmentées, tandis que d'autres macrophages sont mal délimités, ce qui confirme les limites du modèle dans son état initial.
+
+\subsubsection{Résultats du fine-tuning de SAM-2}
+Pour améliorer ses performances, nous procédons à un réentraînement ciblé du modèle SAM-2 en utilisant le jeu de données décrit dans la Section~\ref{data}. Comme dit précédemment, ce fine-tuning porte spécifiquement sur le \textit{mask encoder} et le \textit{prompt encoder}, sans modification de la mémoire temporelle du modèle. Autrement dit, nous adaptons uniquement la mmanière dont le modèle traite et interprète les entrées, sans intervenir sur son mécanisme de contextualisation temporelle. L'évolution de la fonction de perte au cours des 20 000 itérations du fine-tuning est représentée dans la \figref{sam2:loss}.
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/loss3_b.png}
+    \caption{Évolution de la fonction de perte durant le fine-tuning de SAM-2.}
+    \label{sam2:loss}
+\end{figure}
+
+Malgré une courbe de perte quelque peu irrégulière et une qualité globale légèrement décevante, nous observons une tendance générale décroissante, ce qui constitue un signe encourageant. En effet, la fonction d eperte mesure l'écarte entre les prédictions du modèle et les annotations de référence. Sa diminution progressive traduit donc une amélioration des performances au cours de l'entraînement. La variabilité marquée de cette courbe peut s'expliquer par la taille relativement réduite de l'échantillon d'entraînement, qui ne contient que 237 images.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.9\linewidth]{imgs/mean_iou_b.png}
+    \caption{Évolution de la mIoU durant le fine-tuning des parmaètres de SAM-2.}
+    \label{sam:miou}
+\end{figure}
+
+La \figref{sam:miou} montre que la mIoU n'augmente pas de manière significative au cours du fine-tuning. On observe une légère amélioration durant les premières dizaines d'itérations, suivie de deux baisses notables de performances, puis d'une nouvelle progression modérée, mais marquée par une variabilité importante. Dans l'ensemble, on observe une légère augmentation globale de la mIoU.
+
+\
+
+En conclusion, le fine-tuning des paramètres de SAM-2 n'a pas permis d'améliorer de manière significative les performances du modèle sur notre échantillon d'entraînement. Néanmoins, la diminution progressive de la fonctin de perte suggère une amélioration modeste de la capacité du modèle à s'ajuster aux données. Ces résultats laissent penser qu'un entraînement sur un échantillon plus large pourrait potentiellement conduire à de meilleures performances. Toutefois, cette approche n'est pas envisageable dnas le cadre du présent stage, en raison de contraintes liées à la taille du jeu de données disponible.
 
 
-comp avant apres fine tune, performances et visuel
+\subsubsection{Valeur du critère de performance sur l'échantillon d'entraînement et sa généralisation}
+%choix du modèle
+Au cours de l'entraînement des paramètres de SAM-2, nous avons sauvegardé les poids du modèle toutes les 500 itérations, ce qui nou a permis d'obtenir un ensemble de 40 modèles intermédiaires. Le chois du meilleur modèle a été effectué en se basant sur la valeur de la mIoU calculée sur l'échantillon d'entraînement?
+
+Le modèle retenu correspond à celui obtenu après 12 500 itérations, avec une mIoU maximale de $0.4593$ sur l'échantillon d'entraînement.
+
+\
+
+%miou sur le train et le test
+Le modèle a ensuite été évalué à la fois sur l'échantillon d'entraînement et sur l'échantillon de test. Nous avons obtenu une mIoU moyenne de $0.30$ sur l'échantillon d'entraînement et de $0.31$ sur l'échantillon de test. Les résultats sont illustrés dans la \figref{sam2:eval_ft}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/comp_ft_hist.png}
+    \caption{Histogrammes des performances du modèle SAM-2 fine-tuné sur l'échantillon d'entraînement (à gauche) et de test (à droite).}
+    \label{sam2:eval_ft}
+\end{figure}
+
+Nous pouvons remarquer que les performances du modèle fine-tuné sont moins bonnes que celles du modèle initial.
+
+%visualisation des résultats : photos exmeples
+La \figref{sam2:ft_photo} présente un exemple de segmentation issue de la version fine-tunée de SAM-2, illustrant visuellement les résultats obtenus sur une image de chaque échantillon.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/003_frame_ent.png}
+    \includegraphics[width=\linewidth]{imgs/006_frame_test.png}
+    \caption{Représentations des résultats de segmentation de SAM-2 fine-tuné sur l'échantillon d'entraînement (en haut) et de test (en bas)}
+    \vspace{-1em}{\setstretch{0.2}
+        \caption*{\scriptsize Dans les deux cas, nous retrouvons à gauche l'image d'origine, au centre la vérité annotée à l'aide de MacTrack2 et à droite le masque obtenu par SAM-2 fine-tuné.\\
+            En haut, le masque a une mIoU de $0.303$ avec la vérité annotée, et en bas, le masque a une mIoU de $0.320$ avec la vérité annotée.}
+    }
+    \label{sam2:ft_photo}
+\end{figure}
+
+Comme le montre la \figref{sam2:ft_photo}, les masques obtenus  avec la version fine-tunée de SAM-2 sont errodés : ils ne couvrent souvent qu'une partie de l'objet, généralement les région la plus fluorescente. De plus, certains objets ne sont pas détectés du tout, ce qui constitue une limitation majeure pour le suivi des macrophages.
+
+\
+
+%comparaison avec sam2 initial
+Il est néanmoins pertinent de comparer les performances du modèle fine-tuné avec celles de la versioninitiale de SAM-2, en particulier sur l'échantillon de test
+
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/hist_test_sam.png}
+    \caption{Histogrammes des performances des modèles fine-tuné (en orange) et initial (en bleu) de SAM-2 sur l'échantillon de test.}
+    \label{sam2:test_sam}
+\end{figure}
 
 
+La \figref{sam2:test_sam} met clairement en évidence que le modèle initial de SAM-2 surpasse le modèle fine-tuné sur l'échantillon de test. En effet, le modèle pré-entraîné atteint une mIoU moyenne de $0.56$, contre seulement $0.31$ pour le modèle après fine-tuning.
 
+\subsubsection{Pourquoi une dégradation des performances après le fine-tuning ?}
+
+Ce résultat, contre-intuitif, soulève une question importante : pourquoi observe-t-on une dégradation des performances alors que le fine-tuning est censé adapter le modèle aux spécificités de notre jeu de données ?
+
+\
+
+%data limité
+La première hypothèse repose sur la quantité limitée de données utilisées pour l'entraînement. Notre échantillon ne contient que 297 images annotées, ce qui est très faible pour un modèle aussi complexe que SAM-2, même dans un cadre de fine-tuning. Bien que le fine-tuning requière généralement moins de données que l'apprentissage depuis zéro, il reste sensible à la diversité et à la qualité des données.
+
+La deuxième limitation concerne la qualité des annotations utilisées pour superviser l'entraînement. Afin de gagner du temps, nous avons choisi d'utiliser MacTrack2 pour générer automatiquement les masques des macrophages. Or, cet outil atteint une précision d'environ 75\%, ce qui signifie qu'une partie non négligeable des annotations est erronée ou incomplète. Un modèle entraîné sur des annotations aura tendance à reproduire ces erreurs, ce qui peut expliquer en partie la baisse des performances.
+
+\
+
+Au-delà de la question du fine-tuning, nous avons également constaté des limitations dans les capacités de suivi de SAM-2 appliqué à des vidéos. En particulier, l'apparition de nouveaux objets (apparition dans le champ ou séparation de deux macrophages collés) pose problème : ces dernierrs doivent être explicitement indiqués par l'utilisateur à travers des \textit{prompts} pour être correctement suivis. De plus, SAM-2 peut parfois assigner le même identifiant à plusieurs objets distincts, ce qui compromet la fiabilité du suivi temporel des macrophages, surtout si nous cherchons à avoir un outil automatisé où l'utilisateur interagit le moins possible avec le modèle.
+
+\
+
+Malgré ces complications, l'utilisation d'un modèle de fondation tel que SAM-2 reste une piste prometteuse pour répondre à notre problématique. Cependant, les resosurces nécessaires pour adapter ce type de modèle à un cas d'usage aussi spécifique dépassent les capacités de notre laboratoire. C'est dans cette optique que d'autres travaux, tels que MedSAM~\cite{medsam} pour l'imagerie médicale statique, puis MedSAM2~\cite{medsam2} pour les vidéos, ont vu le jour, malgré que ces modèles n'ont pas été entraînées sur des images de microscopie à fluorescence.
 
 
 \cleardoublepage
@@ -1637,6 +1762,11 @@ Pour visualiser les résultats de la segmentation des vidéos de macrophages, no
 \
 
 Des exemples de résultats sous la forme de vidéos sont présentés dans la Section~\nameref{liens}. Vous trouverez notamment les résultats de la segmentation avant et après le post-traitement.
+
+
+%\section{Résultats du fine-tuning des paramètres de SAM-2}\label{ann:sam2}
+%\subsection{Evolutio de la mIoU pendant le réapprentissage des parmaètres}
+
 
 
 \end{document}
