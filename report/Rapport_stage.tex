@@ -145,7 +145,7 @@
     \begin{minipage}[t]{0.3\textwidth}
         \vspace{0cm}
         \centering
-        Tuteur académique :\\[0.2cm]
+        Encadrant pédagogique :\\[0.2cm]
         \textbf{Nicolas Meyer}
     \end{minipage}
     \hfill
@@ -201,9 +201,20 @@
 \cleardoublepage
 \markboth{}{Remerciements}
 \section*{Remerciements}
+Je tiens dans un premier temps à remercier chaleureusement Mai Nguyen-Chi et Benjamin Charlier pour leur accueil et leur encadrement régulier tout au long de ce stage. Leur expertise et leurs conseils m'ont été précieux pour mener à bien ce projet. Je remercie également l'entièreté de l'équipe de recherche que j'ai intégrée, et plus particulièrement Norma Veltz, stagiaire dans la même équipe, avec qui j'ai pu collaboré pendant ce stage. Son travail a été essentiel pour lé réalisation de ce projet.
 
+\
 
-blabla
+Je remercie l'ensemble des stagiaires du LPHI avec qui j'ai pu partager des moments conviviaux et enrichissants durant cette période.
+
+\
+
+Je tiens aussi à remercier Nicolas Meyer, encadrant pédagogique durant ce stage, pour ses conseils et son suivi, ainsi que l'ensemble du corps enseignant du Master SSD pour l'ensemble des enseignements donnés, et pour leur implication dans notre formation.
+
+\
+
+Enfin, je remercie mes amis qui ont pris le temps pour relire ce rapport et m'apporter du soutien et des conseils.
+
 \newpage
 % Table of Contents
 \tableofcontents
@@ -490,15 +501,20 @@ Contrairement à la microscope confocale classique (à balayage laser), qui scan
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=.7\linewidth]{imgs/spinning_petit.jpg}
-    \caption{changer la photo}
+    \caption[Exemple d'un microscope confocale à \textit{spinning disk}.]{Exemple d'un microscope confocale à \textit{spinning disk}\protect\footnotemark.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Il s'agit du même modèle que celui utilisé pour les acquisitions des images de ce stage. Le nôtre étant en travaux, nous avons pris une photo d'un modèle identique. Il contient une tête \textit{spinning disk} Yokogawa CSU-W1 équipé de deux dichroïques (filtres pour séparer les longueurs d'onde), un banc laser de 4 lasers (405, 488, 561 et 640 nm), une caméra N\&B Zyla 4.2 avec un champ de $2048\times 2048$ pixels (pixels de 6.5 $\mu$m). Le microscope est motorisé en 3 dimensions (XYZ) et permet de faire des 3D stacks, des timelapses à fréquence variable, de la multiposition, de la mosaïque, du multichannel et a un maintien du focus.}}
     \label{ctx:spinning}
 \end{figure}
+
 
 
 
 \subsection{Acquisition des images de microscopie}\label{acquisition}
 %préparation de l'experience
 \subsubsection{Préparation à l'acquisition : mise en place de l'expérience}
+
+\footnotetext{Source de la photo : \url{https://micron.hms.harvard.edu/equipment/spinster}.}
+
 
 Dans des travaux précédents, mon laboratoire a montré qu'après une blessure des larves, les macrophages sont activés et présentent des phénotypes de polarisation distincts : à 3 heures post-amputation (hpa), ils sont fortement pro-inflammatoires. Par la suite, ils évoluent progressivement vers un état pro-résolutif à 6 hpa, puis vers un état régénératif à partir de 24 hpa jusqu'à 72 hpa. Afin de visualiser simultanément la localisation des macrophages et le signal calcique, dans un contexte inflammatoire, l'équipe a réalisé une blessure de la nageoire caudale chez des larves transgéniques, décrites ci-dessus, puis a imagé les nageoires blessées à différents temps après la lésion à l'aide de microscopie intravitale de type \textit{spinning disk} : 3, 6, 24, 48, 72 hpa. La \figref{mac:macros} illustre la grande diversité des morphologies adoptées par les macrophages au cours de la réponse à la blessure.
 
@@ -1140,8 +1156,7 @@ Nous avons donc mis en place, à travers la contribution de MacTrack2, un tracki
 %explication fonction
 La fonction permettant de fusionner les suivis de macrophages, visiblement identiques mais séparés, est nommée \texttt{merge}. Elle permet de fusionner les segmentations de différents macrophages en un seul. Elle permet de traiter différents cas de figure en agissant dans les dossiers contenant la segmentation de chaque macrophage à chaque image de la vidéo (obtenus à l'issue de la fonction \texttt{track}). En déplaçant certaines images d'un macrophage (sous-dossier) à un autre, on effectue la fusion de ces deux. Elle fait aussi en sorte de traiter les cas où la segmentation n'est pas continue ou alors si elle chevauche la segmentation d'un autre.
 
-\
-
+\subsection{Premier cas : fusion de macrophages perdus}
 % desc premier cas
 Dans le premier cas, si un macrophage est perdu pendant quelques images, puis réapparaît, alors la fonction \texttt{merge} va fusionner les deux segmentations et créer des images entièrement noires pour les images perdues.
 
@@ -1150,15 +1165,14 @@ Dans le premier cas, si un macrophage est perdu pendant quelques images, puis r�
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=.65\linewidth]{imgs/premier_cas.png}
-    \caption{Illustration du premier cas de fusion manuelle des macrophages.}
+    \caption{Illustration du premier cas de fusion manuelle : un macrophage n'est plus suivi pendant plusieurs images.}
     \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéro des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation. }
-
-        cut tail infection 3hpa, ligne du haut avant en bas apres}
+        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéro des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation. }}
 
     \label{mac:merge_first_cas}
 \end{figure}
 
+\subsection{Second cas : fusion de macrophages doublés}
 % desc second cas
 Le second cas apparaît souvent dans le cas où un macrophage est segmenté en tant que deux macrophages distincts pendant quelques images. Ainsi, avec la fonction \texttt{merge}, nous allons fusionner les deux segmentations. Pour les images où il y a deux segmentations différentes, nous allons garder celle qui apparaît en premier dans les paramètres de la fonction, en supprimant l'autre définitivement.
 
@@ -1176,15 +1190,17 @@ Il s'agit là d'un compromis que nous avons réalisé entre avoir un tracking su
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=.65\linewidth]{imgs/second_cas.png}
-    \caption{Illustration du second cas de fusion manuelle des macrophages.}
+    \caption{Illustration du second cas de fusion manuelle : la segmenation d'un seul macrophage est coupée en deux pendant quelques images.}
     \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize cut tail infection 3hpa, ligne du haut avant en bas apres}
+        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéro des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation.}
     }
     \label{mac:merge}
 \end{figure}
 
 Comme nous l'avons vu plutôt, la microscopie se fait en prenant des images à différentes profondeurs, on parle de \textit{z-stacks}. Il est donc possible que deux macrophages se chevauchent, que l'un \og passe à travers\fg\ de l'autre. En réalité, il passe soit au dessus soit en-dessous d'un autre macrophage. Nous travaillons sur des données de dimensions 2D+t obtenues en faisant une projection des images 3D+t. Nous voyons donc sur la vidéo d'origine un macrophage qui fusionne avec un autre et qui se détache de lui quelques images plus tard.
 
+
+\subsection{Fusion de macrophages traversés}
 Nous avons donc implémenté la fonction \texttt{merge\_and\_keep} qui permet, comme avec la fonction \texttt{merge}, de fusionner les segmentations de macrophages tout en gardant la segmentation du macrophage traversé, qui serait perdue sinon. En dédoublant la segmentation du macrophage traversé dans le dossier du macrophage traversant, nous obtenons donc une segmentation partagée entre les deux macrophages. La \figref{mac:merge_keep_zoom} nous montre un exemple de ce phénomène.
 
 \begin{minted}[breaklines,fontsize=\footnotesize]{python}
@@ -1196,9 +1212,9 @@ merge_and_keep(macro_list=[21,23,38], keep=[23])
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{imgs/merge_and_keep_zoom.png}
-    \caption{}
+    \caption{Illustration de la fusion de macrophages qui se traversent.}
     \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize cut tail 3hpa, ligne du haut avant en bas apres}
+        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéro des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation.}
     }
     \label{mac:merge_keep_zoom}
 \end{figure}
@@ -1222,9 +1238,18 @@ Il apparaît donc pertinent de considérer les vidéos dans leur globalité, en 
 SAM-2 (\textit{Segment Anything Model 2})~\cite{sam2} est un modèle de segmentation d'images et de vidéos développé par Meta AI publié récemment, en 2024. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
 
 % Données d'entrainement, société tierce
-Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
+Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations (voir \figref{sam2:sa-v}) ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel (mais aussi SAM-2 pour corriger les annotations). Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
 
-\red{donner un exemple de masque et image issue d'un vidéo}
+\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{imgs/sa_v.PNG}
+    \caption[Exemple d'annotations dans le jeu de données SA-V.]{Exemple d'annotations dans le jeu de données SA-V\protect\footnotemark.}
+    \label{sam2:sa-v}
+\end{figure}
+
+\footnotetext{Figure issue de~\cite{sam2}.}
 
 % second jeu de données, moins clair sur la provenance
 Le second est nommé \og \textit{internal dataset}\fg\ pour jeu de données de vidéos disponibles sous licence en interne et Meta AI est moins clair sur l'obtention de ces données. Il comprend 62 900 vidéos pour 69 600 annotations. Il a permis d'étendre le jeu de données d'entraînement.
@@ -1247,7 +1272,7 @@ SAM-2 est capable de segmenter des objets dans des vidéos de manière précise 
 \end{figure}
 
 % streaming memory: attention, bank
-Il utilise une mémoire en flux (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
+Il utilise une mémoire continue (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
 
 \
 
@@ -1528,6 +1553,25 @@ Malgré ces complications, l'utilisation d'un modèle de fondation tel que SAM-2
 
 \cleardoublepage
 \customchapterstar{Conclusion et perspectives}
+%éléments de conclusions
+
+L'objectif de ce travail était de développer un outil de segmentation et de suivi (tracking) des macrophages dans des vidéos de microscopie à fluorescence mises à notre disposition par l'équipe, en s'appuyant d'une part sur les travaux réalisés lors d'un stage précédent, et d'autre part sur les capacités récentes offertes par les modèles de fondation, en particulier SAM-2.
+
+Dans un premier temps, nous avons utilisé le programme MacTrack2, nouvelle version da la librairie MacTrack développée lors d'un stage précédent, pour créer des modèles de segmentation interprétables à l'aide de Kartezio. Nous avons ensuite appliqué le meilleur modèle obtenu à des images de microscopie de macrophages, résultant en la segmentation automatique d'images. Cette segmentation image par image nous a permis de mettre en évidence l'importance de la dimension temporelle dans le traitment d'images de microscopie de macrophages, des cellules immunitaires mobiles et dynamiques. Le suivi de ces derniers dans le temps permet d'éviter certaines confusions liées aux variations d'intensité de fluorescence ou de forme. Nous avons ainsi étendu cette segmentation à une approche spatio-temporelle, en construisant un suivi des macrophages au fil des images composant une vidéo.
+
+Ce suivi a ensuite été complété par un post-traitement manuel permettant d'améliorer la continuité des trajectoires sur l'ensemble des vidéos. Cette méthode s'est révélée efficace et rapide, mais reste difficile à généraliser à l'ensemble des vidéos disponibles, notamment en raison de la diversité morphologique et dynamique des macrophages.
+
+Afin de dépasser ces limites, nous avons exploré l'utilisation du modèle de fondation SAM-2, qui ispose d'une mémoire temporelle intégrée facilitant le suivi des objets au cours du temps, même en cas de perte temporaire de signal. Cependant, ce modèle étant généraliste, une phase de fine-tuning a été nécessaire pour l'adapter aux spécificités de notre jeu de données. Nous avons donc entraîné une version personnalisée du modèle à partir d'un jeu de données créé spécialement pour cette tâche que nous avons séparer en un échantillon d'entraînement et de test. Nous avons ensuite évalué les performances du modèle fine-tuné sur ces deux échantillons.
+
+Les résultats ont malheureusement montré que ce fine-tuning n'a pas permis d'améliorer les performances initiales du modèle. Les scores de segmentation sont restés inférieurs à ceux obtenus avec les poids d'origine, malgré la diminution de la fonction de perte durant l'entraînement, qui suggère une légère amélioration de la capacité du modèle à s'adapter aux données. Nous attribuons cet échec principalement à deux facteurs : la taille limitée du jeu de données utilisé pour l'entraînement (moins de 300 images contre des milliers en temps normal), et la qualité imparfaite des annotations générées automatiquement par MacTrack2.
+
+\
+
+%perspectives
+Plusieurs axes peuvent être envisagés pour prolonger ce travail. Un premier levier d'amélioration réside dans la constitution d'un jeu de données plus large et mieux annoté. Cela permettrait de tirer pleinement parti des capacités d'adaptation de SAM-2, et potentiellement d'intégrer ce modèle au sein de MacTrack2 pour bénficier de sa mémoire temporelle dans le cadre du suivi cellulaire.
+
+Par ailleurs, nous n'avons pas pu explorer en profondeur l'analyse du signal calciques, qui constitue pourtant un aspect fondamental de la plateforme MacTrack. En appliquant les masques de macrophages obtenus sur le canal vert (correspondant au signal calcique), il serait possible d'extraire précisément le profil calcique propre à chaque macrophage, sans interférence avec le signal global de la vidéo. Une telle analyse pourrait permettre de définir une signature calcique pour chaque cellule et d'étudier plus finement le rôle du calcium dans la polarisation des macrophages, et plus largement, dans les mécanismes de réponse immunitaire.
+
 
 \customsectionstar{Disponibilité du code}\label{code}
 
@@ -1535,7 +1579,7 @@ Le code de MacTrack2 est disponible, ainsi que deux scripts détaillés pour la 
 
 \
 
-Un site internet est disponible depuis ce dépôt GitHub, regroupant toute la documentation et des instructions détaillées pour les utilisateurs plus novices, notamment les biologistes traitant la même problématique, qui sont la cible principale de ce projet. Il servira aussi aux futurs membres du laboratoire LPHI qui souhaitent utiliser MacTrack2 pour leurs propres projets.
+Un site internet est disponible depuis ce dépôt GitHub (\url{https://guibouland.github.io/MacTrack2/}), regroupant toute la documentation et des instructions détaillées pour les utilisateurs plus novices, notamment les biologistes traitant la même problématique, qui sont la cible principale de ce projet. Il servira aussi aux futurs membres du laboratoire LPHI qui souhaitent utiliser MacTrack2 pour leurs propres projets.
 
 \customsectionstar{Liens utiles}\label{liens}
 
@@ -1642,7 +1686,7 @@ Voici le lien vers des sorties de MacTrack2, avec des vidéos de résultats de s
     42              & inrange                          & Crée un masque pour les pixels différents de 0
 \end{longtable}
 \setcounter{table}{0}
-\captionof{table}{Fonctions et descriptions}\label{ann:func}
+\captionof{table}{Fonctions et descriptions utilisées dans Kartezio.}\label{ann:func}
 
 \section{Tracking des macrophages par MacTrack}\label{mactrack1}
 
