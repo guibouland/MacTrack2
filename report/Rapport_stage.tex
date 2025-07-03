@@ -42,6 +42,7 @@
 
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \newcommand{\figref}[1]{Figure~\ref{#1}}
 \newcommand{\tabref}[1]{Table~\ref{#1}}
@@ -137,7 +138,7 @@
     \rule{\linewidth}{.5pt}\\ [0.4cm]
     \vspace{0.4cm}
     % Title
-    {\Huge \bfseries Titre du stage}\\[0.5cm]
+    {\Huge \bfseries Segmentation et tracking de macrophages dans des images de microscopie}\\[0.5cm]
     \rule{\linewidth}{.5pt}\\[0.4cm]
     \vspace{0.4cm}
     {\large Guillaume BOULAND}\\[1cm]
@@ -179,29 +180,29 @@
 \end{titlepage}
 
 
-\cleardoublepage
-\markboth{Résumé}{Résumé}
-\thispagestyle{fancy}
-\vspace*{\fill}
-\begin{customabstract}{Résumé}
-    \selectlanguage{french}
-    Résumé
-\end{customabstract}
-\vspace*{\fill}
-\newpage
-\cleardoublepage
-\markboth{Abstract}{}
-\vspace*{\fill}
-\begin{customabstract}{Abstract}
-    \selectlanguage{english}
-
-\end{customabstract}
-\vspace*{\fill}
-\newpage
+%\cleardoublepage
+%\markboth{Résumé}{Résumé}
+%\thispagestyle{fancy}
+%\vspace*{\fill}
+%\begin{customabstract}{Résumé}
+%    \selectlanguage{french}
+%    Résumé
+%\end{customabstract}
+%\vspace*{\fill}
+%\newpage
+%\cleardoublepage
+%\markboth{Abstract}{}
+%\vspace*{\fill}
+%\begin{customabstract}{Abstract}
+%    \selectlanguage{english}
+%
+%\end{customabstract}
+%\vspace*{\fill}
+%\newpage
 \cleardoublepage
 \markboth{}{Remerciements}
 \section*{Remerciements}
-Je tiens dans un premier temps à remercier chaleureusement Mai Nguyen-Chi et Benjamin Charlier pour leur accueil et leur encadrement régulier tout au long de ce stage. Leur expertise et leurs conseils m'ont été précieux pour mener à bien ce projet. Je remercie également l'entièreté de l'équipe de recherche que j'ai intégrée, et plus particulièrement Norma Veltz, stagiaire dans la même équipe, avec qui j'ai pu collaboré pendant ce stage. Son travail a été essentiel pour lé réalisation de ce projet.
+Je tiens dans un premier temps à remercier chaleureusement Mai Nguyen-Chi et Benjamin Charlier pour leur accueil et leur encadrement régulier tout au long de ce stage. Leur expertise et leurs conseils m'ont été précieux pour mener à bien ce projet. Je remercie également l'entièreté de l'équipe de recherche que j'ai intégrée, et plus particulièrement Norma Veltz, stagiaire dans la même équipe, avec qui j'ai pu collaboré pendant ce stage. Son travail a été essentiel pour la réalisation de ce projet.
 
 \
 
@@ -209,18 +210,45 @@ Je remercie l'ensemble des stagiaires du LPHI avec qui j'ai pu partager des mome
 
 \
 
-Je tiens aussi à remercier Nicolas Meyer, encadrant pédagogique durant ce stage, pour ses conseils et son suivi, ainsi que l'ensemble du corps enseignant du Master SSD pour l'ensemble des enseignements donnés, et pour leur implication dans notre formation.
+Je tiens aussi à remercier Nicolas Meyer, encadrant pédagogique durant ce stage, pour ses conseils et son suivi, ainsi que l'ensemble du corps enseignant du Master SSD pour l'ensemble des enseignements donnés pendant ces deux années, et pour leur implication dans notre formation.
 
 \
 
-Enfin, je remercie mes amis qui ont pris le temps pour relire ce rapport et m'apporter du soutien et des conseils.
+Enfin, je remercie mes amis qui ont pris le temps de relire ce rapport et m'apporter du soutien et des conseils.
+
+\newpage
+% Liste des abréviations
+\section*{Liste des abréviations}
+\markboth{Liste des abréviations}{}
+\begin{longtable}{lL{0.8\textwidth}}
+    \textbf{LPHI}   & \textit{Laboratory of Pathogen Host Interactions}                                    \\
+    \textbf{CNRS}   & Centre National de la Recherche Scientifique                                         \\
+    \textbf{INSERM} & Institut National de la Santé Et de la Recherche Médicale                            \\
+    \textbf{INRAE}  & Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement \\
+    \textbf{SAM-2}  & \textit{Segment Anything Model 2}                                                    \\
+    \textbf{GECI}   & \textit{Genetically Encoded Calcium Indicator}                                       \\
+    \textbf{hpa}    & \textit{hours post-amputation}                                                       \\
+    \textbf{dpf}    & \textit{days post-fertilization}                                                     \\
+    \textbf{CV}     & \textit{Computer Vision}                                                             \\
+    \textbf{CGP}    & \textit{Cartesian Genetic Programming}                                               \\
+    \textbf{GP}     & \textit{Genetic Programming}                                                         \\
+    \textbf{GA}     & \textit{Genetic Algorithm}                                                           \\
+    \textbf{IoU}    & \textit{Intersection over Union}                                                     \\
+    \textbf{mIoU}   & \textit{mean Intersection over Union}                                                \\
+    \textbf{ROI}    & \textit{Region Of Interest}                                                          \\
+    \textbf{BCE}    & \textit{Binary Cross Entropy}                                                        \\
+    \textbf{VOS}    & \textit{Visual Object Segmentation}                                                  \\
+\end{longtable}
+
+
 
 \newpage
 % Table of Contents
 \tableofcontents
-\markboth{}{Table des matières}
+\markboth{Table des matières}{Table des matières}
 \newpage
 \listoffigures
+\markboth{Table des figures}{Table des figures}
 \newpage
 \listoftables
 
@@ -272,7 +300,7 @@ Des études récentes \cite{mehari} ont montré que les signaux de calcium intra
 
 \
 
-Avant mon arrivée dans le laboratoire, l'équipe a utilisé la microscopie confocale pour imager des larves de zebrafish transgéniques, permettant de visualiser simultanément,, et à haute résolution, les macrophages ainsi que la dynamique du calcium intracellulaire. Ce protocole permet un suivi longitudinal des réponses cellulaires, notamment après l'induction d'une inflammation. Les séries d'images (vidéos) obtenues ont été analysées au cours de mon stage.
+Avant mon arrivée dans le laboratoire, l'équipe a utilisé la microscopie confocale pour imager des larves de zebrafish transgéniques, permettant de visualiser simultanément, et à haute résolution, les macrophages ainsi que la dynamique du calcium intracellulaire. Ce protocole permet un suivi longitudinal des réponses cellulaires, notamment après l'induction d'une inflammation. Les séries d'images (vidéos) obtenues ont été analysées au cours de mon stage.
 
 
 % Objectif du stage
@@ -280,7 +308,7 @@ Avant mon arrivée dans le laboratoire, l'équipe a utilisé la microscopie conf
 \customsectionstar{Objectifs du stage}
 
 % Développement de méthodes originales pour faire le tracking de macrophage pour mesurer la réponse calcique.
-Afin d'identifier les dynamiques calciques dans les différents états des macrophages, nous cherchons à développer un outil permettant 1/ d'identifier et délimiter les contours des macrophages (segmenter) dans de images obtenues obtenues par microscopie, et 2/ de suivre automatiquement chaque macrophage individuellement dans les vidéos. Il est important de noter que les macrophages sont caractérisés par une hétérogénéité de forme et une grande diversité de comportements migratoires au cours du temps, ce qui complique l'analyse. Finalement, mesurer l'activité calcique dans ces cellules permettra d'établir la signature de ce signal dans les différents macrophages.
+Afin d'identifier les dynamiques calciques dans les différents états des macrophages, nous cherchons à développer un outil permettant 1/ d'identifier et délimiter les contours des macrophages (segmenter) dans des images obtenues obtenues par microscopie, et 2/ de suivre automatiquement chaque macrophage individuellement dans les vidéos. Il est important de noter que les macrophages sont caractérisés par une hétérogénéité de forme et une grande diversité de comportements migratoires au cours du temps, ce qui complique l'analyse. Finalement, mesurer l'activité calcique dans ces cellules permettra d'établir la signature de ce signal dans les différents macrophages.
 
 \
 
@@ -289,11 +317,11 @@ Mon premier objectif est donc de réaliser la segmentation automatique d'images 
 
 \
 
-Mon second objectif est d'étendre cette segmentation au domaine temporel, en réalisant un suivi (tracking) des macrophages dans les vidéos, qui sont des séries d'images. Pour ce faire, nous procèderons dans un premier temps manuellement, en appliquant un post-processing sur les résultats de la segmentation des images de toute une vidéo. Dans un second temps, nous automatiserons ce processus en exploitant un modèle de fondation, SAM-2, qui utilise une mémoire en continu, afin de segmenter les macrophages dans les vidéos. Nous adapterons ce modèle à nos données à l'aide d'un \textit{fine-tuning} de ses parmaètres.
+Mon second objectif est d'étendre cette segmentation au domaine temporel, en réalisant un suivi (tracking) des macrophages dans les vidéos, qui sont des séries d'images successives. Pour ce faire, nous procéderons dans un premier temps manuellement, en appliquant un post-processing sur les résultats de la segmentation des images de toute une vidéo. Dans un second temps, nous automatiserons ce processus en exploitant un modèle de fondation, SAM-2, qui utilise une mémoire en continu, afin de segmenter les macrophages dans les vidéos. Nous adapterons ce modèle à nos données à l'aide d'un \textit{fine-tuning} de ses paramètres.
 
 \
 
-Mon troisième objectif est de rendre ce travail le plus accessible pour les praticiens. Ainsi, une librairie Python, MacTrack2\footnote{Lien de la librairie : \url{https://github.com/guibouland/MacTrack2}}, sera développée et contiendra des scripts intuitifs et exécutables en un clic, accompagnés d'une documentation claire disponible sur un site internet\footnote{Lien du site contentant la documentation : \url{https://guibouland.github.io/MacTrack2/}}.
+Mon troisième objectif est de rendre ce travail le plus accessible pour les praticiens. Ainsi, une librairie Python, MacTrack2\footnote[1]{Lien de la librairie : \url{https://github.com/guibouland/MacTrack2}}, sera développée et contiendra des scripts intuitifs et exécutables en un clic, accompagnés d'une documentation claire disponible sur un site internet\footnote[2]{Lien du site contentant la documentation : \url{https://guibouland.github.io/MacTrack2/}}.
 
 \
 
@@ -305,11 +333,11 @@ Mon troisième objectif est de rendre ce travail le plus accessible pour les pra
 \customsectionstar{Plan du rapport}
 
 % dire que l'on suit la description des objectifs.
-Le plan du rapport suivra la description des objectifs présentés ci-dessus. Le premier chapitre portera sur le contexte biologique de ce stage afin de décrire les enjeux de la polarisation des macrophages, l'importance des signaux calciques et le protocol expérimental, de l'échantillon biologiques à l'acquisition des images par microscopie, qui a permis à l'équipe d'obtenir un jeu de données.
+Le plan du rapport suivra la description des objectifs présentés ci-dessus. Le premier chapitre portera sur le contexte biologique de ce stage afin de décrire les enjeux de la polarisation des macrophages, l'importance des signaux calciques et le protocole expérimental, de l'échantillon biologique à l'acquisition des images par microscopie, qui a permis à l'équipe d'obtenir un jeu de données.
 
-Le second chapitre comprendra une introduction sur la segmentation d'images et présentera la méthode choisie permettant de segmenter automatiquement des objets dans des images, suivi des résultats obtenus sur nos données.
+Le second chapitre comprendra une introduction sur la segmentation d'images et présentera la méthode choisie permettant de segmenter automatiquement des objets dans des images, suivie des résultats obtenus sur nos données.
 
-Nous aborderons ensuite l'extension de cette segmentation au domaine temporel, en présentant d'abord les améliorations apportées à la librairie MacTrack~\cite{axel}, puis l'utilisation d'un modèle de fondation, que nous avons affiné à nos données. Nous présenterons les résultats de ce fine-tuning et de la segmentation sur une vidéo.
+Nous aborderons ensuite l'extension de cette segmentation au domaine temporel, en présentant d'abord les améliorations apportées à la librairie MacTrack~\cite{axel}, puis l'utilisation d'un modèle de fondation, que nous avons affiné à nos données. Nous présenterons les résultats de ce \textit{fine-tuning} et de la segmentation sur une vidéo.
 %Le dernier chapitre présentera une analyse statistique des données obtenues en quantifiant l'intensité de calcium dans les macrophages suivis. 
 
 Enfin, nous évoquerons une conclusion accompagnée d'une discussion sur les perspectives futures, suivies des références bibliographiques et des annexes.
@@ -323,7 +351,7 @@ Enfin, nous évoquerons une conclusion accompagnée d'une discussion sur les per
 
 \subsection{La réponse immunitaire : un processus complexe}
 % Réponse immunitaire est un processus complexe. En décrire les très grandes lignes
-La \textbf{réponse immunitaire}~\cite{sysimmun} est l'ensemble des mécanismes par lesquels l'organisme détecte et élimine les agents pathogènes (bactéries, virus, champignons, parasites) tout en maintenant l'intégrité des tissus. Elles se déroule en plusieurs étapes coordonnées, qui impliquent différents types de cellules et de molécules.
+La \textbf{réponse immunitaire}~\cite{sysimmun} est l'ensemble des mécanismes par lesquels l'organisme détecte et élimine les agents pathogènes (bactéries, virus, champignons, parasites) tout en maintenant l'intégrité des tissus. Elle se déroule en plusieurs étapes coordonnées, qui impliquent différents types de cellules et de molécules.
 
 \
 
@@ -341,7 +369,7 @@ Il existe de nombreux sous-types de macrophages en fonction du tissu dans lequel
 \
 
 % fonctions principale et rôle 
-La fonction principale des macrophages est la \textbf{phagocytose}, c'est-à-dire l'ingestion et la destruction des agents pathogènes, des cellules mortes ou des débris. Mais leur rôle va bien au-delà : ils déclenchent et modulent l'inflammation en produisant des médiateurs pro- et anti-inflammatoires, présentent des antigènes aux lymphocytes T pour activer l'immunité adaptative, et participent à la réparation tissulaire après l'infection. Ils peuvent sécréter des cytokines, des molécules de signalisation servant à recruter et activer d'autres cellules immunitaires.
+La fonction principale des macrophages est la \textbf{phagocytose}, c'est-à-dire l'ingestion et la destruction des agents pathogènes, des cellules mortes ou des débris. Mais leur rôle va bien au-delà : ils déclenchent et modulent l'inflammation en produisant des médiateurs pro- et anti-inflammatoires, présentent des antigènes aux lymphocytes T pour activer l'immunité adaptative et participent à la réparation tissulaire après l'infection. Ils peuvent sécréter des cytokines, des molécules de signalisation servant à recruter et activer d'autres cellules immunitaires.
 
 \subsection{Profils fonctionnels et polarisation des macrophages}
 \subsubsection{Les différents profils fonctionnels des macrophages}
@@ -353,7 +381,7 @@ En fonction de l'environnement dans lequel ils se trouvent, les macrophages peuv
 
 Les macrophages M1 ou \og classiquement activés\fg, sont induits par des signaux pro-inflammatoires et produisent des cytokines pro-inflammatoires. Ils sont spécialisés dans la destruction des pathogènes.
 
-Les macrophages M2, ou \og alternativement activés\fg, sont inuits par des cytokines et produisent des cytokines anti-inflammatoires. Ils favorisent la réparation tissulaire, la résolution de l'inflammation et parfois la tolérance immunitaire.
+Les macrophages M2, ou \og alternativement activés\fg, sont induits par des cytokines et produisent des cytokines anti-inflammatoires. Ils favorisent la réparation tissulaire, la résolution de l'inflammation et parfois la tolérance immunitaire.
 
 \
 
@@ -362,19 +390,20 @@ Cette notation M1/M2 est utile pour comprendre et classer les fonctions que peuv
 \subsubsection{Changement de profils : la polarisation des macrophages}
 
 % Les macrophages changent de role au cours du temps. polarisation -> nécessité d'observe la réponse immunitaire dans le temps
-La \textbf{polarisation} désigne le processus par lequel un macrophage adopte un profil fonctionnel donné en réponse aux signaux des son environnement (pathogènes, cytokines, etc\dots), comme le montre la \figref{ctx:poli_macros}.
+La \textbf{polarisation} désigne le processus par lequel un macrophage adopte un profil fonctionnel donné en réponse aux signaux de son environnement (pathogènes, cytokines, etc\dots), comme le montre la \figref{ctx:poli_macros}.
 
 \
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{imgs/poli_macros.jpg}
-    \caption{}
+    \caption{Représentation schématique des différents profils fonctionnels des macrophages et de leur polarisation\protect\footnotemark.}
     \label{ctx:poli_macros}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages M0 (ou non-activés) sont polarisés soit en M1 ou en M2 en fonction des besoins. Une fois activés, ils peuvent soit de désactiver en M0, soit changer de profil fonctionnel en M1 ou M2.}}
 \end{figure}
 
 
-C'est un processus \textbf{réversible et dynamique}, un macrophage peut changer de profil fonctionnel à tout moment en fonction des besoins de l'organisme. Par exemple, lors d'une blessure, un macrophage M0 se polarise en M1 pour éliminer les agents pathogènes et les débris. Une fois l'inflammation contrôlée, il peut adopter un profil M2 pour favoriser la régénération tissulaire (voir \figref{ctx:exp_pola}).
+C'est un processus \textbf{réversible et dynamique}, un macrophage peut changer de profil fonctionnel à tout moment en fonction des besoins de l'organisme. Par exemple, lors d'une blessure, un macrophage M0 (non activé) se polarise en M1 pour éliminer les agents pathogènes et les débris. Une fois l'inflammation contrôlée, il peut adopter un profil M2 pour favoriser la régénération tissulaire (voir \figref{ctx:exp_pola}).
 
 \
 
@@ -386,13 +415,16 @@ Ainsi, les macrophages assurent un équilibre entre destruction, régulation et 
 
 \subsection{Le calcium, une molécule clé à utilité multiple}
 
+%bas de page fig au dessus
+\footnotetext{Figure issue de~\cite{polaimage}}
+
 % lien avec calcium article qui dit que c'est un déterminant essentiel, augment chez les M1
-Dans des études récentes, il a été montré que les signaux de calcium (Ca$^{2+}$), déjà connus comme élément clé de l'immunité innée, seraient présents dans les macrophages M1~\cite{atcha}. Cela a été confirmé plus tard dans des études sur la souris~\cite{mehari, sipka}, suggérant que les signaux de calcium joueraient un rôle significatif dans leur polarisation.
+Dans des études récentes, il a été montré que les signaux de calcium (Ca$^{2+}$), déjà connus comme élément clé de l'immunité innée, seraient présents dans les macrophages M1~\cite{atcha}. Cela a été confirmé plus tard dans des études sur la souris~\cite{mehari,sipka}, suggérant que les signaux de calcium joueraient un rôle significatif dans leur polarisation.
 
 \
 
 % les différente simplications du calcium
-Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez les macrophages, il est essentiel pour la production de cytokines pro- et anti-inflammatoires, la migration cellulaire, la communication cellulaire~\cite{taghdiri} ou encore dans le processus de phagocytose\cite{nunes, watanabe, yan}. Les macrophages possèdent une grande variété de canaux calciques situés au niveau de la membrane cellulaire. Ces canaux régulent l'entrée de calcium vers l'intérieur de la cellule. Nous n'en parlerons pas ici, mais certains sont représentés dans la \figref{ctx:flash}.
+Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez les macrophages, il est essentiel pour la production de cytokines pro- et anti-inflammatoires, la migration cellulaire, la communication cellulaire~\cite{taghdiri} ou encore dans le processus de phagocytose~\cite{nunes,watanabe,yan}. Les macrophages possèdent une grande variété de canaux calciques situés au niveau de la membrane cellulaire. Ces canaux régulent l'entrée de calcium vers l'intérieur de la cellule. Nous n'en parlerons pas ici, mais certains sont représentés dans la \figref{ctx:flash}.
 
 \subsection{Le flash calcique, un signal rapide et transitoire}
 
@@ -400,7 +432,7 @@ Dans les cellules immunitaires, le calcium régule de nombreuses fonctions. Chez
 Le calcium (Ca$^{2+}$) sert en tant que \textbf{second messager} dans de nombreuses voies de signalisation cellulaire. Dans les macrophages, lorsqu'une blessure est infligée, des signaux primaires sont émis, ouvrant les pompes de calcium dans la membrane cellulaire des macrophages.
 
 %flash
-Cela entraîne un influx important de calcium dans le cytoplasme, où la quantité de calcium (intracellulaire) présent augmente rapidement, entraînant un transient de calcium, que l'on nomme \textbf{flash calcique}, dont l'intensité est caractéristique d'une fonction cellulaire précise. La durée de ce flash peut varier mais est généralement considéré comme rapide (de quelques secondes à plusieurs minutes pour les plus longs).
+Cela entraîne un influx important de calcium dans le cytoplasme, où la quantité de calcium (intracellulaire) présent augmente rapidement, entraînant un transient de calcium, que l'on nomme \textbf{flash calcique}, dont l'intensité est caractéristique d'une fonction cellulaire précise. La durée de ce flash peut varier, mais est généralement considérée comme rapide (de quelques secondes à plusieurs minutes pour les plus longs).
 
 Cependant, il reste encore incertain que les différents états des macrophages présentent des profils spécifiques de flux calciques. Comprendre ces dynamiques calciques pourrait permettre d'identifier les états fonctionnels des macrophages et de suivre leur activité.
 
@@ -409,7 +441,8 @@ Cependant, il reste encore incertain que les différents états des macrophages 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{imgs/flash.png}
-    \caption{image de norma}
+    \caption{Représentation d'un flash calcique dans un macrophage.}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Suite à un signal primaire, les canaux calciques s'ouvrent et le calcium rentre dans la cellule, augmentant ainsi la quantité de calcium dans le cytoplasme. Une telle augmentation rapide et intense provoque un flash calcique, ce qui se traduit en une ou plusieurs fonctions particulières du macrophage. Figure réalisée par l'équipe (Norma Veltz).}}
     \label{ctx:flash}
 \end{figure}
 
@@ -431,7 +464,7 @@ Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, 
     \centering
     \includegraphics[width=\linewidth]{imgs/flash_cal.png}
     \caption{Représentation d'un flash calcique observé par microscopie.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente un macrophage (en rouge) et un flash calcique (en vert) observé par microscopie, avec l'intensité de calcium (Vert) en fonction du temps. Pour plus d'informations sur l'obtention de ces images, voir la Section~\ref{acquisition}}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente un macrophage (en rouge) et un flash calcique (en vert) observés par microscopie, avec l'intensité de calcium (Vert) en fonction du temps. Pour plus d'informations sur l'obtention de ces images, voir la Section~\ref{acquisition}.}}
     \label{ctx:flash_cal}
 \end{figure}
 
@@ -440,22 +473,22 @@ Nous pourrons ainsi donner la \textbf{signature calcique} de chaque macrophage, 
 \section{Le zebrafish, modèle animal idoine}
 
 % lien avec avant
-Comme mentionné précédemment, l'étude de la réponse calcique des macrophages \textit{in vivo} nécessite un modèle animal adapté. Le \textbf{zebrafish} (\textit{Danio rerio}) est aujourd'hui largement reconnu, aux côtés de la souris, comme un modèle pertinent pour l'étude de la réponse immunitaire, en raison des nombreux avantages qu'il présente.
+Comme mentionné précédemment, l'étude de la réponse calcique des macrophages \textit{in vivo} (dans l'organisme vivant) nécessite un modèle animal adapté. Le \textbf{zebrafish} (\textit{Danio rerio}) est aujourd'hui largement reconnu, aux côtés de la souris, comme un modèle pertinent pour l'étude de la réponse immunitaire, en raison des nombreux avantages qu'il présente.
 
 \subsection{Un modèle animal pertinent pour l'étude de la réponse immunitaire}
 % animale modèle:  etc...
-Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$cm de long, partage environ 70\% de ses gènes avec l'humain et plus de 80\% de ces gènes ont un équivalent chez l'Homme, impliqués dans les maladies humaines. Pour ces raisons, le zebrafish est un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
+Ce petit poisson originaire d'Asie du Sud, mesurant entre $2.5$ et $4$ cm de long, partage environ 70~\% de ses gènes avec l'humain et plus de 80~\% de ces gènes ont un, équivalent chez l'Homme, impliqué dans les maladies humaines. Pour ces raisons, le zebrafish est un modèle pertinent pour explorer des mécanismes biologiques complexes encore mal compris chez l'Homme, comme la réponse immunitaire.
 
 %transparent, reproduction rapide,
 Son principal atout réside dans la transparence de ses larves, qui permet l'observation directe des organes internes tout en manipulant l'animal vivant~\cite{sipka}. De plus, il se reproduit rapidement (50 à 200 embryons par ponte) et sa petite taille facilite son élevage à faible coût.
 
-Chez le zebrafish, les macrophages présentent de nombreuses similarités fonctionnelles avec ceux des mammifères : ils sont capables de phagocyter des pathogènes, de migrer dans les tissus, et présentent des profils de polarisation (voir \figref{ctx:exp_pola}) ainsi qu'une expression génique comparables.
+Chez le zebrafish, les macrophages présentent de nombreuses similarités fonctionnelles avec ceux des mammifères : ils sont capables de phagocyter des pathogènes, de migrer dans les tissus et présentent des profils de polarisation (voir \figref{ctx:exp_pola}) ainsi qu'une expression génique comparables.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=.7\linewidth]{imgs/exp_pola.png}
     \caption{Schéma explicatif du rôle des macrophages et de la polarisation dans la réponse immunitaire du zebrafish, de la blessure à la régénération.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente les différents temps d'observation post-amputation, avec les profils fonctionnels des macrophages, permettant de visualiser les effets de la polarisation. Les macrophages en bleu sont les macrophages M1, et ceux en rouge sont les macrophages M2. Cette figure a été réalisée par l'équipe (Norma Veltz)}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize La figure présente les différents temps d'observation post-amputation, avec les profils fonctionnels des macrophages, permettant de visualiser les effets de la polarisation à différents temps post-amputation d ela nageoire caudale (hpA pour heure post-amputation), simulant une inflammation. Les macrophages en bleu sont les macrophages M1, et ceux en rouge sont les macrophages M2. Cette figure a été réalisée par l'équipe (Norma Veltz).}}
     \label{ctx:exp_pola}
 \end{figure}
 
@@ -472,9 +505,9 @@ Enfin, ce modèle est facilement manipulable génétiquement, ce qui a permis le
 \subsection{La lignée transgénique double}
 % Création de lignées pour permettre l'observation de la réponse calcique.
 
-Une lignée transgénique est une lignée de poissons génétiquement modifiés pour contenir un ou plusieurs gènes étrangers (transgène) insérés dans leur génome. Ces gènes peuvent provenir d'autres espèces ou être des versions modifiées de gênes du zebrafish lui-même.
+Une lignée transgénique est une lignée de poissons génétiquement modifiés pour contenir un ou plusieurs gènes étrangers (transgènes) insérés dans leur génome. Ces gènes peuvent provenir d'autres espèces ou être des versions modifiées de gènes du zebrafish lui-même.
 
-Souvent, et c'est le cas pour nous aussi, les lignées transgéniques sont créées pour observer un phénomène, .en ajoutant par transgenèse un gène codant pour une protéine fluorescente sous le contrôle de séquences régulatrices d'un gène spécifique d'une population cellulaire. Ainsi la lignée transgénique est dite \og rapportrice\fg\ car en effet elle permet de marquer par la fluorescence une population cellulaire donnée.
+Souvent, et c'est le cas ici aussi, les lignées transgéniques sont créées pour observer un phénomène, en ajoutant par transgenèse un gène codant pour une protéine fluorescente sous le contrôle de séquences régulatrices d'un gène spécifique d'une population cellulaire. Ainsi, la lignée transgénique est dite \og rapportrice\fg\ car elle permet de marquer par la fluorescence une population cellulaire donnée.
 
 \
 
@@ -490,9 +523,9 @@ Dans notre cas, nous avons une lignée transgénique double, c'est-à-dire que l
 \section{Microscopie confocale pour observer des phénomènes}\label{micro}
 %décrire l'appareil (avec photo), expérience coupage de queues
 \subsection{La microscopie confocale à \textit{spinning disk}}
-La microscopie confocale (\figref{ctx:spinning}) est une technique d'imagerie photonique qui permet 'observer la fluorescence dans des échantillons biologiques en haute résolution, avec une meilleure section optique que le microscope à fluorescence à champ large. Son principe consiste à focaliser, par l'intermédiaire d'un objectif, un faisceau laser qui va exciter les fluorochromes en un point de l'échantillon, puis à récupérer, sur un photomultiplicatuer, le signal lumineux émis en ce point.
+La microscopie confocale (\figref{ctx:spinning}) est une technique d'imagerie photonique qui permet d'observer la fluorescence dans des échantillons biologiques en haute résolution, avec une meilleure section optique que le microscope à fluorescence à champ large. Son principe consiste à focaliser, par l'intermédiaire d'un objectif, un faisceau laser qui va exciter les fluorochromes en un point de l'échantillon, puis à récupérer, sur un photomultiplicateur, le signal lumineux émis en ce point.
 
-Contrairement à la microscope confocale classique (à balayage laser), qui scanne un point à la fois, le système confocale \textit{spinning disk} utilise un disque de microlentilles tournant rapidement, ce qui permet de scanner rapidement l'échantillon en une multitude de points. Ce système est particulièrement adapté à l'imagerie de processus dynamiques comme l'activité calcique car il est très rapide et peu phototoxique.
+Contrairement à la microscopie confocale classique (à balayage laser), qui scanne un point à la fois, le système confocal \textit{spinning disk} utilise un disque de microlentilles tournant rapidement, ce qui permet de scanner rapidement l'échantillon en une multitude de points. Ce système est particulièrement adapté à l'imagerie de processus dynamiques comme l'activité calcique, car il est très rapide et peu phototoxique.
 
 
 
@@ -502,7 +535,7 @@ Contrairement à la microscope confocale classique (à balayage laser), qui scan
     \centering
     \includegraphics[width=.7\linewidth]{imgs/spinning_petit.jpg}
     \caption[Exemple d'un microscope confocale à \textit{spinning disk}.]{Exemple d'un microscope confocale à \textit{spinning disk}\protect\footnotemark.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Il s'agit du même modèle que celui utilisé pour les acquisitions des images de ce stage. Le nôtre étant en travaux, nous avons pris une photo d'un modèle identique. Il contient une tête \textit{spinning disk} Yokogawa CSU-W1 équipé de deux dichroïques (filtres pour séparer les longueurs d'onde), un banc laser de 4 lasers (405, 488, 561 et 640 nm), une caméra N\&B Zyla 4.2 avec un champ de $2048\times 2048$ pixels (pixels de 6.5 $\mu$m). Le microscope est motorisé en 3 dimensions (XYZ) et permet de faire des 3D stacks, des timelapses à fréquence variable, de la multiposition, de la mosaïque, du multichannel et a un maintien du focus.}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Il s'agit du même modèle que celui utilisé pour les acquisitions des images de ce stage. Le nôtre étant en travaux, nous avons pris une photo d'un modèle identique. Il contient une tête \textit{spinning disk} Yokogawa CSU-W1 équipée de deux dichroïques (filtres pour séparer les longueurs d'onde), un banc laser de 4 lasers (405, 488, 561 et 640 nm), une caméra N\&B Zyla 4.2 avec un champ de $2048\times 2048$ pixels (pixels de 6.5 $\mu$m). Le microscope est motorisé en 3 dimensions (XYZ) et permet de faire des 3D stacks, des timelapses à fréquence variable, de la multiposition, de la mosaïque, du multichannel et a un maintien du focus.}}
     \label{ctx:spinning}
 \end{figure}
 
@@ -516,7 +549,9 @@ Contrairement à la microscope confocale classique (à balayage laser), qui scan
 \footnotetext{Source de la photo : \url{https://micron.hms.harvard.edu/equipment/spinster}.}
 
 
-Dans des travaux précédents, mon laboratoire a montré qu'après une blessure des larves, les macrophages sont activés et présentent des phénotypes de polarisation distincts : à 3 heures post-amputation (hpa), ils sont fortement pro-inflammatoires. Par la suite, ils évoluent progressivement vers un état pro-résolutif à 6 hpa, puis vers un état régénératif à partir de 24 hpa jusqu'à 72 hpa. Afin de visualiser simultanément la localisation des macrophages et le signal calcique, dans un contexte inflammatoire, l'équipe a réalisé une blessure de la nageoire caudale chez des larves transgéniques, décrites ci-dessus, puis a imagé les nageoires blessées à différents temps après la lésion à l'aide de microscopie intravitale de type \textit{spinning disk} : 3, 6, 24, 48, 72 hpa. La \figref{mac:macros} illustre la grande diversité des morphologies adoptées par les macrophages au cours de la réponse à la blessure.
+Dans des travaux précédents, mon laboratoire a montré qu'après une blessure des larves, les macrophages sont activés et présentent des phénotypes de polarisation distincts : à 3 heures post-amputation (hpa), ils sont fortement pro-inflammatoires. Par la suite, ils évoluent progressivement vers un état pro-résolutif à 6 hpa, puis vers un état régénératif à partir de 24 hpa jusqu'à 72 hpa.
+
+Afin de visualiser simultanément la localisation des macrophages et le signal calcique, dans un contexte inflammatoire, l'équipe a réalisé une blessure de la nageoire caudale chez des larves transgéniques, décrites ci-dessus, puis a imagé les nageoires blessées à différents temps après la lésion à l'aide de microscopie intravitale de type \textit{spinning disk} : 3, 6, 24, 48, 72 hpa. La \figref{mac:macros} illustre la grande diversité des morphologies adoptées par les macrophages au cours de la réponse à la blessure.
 
 \
 
@@ -524,18 +559,18 @@ Dans des travaux précédents, mon laboratoire a montré qu'après une blessure 
     \centering
     \includegraphics[width=\linewidth]{imgs/hpa.png}
     \caption{Macrophages observés à différents temps post-amputation pour un même poisson.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages sont observés, de gauche à droite, à 3, 6, 24, 48 et 72 heures post-amputation (hpa). Il s'agit d'un poisson dont la nageoire caudale a été coupée (ne faisait pas partie du groupe contrôle).}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les macrophages sont observés, de gauche à droite, à 3, 6, 24, 48 et 72 heures post-amputation (hpa). Il s'agit d'une larve dont la nageoire caudale a été coupée (ne faisait pas partie du groupe contrôle).}}
     \label{mac:macros}
 \end{figure}
 
-Deux témoins négatifs représentant des conditions homéostatiques ont été utilisées : des larves avec des queues intactes, imagées au niveau de la région caudale (contrôle 1) et au niveau du sac vitellin (contrôle 2). Dans les deux témoins, les macrophages sont non-activés.
+Deux témoins négatifs représentant des conditions homéostatiques ont été utilisés : des larves avec des queues intactes, imagées au niveau de la région caudale (contrôle 1) et au niveau du sac vitellin (contrôle 2). Dans les deux témoins, les macrophages sont non activés (M0).
 Une fois notre lignée transgénique établie et la reproduction des poissons réalisée, les œufs fécondés sont récupérés. À 3 jours post-fertilisation (3 dpf), les larves exprimant correctement les transgènes sont sélectionnées à l'aide d'un microscope à fluorescence.
 
 
 \subsubsection{Acquisition des images}
 
 
-L'imagerie des macrophages et du calcium est réalisée à l'aide d'un microscope confocal à \textit{spinning disk} (voir \figref{ctx:spinning}). Ce microscope permet de capturer la fluorescence de la \textit{mCherry} et du \textit{GCaMP6f} sur toute la profondeur de l'échantillon. Chaque acquisition se fait environ toutes les 9 secondes, sur une durée totale de 40 minutes. Un pré-traitement de l'image permet de projeter les piles (stacks) d'images en 2 dimensions. De plus, le bruit de fond de l'image (artefact de l'acquisition) est amené à 0 pour améliorer de façon significative la qualité visuelle et lus particulièrement les contrastes et les contours des objets, comme nous pouvons le voir dans la \figref{ctx:exp_obs}.
+L'imagerie des macrophages et du calcium est réalisée à l'aide d'un microscope confocal à \textit{spinning disk} (voir \figref{ctx:spinning}). Ce microscope permet de capturer la fluorescence de la \textit{mCherry} et du \textit{GCaMP6f} sur toute la profondeur de l'échantillon. Chaque acquisition se fait environ toutes les 9 secondes, sur une durée totale de 40 minutes. Un prétraitement de l'image permet de projeter les piles (stacks) d'images en 2 dimensions. De plus, le bruit de fond de l'image (artefact de l'acquisition) est amené à 0 pour améliorer de façon significative la qualité visuelle et plus particulièrement le contraste et les contours des objets, comme nous pouvons le voir dans la \figref{ctx:exp_obs}.
 
 \
 
@@ -543,7 +578,7 @@ L'imagerie des macrophages et du calcium est réalisée à l'aide d'un microscop
     \centering
     \includegraphics[width=.8\linewidth]{imgs/exp_obs2.png}
     \caption{Observation des macrophages et de calcium intracellulaire dans une larve transgénique blessée.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré dans la figure fait écho à la \figref{ctx:flash_cal}, montrant un flash calcique dans un macrophage. La larve (à gauche est blessée) et nous observons (à droite) les macrophages (en rouge) et le calcium intracellulaire (en vert).}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize L'encadré dans la figure fait écho à la \figref{ctx:flash_cal}, montrant un flash calcique dans un macrophage. La larve (à gauche) est blessée et nous observons (à droite) les macrophages (en rouge) et le calcium intracellulaire (en vert). La \figref{ann:canaux} présente l'image de droite en plus grand.}}
     \label{ctx:exp_obs}
 \end{figure}
 
@@ -558,7 +593,7 @@ L'imagerie des macrophages et du calcium est réalisée à l'aide d'un microscop
 
 Ce chapitre présente mes contributions à la librairie MacTrack~\cite{axel}, développée au cours d'un stage antérieur. Dans un premier temps, il a été nécessaire de nous familiariser avec cette librairie, qui repose sur l'utilisation de Kartezio~\cite{kartezio}, un outil Python basé sur la programmation génétique cartésienne~\cite{cgp}, permettant de créer des pipelines de segmentation pour des images de microscopie.
 
-Nous avons dans un premier constitué un nouveau jeu de données, utilisé pour entraîner des modèles de segmentation avec Kartezio. Par ailleurs, nous avons mis en place des scripts automatisés et simples à utiliser, permettant de créer de nouveaux modèles et de lancer des traitements en un clic. Nous avons aussi conçu une documentation complète, disponible en ligne\footnote{Lien de la documentation et de la description des scripts automatisés : \url{https://guibouland.github.io/MacTrack2/}}, qui détaille le fonctionnement de la librairie.
+Nous avons d'abord constitué un nouveau jeu de données, utilisé pour entraîner des modèles de segmentation avec Kartezio. Par ailleurs, nous avons mis en place des scripts automatisés et simples à utiliser, permettant de créer de nouveaux modèles et de lancer des traitements en un clic. Nous avons aussi conçu une documentation complète, disponible en ligne\footnote{Lien de la documentation et de la description des scripts automatisés : \url{https://guibouland.github.io/MacTrack2/}}, qui détaille le fonctionnement de la librairie.
 
 L'ensemble de ces outils sont publiés dans une nouvelle version de MacTrack, nommée MacTrack2\footnote{Lien du dépôt GitHub de MacTrack2 : \url{https://github.com/guibouland/MacTrack2}}, et vont permettre aux praticiens de traiter plus facilement leurs nouvelles acquisitions de microscopie.
 
@@ -572,11 +607,11 @@ L'ensemble de ces outils sont publiés dans une nouvelle version de MacTrack, no
 \subsection{Image numérique}
 %ayant été génétiquement modifiés par la double lignée transgénique,
 
-Les images dont nous disposons pour analyser la réponse immunitaire dans le zebrafish sont obtenues par microscopie confocale de zebrafish, comme nous l'avons vu dans la Section~\ref{micro}. La microscopie confocale nous permet d'obtenir deux types d'images en niveau de gris où chaque pixel est codé en 8 bits, donc par un nombre entre 0 (noir) et 255 (blanc) : 1/ les images correspondant aux macrophages et 2/ les images correspondant à la présence de calcium.
+Les images dont nous disposons pour analyser la réponse immunitaire dans le zebrafish sont obtenues par microscopie confocale de zebrafish, comme nous l'avons vu dans la Section~\ref{micro}. La microscopie confocale nous permet d'obtenir deux types d'images en niveau de gris où chaque pixel est codé en 8 bits, donc par un nombre entre 0 (noir) et 255 (blanc), avec : 1/ les images correspondant aux macrophages et 2/ les images correspondant à la présence de calcium.
 
 \
 
-Nous \og colorons\fg\ artificiellement les images afin de différencier les macrophages des signaux calciques. Le choix des couleurs est fait en accord avec les longueurs d'onde des protéines fluorescentes utilisées pour le marquage. Ainsi, nous avons un canal rouge pour la présence des macrophages et un canal vert pour la présence de calcium dans le cytoplasme de ces cellules (\figref{mac:rv}). Nous parlerons ci-après de \og canal rouge\fg\ et de \og canal vert\fg. Il est important de noter que chaque image est une vue en deux dimensions de l'échantillon, parfaitement nette en tout point et en format 8 bits.
+Nous \og colorons\fg\ artificiellement les images afin de différencier les macrophages des signaux calciques. Le choix des couleurs est fait en accord avec les longueurs d'onde auxquelles sont activées les protéines fluorescentes utilisées pour le marquage. Ainsi, nous avons un canal rouge pour la présence des macrophages et un canal vert pour la présence de calcium dans le cytoplasme de ces cellules (\figref{mac:rv}). Nous parlerons ci-après de \og canal rouge\fg\ et de \og canal vert\fg. Il est important de noter que chaque image est une vue en deux dimensions de l'échantillon, parfaitement nette en tout point et en format 8 bits.
 
 \
 
@@ -604,7 +639,7 @@ Nous \og colorons\fg\ artificiellement les images afin de différencier les macr
 \subsection{Différentes approches de segmentation d'images}
 La segmentation d'images est un domaine de la vision par ordinateur (\textit{Computer Vision} ou CV) qui consiste à diviser une image en plusieurs régions ou objets d'intérêt. Ici, les objets d'intérêt sont des macrophages, mais la segmentation est un problème plus général, applicable à de nombreux domaines. Les régions ou objets d'intérêt peuvent prendre plusieurs formes comme par exemple des rectangles permettant de délimiter la présence d'un objet. Elle sert à \textbf{détecter} tous les objets d'intérêt dans une image et peut même être utilisée pour labelliser ces objets \cite{trex, gsam, gdino,gdino1.5}.
 
-La \textbf{segmentation sémantique} est une autre approche de segmentation d'images où on affecte à chaque pixel une classe d'objet, et ce pour chaque objet de nature (ou sémantique) différente. Elle ne fait donc pas la différence entre deux voitures de couleur ou modèle différents par exemple, mais les classifiera chacun comme étant une voiture.
+La \textbf{segmentation sémantique} est une seconde approche de segmentation d'images où on affecte à chaque pixel une classe d'objet, et ce pour chaque objet de nature (sémantique) différente. Elle ne fait donc pas la différence entre deux voitures de couleur ou modèle différents par exemple, mais les classifiera chacun comme étant une voiture.
 
 La \textbf{segmentation d'instance} est une approche plus complexe qui se concentre sur la distinction des instances, c'est-à-dire des objets individuels, et ce même pour les instances occluses de la même classe d'objet. Si on reprend notre exemple, les voitures sont maintenant segmentées individuellement, même si elles sont identiques, puisqu'elles sont vues comme des objets différents mais appartenant à la même classe \og voiture\fg.
 
@@ -614,13 +649,13 @@ La \textbf{segmentation panoptique} combine les deux précédentes. Elle englobe
 
 Dans notre cas, nous cherchons à segmenter des macrophages, donc sur le canal rouge de l'image. Nous avons donc besoin d'une segmentation d'instances car nous voulons détecter chaque macrophage tout en faisant attention à ne pas les confondre entre eux.
 
-Cependant, la segmentation d'instances fait appel à beaucoup de paramètres et des méthodes comme les réseaux de neurones convolutifs. Ces paramètres sont optimisés via une fonction de perte, ce qui nécessite un apprentissage supervisé sur des milliers d'images annotées. Or, annoter à la main un grand nombre d'images nécessite beaucoup de temps et le nombre d'images que nous disposons au laboratoire est limité.
+Cependant, la segmentation d'instances fait appel à beaucoup de paramètres et des méthodes comme les réseaux de neurones convolutifs. Ces paramètres sont optimisés via une fonction de perte, ce qui nécessite un apprentissage supervisé sur des milliers d'images annotées. Or, annoter à la main un grand nombre d'images nécessite beaucoup de temps et le nombre d'images dont nous disposons au laboratoire est limité.
 
 
 
 \
 
-Parmi les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio}~\cite{kartezio}, une méthode développée en 2023 basée sur le \textit{Cartesian Genetic Programming} (CGP)~\cite{cgp}. Elle permet de segmenter des objets dans des images de microscopie et présente de nombreux avantages.
+Parmi les modèles de classification sémantique, il avait été découvert l'année précédente \textit{Kartezio}~\cite{kartezio}, une méthode développée en 2023 basée sur le \textit{Cartesian Genetic Programming} (Programmation Génétique Cartésienne ou CGP)~\cite{cgp}. Elle permet de segmenter des objets dans des images de microscopie et présente de nombreux avantages.
 
 
 
@@ -633,23 +668,23 @@ Parmi les modèles de classification sémantique, il avait été découvert l'an
 \subsubsection{Intersection over Union (IoU)}
 
 
-Dans toute méthode de segmentation d'images, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. La métrique la plus utilisée est l'\textbf{IoU} (\textit{Intersection over Union}). On peut la définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{mac:iou}) :
+Dans toute méthode de segmentation d'images, il est nécessaire d'avoir une métrique qui va nous permettre d'évaluer la qualité de l'apprentissage. La métrique la plus utilisée dans les problèmes de segmentation d'images est l'\textbf{IoU} (\textit{Intersection over Union}). On peut la définir comme étant le rapport entre l'intersection (en tant qu'aire) de la prédiction du modèle et de la vérité annotée et de leur union, pour un objet dans une image (\figref{mac:iou}) :
 $$\text{IoU}(M_k, G_k) = \frac{\lvert M_k \cap G_k\rvert}{\lvert M_k \cup G_k\rvert}= \frac{\displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}{\displaystyle\sum_{i,j}M_k[i,j]+ \displaystyle\sum_{i,j}G_k[i,j] - \displaystyle\sum_{i,j}M_k[i,j]\cdot G_k[i,j]}$$
 
 \noindent avec :
 \begin{itemize}
     \item $i\in \{1, \ldots, H\}$ et $j\in \{1, \ldots, W\}$ la hauteur et la largeur respectivement de l'image,
-    \item $M_k = \left(M_k[i,j]\right)_{i,j}$ le masque prédit pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel vaut 1 s'il est dans le masque prédit, c'est-à-dire que si la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$ est supérieure à $0.5$, sinon il vaut 0. On a donc :
+    \item $M_k = \left(M_k[i,j]\right)_{i,j}$ le masque prédit pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel vaut 1 s'il est dans le masque prédit, c'est-à-dire si la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$ est supérieure à $0.5$, sinon il vaut 0. On a donc :
           $$M_k[i,j] = \begin{cases}
                   1 & \text{si } p > 0.5, \\
                   0 & \text{sinon}.
               \end{cases}$$
-          avec $p$ la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$,
-    \item $G_k=\left(G_k[i,j]\right)_{i,j}$ le masque de vérité pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel (élément de la matrice) vaut 1 s'il est dans le masque de vérité, sinon il vaut 0,
-    \item $\lvert M_k \cap G_k\rvert = \sum_{i,j}M_k[i,j]\cdot G_k[i,j]$ l'intersection entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels en commun entre les deux masques,
-    \item $\lvert M_k \cup G_k\rvert = \sum_{i,j}M_k[i,j]+ \sum_{i,j}G_k[i,j] - \sum_{i,j}M_k[i,j]\cdot G_k[i,j] $ l'union entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels dans au moins un des deux masques,
-    \item $\sum_{i,j}M_k[i,j]$ le nombre de pixels du masque prédit,
-    \item $\sum_{i,j}G_k[i,j]$ le nombre de pixels du masque de vérité.
+          avec $p$ la probabilité que le pixel $(i,j)$ appartienne au masque de l'objet $k$;
+    \item $G_k=\left(G_k[i,j]\right)_{i,j}$ le masque de vérité pour l'objet $k$, une matrice binaire de taille $H\times W$ où chaque pixel (élément de la matrice) vaut 1 s'il est dans le masque de vérité, sinon il vaut 0;
+    \item $\lvert M_k \cap G_k\rvert = \sum_{i,j}M_k[i,j]\cdot G_k[i,j]$ l'intersection entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels en commun entre les deux masques;
+    \item $\lvert M_k \cup G_k\rvert = \sum_{i,j}M_k[i,j]+ \sum_{i,j}G_k[i,j] - \sum_{i,j}M_k[i,j]\cdot G_k[i,j] $ l'union entre le masque prédit et le masque de vérité, autrement dit le nombre de pixels dans au moins un des deux masques;
+    \item $\sum_{i,j}M_k[i,j]$ le nombre de pixels du masque prédit, pour l'objet $k$;
+    \item $\sum_{i,j}G_k[i,j]$ le nombre de pixels du masque de vérité, pour l'objet $k$.
 \end{itemize}
 
 \
@@ -670,25 +705,25 @@ Pour obtenir la valeur de l'IoU pour une image entière, on fait la moyenne des 
 \end{figure}
 
 
-Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1 et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, la mIoU aura une valeur convenable alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
+Il s'agit d'une valeur comprise entre 0 et 1, où 0 signifie que la prédiction ne recouvre pas du tout la vérité et où 1 signifie qu'elle la recouvre parfaitement. Plus on obtient une valeur d'mIoU proche de 1, et plus on peut en déduire que la prédiction est bonne. Cependant, c'est une métrique qui a tendance à sous-estimer la qualité de la segmentation. En effet, si un objet est mal segmenté mais qu'il recouvre une grande partie de la vérité, la mIoU aura une valeur convenable, alors que la segmentation n'est pas si spécifique au problème, on manquera alors de précision.
 
 Dans la pratique, obtenir une segmentation parfaite, signifiant que la mIoU vaudra 1, n'est tout simplement pas réaliste. Il est presque impossible que toutes les coordonnées $(x,y)$ de la prédiction recouvrent toutes les coordonnées de la vérité. À travers l'IoU, on cherche donc à récompenser les prédictions qui se superposent bien avec la vérité.
 
 \
 
-Ainsi il est considéré, qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg\ et on considère que si la mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrai positif des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise la mIoU comme métrique principale, utilise un seuil de 0.5, ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
+Ainsi, il est considéré qu'une mIoU supérieure à 0.5 est une mIoU \og acceptable\fg\ et on considère que si la mIoU dépasse 0.7, il s'agit d'une \og bonne\fg\ mIoU (voir \cite{boniou, hqod}). Cette valeur est souvent utilisée comme seuil pour différencier les vrais positifs des faux positifs ou faux négatifs. Par exemple, le jeu de données test \textit{Pascal VOC}~\cite{pascalvoc}, qui est utilisé pour la détection d'objet et utilise la mIoU comme métrique principale, utilise un seuil de 0.5, ce qui signifie que toute détection d'objet ayant une mIoU supérieure à 0.5 est considérée comme une détection positive (vrai positif). Il s'agit d'un consensus commun dans la communauté de la CV, construit sur un compromis entre qualité visuelle et quantitative.
 
 \subsubsection{Différence de segmentation entre deux opérateurs.}
 
-Les annotations d'images sont souvent sujettes à la subjectivité de chaque opérateur détourant les objets d'intérêt. En effet, deux opérateurs, souvent des experts dans le milieu d'application, peuvent avoir des opinions divergentes ce qui résulte en des annotations différentes. Dans notre cas, comme peut en témoigner la \figref{mac:rv}, les délimitations des macrophages (dans le canal rouge de l'image) sont parfois floues et peuvent porter à confusion. De plus, certains objets pourtant bien colorés en rouge peuvent être confondus pour des macrophages alors qu'il s'agit de pigments de coloration dus à l'autofluorescence de ces derniers.
+Les annotations d'images sont souvent sujettes à la subjectivité de chaque opérateur détourant les objets d'intérêt. En effet, deux opérateurs, souvent des experts dans le milieu d'application, peuvent avoir des opinions divergentes, ce qui résulte en des annotations différentes. Dans notre cas, comme peut en témoigner la \figref{mac:rv}, les délimitations des macrophages (dans le canal rouge de l'image) sont parfois floues et peuvent prêter à confusion. De plus, certains objets pourtant bien colorés en rouge peuvent être confondus pour des macrophages alors qu'il s'agit de pigments de coloration dus à l'autofluorescence de ces derniers.
 
 \
 
-Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qui ai annoté l'entièreté des images utilisées pour entraîner les différents modèles, et une membre de l'équipe, qui a annoté quelques images. La \figref{mac:comp} montre la superposition des annotations avec en jaune celles de ma collègue et en bleu les miennes. Nous avons utilisé le logiciel ImageJ~\cite{imagej} pour réaliser ces annotations. Pour plus de détails concernant l'utilisation de ce logiciel, voir la Section~\ref{pratique}.
+Nous avons donc voulu comparer les annotations de deux opérateurs: moi-même, qui ai annoté l'entièreté des images utilisées pour entraîner les différents modèles, et une membre de l'équipe, qui a annoté quelques images. La \figref{mac:comp} montre la superposition des annotations avec, en jaune, celles de ma collègue et, en bleu, les miennes. Nous avons utilisé le logiciel ImageJ~\cite{imagej} pour réaliser ces annotations. Pour plus de détails concernant l'utilisation de ce logiciel, voir la Section~\ref{pratique}.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.68\linewidth]{imgs/comp_op.png}
+    \includegraphics[width=0.8\linewidth]{imgs/comp_op.png}
     \caption{Comparaison des annotations de deux opérateurs sur une image de macrophages.}
     \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les annotations sont obtenus avec le logiciel ImageJ. Pour plus de détails sur l'utilisation de ImageJ, voir la Section~\ref{pratique}. Les annotations des deux opérateurs sont superposées sur l'image rouge (macrophages). En bleu, mes annotations et en jaune celles de ma collègue. Les opérateurs ne se sont pas concertés au préalable. Nous obtenons une mIoU de 0.8429 entre les deux annotations.\\
             Image issue d'un film à 3h post-amputation de la nageoire caudale d'une larve de zebrafish.}}
@@ -697,18 +732,18 @@ Nous avons donc voulu comparer les annotations de deux opérateurs, moi-même qu
 
 \
 
-Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de la mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de 0.8429. Cela signifie que nous nous rejoignons sur 84,29\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30\%.
+Comme attendu, les délimitations des macrophages selon l'opérateur ne sont pas les mêmes, et il y a même des cas où certaines parties du macrophage sont annotées par l'un mais pas par l'autre. Cela se reflète dans la valeur de la mIoU entre les segmentations des deux opérateurs. En effet, nous obtenons une mIoU de $0.8429$. Cela signifie que nous nous rejoignons sur 84,29~\% des pixels annotés. En général, on considère que la différence de segmentation entre deux experts d'un domaine (que je ne suis pas) est de l'ordre de 15 à 30~\%.
 
-Nous avons donc une marge d'erreur de 15\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
+Nous avons donc une marge d'erreur d'environ 15~\% entre les deux annotations. De plus, nous avons effectué cette comparaison seulement pour une image. Il aurait fallu le faire pour toutes les images du jeu de données annoté. Cela nous aurait permis de quantifier la différence entre deux opérateurs et de remettre en question ou non les performances du modèle. En effet, si notre modèle a des performances similaires à la comparaison entre deux opérateurs humains, cela signifie que le modèle est capable de segmenter les macrophages avec la même variabilité qu'aurait un troisième opérateur humain.
 
 
 
 
 \section{Calibration de modèles de segmentation avec Mactrack2}\label{creamodel}
 
-La librairie MacTrack2 (voir~\nameref{code}) que nous avons développée en poursuivant le travail fourni par MacTrack~\cite{axel} a la particularité de faciliter l'entraînement de modèles de segmentation d'images. Nous avons implémenté un script simple qui permet d'entraîner un modèle de segmentation d'images à partir d'un jeu de données annotées.
+La librairie MacTrack2 (voir~\nameref{code}) que nous avons développée en poursuivant le travail fourni par MacTrack~\cite{axel} a la particularité de faciliter l'entraînement de modèles de segmentation d'images. Nous avons implémenté un script qui permet d'entraîner un modèle de segmentation d'images à partir d'un jeu de données annotées.
 
-En effet, nous utilisons principalement Kartezio~\cite{kartezio}, une librairie Python implémentant une méthode de segmentation d'image basée sur le \textit{Cartesian Genetic Programming} (CGP)~\cite{cgp}.
+En effet, nous utilisons principalement Kartezio~\cite{kartezio}, une librairie Python implémentant une méthode de segmentation d'image basée sur le \textit{Cartesian Genetic Programming} (Programmation Génétique Cartésienne ou CGP)~\cite{cgp}.
 
 %La particularité de MacTrack2 (voir~\nameref{code}), la librairie que nous avons développé en utilisant principalement Kartezio, est la facilité à entraîner des modèles. En effet, à l'aide d'un script simple nous pouvons entraîner un modèle de segmentation d'images à partir d'un jeu de données d'images annotées.
 
@@ -716,7 +751,7 @@ En effet, nous utilisons principalement Kartezio~\cite{kartezio}, une librairie 
 
 \subsection{Programmation génétique cartésienne}
 
-Le CGP \cite{cgp}, initialement créé pour optimiser des circuits électroniques~\cite{circuit}, est une approche de programmation génétique \cite{gp} (\textit{Genetic Programming} (GP)) qui utilise des graphes pour coder des programmes informatiques. La GP (\figref{mac:cgp}) est un algorithme évolutif, c'est-à-dire qu'il s'inspire des éléments de la biologie évolutive (génotype, génome, phénotype, sélection, recombinaison ou \textit{crossover}, reproduction, mutation, \dots) pour résoudre des problèmes d'optimisation discrète complexes. Le terme \og cartésien\fg\ du CGP vient du fait que les modèles générés sont représentés grâce à une grille de nœuds, où chaque nœud représente une fonction ou une opération. Chaque nœud est connecté à d'autres nœuds, formant ainsi un graphe orienté acyclique (\figref{mac:dagitty}). Le CGP est particulièrement adapté pour les problèmes de classification et de régression, mais il peut également être utilisé pour la segmentation d'images.
+Le CGP \cite{cgp}, initialement créé pour optimiser des circuits électroniques~\cite{circuit}, est une approche de programmation génétique \cite{gp} (\textit{Genetic Programming} ou GP) qui utilise des graphes pour coder des programmes informatiques. La GP (\figref{mac:cgp}) est un algorithme évolutif, c'est-à-dire qu'il s'inspire des éléments de la biologie évolutive (génotype, génome, phénotype, sélection, recombinaison ou \textit{crossover}, reproduction, mutation, \dots) pour résoudre des problèmes d'optimisation discrète complexes. Le terme \og cartésien\fg\ du CGP vient du fait que les modèles générés sont représentés grâce à une grille de nœuds, où chaque nœud représente une fonction ou une opération. Chaque nœud est connecté à d'autres nœuds, formant ainsi un graphe orienté acyclique (\figref{mac:dagitty}). Le CGP est particulièrement adapté pour les problèmes de classification et de régression, mais il peut également être utilisé pour la segmentation d'images.
 
 \
 
@@ -732,18 +767,18 @@ Chaque graphe peut être représenté par une chaîne d'entiers, qu'on appelle l
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{imgs/dagitty-model(2).png}
-    \caption{Exemple de graphe orienté acyclique de notre propre modèle (voir Section~\ref{creamodel}).}
+    \caption{Exemple de graphe orienté acyclique de notre propre modèle (voir Section~\ref{pratique}).}
     \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize N$x$ avec $x$ le numéro du nœud et f$y$ avec $y$ le numéro de la fonction parmi une liste de fonctions (voir \tabref{ann:func} pour la numérotation des fonctions). Graphe obtenu avec Dagitty (\cite{dagitty}). }}
     \label{mac:dagitty}
 \end{figure}
 
 \
 
-Un modèle CGP utilise une stratégie évolutive (\textit{evolutionary strategy} (ES)) qui va décider de quel opérateur génétique appliquer à chaque génération. Nous avons par exemple la stratégie ($1+\lambda$) où un individu (\textit{parent}) génère $\lambda$ descendants (\textit{offspring}) par mutation et le meilleur de ceux-ci, selon une fonction de perte (\textit{fitness}), est conservé et deviendra l'individu parent de la génération suivante. Si les performances du meilleur descendant sont inférieures à celles du parent, alors la descendance complète est rejetée et le parent est conservé pour la génération suivante. On parle de remplacement strict. On peut aussi avoir une stratégie de mutation ciblée, où on altère aléatoirement les gènes (nœuds), en modifiant les fonctions et les connexions, avec un taux de mutation ciblée. Il existe une stratégie de sélection par tournoi, où l'on compare des sous-ensembles d'individus et on sélectionne le plus performant de chacun des groupes, qui est ensuite utilisé pour la reproduction. Il existe des stratégies hybrides qui combinent le CGP avec des méthodes d'apprentissage automatique comme le Deep Learning.
+Un modèle CGP utilise une stratégie évolutive (\textit{evolutionary strategy} (ES)) qui va décider de quel opérateur génétique appliquer à chaque génération. Nous avons par exemple la stratégie ($1+\lambda$) où un individu (\textit{parent}) génère $\lambda$ descendants (\textit{offspring}) par mutation. Le meilleur des descendants, selon une fonction de perte (\textit{fitness}), est conservé et deviendra l'individu parent de la génération suivante. Si les performances du meilleur descendant sont inférieures à celles du parent, alors la descendance complète est rejetée et le parent est conservé pour la génération suivante. On parle de remplacement strict. On peut aussi avoir une stratégie de mutation ciblée, où on altère aléatoirement les gènes (nœuds), en modifiant les fonctions et les connexions, avec un taux de mutation ciblée. Il existe une stratégie de sélection par tournoi, où l'on compare des sous-ensembles d'individus et on sélectionne le plus performant de chacun des groupes, qui est ensuite utilisé pour la reproduction. Il existe des stratégies hybrides qui combinent le CGP avec des méthodes d'apprentissage automatique comme le \textit{Deep Learning}.
 
 \
 
-Le CGP, contrairement à d'autres approches de GP, n'utilise pas vraiment de recombinaison (\textit{crossover}) et privilégie plutôt des mutations ciblées sur sa population d'individus. De plus, le CGP a une propriété de neutralité génétique, c'est-à-dire que certains changements dans le génotype ne seront pas forcément des changements visibles dans le phénotype mais seront conservés. Cependant, ces nœuds servent à explorer l'espace de recherche d'une manière plus efficace. Certains nœuds, d'un autre côté, qui sont eux efficaces, peuvent être facilement dupliqués et réutilisés. Cela nous permet d'obtenir des solutions plus compactes en restant tout autant efficaces. Dans le cadre de notre problème, qui est la segmentation d'images, cette particularité du CGP est très utile, car souvent, en segmentation d'images, la même opération est souvent utilisée plusieurs fois dans différentes parties de l'image.
+Le CGP, contrairement à d'autres approches de GP, n'utilise pas vraiment de recombinaison (\textit{crossover}) et privilégie plutôt des mutations ciblées sur sa population d'individus. De plus, le CGP a une propriété de neutralité génétique, c'est-à-dire que certains changements dans le génotype ne seront pas forcément des changements visibles dans le phénotype, mais seront conservés. Cependant, ces nœuds servent à explorer l'espace de recherche d'une manière plus efficace. Certains nœuds, d'un autre côté, qui sont eux efficaces, peuvent être facilement dupliqués et réutilisés. Cela nous permet d'obtenir des solutions plus compactes en restant tout autant efficaces. Dans le cadre de notre problème, qui est la segmentation d'images, cette particularité du CGP est très utile, car souvent, en segmentation d'images, la même opération est souvent utilisée plusieurs fois dans différentes parties de l'image.
 
 \
 
@@ -764,7 +799,7 @@ Comme introduit précédemment, Kartezio présente de nombreux avantages par rap
 \end{figure}
 
 % Efficacité et rapidité de Kartezio par rapport aux méthodes état de l'art
-Dans un second temps, la méthode est efficace. L'article de Cortacero et al. \cite{kartezio} montre que Kartezio est capable de segmenter des images en entrant en concurrence avec les méthodes état de l'art basées sur des réseaux de neurone, telles que \textit{Cellpose} \cite{cellpose1, cellpose2, cellpose3}, \textit{Mask R-CNN} \cite{maskRCNN} ou encore \textit{Stardist} \cite{stardist}.
+Dans un second temps, la méthode est efficace. L'article de Cortacero et al. \cite{kartezio} montre que Kartezio est capable de segmenter des images en entrant en concurrence avec les méthodes état de l'art basées sur des réseaux de neurones, telles que \textit{Cellpose} \cite{cellpose1, cellpose2, cellpose3}, \textit{Mask R-CNN} \cite{maskRCNN} ou encore \textit{Stardist} \cite{stardist}.
 
 Construire des modèles à l'aide de Kartezio est aussi plus rapide que les méthodes états de l'art. La \tabref{mac:dataset} nous montre bien que Kartezio est capable de créer des modèles en moins de 10 minutes. Les méthodes classiques, au contraire, demandent un temps d'entraînement de l'ordre de plusieurs heures, voire plusieurs jours, pour obtenir des performances similaires.
 
@@ -783,12 +818,12 @@ Ainsi, nous avons une méthode qui fonctionne pour tous les formats d'images cla
 \
 
 % La fin du pipeline
-La dernière opération du pipeline est nommée \textit{Endpoint} et est l'application d'une fonction choisie par l'utilisateur qui permet de créer un arrêt intentionnel des processus d'optimisation pour que celui des nœuds d'heuristique prenne place. Il fait partie intégrante du processus évolutif du génotype puisqu'il agit comme un point d'arrêt où à chaque génération, on vérifie qu'il n'est pas dépassé (si c'est un seuil, par exemple), mais il n'est pas voué à évoluer.
+La dernière opération du pipeline est nommée \textit{Endpoint} et est l'application d'une fonction choisie par l'utilisateur qui permet de créer un arrêt intentionnel des processus d'optimisation pour que celui des nœuds d'heuristique prenne place. Il fait partie intégrante du processus évolutif du génotype puisqu'il agit comme un critère d'arrêt où, à chaque génération, on vérifie qu'il n'est pas dépassé (si c'est un seuil, par exemple), mais il n'est pas voué à évoluer.
 
 \
 
 % Raisons de l'utilisation de Kartezio dans notre projet
-L'efficacité, la rapidité, l'interprétabilité de Kartezio nous ont poussé à choisir cette méthode pour effectuer la segmentation automatique des macrophages dans des images de microscopie. Sachant que ce projet est destiné à être utilisé ultérieurement par les membres de l'équipe, il était primordial d'utiliser une méthode rapide, efficace, compréhensible et intelligible pour les biologistes.
+L'efficacité, la rapidité, l'interprétabilité de Kartezio nous ont poussé à choisir cette méthode pour effectuer la segmentation automatique des macrophages dans des images de microscopie. Sachant que ce projet est destiné à être utilisé ultérieurement par les membres de l'équipe, il était primordial d'utiliser une méthode rapide, efficace, compréhensible et intelligible pour les praticiens.
 
 \subsection{Un premier exemple avec MacTrack}\label{pratique}
 %%%%%%%%%%
@@ -802,13 +837,13 @@ Ces images et leurs annotations, fournies dans un format spécifique, sont ensui
 \subsubsection{Création d'un jeu de données d'entraînement}
 
 % Utilisation ImageJ pour annoter les données 
-Nous avons utilisé ImageJ~\cite{imagej} pour annoter nos données. ImageJ est un logiciel permettant de modifier et analyser manuellement les images issues de microscopie. Il est communément utilisé par les biologistes.
+Nous avons utilisé ImageJ~\cite{imagej} pour annoter nos données. ImageJ est un logiciel permettant de modifier et d'analyser manuellement les images issues de microscopie. Il est communément utilisé par les biologistes.
 
 % Utilisation par les biologistes
-En effet, les biologistes l'utilisent principalement pour réaliser une analyse quantitative des images obtenues par microscopie. Il est possible de compter le nombre de cellules dans une image par exemple ou de mesurer la taille, la surface, le périmètre ou l'intensité de fluorescence. Ce logiciel permet aussi d'améliorer la qualité des images en appliquant des filtres, des seuils ou encore une soustraction de l'arrière-plan. Dans notre cas, la possibilité de détourer des images est une fonction clé qui nous permet de produire et d'annoter les images dont nous avons besoin.
+En effet, les biologistes l'utilisent principalement pour réaliser une analyse quantitative des images obtenues par microscopie. Il est possible de compter le nombre de cellules dans une image, par exemple, ou de mesurer la taille, la surface, le périmètre ou l'intensité de fluorescence. Ce logiciel permet aussi d'améliorer la qualité des images en appliquant des filtres, des seuils ou encore une soustraction de l'arrière-plan. Dans notre cas, la possibilité de détourer des images est une fonction clé qui nous permet de produire et d'annoter les images dont nous avons besoin.
 
 % Annotation des macrophages
-Nous avons donc pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies aléatoirement parmi les différents films que nous disposions (\figref{mac:train}).
+Nous avons donc pu détourer à la main chacun des macrophages dans les 25 images d'entraînement et 6 images de test que nous avons choisies aléatoirement parmi les différents films dont nous disposions (\figref{mac:train}).
 
 
 \begin{figure}[!ht]
@@ -820,13 +855,13 @@ Nous avons donc pu détourer à la main chacun des macrophages dans les 25 image
 \end{figure}
 
 % format des annotations
-Les annotations sont données sous la forme de fichiers ROI (Region Of Interest). Ces régions sont représentés dans la \figref{mac:train}. Un détourage correspond à un macrophage, et le détourage de chaque macrophage dans l'image est enregistré dans un fichier ROI unique. Ainsi, chaque image annotée est accompagnée de plusieurs fichiers ROI. Ces fichiers sont ensuite compressés dans un fichier ZIP portant le nom de l'image. Nous avons donc un fichier ZIP par image, représentant les annotations de celle-ci.
+Les annotations sont données sous la forme de fichiers ROI (Region Of Interest). Ces régions sont représentées dans la \figref{mac:train}. Un détourage correspond à un macrophage, et le détourage de chaque macrophage dans l'image est enregistré dans un fichier ROI unique. Ainsi, chaque image annotée est accompagnée de plusieurs fichiers ROI. Ces fichiers sont ensuite compressés dans un fichier ZIP portant le nom de l'image. Nous avons donc un fichier ZIP par image, représentant les annotations de celle-ci.
 
 % Pour cette trentaine d'image et pour obtenir un détourage précis, cela nous a pris environ 3 jours de travail.
 
 
 % Provenance des images
-Les images que nous avons choisies, provenant de films générés dans différentes conditions (nageoire coupée ou contrôle) et à des temps différents, sont représentatives de la diversité des images de macrophages que l'on peut obtenir. En effet, comme nous l'avons évoqué plus tôt, les macrophages peuvent être plus ou moins proches les uns des autres. De plus, ils ont des formes extrêmement variables en fonction de leur état de polarisation (\figref{mac:macros}). Par exemple, un macrophage dit M1 (pro-inflammatoire) aura tendance à être plutôt rond et compact, on peut l'observer à 3hpa (heures post-amputation), tandis qu'un macrophage M2 (anti-inflammatoire) aura tendance à être plus \og filamenteux\fg\ et allongé, on peut l'observer à 24hpa.
+Les images que nous avons choisies, provenant de films générés dans différentes conditions (nageoire coupée ou contrôle) et à des temps différents, sont représentatives de la diversité des images de macrophages que l'on peut obtenir. En effet, comme nous l'avons évoqué plus tôt, les macrophages peuvent être plus ou moins proches les uns des autres. De plus, ils ont des formes extrêmement variables en fonction de leur état de polarisation (\figref{mac:macros}). Par exemple, un macrophage dit M1 (pro-inflammatoire) aura tendance à être plutôt rond et compact, on peut l'observer à 3 hpa (heures post-amputation), tandis qu'un macrophage M2 (anti-inflammatoire) aura tendance à être plus \og filamenteux\fg\ et allongé, on peut l'observer à 24 hpa.
 
 
 
@@ -835,7 +870,7 @@ Les images que nous avons choisies, provenant de films générés dans différen
 
 % Préparation du jeu de données pour Kartezio
 Nous avons ensuite organisé le jeu de données dans un répertoire ayant une structure spécifique pour que Kartezio puisse le lire correctement. La structure du répertoire est la suivante :
-
+\vspace{-0.4cm}
 \begin{minted}[fontsize=\small,frame=lines]{text}
 dataset/
 │── train/
@@ -871,12 +906,12 @@ Le fichier \mintinline[breaklines]{text}{dataset.csv} est un résumé des réper
         \vdots                                                   & \vdots                                                   & \vdots   \\
         {\scriptsize train/train\_x/024\_frame\_crop\_small.png} & {\scriptsize train/train\_y/024\_masks\_crop\_small.zip} & training \\
         {\scriptsize train/train\_x/025\_frame\_crop\_small.png} & {\scriptsize train/train\_y/025\_masks\_crop\_small.zip} & training \\
-        {\scriptsize train/train\_x/001\_frame\_crop\_small.png} & {\scriptsize train/train\_y/001\_masks\_crop\_small.zip} & testing  \\
-        {\scriptsize train/train\_x/002\_frame\_crop\_small.png} & {\scriptsize train/train\_y/002\_masks\_crop\_small.zip} & testing  \\
+        {\scriptsize test/test\_x/001\_frame\_crop\_small.png}   & {\scriptsize test/test\_y/001\_masks\_crop\_small.zip}   & testing  \\
+        {\scriptsize test/test\_x/002\_frame\_crop\_small.png}   & {\scriptsize test/test\_y/002\_masks\_crop\_small.zip}   & testing  \\
         \vdots                                                   & \vdots                                                   & \vdots   \\\hline
     \end{tabular}
     \caption{Extrait du fichier \texttt{dataset.csv} nécessaire pour la reconnaissance des images (\textit{input}) et des annotations (\textit{label}) pour Kartezio, selon leur appartenance (\textit{set}) au jeu d'entraînement (\textit{training}) ou de test (\textit{testing}).}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Il s'agit là d'un extrait du fichier \texttt{dataset.csv} pour le modèle \og small+cropped\fg\ présenté dans la Section~\ref{modelperf}.}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Il s'agit d'un extrait du fichier \texttt{dataset.csv} pour le modèle \og small+cropped\fg\ présenté dans la Section~\ref{modelperf}.}}
     \label{mac:dataset_csv}
 \end{table}
 
@@ -890,14 +925,15 @@ Ainsi, le jeu de données est finalisé et prêt à l'emploi pour l'apprentissag
 
 % donner des snippet de code 
 
-Une fois le jeu de données d'entraînement sauvegardé dans le répertoire~\mintinline[breaklines]{python}{DATASET = "examples/input_model/dataset"}. L'entrainment se lance avec une commande simple.
+Une fois le jeu de données d'entraînement sauvegardé dans le répertoire~\mintinline[breaklines]{python}{DATASET = "examples/input_model/dataset"}\footnote{Jeu de données disponible en exemple dans le dépôt GitHub du projet : \url{https://github.com/guibouland/MacTrack2}}. L'entrainment se lance avec une commande simple.
 
 \begin{minted}[fontsize=\small,mathescape,tabsize=4, escapeinside=||, breaklines]{python}
 from kartezio.dataset import read_dataset
 from kartezio.training import train_model
 
-dataset = read_dataset(DATASET)  # Chargement du jeu de données     
-elite, a = train_model(model, dataset, OUTPUT, callback_frequency=frequency)    # Entraînement du modèle
+dataset = read_dataset(DATASET)                 # Chargement des données     
+elite, a = train_model(model, dataset, OUTPUT, 
+                callback_frequency=frequency)   # Entraînement du modèle
 \end{minted}
 
 Nous avons choisi les hyperparamètres servant à l'entraînement du modèle de la manière suivante.
@@ -926,7 +962,7 @@ model = create_segmentation_model(
 Nous allons décrire brièvement les hyperparamètres qui ont un impact significatif sur l'entraînement du modèle.
 
 %générations, lambda
-Nous réalisons 1000 générations lors de cet entraînement, avec $\lambda=5$ nouveaux individus (descendants) générés à chaque génération par le parent. Plus on augmente le nombre de générations et de nouveaux individus par génération, et plus le temps de calcul augmente. La valeur de $\lambda$ est fixée à 5 car il s'agit de la version de la stratégie évolutive $1+\lambda$ la plus utilisée en pratique.
+Nous réalisons 1000 générations lors de cet entraînement, avec $\lambda=5$ nouveaux individus (descendants) générés à chaque génération par le parent. Plus on augmente le nombre de générations et de nouveaux individus par génération, et plus le temps de calcul augmente. La valeur de $\lambda$ est fixée à 5, car il s'agit de la version de la stratégie évolutive $1+\lambda$ la plus utilisée en pratique.
 
 %noeuds évolutifs
 Nous avons fixé le nombre de nœuds évolutifs à 30 dans ce modèle. En essayant de faire varier ce nombre, nous n'avons pas observé d'amélioration significative dans les performances. Les nœuds évolutifs sont les seuls à évoluer lors de l'entraînement, à travers des mutations dont le taux a été fixé à $0.1$. Ils correspondent à la partie rosée dans la \figref{mac:kartezio}.
@@ -941,7 +977,7 @@ Cette perte est minimale quand l'IoU est maximale, c'est-à-dire quand la prédi
 \
 
 % donner succinctement une idée des temps de calcul (cela prend quelques minutes)
-Cet entraînement prend entre quelques minutes et plus d'une heure, dépendamment du format des images, comme nous le présentons dans la Section~\ref{modelperf}. Les images de plus grande taille demandent plus de temps de calcul car nous traitons les images pixel par pixel.
+Cet entraînement prend entre quelques minutes et plus d'une heure, dépendamment du format des images, comme nous le présentons dans la Section~\ref{modelperf}. Les images de plus grande taille demandent plus de temps de calcul, car nous traitons les images pixel par pixel.
 
 De plus, la queue du poisson à l'imagerie microscopique ne prend pas la totalité du champ d'acquisition, ce qui signifie que nous avons des zones (en haut et en bas de l'image) qui sont vides, avec des pixels noirs. Ces parties sont quand même traitées et cela a un impact sur le temps de calcul.
 
@@ -956,11 +992,11 @@ Nous avons mis en place un outil permettant de visualiser la qualité des modèl
     \includegraphics[width=\linewidth]{imgs/viz_model.PNG}
     \caption{Exemples de comparaisons entre la vérité annotée (en bleu) et les prédictions du modèle choisi (en rouge) sur des images issues de l'échantillon d'entraînement (à gauche) et de test (à droite).}
     \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og petit+crop\fg.}}
+        \caption*{\scriptsize Le modèle choisi est celui écrit en rouge dans la \tabref{mac:dataset}. Pour l'image d'entraînement, l'IoU est de 0.67 et pour l'image de test, l'IoU est de 0.76. Ce sont toutes les deux des images issues du jeu de données \og \textit{small+cropped}\fg.}}
     \label{mac:viz_model}
 \end{figure}
 
-Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire, on peut observer des petites taches considérées comme macrophages. Il est possible que le modèle, entraîné pour détecter des niveaux de gris sur les images, détecte du bruit de fond ou des artefacts créés par le microscope.
+Les prédictions en rouge, obtenues en appliquant le modèle sur chacune des images des deux échantillons, sont parfois très petites en aire. On peut observer des petites taches considérées comme macrophages. Il est possible que le modèle, entraîné pour détecter des niveaux de gris sur les images, détecte du bruit de fond ou des artefacts créés par le microscope.
 
 \
 
@@ -971,13 +1007,13 @@ C'est pour cela que la préparation des images au préalable est une étape prim
 
 \subsection{Évaluation des modèles selon la réduction et le recadrage des images}\label{modelperf}
 
-Pour des questions de performances et de temps de calculs, nous avons choisi de créer 4 jeux de données issus des mêmes images mais avec des tailles différentes. Dans le premier, \textit{modèle initial}, l'image n'a pas été modifiée, c'est-à-dire de la taille de l'image originale. Dans le second, le modèle \textit{small}, nous avons divisé la taille de l'image par 4, réduisant ainsi le nombre de pixels à traiter par image.
+Pour des questions de performances et de temps de calcul, nous avons choisi de créer 4 jeux de données issus des mêmes images, mais avec des tailles différentes. Dans le premier, \textit{modèle initial}, l'image n'a pas été modifiée, c'est-à-dire qu'elle a la taille de l'image originale. Dans le second, le modèle \textit{small}, nous avons divisé la taille de l'image par 4, réduisant ainsi le nombre de pixels à traiter par image.
 
-Pour le troisième, nous avons retiré, dans les images, les zones noires dans lesquelles il n'y a pas d'objets à segmenter car ces zones ne font pas partie du poisson (il s'agit seulement du champ d'observation du microscope). Nous avons nommé celui-ci le modèle \textit{cropped}. Dans le dernier cas, nous avons combiné les modifications d'images du deuxième et du troisième jeu de données, donnant ainsi le modèle \textit{small+cropped}.
+Pour le troisième, nous avons retiré, dans les images, les zones noires dans lesquelles il n'y a pas d'objets à segmenter, car ces zones ne font pas partie du poisson (il s'agit seulement du champ d'observation du microscope). Nous avons nommé celui-ci le modèle \textit{cropped}. Dans le dernier cas, nous avons combiné les modifications d'images du deuxième et du troisième jeu de données, donnant ainsi le modèle \textit{small+cropped}.
 
 \
 
-C'est avec ce dernier que nous avons obtenu les meilleurs résultats dans des temps record. Nous conservons donc ce dernier pour générer des modèles. La \tabref{mac:dataset} nous donne une idée des gains entre les différents jeux de données.
+C'est avec ce dernier que nous avons obtenu les meilleurs résultats dans des temps records. Nous conservons donc ce dernier pour générer des modèles de segmentation. La \tabref{mac:dataset} nous donne une idée des gains entre les différents jeux de données.
 
 \begin{table}[!ht]
     \centering
@@ -996,25 +1032,27 @@ C'est avec ce dernier que nous avons obtenu les meilleurs résultats dans des te
         1h54m                                        & 3s                                         & 7m35s                                        & 0s                                                  & 1h44m          & 2s            & 3m48s                 & 0s                    \\\hline
     \end{tabular}
     \caption{Exemples de performances des modèles entraînées sur les différents jeux de données.}
-    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en gras est celui que nous avons conservé pour la suite, et que nous avons fourni en exemple dans le dépôt GitHub du projet. Les différents modèles sont le modèle \textit{initial} avec les images telles quelles, le modèle \textit{small} où le nombre de pixel dans les images est divisé par 4, le modèle \textit{cropped} où les zones noires en haut et en bas des images qui ne sont pas des parties du poisson ont été retirées, et le modèle \textit{small+cropped} qui combine les deux derniers modèles en divisant par 4 le nombre de pixels dans les images du modèle \textit{cropped}. Les temps de calcul sont données en heures (h), minutes (m) et secondes (s).}}
+    \vspace{-1em}{\setstretch{0.2}\caption*{\scriptsize Les valeurs sont les IoU moyens sur le jeu de données d'entraînement et de test. Le modèle dont les performances sont écrites en gras est celui que nous avons conservé pour la suite et que nous avons fourni en exemple dans le dépôt GitHub du projet. Les différents modèles sont le modèle \textit{initial} avec les images telles quelles, le modèle \textit{small} où le nombre de pixels dans les images est divisé par 4, le modèle \textit{cropped} où les zones noires en haut et en bas des images qui ne sont pas des parties du poisson ont été retirées, et le modèle \textit{small+cropped} qui combine les deux derniers modèles en divisant par 4 le nombre de pixels dans les images du modèle \textit{cropped}. Les temps de calcul sont donnés en heures (h), minutes (m) et secondes (s).}}
     \label{mac:dataset}
 \end{table}
 
-Le meilleur modèle obtenu a un score d'mIoU de 0.712 sur l'échantillon d'entraînement et de 0.763 sur l'échantillon de test. En comparaison avec les modèles obtenus l'année précédente sur un jeu de données différent, le modèle retenu avait un score d'mIoU de 0.80 sur l'échantillon d'entraînement et de 0.63 sur l'échantillon de test.
+Le meilleur modèle obtenu a un score de mIoU de 0.712 sur l'échantillon d'entraînement et de 0.763 sur l'échantillon de test. En comparaison avec les modèles obtenus l'année précédente sur un jeu de données différent, le modèle retenu avait un score d'mIoU de 0.80 sur l'échantillon d'entraînement et de 0.63 sur l'échantillon de test.
 
-Nous avons donc réussi à obtenir un modèle qui est meilleur que celui de l'année dernière sur l'échantillon de test. Cela peut s'expliquer par la diversité des données que nous avons sélectionnées pour constituer notre jeu de données. En effet, nous avons choisi des images provenant de différents poissons, à différents temps post-amputation. Nous avons même choisi des images provenant de poissons contrôle dont la nageoire caudale n'a pas été coupée. Nous avons donc un modèle plus généraliste et nous avons évité le sur-ajustement.
+Nous avons donc réussi à obtenir un modèle qui est meilleur que celui de l'année dernière sur l'échantillon de test. Cela peut s'expliquer par la diversité des données que nous avons sélectionnées pour constituer notre jeu de données. En effet, nous avons choisi des images provenant de différents poissons, à différents temps post-amputation. Nous avons même choisi des images provenant de poissons témoins dont la nageoire caudale n'a pas été coupée. Nous avons donc un modèle plus généraliste et nous avons évité le surapprentissage.
 
 \
 
-De plus, nous avons automatisé le processus de création de modèle à travers des scripts et un jeu de données exemple que l'on fourni dans le dépôt GitHub du projet (voir~\nameref{code}). Donner un tel jeu de données permet à l'utilisateur de comprendre les exigences structurelles de Kartezio, qui peuvent être fastidieuses pour des personnes non aguerries.
+De plus, nous avons automatisé le processus de création de modèle à travers des scripts et un jeu de données exemple que l'on fournit dans le dépôt GitHub du projet (voir~\nameref{code}). Donner un tel jeu de données permet à l'utilisateur de comprendre les exigences structurelles de Kartezio, qui peuvent être fastidieuses pour des personnes non aguerries.
 
 
 \subsection{Segmentation automatique d'images avec MacTrack2}
 % Segmentation d'images
-Notre librairie MacTrack2 est capable, à partir des modèles entraînés, de segmenter des images. En effet, la fonction \texttt{locate} permet de le faire. À partir d'une image, on effectue la prédiction du modèle sur celle-ci pour obtenir une première segmentation. Nous appliquons un filtre de taille sur les objets détectés afin de laisser de coté les objets trop petits qui ne sont pas des macrophages. Souvent, il s'agit d'artefacts que l'on obtient lors de la prise d'image et ne sont pas visibles à l'œil nu sur l'image d'origine.
+Notre librairie MacTrack2 est capable, à partir des modèles entraînés, de segmenter des images. En effet, la fonction \texttt{locate} permet de le faire. À partir d'une image, on effectue la prédiction du modèle sur celle-ci pour obtenir une première segmentation. Nous appliquons un filtre de taille sur les objets détectés afin de laisser de côté les objets trop petits qui ne sont pas des macrophages. Souvent, il s'agit d'artefacts que l'on obtient lors de la prise d'image et ne sont pas visibles à l'œil nu sur l'image d'origine.
 
 % Images avec macrophages séparés
 Nous séparons aussi chacun des objets détourés pour les représenter dans des images différentes. Nous pouvons ainsi observer exclusivement la segmentation de chacun des macrophages. La \figref{mac:locate} nous montre les différentes sorties de la fonction \texttt{locate}. À gauche, nous retrouvons l'image d'origine, au milieu la segmentation obtenue après application du filtre de taille et à droite la segmentation d'un des macrophages détourés.
+
+\
 
 \begin{figure}[!ht]
     \centering
@@ -1052,16 +1090,19 @@ Nous séparons aussi chacun des objets détourés pour les représenter dans des
 
 
 %données=vidéos
-Les données dont nous disposons sont des vidéos de microscopie que l'on peut définir comme des séries d'images\footnote{Liens de vidéos exemple dans la Section~\nameref{liens}}. Lors de chaque enregistrement, une image est capturée environ toutes les 9 secondes, sur une durée totale de 40 minutes. Les vidéos obtenues sont donc constituées de 266 images.
+Les données dont nous disposons sont des vidéos de microscopie qui sont composées d'une série d'images\footnote{Liens de vidéos exemple dans la Section~\nameref{liens}}. Chaque acquisition de données dure une quarantaine de minutes au cours desquelles est enregistrée une image toutes les 9 secondes environ. Les vidéos ainsi obtenues sont composées de 266 images.
 
 \
 
 %mac1 ce qui existe déjà
-Le but est d'étendre la segmentation sémantique précédemment obtenue à l'ensemble des images composant une vidéo. Cela a été partiellement réalisé lors d'un stage précédent où une solution semi-automatique, MacTrack~\cite{axel}, assure un suivi temporel des macrophages. Nous cherchons à améliorer cette approche. Nous avons abordé le problème en utilisant deux méthodes.
+Dans le chapitre précédent, nous avons décrit la méthode de segmentation des macrophages présents dans les images composant une vidéo. Dans ce chapitre, nous abordons le suivi (tracking) de ces cellules au cours du temps, à travers les images successives.
 
-1/ Dans un premier, nous avons mis en place un post-traitement calibré manuellement sur 4 vidéos, en s'appuyant sur les résultats de la première version de MacTrack. Bien que cette méthode permette d'améliorer la qualité du suivi, elle reste difficilement généralisable à l'ensemble des vidéos, notamment à cause des \textbf{occlusions} et \textbf{fusions} de macrophages.
+Une première version de MacTrack intégrait déjà un module reposant sur une approche semi-automatique et permettant d'assurer un suivi temporel des macrophages dans une vidéo. Cependant, cette tâche reste complexe en raison de phénomènes tels que la fusion, la séparation ou l'occlusion des cellules, ce qui limite les performances de l'outil existant et laisse place à des améliorations. Au cours de mon travail, nous avons exploré les deux approches suivantes :
 
-2/ Dans un second temps, nous avons utilisé un modèle de fondation appelé SAM-2, capable de traiter directement des vidéos. Étant donné que ce modèle a été conçu pour des usages génériques, nous avons réalisé un \textit{fine-tuning} de ses paramètres afin de l'adapter à notre tâche spécifique.
+
+1/ Dans un premier temps, nous avons modifié le module déjà existant de MacTrack afin de permettre de corriger manuellement les erreurs faites par ce dernier lors du suivi des macrophages. L'utilisateur peut maintenant apporter une information de correspondance entre les objets détectés dans des images différentes. Cela a été utilisé sur 4 vidéos, mais le traitement manuel est coûteux en temps. C'est pour cela que nous cherchons une seconde solution automatique.
+
+2/ Dans un second temps, nous avons utilisé un modèle de fondation appelé SAM-2 (\textit{Segment Anything Model 2}). Ce modèle de fondation est capable de segmenter des objets à la fois dans des images et dans des vidéos, en gardant en mémoire les objets segmentés. Étant donné que ce modèle a été conçu pour des usages génériques, nous avons réalisé un \textit{fine-tuning} de ses paramètres afin de l'adapter à notre tâche spécifique.
 
 
 
@@ -1071,7 +1112,7 @@ Le but est d'étendre la segmentation sémantique précédemment obtenue à l'en
 \subsection{Tracking de macrophages: une tâche complexe}
 % décrire ce qu'est le tracking
 \subsubsection{Qu'est-ce que le tracking ?}
-Le tracking (ou suivi) d'objets est une tâche de vision par ordinateur (CV) qui consiste à détecter un ou plusieurs objets dans une série d'images (vidéo), puis à les suivre au cours du temps en maintenant leur identité d'une image à une autre. L'objectif est de reconstituer la trajectoire de chaque objet en mouvement, malgré les éventuels changements d'apparence, d'échelle, d'éclairage, ou les occlusions partielles. Le suivi peut être utilisé dans de nombreux domaines comme la surveillance, l'analyse de mouvement, la biologie ou encore les véhicules autonomes.
+Le tracking (ou suivi) d'objets est une tâche de vision par ordinateur (\textit{Computer Vision} ou CV) qui consiste à détecter un ou plusieurs objets dans une série d'images (vidéo), puis à les suivre au cours du temps en maintenant leur identité d'une image à une autre. L'objectif est de reconstituer la trajectoire de chaque objet en mouvement, malgré les éventuels changements d'apparence, d'échelle, d'éclairage, ou les occlusions partielles. Le suivi peut être utilisé dans de nombreux domaines comme la surveillance, l'analyse de mouvement, la biologie ou encore les véhicules autonomes.
 
 \
 
@@ -1080,11 +1121,11 @@ Dans notre cas, le tracking d'objets consiste à identifier et suivre chaque mac
 
 \subsubsection{Difficultés du tracking des macrophages dans les vidéos de microscopie}
 % décrire pourquoi c'est difficile : 1. les objets bougent, occlusions, fusion, separations, photoblanchiment, etc. Artefact d'acquisition (figure !)
-Les macrophages sont des cellules particulièrement mobiles et dynamiques, qui ont tendance à se rapprocher, voire à \textit{fusionner} temporairement. Par ailleurs, les images de microscopie utilisées dans nos vidéos sont obtenues par acquisition en \textit{z-stacks}, c'est-à-dire en balayant plusieurs plans de profondeur (voir Section~\ref{micro}). Ces plans sont ensuite projetés en une seule image par maximum d'intensité de fluorescence. Ce procédé introduit des phénomènes d'\textbf{occlusion}, lorsque des macrophages se superposent partiellement en étant situés à des profondeurs différentes, ainsi que des cas de \textbf{fusions} ou des \textbf{séparations} visuelles entre macrophages.
+Les macrophages sont des cellules particulièrement mobiles et dynamiques, qui ont tendance à se rapprocher, voire à \og fusionner\fg\ temporairement. Par ailleurs, les images de microscopie utilisées dans nos vidéos sont obtenues par acquisition en \textit{z-stacks}, c'est-à-dire en balayant plusieurs plans de profondeur (voir Section~\ref{micro}). Ces plans sont ensuite projetés en une seule image par maximum d'intensité de fluorescence. Ce procédé introduit des phénomènes d'\textbf{occlusion}, lorsque des macrophages se superposent partiellement en étant situés à des profondeurs différentes, ainsi que des cas de \textbf{fusions} ou des \textbf{séparations} visuelles entre macrophages.
 
 \
 
-À cela s'ajoutent les contraintes spécifiques à la microscopie fluorescente. En particulier, le phénomène de \textbf{photoblanchiment}, dû à une exposition prolongée au laser, entraîne une perte progressive de fluorescence, ce qui peut faire disparaître certains macrophages au cours du temps. D'autres artefacts, comme l'\textbf{autofluorescence} de certaines structures de la larve du zebrafish, peuvent également perturber l'analyse en étant confondus avec de véritables macrophages.
+À cela s'ajoutent les contraintes spécifiques à la microscopie fluorescente. En particulier, le phénomène de \textbf{photoblanchiment}, dû à une exposition prolongée au laser, entraîne une perte progressive de fluorescence, ce qui peut faire disparaître certains macrophages au cours du temps. D'autres artefacts peuvent également perturber l'analyse en étant confondus avec de véritables macrophages, comme l'\textbf{autofluorescence} de certaines structures de la larve du zebrafish.
 
 \
 
@@ -1097,11 +1138,11 @@ Nous allons présenter brièvement l'approche de suivi des macrophages déjà im
 
 \
 
-Après la phase préparatoire, la segmentation d'une vidéo est efffectuée image par image à l'aide de la fonction \texttt{locate}, qui produit des images binaires et isole chaque macrophage dans des dossiers séparés. Cependant, cette segmentation initiale peut regrouper plusieurs macrophages proches en un seul objet. De plus, la projection des images en \textit{z-stacks} introduit des occlusions, compliquant le suivi.
+Après la phase préparatoire, la segmentation d'une vidéo est effectuée image par image à l'aide de la fonction \texttt{locate}, qui produit des images binaires et isole chaque macrophage dans des dossiers séparés. Cependant, cette segmentation initiale peut regrouper plusieurs macrophages proches en un seul objet. De plus, la projection des images en \textit{z-stacks} introduit des occlusions, compliquant le suivi.
 
 \
 
-Pour améliorer cette segmentation, une correction est appliquée grâce à la fonction \texttt{defuse}, qui exploite la dimension temporelle. En comparant chaque image à la précédente (et à la suivante car appliquée dans les deux sens de lecture) via l'IoU, elle permet de détecter les fusions et séparations erronées et de les corriger en s'appuyant sur la segmentation antérieure (\figref{mac:defuse}). Bien que ce post-traitement augmente le temps de calcul et réduise légèrement la précision des contours, il améliore significativement la cohérence du suivi.
+Pour améliorer cette segmentation, une correction est appliquée grâce à la fonction \texttt{defuse}, qui exploite la dimension temporelle. En comparant chaque image à la précédente (et à la suivante, car appliquée dans les deux sens de lecture) via l'IoU de chacun des macrophages segmentés, elle permet de détecter les fusions et séparations erronées et de les corriger en s'appuyant sur la segmentation antérieure (\figref{mac:defuse}). Bien que ce post-traitement augmente le temps de calcul et réduise légèrement la précision des contours, il améliore significativement la cohérence du suivi.
 
 \
 
@@ -1125,7 +1166,7 @@ Le tracking des macrophages est ensuite réalisé avec la fonction \texttt{track
 
 \
 
-Enfin, la fonction \texttt{result} permet de visualiser le suivi en superposant un identifiant et un contour coloré à chaque macrophage, sur les canaux rouge (cellules) et verts (calcium) (\figref{mac:result}). Ces visualisation permettent d'évaluer facilement la qualité visuelle du tracking\footnote{Voir la Section~\nameref{liens} pour des vidéos d'exemple.}.
+Enfin, la fonction \texttt{result} permet de visualiser le suivi en superposant un identifiant et un contour coloré à chaque macrophage, sur les canaux rouge (cellules) et vert (calcium) (\figref{mac:result}). Ces visualisations permettent d'évaluer facilement la qualité visuelle du tracking\footnote{Voir la Section~\nameref{liens} pour des vidéos d'exemple.}.
 
 \
 
@@ -1137,7 +1178,7 @@ Enfin, la fonction \texttt{result} permet de visualiser le suivi en superposant 
     \vspace{-1em}
     {
         \setstretch{0.2}
-        \caption*{\scriptsize À gauche, nous avons le résultat du tracking sur le canal rouge de la vidéo. À droite, nous avons le résultat du tracking sur le canal vert de la vidéo. Les macrophages sont numérotés et les contours sont dessinés avec une couleur unique par macrophage. Les images proviennent de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation. Il s'agit de la première image du film.}
+        \caption*{\scriptsize À gauche, nous avons le résultat du tracking sur le canal rouge de la vidéo. À droite, nous avons le résultat du tracking sur le canal vert de la vidéo. Les macrophages sont numérotés et les contours sont dessinés avec une couleur unique par macrophage. Les images proviennent de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation (hpa). Il s'agit de la première image du film.}
     }
     \label{mac:result}
 \end{figure}
@@ -1146,10 +1187,10 @@ Enfin, la fonction \texttt{result} permet de visualiser le suivi en superposant 
 \section{Correction manuelle des occlusions et fusions avec MacTrack2}
 
 % raisons du post-traitement
-Il est important que le suivi des macrophages soit continu afin de réaliser des analyses futures sur l'évolution de leur comportement. Cependant, il est possible que certains macrophages soient perdus pendant un temps, puis réapparaissent. Puisque nous n'avons pas de mémoire temporelle sur l'ensemble des images de la vidéo, si un tel macrophage existe, il sera considéré comme deux macrophages distincts. Il est donc important de regarder la vidéo en sortie dans son ensemble pour vérifier si la qualité de tracking est suffisante.
+Il est important que le suivi des macrophages soit continu afin de réaliser des analyses futures sur l'évolution de leur comportement. Cependant, il est possible que certains macrophages disparaissent de la vidéo, puis réapparaissent. Puisque nous n'avons pas de mémoire temporelle sur l'ensemble des images de la vidéo, si un tel macrophage existe, il sera annoté comme un nouveau macrophage. Il est donc important de regarder la vidéo en sortie dans son ensemble pour vérifier si la qualité de tracking est suffisante.
 
 %contrib
-Nous avons donc mis en place, à travers la contribution de MacTrack2, un tracking fonctionnel des macrophages à travers le temps, avec l'instauration de filtres. Cela permet de se rapprocher du consensus biologique en terme de nombre de macrophages détectés.
+Nous avons donc mis en place, à travers la contribution de MacTrack2, un tracking fonctionnel des macrophages à travers le temps, avec l'instauration de filtres. Cela permet de se rapprocher du consensus biologique en termes de nombre de macrophages détectés.
 
 \
 
@@ -1158,7 +1199,7 @@ La fonction permettant de fusionner les suivis de macrophages, visiblement ident
 
 \subsection{Premier cas : fusion de macrophages perdus}
 % desc premier cas
-Dans le premier cas, si un macrophage est perdu pendant quelques images, puis réapparaît, alors la fonction \texttt{merge} va fusionner les deux segmentations et créer des images entièrement noires pour les images perdues.
+Dans le premier cas, si un macrophage est perdu pendant quelques images, puis réapparaît, alors la fonction \texttt{merge} va fusionner les deux segmentations et créer des images entièrement noires pour les images où il est perdu.
 
 \
 
@@ -1167,20 +1208,20 @@ Dans le premier cas, si un macrophage est perdu pendant quelques images, puis r�
     \includegraphics[width=.65\linewidth]{imgs/premier_cas.png}
     \caption{Illustration du premier cas de fusion manuelle : un macrophage n'est plus suivi pendant plusieurs images.}
     \vspace{-1em}{\setstretch{0.2}
-        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéro des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation. }}
+        \caption*{\scriptsize Sur la première ligne, nous avons les images de la vidéo avant le traitement. Sur la seconde ligne, nous avons les résultats du traitement. Les nombres en bas à droite de chaque image correspondent aux numéros des images de la vidéo. Les images sont issues de la vidéo d'un poisson dont la nageoire caudale a été amputée et observée à 3h post-amputation. }}
 
     \label{mac:merge_first_cas}
 \end{figure}
 
 \subsection{Second cas : fusion de macrophages doublés}
 % desc second cas
-Le second cas apparaît souvent dans le cas où un macrophage est segmenté en tant que deux macrophages distincts pendant quelques images. Ainsi, avec la fonction \texttt{merge}, nous allons fusionner les deux segmentations. Pour les images où il y a deux segmentations différentes, nous allons garder celle qui apparaît en premier dans les paramètres de la fonction, en supprimant l'autre définitivement.
+Le second cas apparaît souvent lorsqu'un macrophage est segmenté en tant que deux macrophages distincts pendant quelques images. Ainsi, avec la fonction \texttt{merge}, nous allons fusionner les deux segmentations. Pour les images où il y a deux segmentations différentes, nous allons garder celle qui apparaît en premier dans les paramètres de la fonction, en supprimant l'autre définitivement.
 
 \begin{minted}[breaklines,fontsize=\footnotesize]{python}
 merge(macro_list=[4,31])
 \end{minted}
 
-En effet, la fonction prend en paramètre une liste d'identifiants de macrophages à fusionner. Si dans le second cas il s'agit des macrophages 4 et 31 qui doivent être fusionnés, comme le montre la \figref{mac:merge} alors sur les images où les deux apparaissent, nous allons garder la segmentation du macrophage 4 car il apparaît en premier dans la liste paramètre de la fonction \texttt{merge}.
+En effet, la fonction prend en paramètre une liste d'identifiants de macrophages à fusionner. Si, dans le second cas, il s'agit des macrophages 4 et 31 qui doivent être fusionnés, comme le montre la \figref{mac:merge} alors, sur les images où les deux apparaissent, nous allons garder la segmentation du macrophage 4, car il apparaît en premier dans la liste des paramètres de la fonction \texttt{merge}.
 
 %compromis explication
 Il s'agit là d'un compromis que nous avons réalisé entre avoir un tracking sur l'ensemble de la vidéo, ce qui améliorera nos études par la suite, et une petite perte d'information.
@@ -1197,7 +1238,7 @@ Il s'agit là d'un compromis que nous avons réalisé entre avoir un tracking su
     \label{mac:merge}
 \end{figure}
 
-Comme nous l'avons vu plutôt, la microscopie se fait en prenant des images à différentes profondeurs, on parle de \textit{z-stacks}. Il est donc possible que deux macrophages se chevauchent, que l'un \og passe à travers\fg\ de l'autre. En réalité, il passe soit au dessus soit en-dessous d'un autre macrophage. Nous travaillons sur des données de dimensions 2D+t obtenues en faisant une projection des images 3D+t. Nous voyons donc sur la vidéo d'origine un macrophage qui fusionne avec un autre et qui se détache de lui quelques images plus tard.
+Comme nous l'avons vu plus tôt, la microscopie se fait en prenant des images à différentes profondeurs, on parle de \textit{z-stacks}. Il est donc possible que deux macrophages se chevauchent, que l'un \og passe à travers\fg\ de l'autre. En réalité, il passe soit au dessus soit en-dessous d'un autre macrophage. Nous travaillons sur des données de dimensions 2D+t obtenues en faisant une projection des images 3D+t. Nous voyons donc sur la vidéo d'origine un macrophage qui fusionne avec un autre et qui se détache de lui quelques images plus tard.
 
 
 \subsection{Fusion de macrophages traversés}
@@ -1219,7 +1260,6 @@ merge_and_keep(macro_list=[21,23,38], keep=[23])
     \label{mac:merge_keep_zoom}
 \end{figure}
 
-\
 
 Nous avons ainsi mis en place un suivi image par image des macrophages dans les vidéos. Cette approche présente l'avantage d'être rapide, performante et facilement modifiable ou reproductible. Bien que la prise en main puisse paraître complexe au premier abord, en raison notamment de la structure des données, des scripts automatisés sont fournis pour accompagner l'utilisateur et simplifier l'utilisation.
 
@@ -1235,10 +1275,10 @@ Il apparaît donc pertinent de considérer les vidéos dans leur globalité, en 
 
 \subsection{SAM-2: Modèle de fondation pour la segmentation d'images et de vidéos}
 % pres SAM2
-SAM-2 (\textit{Segment Anything Model 2})~\cite{sam2} est un modèle de segmentation d'images et de vidéos développé par Meta AI publié récemment, en 2024. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
+SAM-2 (\textit{Segment Anything Model 2})~\cite{sam2} est un modèle de segmentation d'images et de vidéos développé par Meta AI et publié récemment, en 2024. Il s'agit d'une version améliorée de la première version du modèle, SAM~\cite{sam}, généralisant le problème de segmentation d'images au domaine des vidéos (\textit{VOS: Video Object Segmentation}).
 
 % Données d'entrainement, société tierce
-Entraîné sur plusieurs jeux de données dont un premier de 50 000 vidéos, comprenant 600 000 masques (annotations). Les vidéos et masques utilisées pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations (voir \figref{sam2:sa-v}) ont été à la fois réalisées à la main par des humains mais aussi en étant assisté par la première version de ce modèle, SAM~\cite{sam} puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel (mais aussi SAM-2 pour corriger les annotations). Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
+SAM-2 a été entraîné sur plusieurs jeux de données, dont un premier de 50 000 vidéos comprenant 600 000 masques (annotations). Les vidéos et masques utilisés pour entraîner un tel modèle proviennent du dataset SA-V~\cite{sav} créé spécialement pour ce modèle et disponible sur demande. Les annotations (voir \figref{sam2:sa-v}) ont été à la fois réalisées à la main par des humains mais aussi en étant assistées par la première version de ce modèle, SAM~\cite{sam}, puisqu'elles se font sur des images fixes et qu'il s'agit de la spécialité de la première version (190 000 annotations manuelles et 450 000 annotations automatiques), ce qui accélère le processus d'annotation qui est chronophage et demandeur en personnel. Ces vidéos ont été obtenues par un sous-traitant engagé par Meta FAIR pour récolter des vidéos dans 47 pays différents dans des situations du monde réel.
 
 \
 
@@ -1262,7 +1302,7 @@ Ainsi, SAM-2 est considéré (au même titre que SAM) comme un modèle de fondat
 \
 
 % architecture: transformers, prompt encoder, mask decoder
-SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basé sur les Transformers~\cite{Transformer}. Elle comprend un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné.
+SAM-2 est capable de segmenter des objets dans des vidéos de manière précise et efficace. L'architecture du modèle (voir \figref{sam2:archi}) est une architecture basée sur les Transformers~\cite{Transformer}. Elle comprend plusieurs modules : un \textit{image encoder} qui est un Vision Transformer hiérarchique appelé Hiera~\cite{Hiera}, un \textit{prompt encoder} qui prend en compte des clics (positifs ou négatifs), des boites ou des masques permettant de définir un objet d'intérêt dans une image, et un \textit{mask decoder} qui prend ces entrées et en ressort un masque de segmentation de l'objet sélectionné.
 
 \begin{figure}[!ht]
     \centering
@@ -1272,20 +1312,22 @@ SAM-2 est capable de segmenter des objets dans des vidéos de manière précise 
 \end{figure}
 
 % streaming memory: attention, bank
-Il utilise une mémoire continue (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boite, que l'utilisateur peut ajouter à chaque image.
+Il utilise une mémoire continue (\textit{streaming memory}). Celle-ci permet de traiter les images d'une vidéo en temps réel, une par une. Ainsi, il peut garder en mémoire, à l'aide de la \textit{memory attention} et de la \textit{memory bank}, les objets et leurs interactions au cours du temps, permettant ainsi de générer des masques plus précis et de les corriger en fonction des images précédentes. La \textit{memory attention} permet de \og préparer\fg\ l'image en prenant en compte la \textit{memory bank}, qui garde en mémoire les précédentes images, mais aussi les nouveaux points, masques, boîtes, que l'utilisateur peut ajouter à chaque image.
 
 \
 
 %génération auto de masques
-Un des problèmes que nous rencontrons avec SAM-2 est que l'utilisateur doit, à la main, sélectionner des objets d'intérêt dans une ou plusieurs images et si durant la vidéo un nouvel objet apparaît, il ne sera pas détecter tant que l'utilisateur ne l'a pas indiqué. Ainsi, nous allons utiliser la génération automatique de masques mise à disposition pour détecter les macrophages de manière automatique sur des images.
+Un des problèmes que nous rencontrons avec SAM-2 est que l'utilisateur doit, à la main, sélectionner des objets d'intérêt dans une ou plusieurs images, et si, durant la vidéo un nouvel objet apparaît, il ne sera pas détecté tant que l'utilisateur ne l'a pas indiqué. Ainsi, nous allons utiliser la génération automatique de masques mise à disposition pour détecter les macrophages de manière automatique sur des images.
 
 % ce qui nous pousse à le fine tuner
-De plus, SAM-2 est un modèle de fondation, conçu pour être utilisé dans différents cas. Cependant, si on veut obtenir de bonnes performances dans un domaine spécifique comme le nôtre, il est nécessaire de faire un \textit{fine-tuning}, c'est-à-dire un ré-entraînement des poids du modèle sur un jeu de donnée spécifique de notre domaine. Nous allons ainsi fine-tuner SAM-2 pour qu'il puisse mieux détecter les macrophages dans nos vidéos de microscopie.
+De plus, SAM-2 est un modèle de fondation, conçu pour être utilisé dans différents cas. Cependant, si on veut obtenir de bonnes performances dans un domaine spécifique comme le nôtre, il est nécessaire de faire un \textit{fine-tuning}, c'est-à-dire un réentraînement des poids du modèle sur un jeu de données spécifique de notre domaine. Nous allons ainsi \textit{fine-tuner} SAM-2 pour qu'il puisse mieux détecter les macrophages dans nos vidéos de microscopie.
 
 \subsection{Fine-tuning de SAM-2}
+%
+Nous avons adapté un exemple de \textit{fine-tuning}\footnote{Lien de l'exemple : \url{https://www.datacamp.com/tutorial/sam2-fine-tuning}} de ce modèle réalisé sur des vidéos de scans de poumons.
 \subsubsection{Définition}
 % DEF GLOBALE
-Le \textit{fine-tuning} (ou \textit{affinage} en français) est une technique d'apprentissage supervisé qui consiste à modifier les poids d'un modèle pré-entraîné sur une tache spécifique. Elle est souvent utilisé pour adapter un modèle généraliste à une tache particulière.
+Le \textit{fine-tuning} (ou \og affinage\fg\ en français) est une technique d'apprentissage supervisé qui consiste à modifier les poids d'un modèle préentraîné pour l'adapter à une tâche spécifique.
 
 %LIEN AVEC SAM2 ET UTILITE DANS NOTRE CAS
 Ici, SAM-2 a été entraîné sur des photos qui n'ont rien à voir avec la problématique biologique que nous rencontrons. Par conséquent, afin d'obtenir une bonne segmentation des macrophages, il est nécessaire de modifier les poids du modèle pour obtenir une version spécialisée dans la détection de macrophages. Cela nous évite de devoir entraîner notre propre modèle en partant de rien, ce qui nous demanderait beaucoup trop de données que nous n'avons pas. Mais le nombre de données nécessaires pour obtenir un bon affinage n'est pas négligeable.
@@ -1293,11 +1335,11 @@ Ici, SAM-2 a été entraîné sur des photos qui n'ont rien à voir avec la prob
 \
 
 %ce qui est fine-tuné
-Le fine-tuning de SAM-2 agit seulement sur les poids du \textit{prompt encoder} et du \textit{mask encoder}, c'est-à-dire les parties du modèle qui prennent en entrée les points, masques, boites, et qui génèrent les masques de segmentation. Nous spécifions donc la prise en charge des entrées données par l'utilisateur, mais pas la partie qui encode l'image ni la partie qui mémorise les images précédente une fois le fine-tuning fini et que l'on cherche à segmenter une vidéo entière.
+Le \textit{fine-tuning} de SAM-2 agit seulement sur les poids du \textit{prompt encoder} et du \textit{mask encoder}, c'est-à-dire les parties du modèle qui prennent en entrée les points, masques, boites, et qui génèrent les masques de segmentation. À travers ce fine-tuning, nous changerons seulement la façon dont le modèle traite et interprète les entrées données par l'utilisateur, ainsi que la façon dont il génère les masques de segmentation. Cependant, nous n'agissons pas sur le tracking des objets dans la vidéo.
 
 \subsubsection{Jeu de données}\label{data}
 %  comment, quel forme les masques
-Les annotations sont sous la forme d'images où chaque macrophage est détouré à la main sur le logiciel \textit{ImageJ} (et plus particulièrement \textit{Fiji}~\cite{fiji}). Les détourages sont ensuite séparés par label, afin de s'assurer qu'un macrophage ne soit pas confondu avec un autre. Puis, contrairement à la méthode présenté précédemment, les annotations sont sous la forme d'images, et non de fichiers ROI (\figref{sam2:labels}).
+Les annotations sont sous la forme d'images où chaque macrophage est détouré à la main sur le logiciel \textit{ImageJ} (et plus particulièrement \textit{Fiji}~\cite{fiji}). Les détourages sont ensuite séparés par label, afin de s'assurer qu'un macrophage ne soit pas confondu avec un autre. Puis, contrairement à la méthode présentée précédemment, les annotations sont sous la forme d'images, et non de fichiers ROI (\figref{sam2:labels}).
 
 \begin{figure}[!ht]
     \centering
@@ -1311,9 +1353,9 @@ Les annotations sont sous la forme d'images où chaque macrophage est détouré 
 \
 
 % fine tuning demande moins de données que l'entrainement d'un modèle complet, mais quand meme un nombre conséquent ---> on utilise la segmentation de mactrack
-Malgré que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages.
+Bien que le fine-tuning de SAM-2 ne nécessite pas autant de données que l'entraînement d'un modèle de segmentation complet, il est quand même nécessaire de disposer d'un nombre conséquent de données. Ici, nous avons besoin d'images et de leur segmentation manuelle. Or, le temps imparti pour ce stage ne nous permet pas de composer un jeu de données complet qui satisferait ces besoins. Par conséquent, nous avons utilisé le programme MacTrack2 qui nous a permis de segmenter une vidéo de macrophages.
 
-Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour ré-entraîner les poids du modèle.
+Ainsi, nous disposons de 297 images et masques de macrophages (dont 266 faisant partie d'une seule vidéo) pour réentraîner les poids du modèle.
 
 \
 
@@ -1322,7 +1364,7 @@ Puisque le fine-tuning n'agit pas sur le tracking des objets dans une vidéo, le
 
 \subsubsection{Hyperparamètres}\label{sec:hyperparameters}
 % hyperparamètres, def glob
-Les hyperparamètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le ré-entraînement). Ils sont fixés à l'avance et influencent son comportement et par extension ses performances. Les hyperparamètres du pré-entraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier~\cite{sam2}, à la page 19. Les sous-modules affectés par le fine-tuning sont le \textit{mask decoder} et le \textit{prompt encoder}.
+Les hyperparamètres, dans un modèle, constituent les paramètres non appris par le modèle durant l'entraînement (ou le réentraînement). Ils sont fixés à l'avance et influencent son comportement et, par extension, ses performances. Les hyperparamètres du préentraînement et de l'entraînement complet de SAM-2 sont disponibles dans leur papier~\cite{sam2}, à la page 19. Les sous-modules affectés par le fine-tuning sont le \textit{mask decoder} et le \textit{prompt encoder}.
 
 \
 
@@ -1330,7 +1372,7 @@ Les hyperparamètres, dans un modèle, constituent les paramètres non appris pa
 Nous utilisons l'optimiseur AdamW~\cite{adamw} avec un taux d'apprentissage (\textit{learning rate}) de 0.0001 et une dégradation des poids (\textit{weight decay}) de 0.00001, utile pour la régularisation L2.
 
 %listing des param
-Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler} permet d'ajuster le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=250$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90\% tous les 250 pas.
+Le nombre total d'itérations est de 20 000, avec un nombre de pas pour l'accumulation des gradients (\textit{accumulation step}) avant leur mise à jour égal à 4 steps. Le \textit{scheduler} permet d'ajuster le \textit{learning rate} durant l'entraînement pour améliorer la convergence du modèle. Ici, nous utilisons un \textit{stepLR scheduler}, ce qui signifie que tous les $k$ steps, le \textit{learning rate} est multiplié par un facteur $\gamma$. Nous avons $k=250$ et $\gamma=0.1$. Ainsi, le \textit{learning rate} est réduit de 90~\% tous les 250 pas.
 
 %taille du batch
 Contrairement à ce que l'on peut retrouver habituellement dans l'entraînement de modèles, la taille du batch est égale à une seule image. En effet, à chaque pas d'entraînement, nous ne prenons qu'une seule image et la taille du batch correspond au nombre d'objets dans l'image. Ainsi, si l'image comprend 13 macrophages, la taille du batch sera 13. Cela permet de ne pas surcharger les mémoires GPU.
@@ -1352,10 +1394,10 @@ En moyennant sur tous les objets d'une image, on obtient la mIoU (IoU moyenne), 
 %score loss
 Ainsi, nous pouvons définir la \textit{score loss} comme suit :
 $$\mathcal{L}_{\text{score}} = \frac{1}{K}\displaystyle\sum_{k=1}^{K}\lvert s_k - \text{IoU}(M_k, G_k)\rvert$$
-\noindent avec $K$ le nombre total de masques (donc de macrophages ou d'objets) dans l'image et $s_k$ le score prédit pour l'objet $k$ à partir de $M_k$.
+\noindent avec $K$ le nombre total de masques (donc de macrophages ou d'objets) dans l'image et $s_k$ le score prédit par le \textit{mask decoder} pour l'objet $k$ à partir de $M_k$.
 
 %interprétations
-Nous comparons donc le score prédit par le modèle pour chaque masque à la véritable qualité de chacun d'eux (l'IoU). Puisque'on cherche à minimiser cette perte, on aimerait que pour tout $k$, $s_k\simeq \text{IoU}(M_k,G_k)$ pour que la perte soit proche de 0.
+Nous comparons donc le score prédit par le modèle pour chaque masque à la véritable qualité de chacun d'eux (l'IoU). Puisqu'on cherche à minimiser cette perte, on aimerait que pour tout $k$, $s_k\simeq \text{IoU}(M_k,G_k)$ pour que la perte soit proche de 0.
 
 Si $K=0$, alors cela signifie qu'il n'y a pas de masques dans l'image, donc pas de macrophages. Un tel cas peut être rencontré, mais nous avons décidé de ne pas l'inclure dans le fine-tuning, car il n'apporte pas d'information utile concernant la segmentation des macrophages.
 
@@ -1394,10 +1436,28 @@ avec :
 
 \
 
-\red{Interprétations fonction de perte \dots}
+Interprétons cette fonction de perte. Soient un objet $k$ et un pixel $(i,j)$ de l'image. Si le pixel $(i,j)$ appartient au masque de vérité de l'objet $k$, alors $y_{k,i,j} = 1 $ et la fonction de perte devient, pour un tel pixel :
+$$\mathcal{L}_{BCE}^{k,i,j} = -\log\hat{y}_{k,i,j}$$
+
+Une bonne prédiction $\hat{y}_{k,i,j}$ pour ce pixel serait proche de 1, prenons par exemple $\hat{y}_{k,i,j} = 0.9$. En revanche, une mauvaise prédiction serait faible, par exemple $\hat{y}_{k,i,j} = 0.3$. Nous obtenons alors :
+$$\mathcal{L}_{BCE}^{k,i,j} = \begin{cases}
+        -\log(0.9) \approx 0.1 & \text{La perte est donc petite}  \\
+        -\log(0.3) \approx 1.2 & \text{La perte est donc grande.}
+    \end{cases}
+$$
+
+D'un autre côté, si pour l'objet $k$ et le pixel $(i,j)$, le pixel n'appartient pas au masque de vérité, alors $y_{k,i,j} = 0$ et la fonction de perte devient :
+$$\mathcal{L}_{BCE}^{k,i,j} = -\log(1-\hat{y}_{k,i,j})$$
+
+Une bonne prédiction $\hat{y}_{k,i,j}$ pour ce pixel serait proche de 0, prenons par exemple $\hat{y}_{k,i,j} = 0.1$. En revanche, une mauvaise prédiction serait élevée, par exemple $\hat{y}_{k,i,j} = 0.7$. Nous obtenons alors :
+$$\mathcal{L}_{BCE}^{k,i,j} = \begin{cases}
+        -\log(1-0.1) \approx 0.1 & \text{La perte est donc petite}  \\
+        -\log(1-0.7) \approx 1.2 & \text{La perte est donc grande.}
+    \end{cases}$$
 
 \
 
+\vspace{1em}
 % Fonction de perte finale
 Finalement, la fonction de perte totale est une combinaison de ces deux dernières :
 $$\mathcal{L} = \mathcal{L}_{BCE} + \lambda\mathcal{L}_{\text{score}}$$
@@ -1422,11 +1482,11 @@ $$
 \subsection{Résultats et comparaisons}
 
 \subsubsection{Quantification et visualisation des performances de SAM-2 sur l'échantillon d'entraînement}
-Avant de présenter les résultats du fine-tuning des paramètres de SAM-2, nous commençons par évaluer les performances du modèle pré-entraîné par Meta AI sur notre échantillon d'entraînement. En effet, les poids du modèle de SAM-2 --- en particulier la version complète \textit{sam2.1\_hiera\_large.pt} --- ont été obtenues à partir d'un jeu de données qui ne contient pas des images similaires de notre propre jeu de données. Il est donc essentiel de vérifier dans quelle mesure le modèle est capable de segmenter les macrophages ur notre échantillon avant toute adaptation.
+Avant de présenter les résultats du fine-tuning des paramètres de SAM-2, nous commençons par évaluer les performances du modèle pré-entraîné par Meta AI sur notre échantillon d'entraînement. En effet, les poids du modèle de SAM-2 --- en particulier la version complète \texttt{sam2.1\_hiera\_large.pt} --- ont été obtenues à partir d'un jeu de données qui ne contient pas des images similaires de notre propre jeu de données. Il est donc essentiel de vérifier dans quelle mesure le modèle est capable de segmenter les macrophages sur notre échantillon avant toute adaptation.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{imgs/hist_iou_sam2_orig.png}
+    \includegraphics[width=.8\linewidth]{imgs/hist_iou_sam2_orig.png}
     \caption{Histogramme des performances du modèle SAM-2 avec les poidds initiaux sur l'échantillon d'entraîneemnt.}
     \label{sam2:eval}
 \end{figure}
@@ -1450,7 +1510,7 @@ La \figref{sam2:eval2} propose un exemple visuel de la segmentation obtenue à l
 On observe ainsi que certaines structures ne sont pas segmentées, tandis que d'autres macrophages sont mal délimités, ce qui confirme les limites du modèle dans son état initial.
 
 \subsubsection{Résultats du fine-tuning de SAM-2}
-Pour améliorer ses performances, nous procédons à un réentraînement ciblé du modèle SAM-2 en utilisant le jeu de données décrit dans la Section~\ref{data}. Comme dit précédemment, ce fine-tuning porte spécifiquement sur le \textit{mask encoder} et le \textit{prompt encoder}, sans modification de la mémoire temporelle du modèle. Autrement dit, nous adaptons uniquement la mmanière dont le modèle traite et interprète les entrées, sans intervenir sur son mécanisme de contextualisation temporelle. L'évolution de la fonction de perte au cours des 20 000 itérations du fine-tuning est représentée dans la \figref{sam2:loss}.
+Pour améliorer ses performances, nous procédons à un réentraînement ciblé du modèle SAM-2 en utilisant le jeu de données décrit dans la Section~\ref{data}. Comme nous l'avons décrit précédemment, ce fine-tuning porte spécifiquement sur le \textit{mask encoder} et le \textit{prompt encoder}, sans modification de la mémoire temporelle du modèle. Autrement dit, nous adaptons uniquement la manière dont le modèle traite et interprète les entrées, sans intervenir sur son mécanisme de contextualisation temporelle. L'évolution de la fonction de perte au cours des 20 000 itérations du fine-tuning est représentée dans la \figref{sam2:loss}.
 
 \
 
@@ -1461,7 +1521,7 @@ Pour améliorer ses performances, nous procédons à un réentraînement ciblé 
     \label{sam2:loss}
 \end{figure}
 
-Malgré une courbe de perte quelque peu irrégulière et une qualité globale légèrement décevante, nous observons une tendance générale décroissante, ce qui constitue un signe encourageant. En effet, la fonction d eperte mesure l'écarte entre les prédictions du modèle et les annotations de référence. Sa diminution progressive traduit donc une amélioration des performances au cours de l'entraînement. La variabilité marquée de cette courbe peut s'expliquer par la taille relativement réduite de l'échantillon d'entraînement, qui ne contient que 237 images.
+Malgré une courbe de perte quelque peu irrégulière et une qualité globale légèrement décevante, nous observons une tendance générale décroissante, ce qui constitue un signe encourageant. En effet, la fonction de perte mesure l'écart entre les prédictions du modèle et les annotations de référence. Sa diminution progressive traduit donc une amélioration des performances au cours de l'entraînement. La variabilité marquée de cette courbe peut s'expliquer par la taille relativement réduite de l'échantillon d'entraînement, qui ne contient que 237 images.
 
 \begin{figure}[!ht]
     \centering
@@ -1474,12 +1534,12 @@ La \figref{sam:miou} montre que la mIoU n'augmente pas de manière significative
 
 \
 
-En conclusion, le fine-tuning des paramètres de SAM-2 n'a pas permis d'améliorer de manière significative les performances du modèle sur notre échantillon d'entraînement. Néanmoins, la diminution progressive de la fonctin de perte suggère une amélioration modeste de la capacité du modèle à s'ajuster aux données. Ces résultats laissent penser qu'un entraînement sur un échantillon plus large pourrait potentiellement conduire à de meilleures performances. Toutefois, cette approche n'est pas envisageable dnas le cadre du présent stage, en raison de contraintes liées à la taille du jeu de données disponible.
+En conclusion, le fine-tuning des paramètres de SAM-2 n'a pas permis d'améliorer de manière significative les performances du modèle sur notre échantillon d'entraînement. Néanmoins, la diminution progressive de la fonction de perte suggère une amélioration modeste de la capacité du modèle à s'ajuster aux données. Ces résultats laissent penser qu'un entraînement sur un échantillon plus large pourrait potentiellement conduire à de meilleures performances. Toutefois, cette approche n'est pas envisageable dans le cadre du présent stage, en raison de contraintes liées à la taille du jeu de données disponible.
 
 
 \subsubsection{Valeur du critère de performance sur l'échantillon d'entraînement et sa généralisation}
 %choix du modèle
-Au cours de l'entraînement des paramètres de SAM-2, nous avons sauvegardé les poids du modèle toutes les 500 itérations, ce qui nou a permis d'obtenir un ensemble de 40 modèles intermédiaires. Le chois du meilleur modèle a été effectué en se basant sur la valeur de la mIoU calculée sur l'échantillon d'entraînement?
+Au cours de l'entraînement des paramètres de SAM-2, nous avons sauvegardé les poids du modèle toutes les 500 itérations, ce qui nous a permis d'obtenir un ensemble de 40 modèles intermédiaires. Le choix du meilleur modèle a été effectué en se basant sur la valeur de la mIoU calculée sur l'échantillon d'entraînement?
 
 Le modèle retenu correspond à celui obtenu après 12 500 itérations, avec une mIoU maximale de $0.4593$ sur l'échantillon d'entraînement.
 
@@ -1512,6 +1572,8 @@ La \figref{sam2:ft_photo} présente un exemple de segmentation issue de la versi
     \label{sam2:ft_photo}
 \end{figure}
 
+\
+
 Comme le montre la \figref{sam2:ft_photo}, les masques obtenus  avec la version fine-tunée de SAM-2 sont errodés : ils ne couvrent souvent qu'une partie de l'objet, généralement les région la plus fluorescente. De plus, certains objets ne sont pas détectés du tout, ce qui constitue une limitation majeure pour le suivi des macrophages.
 
 \
@@ -1529,7 +1591,7 @@ Il est néanmoins pertinent de comparer les performances du modèle fine-tuné a
 \end{figure}
 
 
-La \figref{sam2:test_sam} met clairement en évidence que le modèle initial de SAM-2 surpasse le modèle fine-tuné sur l'échantillon de test. En effet, le modèle pré-entraîné atteint une mIoU moyenne de $0.56$, contre seulement $0.31$ pour le modèle après fine-tuning.
+La \figref{sam2:test_sam} met clairement en évidence que le modèle initial de SAM-2 surpasse le modèle \textit{fine-tuné} sur l'échantillon de test. En effet, le modèle préentraîné atteint une mIoU moyenne de $0.56$, contre seulement $0.31$ pour le modèle après \textit{fine-tuning}.
 
 \subsubsection{Pourquoi une dégradation des performances après le fine-tuning ?}
 
@@ -1540,30 +1602,30 @@ Ce résultat, contre-intuitif, soulève une question importante : pourquoi obser
 %data limité
 La première hypothèse repose sur la quantité limitée de données utilisées pour l'entraînement. Notre échantillon ne contient que 297 images annotées, ce qui est très faible pour un modèle aussi complexe que SAM-2, même dans un cadre de fine-tuning. Bien que le fine-tuning requière généralement moins de données que l'apprentissage depuis zéro, il reste sensible à la diversité et à la qualité des données.
 
-La deuxième limitation concerne la qualité des annotations utilisées pour superviser l'entraînement. Afin de gagner du temps, nous avons choisi d'utiliser MacTrack2 pour générer automatiquement les masques des macrophages. Or, cet outil atteint une précision d'environ 75\%, ce qui signifie qu'une partie non négligeable des annotations est erronée ou incomplète. Un modèle entraîné sur des annotations aura tendance à reproduire ces erreurs, ce qui peut expliquer en partie la baisse des performances.
+La deuxième limitation concerne la qualité des annotations utilisées pour superviser l'entraînement. Afin de gagner du temps, nous avons choisi d'utiliser MacTrack2 pour générer automatiquement les masques des macrophages. Or, cet outil atteint une précision d'environ 75~\%, ce qui signifie qu'une partie non négligeable des annotations est erronée ou incomplète. Un modèle entraîné sur des annotations aura tendance à reproduire ces erreurs, ce qui peut expliquer en partie la baisse des performances.
 
 \
 
-Au-delà de la question du fine-tuning, nous avons également constaté des limitations dans les capacités de suivi de SAM-2 appliqué à des vidéos. En particulier, l'apparition de nouveaux objets (apparition dans le champ ou séparation de deux macrophages collés) pose problème : ces dernierrs doivent être explicitement indiqués par l'utilisateur à travers des \textit{prompts} pour être correctement suivis. De plus, SAM-2 peut parfois assigner le même identifiant à plusieurs objets distincts, ce qui compromet la fiabilité du suivi temporel des macrophages, surtout si nous cherchons à avoir un outil automatisé où l'utilisateur interagit le moins possible avec le modèle.
+Au-delà de la question du fine-tuning, nous avons également constaté des limitations dans les capacités de suivi de SAM-2 appliqué à des vidéos. En particulier, l'apparition de nouveaux objets (apparition dans le champ ou séparation de deux macrophages collés) pose problème : ces derniers doivent être explicitement indiqués par l'utilisateur à travers des \textit{prompts} pour être correctement suivis. De plus, SAM-2 peut parfois assigner le même identifiant à plusieurs objets distincts, ce qui compromet la fiabilité du suivi temporel des macrophages, surtout si nous cherchons à avoir un outil automatisé où l'utilisateur interagit le moins possible avec le modèle.
 
 \
 
-Malgré ces complications, l'utilisation d'un modèle de fondation tel que SAM-2 reste une piste prometteuse pour répondre à notre problématique. Cependant, les resosurces nécessaires pour adapter ce type de modèle à un cas d'usage aussi spécifique dépassent les capacités de notre laboratoire. C'est dans cette optique que d'autres travaux, tels que MedSAM~\cite{medsam} pour l'imagerie médicale statique, puis MedSAM2~\cite{medsam2} pour les vidéos, ont vu le jour, malgré que ces modèles n'ont pas été entraînées sur des images de microscopie à fluorescence.
+Malgré ces complications, l'utilisation d'un modèle de fondation tel que SAM-2 reste une piste prometteuse pour répondre à notre problématique. Cependant, les ressources nécessaires pour adapter ce type de modèle à un cas d'usage aussi spécifique dépassent les capacités de notre laboratoire. C'est dans cette optique que d'autres travaux, tels que MedSAM~\cite{medsam} pour l'imagerie médicale statique, puis MedSAM2~\cite{medsam2} pour les vidéos, ont vu le jour, malgré le fait que ces modèles n'ont pas été entraînés sur des images de microscopie à fluorescence.
 
 
 \cleardoublepage
 \customchapterstar{Conclusion et perspectives}
 %éléments de conclusions
 
-L'objectif de ce travail était de développer un outil de segmentation et de suivi (tracking) des macrophages dans des vidéos de microscopie à fluorescence mises à notre disposition par l'équipe, en s'appuyant d'une part sur les travaux réalisés lors d'un stage précédent, et d'autre part sur les capacités récentes offertes par les modèles de fondation, en particulier SAM-2.
+L'objectif de ce travail était de développer un outil de segmentation et de suivi (tracking) des macrophages dans des vidéos de microscopie à fluorescence mises à notre disposition par l'équipe, en s'appuyant d'une part sur les travaux réalisés lors d'un stage précédent et d'autre part sur les capacités récentes offertes par les modèles de fondation, en particulier SAM-2.
 
-Dans un premier temps, nous avons utilisé le programme MacTrack2, nouvelle version da la librairie MacTrack développée lors d'un stage précédent, pour créer des modèles de segmentation interprétables à l'aide de Kartezio. Nous avons ensuite appliqué le meilleur modèle obtenu à des images de microscopie de macrophages, résultant en la segmentation automatique d'images. Cette segmentation image par image nous a permis de mettre en évidence l'importance de la dimension temporelle dans le traitment d'images de microscopie de macrophages, des cellules immunitaires mobiles et dynamiques. Le suivi de ces derniers dans le temps permet d'éviter certaines confusions liées aux variations d'intensité de fluorescence ou de forme. Nous avons ainsi étendu cette segmentation à une approche spatio-temporelle, en construisant un suivi des macrophages au fil des images composant une vidéo.
+Dans un premier temps, nous avons utilisé le programme MacTrack2, nouvelle version de la librairie MacTrack développée lors d'un stage précédent, pour créer des modèles de segmentation interprétables à l'aide de Kartezio. Nous avons ensuite appliqué le meilleur modèle obtenu à des images de microscopie de macrophages, résultant en la segmentation automatique d'images. Cette segmentation image par image nous a permis de mettre en évidence l'importance de la dimension temporelle dans le traitement d'images de microscopie de macrophages, des cellules immunitaires mobiles et dynamiques. Le suivi de ces derniers dans le temps permet d'éviter certaines confusions liées aux variations d'intensité de fluorescence ou de forme. Nous avons ainsi étendu cette segmentation à une approche spatio-temporelle, en construisant un suivi des macrophages au fil des images composant une vidéo.
 
 Ce suivi a ensuite été complété par un post-traitement manuel permettant d'améliorer la continuité des trajectoires sur l'ensemble des vidéos. Cette méthode s'est révélée efficace et rapide, mais reste difficile à généraliser à l'ensemble des vidéos disponibles, notamment en raison de la diversité morphologique et dynamique des macrophages.
 
-Afin de dépasser ces limites, nous avons exploré l'utilisation du modèle de fondation SAM-2, qui ispose d'une mémoire temporelle intégrée facilitant le suivi des objets au cours du temps, même en cas de perte temporaire de signal. Cependant, ce modèle étant généraliste, une phase de fine-tuning a été nécessaire pour l'adapter aux spécificités de notre jeu de données. Nous avons donc entraîné une version personnalisée du modèle à partir d'un jeu de données créé spécialement pour cette tâche que nous avons séparer en un échantillon d'entraînement et de test. Nous avons ensuite évalué les performances du modèle fine-tuné sur ces deux échantillons.
+Afin de dépasser ces limites, nous avons exploré l'utilisation du modèle de fondation SAM-2, qui dispose d'une mémoire temporelle intégrée facilitant le suivi des objets au cours du temps, même en cas de perte temporaire de signal. Cependant, ce modèle étant généraliste, une phase de fine-tuning a été nécessaire pour l'adapter aux spécificités de notre jeu de données. Nous avons donc entraîné une version personnalisée du modèle à partir d'un jeu de données créé spécialement pour cette tâche que nous avons séparé en un échantillon d'entraînement et de test. Nous avons ensuite évalué les performances du modèle \textit{fine-tuné} sur ces deux échantillons.
 
-Les résultats ont malheureusement montré que ce fine-tuning n'a pas permis d'améliorer les performances initiales du modèle. Les scores de segmentation sont restés inférieurs à ceux obtenus avec les poids d'origine, malgré la diminution de la fonction de perte durant l'entraînement, qui suggère une légère amélioration de la capacité du modèle à s'adapter aux données. Nous attribuons cet échec principalement à deux facteurs : la taille limitée du jeu de données utilisé pour l'entraînement (moins de 300 images contre des milliers en temps normal), et la qualité imparfaite des annotations générées automatiquement par MacTrack2.
+Les résultats ont malheureusement montré que ce fine-tuning n'a pas permis d'améliorer les performances initiales du modèle. Les scores de segmentation sont restés inférieurs à ceux obtenus avec les poids d'origine, malgré la diminution de la fonction de perte durant l'entraînement, qui suggère une légère amélioration de la capacité du modèle à s'adapter aux données. Nous attribuons cet échec principalement à deux facteurs : la taille limitée du jeu de données utilisé pour l'entraînement (moins de 300 images contre des milliers en temps normal) et la qualité imparfaite des annotations générées automatiquement par MacTrack2.
 
 \
 
@@ -1608,6 +1670,7 @@ Voici le lien vers des sorties de MacTrack2, avec des vidéos de résultats de s
 
 \printbibliography
 \addcontentsline{toc}{chapter}{Bibliographie}
+\markboth{Bibliographie}{Bibliographie}
 
 \newpage
 
