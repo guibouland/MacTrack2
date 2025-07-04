@@ -95,8 +95,8 @@
         \bfseries\Large #1\vspace{1em}
     \end{center}
     \begin{quotation}
-    \setlength{\leftskip}{1.5cm}
-    \setlength{\rightskip}{1.5cm}
+    \setlength{\leftskip}{1.3cm}
+    \setlength{\rightskip}{1.3cm}
 }{%
     \end{quotation}
 }
@@ -105,6 +105,10 @@
 \usepackage{titlesec}
 \usepackage{tikz}
 
+\addto\captionsfrench{
+  \renewcommand{\bibname}{Bibliographie} % Pour les classes type book/report
+  \renewcommand{\refname}{Bibliographie} % Pour les classes type article
+}
 
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
@@ -138,7 +142,7 @@
     \rule{\linewidth}{.5pt}\\ [0.4cm]
     \vspace{0.4cm}
     % Title
-    {\Huge \bfseries Segmentation et tracking de macrophages dans des images de microscopie}\\[0.5cm]
+    {\Huge \bfseries Segmentation et suivi de macrophages dans des images de microscopie confocale}\\[0.5cm]
     \rule{\linewidth}{.5pt}\\[0.4cm]
     \vspace{0.4cm}
     {\large Guillaume BOULAND}\\[1cm]
@@ -180,29 +184,26 @@
 \end{titlepage}
 
 
-%\cleardoublepage
-%\markboth{Résumé}{Résumé}
-%\thispagestyle{fancy}
-%\vspace*{\fill}
-%\begin{customabstract}{Résumé}
-%    \selectlanguage{french}
-%    Résumé
-%\end{customabstract}
-%\vspace*{\fill}
-%\newpage
-%\cleardoublepage
-%\markboth{Abstract}{}
-%\vspace*{\fill}
-%\begin{customabstract}{Abstract}
-%    \selectlanguage{english}
-%
-%\end{customabstract}
-%\vspace*{\fill}
-%\newpage
-\cleardoublepage
-\markboth{}{Remerciements}
+\clearpage
+\markboth{Résumé}{Résumé}
+\section*{Résumé}
+Ce rapport présente les travaux réalisés au sein du LPHI (\textit{Laboratory of Pathogen Host Interactions}) de Montpellier, portant sur la segmentation et le suivi (tracking) des macrophages dans des images de microscopie confocale. Les macrophages, cellules immunitaires clés, présentent une grande diversité de formes et de comportements, rendant leur analyse complexe. L'objectif principal de ce stage était de développer des outils informatiques permettant d'identifier, de segmenter et de suivre automatiquement chaque macrophage dans des images et vidéos obtenues à partir de larves de zebrafish transgéniques, modèle animal adapté à l'étude dynamique des processus immunitaires.
+
+Ce travail s'inscrit dans une démarche visant à terme à mieux comprendre le rôle des signaux calciques intracellulaires dans la polarisation fonctionnelle des macrophages lors de phénomènes inflammatoires. Pour cela, des méthodes de vision par ordinateur et d'intelligence artificielle, telles que la programmation génétique cartésienne (Kartezio) et le \textit{fine-tuning} de modèles de segmentation avancés (SAM-2), ont été mises en œuvre afin d'automatiser l'analyse des données de microscopie et d'ouvrir la voie à une quantification précise des dynamiques calciques associées aux différents états des macrophages. Le code et la documentation sont disponibles à l'adresse suivante : \url{https://github.com/guibouland/MacTrack2}.
+\vspace{2em}
+\section*{Abstract}
+\selectlanguage{english}
+This report presents work carried out at the LPHI (\textit{Laboratory of Pathogen Host Interactions}) in Montpellier, focusing on the segmentation and tracking of macrophages in confocal microscopy images. Macrophages, key immune cells, present a wide diversity of shapes and behaviors, making their analysis complex. The main objective of this internship was to develop computational tools for automatically identifying, segmenting, and tracking individual macrophages in images and videos obtained from transgenic zebrafish larvae, an animal model suited to the dynamic study of immune processes.
+
+This work is part of an effort to better understand the role of intracellular calcium signals in the functional polarization of macrophages during inflammatory phenomena. To this end, computer vision and artificial intelligence methods, such as Cartesian Genetic Programming (CGP) and the fine-tuning of advanced segmentation models (SAM-2), have been implemented to automate the analysis of microscopy data and pave the way for precise quantification of calcium dynamics associated with different macrophage states. Code and documentation are available at \url{https://github.com/guibouland/MacTrack2}.
+
+
+
+\newpage
+\clearpage
+\markboth{Remerciements}{Remerciements}
 \section*{Remerciements}
-Je tiens dans un premier temps à remercier chaleureusement Mai Nguyen-Chi et Benjamin Charlier pour leur accueil et leur encadrement régulier tout au long de ce stage. Leur expertise et leurs conseils m'ont été précieux pour mener à bien ce projet. Je remercie également l'entièreté de l'équipe de recherche que j'ai intégrée, et plus particulièrement Norma Veltz, stagiaire dans la même équipe, avec qui j'ai pu collaboré pendant ce stage. Son travail a été essentiel pour la réalisation de ce projet.
+Je tiens dans un premier temps à remercier chaleureusement Mai Nguyen-Chi et Benjamin Charlier pour leur accueil et leur encadrement régulier tout au long de ce stage. Leur expertise et leurs conseils m'ont été précieux pour mener à bien ce projet. Je remercie également l'entièreté de l'équipe de recherche que j'ai intégrée, et plus particulièrement Norma Veltz, stagiaire dans la même équipe, avec qui j'ai pu collaborer pendant ce stage. Son travail a été essentiel pour la réalisation de ce projet.
 
 \
 
@@ -210,16 +211,18 @@ Je remercie l'ensemble des stagiaires du LPHI avec qui j'ai pu partager des mome
 
 \
 
-Je tiens aussi à remercier Nicolas Meyer, encadrant pédagogique durant ce stage, pour ses conseils et son suivi, ainsi que l'ensemble du corps enseignant du Master SSD pour l'ensemble des enseignements donnés pendant ces deux années, et pour leur implication dans notre formation.
+Je tiens aussi à remercier Nicolas Meyer, encadrant pédagogique durant ce stage, pour ses conseils et son suivi, ainsi que l'ensemble du corps enseignant du Master SSD pour l'ensemble des enseignements donnés pendant ces deux années et pour leur implication dans notre formation.
 
 \
 
 Enfin, je remercie mes amis qui ont pris le temps de relire ce rapport et m'apporter du soutien et des conseils.
 
+
+
 \newpage
 % Liste des abréviations
 \section*{Liste des abréviations}
-\markboth{Liste des abréviations}{}
+\markboth{Liste des abréviations}{Liste des abréviations}
 \begin{longtable}{lL{0.8\textwidth}}
     \textbf{LPHI}   & \textit{Laboratory of Pathogen Host Interactions}                                    \\
     \textbf{CNRS}   & Centre National de la Recherche Scientifique                                         \\
@@ -1667,10 +1670,9 @@ Voici le lien vers des sorties de MacTrack2, avec des vidéos de résultats de s
 %L'entraînement a été effectué avec 20000 itérations. Nous avons utilisé un GPU Nvidia A10 Tensor Core avec 24 Go de mémoire.
 %
 \newpage
-
-\printbibliography
+\cleardoublepage
+\printbibliography[title=Bibliographie]
 \addcontentsline{toc}{chapter}{Bibliographie}
-\markboth{Bibliographie}{Bibliographie}
 
 \newpage
 
