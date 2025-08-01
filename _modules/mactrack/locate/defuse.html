@@ -78,6 +78,7 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
 
 
 <div class="viewcode-block" id="trace_lines_between_contours">
@@ -239,7 +240,7 @@
 <span class="sd">    Calculate the Intersection over Union (IoU) between two binary images.</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">    </span>
+
 <span class="sd">        IoU = \\frac{A \\cap B}{A \\cup B}</span>
 
 <span class="sd">    where :math:`A` and :math:`B` are the two binary images.</span>
@@ -383,6 +384,41 @@
 
     <span class="n">save_segmentation_images</span><span class="p">(</span><span class="n">image_storage</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;list_def&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">image_storage</span></div>
+
+
+
+<div class="viewcode-block" id="final_heatmap">
+<a class="viewcode-back" href="../../../mactrack.html#mactrack.locate.defuse.final_heatmap">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">final_heatmap</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes the content of the &quot;list_def&quot; folder and creates a final heatmap image for each frame&quot;&quot;&quot;</span>
+    <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span>
+    <span class="n">caller_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">caller_frame</span><span class="p">))</span>
+    <span class="n">list_def</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">caller_dir</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;list_def&quot;</span><span class="p">)</span>
+    <span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">caller_dir</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;list_comp_final&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">list_def</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">heatmap_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">list_def</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;heatmap_test_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">heatmap_folder</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">heatmap_images</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">heatmap_folder</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">heatmap_folder</span><span class="p">))</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpg&quot;</span><span class="p">))</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">heatmap_images</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">heatmap_images</span> <span class="o">=</span> <span class="p">[</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">heatmap_images</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">heatmap_images</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># combine all the image in one</span>
+        <span class="n">combined_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">heatmap_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">heatmap_images</span><span class="p">:</span>
+            <span class="n">combined_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">combined_image</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+        <span class="n">output_image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;heatmap_test_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">output_image_path</span><span class="p">,</span> <span class="n">combined_image</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final heatmaps saved in </span><span class="si">{</span><span class="n">output_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 </pre></div>
 

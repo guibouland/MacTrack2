@@ -209,12 +209,12 @@
 
 <div class="viewcode-block" id="video">
 <a class="viewcode-back" href="../../../mactrack.html#mactrack.video.result.video">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">video</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">video</span><span class="p">(</span><span class="n">video_name</span><span class="o">=</span><span class="s2">&quot;result_video&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a video from images in the ``output/result`` and ``output/resultv`` folders.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result_folder</span> <span class="o">=</span> <span class="s2">&quot;output/result&quot;</span>
-    <span class="n">video_output</span> <span class="o">=</span> <span class="s2">&quot;output/result_video.mp4&quot;</span>
+    <span class="n">video_output</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;output/</span><span class="si">{</span><span class="n">video_name</span><span class="si">}</span><span class="s2">.mp4&quot;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">result_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)]</span>
     <span class="n">images</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
@@ -237,7 +237,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vidéo créée avec succès : </span><span class="si">{</span><span class="n">video_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">result_folder</span> <span class="o">=</span> <span class="s2">&quot;output/resultv&quot;</span>
-    <span class="n">video_output</span> <span class="o">=</span> <span class="s2">&quot;output/result_video_v.mp4&quot;</span>
+    <span class="n">video_output</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;output/</span><span class="si">{</span><span class="n">video_name</span><span class="si">}</span><span class="s2">_v.mp4&quot;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">result_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)]</span>
     <span class="n">images</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 

@@ -64,12 +64,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.graphmed_perimeter"><code class="docutils literal notranslate"><span class="pre">graphmed_perimeter()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.perimeter.perimeter"><code class="docutils literal notranslate"><span class="pre">perimeter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.aggregate"><code class="docutils literal notranslate"><span class="pre">aggregate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.calculate_intensity_features"><code class="docutils literal notranslate"><span class="pre">calculate_intensity_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.calculate_mean"><code class="docutils literal notranslate"><span class="pre">calculate_mean()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.count_valid_entries"><code class="docutils literal notranslate"><span class="pre">count_valid_entries()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.recap.plot_intensity_curves"><code class="docutils literal notranslate"><span class="pre">plot_intensity_curves()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.graph_size"><code class="docutils literal notranslate"><span class="pre">graph_size()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.object_size"><code class="docutils literal notranslate"><span class="pre">object_size()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.analyse.size.size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
@@ -80,6 +74,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.calculate_iou"><code class="docutils literal notranslate"><span class="pre">calculate_iou()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.defuse"><code class="docutils literal notranslate"><span class="pre">defuse()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.extract_and_save_objects"><code class="docutils literal notranslate"><span class="pre">extract_and_save_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.final_heatmap"><code class="docutils literal notranslate"><span class="pre">final_heatmap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.invdefuse"><code class="docutils literal notranslate"><span class="pre">invdefuse()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.paint_black_area_from_mask"><code class="docutils literal notranslate"><span class="pre">paint_black_area_from_mask()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mactrack.locate.defuse.process_images"><code class="docutils literal notranslate"><span class="pre">process_images()</span></code></a></li>
@@ -384,108 +379,6 @@ The results are saved in an Excel file named ‘perimeter.xlsx’.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function" id="module-mactrack.analyse.recap">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.aggregate">
-<span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perimeter_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.aggregate" title="Link to this definition"></a></dt>
-<dd><p>Aggregates data from multiple files and saves the results to an Excel file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance_file</strong> (<em>str</em>) – Path to the distance data file.</p></li>
-<li><p><strong>intensity_file</strong> (<em>str</em>) – Path to the intensity data file.</p></li>
-<li><p><strong>size_file</strong> (<em>str</em>) – Path to the size data file.</p></li>
-<li><p><strong>perimeter_file</strong> (<em>str</em>) – Path to the perimeter data file.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.calculate_intensity_features">
-<span class="sig-name descname"><span class="pre">calculate_intensity_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#calculate_intensity_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.calculate_intensity_features" title="Link to this definition"></a></dt>
-<dd><p>Calculates intensity features such as the number of peaks, mean prominence,
-and mean distance between peaks for each row in the intensity data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>intensity_data</strong> (<em>pd.DataFrame</em>) – DataFrame containing intensity data, where each row represents a signal.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>num_peaks</strong> (<em>list</em>) – Number of peaks for each row.</p></li>
-<li><p><strong>mean_prominence</strong> (<em>list</em>) – Mean prominence of peaks for each row.</p></li>
-<li><p><strong>mean_distance</strong> (<em>list</em>) – Mean distance between peaks for each row.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.calculate_mean">
-<span class="sig-name descname"><span class="pre">calculate_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#calculate_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.calculate_mean" title="Link to this definition"></a></dt>
-<dd><p>Calculates the mean of each row in the given DataFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The input DataFrame to analyze.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A series containing the mean of each row.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.Series</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.count_valid_entries">
-<span class="sig-name descname"><span class="pre">count_valid_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#count_valid_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.count_valid_entries" title="Link to this definition"></a></dt>
-<dd><p>Counts the number of valid (non-NaN) entries in each row of the given DataFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The input DataFrame to analyze.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A series containing the count of valid entries for each row.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.Series</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.load_data">
-<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#load_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.load_data" title="Link to this definition"></a></dt>
-<dd><p>Loads data from an Excel file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path to the Excel file.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Data loaded from the Excel file.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mactrack.analyse.recap.plot_intensity_curves">
-<span class="sig-name descname"><span class="pre">plot_intensity_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_entry_counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/recap.html#plot_intensity_curves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.recap.plot_intensity_curves" title="Link to this definition"></a></dt>
-<dd><p>Plots intensity curves for each row in the DataFrame and saves them as PNG files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>intensity_data</strong> (<em>pd.DataFrame</em>) – The DataFrame containing intensity data.</p></li>
-<li><p><strong>valid_entry_counts</strong> (<em>pd.Series</em>) – A series containing the count of valid entries for each row.</p></li>
-<li><p><strong>threshold</strong> (<em>int</em>) – The minimum number of valid entries required to plot the curve.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py function" id="module-mactrack.analyse.size">
 <dt class="sig sig-object py" id="mactrack.analyse.size.graph_size">
 <span class="sig-name descname"><span class="pre">graph_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/analyse/size.html#graph_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.analyse.size.graph_size" title="Link to this definition"></a></dt>
@@ -604,6 +497,12 @@ graph_size: Function to plot the size of individuals over time.</p>
 <dd class="field-odd"><p>image_storage (ImageStorage)</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mactrack.locate.defuse.final_heatmap">
+<span class="sig-name descname"><span class="pre">final_heatmap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/locate/defuse.html#final_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.locate.defuse.final_heatmap" title="Link to this definition"></a></dt>
+<dd><p>Takes the content of the “list_def” folder and creates a final heatmap image for each frame</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1091,7 +990,7 @@ Each subdirectory should contain images named “object_&lt;number&gt;.png”.</
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mactrack.video.result.video">
-<span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.video" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'result_video'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mactrack/video/result.html#video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mactrack.video.result.video" title="Link to this definition"></a></dt>
 <dd><p>Create a video from images in the <code class="docutils literal notranslate"><span class="pre">output/result</span></code> and <code class="docutils literal notranslate"><span class="pre">output/resultv</span></code> folders.</p>
 </dd></dl>
 
