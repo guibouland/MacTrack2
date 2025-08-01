@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+import inspect
 
 
 def trace_lines_between_contours(images, distance_threshold=50):
@@ -148,7 +149,7 @@ def calculate_iou(image1, image2):
     Calculate the Intersection over Union (IoU) between two binary images.
 
     .. math::
-    
+
         IoU = \\frac{A \\cap B}{A \\cup B}
 
     where :math:`A` and :math:`B` are the two binary images.
@@ -283,3 +284,35 @@ def invdefuse(n, image_storage):
 
     save_segmentation_images(image_storage, os.path.join(output_path, "list_def"))
     return image_storage
+
+
+def final_heatmap():
+    """Takes the content of the "list_def" folder and creates a final heatmap image for each frame"""
+    caller_frame = inspect.stack()[-1].filename
+    caller_dir = os.path.dirname(os.path.abspath(caller_frame))
+    list_def = os.path.join(caller_dir, r"output", "list_def")
+    output_folder = os.path.join(caller_dir, r"output", "list_comp_final")
+    os.makedirs(output_folder, exist_ok=True)
+    n = len(os.listdir(list_def))
+
+    for i in range(n):
+        heatmap_folder = os.path.join(list_def, f"heatmap_test_{i}")
+        if not os.path.exists(heatmap_folder):
+            continue
+        heatmap_images = [
+            os.path.join(heatmap_folder, f)
+            for f in sorted(os.listdir(heatmap_folder))
+            if (f.endswith(".png") or f.endswith(".jpg"))
+        ]
+        if not heatmap_images:
+            continue
+        heatmap_images = [cv2.imread(img) for img in heatmap_images]
+        if not heatmap_images:
+            continue
+        # combine all the image in one
+        combined_image = np.zeros_like(heatmap_images[0])
+        for img in heatmap_images:
+            combined_image = cv2.bitwise_or(combined_image, img)
+        output_image_path = os.path.join(output_folder, f"heatmap_test_{i}.png")
+        cv2.imwrite(output_image_path, combined_image)
+    print(f"Final heatmaps saved in {output_folder}")

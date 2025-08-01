@@ -40,7 +40,7 @@ def extract_objects(image, output_dir, filename):
         image (numpy.ndarray): Input binary image.
         output_dir (str): Directory to save the extracted objects.
         filename (str): Name of the input image file.
-        
+
     Returns:
         object_count (int): Number of objects extracted from the image.
     """
@@ -91,9 +91,10 @@ def locate(input_folder):
     p_test = ensemble.predict(dataset.test_x)
 
     for i in range(n):
-        mask_list = [image_normalize(pi[0][i]["mask"]) for pi in p_test]
-        heatmap = np.array(mask_list).mean(axis=0)
-        heatmap_cp = (heatmap * 255.0).astype(np.uint8)
+        mask_list = [pi[0][i]["mask"] for pi in p_test]
+        heatmap = np.mean(mask_list, axis=0)
+        heatmap_norm = image_normalize(heatmap)
+        heatmap_cp = (heatmap_norm * 255.0).astype(np.uint8)
 
         cv2.imwrite(os.path.join(output_dir_masks, f"heatmap_test_{i}.png"), heatmap_cp)
 
@@ -115,7 +116,7 @@ def locate(input_folder):
 
         cv2.imwrite(output_path, colored_image)
 
-    shutil.rmtree(output_dir_masks)
+    # shutil.rmtree(output_dir_masks)
 
     input_dir_masks2 = output_dir_masks2
     output_dir_list = os.path.join(output_dir, "list_sep")

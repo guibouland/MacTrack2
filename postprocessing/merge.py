@@ -148,37 +148,47 @@ def merge_and_keep(macro_list, keep):
     output = os.path.join(called_path, "output")
     list_track = os.path.join(output, "list_track")
     # Create a copy of the macrophage folder to be kept
-    # for i in keep:
-    #    keep_folder = os.path.join(list_track, str("macrophage_" + str(i)))
-    #    keep_copy = os.path.join(list_track, str("macrophage_" + str(i) + "_copy"))
-    #    os.makedirs(keep_copy, exist_ok=True)
-    #    # Copy the contents of the keep folder to the copy folder
-    #    for file in os.listdir(keep_folder):
-    #        src = os.path.join(keep_folder, file)
-    #        dst = os.path.join(keep_copy, file)
-    #        shutil.copy(src, dst)
+    for i in keep:
+        keep_folder = os.path.join(list_track, str("macrophage_" + str(i)))
+        keep_copy = os.path.join(list_track, str("macrophage_" + str(i) + "_copy"))
+        os.makedirs(keep_copy, exist_ok=True)
+        # Copy the contents of the keep folder to the copy folder
+        for file in os.listdir(keep_folder):
+            src = os.path.join(keep_folder, file)
+            dst = os.path.join(keep_copy, file)
+            shutil.copy(src, dst)
 
-    keep_ = keep
+    keep_ = keep.copy()
     # macro list without the elements of keep
     clean_list = [x for x in macro_list if x not in keep]
     for i in range(1, len(clean_list)):
+        print(i)
+        print(len(clean_list))
+        print(macro_list)
+        if macro_list == []:
+            break
+
         add = False
         start = clean_list[0]
         end = clean_list[i]
 
         idx_start = macro_list.index(start)
         idx_end = macro_list.index(end)
+        print(idx_start < idx_end)
         # Check if the two elements are separated by a keep element
-        if idx_start < idx_end:
+        if idx_start + 1 < idx_end:
             in_between = macro_list[idx_start + 1 : idx_end]
             add = True
         else:
             in_between = macro_list[idx_end + 1 : idx_start]
+            add = False
         print(idx_start, idx_end, in_between)
 
         missing, dup = merge_two(start, end)
+
         if add:
             add_part(start, in_between[0], missing)
+
         # delete in_between and cleant_list[i] from macro_list
         macro_list.remove(end)
         for j in in_between:
@@ -188,10 +198,16 @@ def merge_and_keep(macro_list, keep):
                 macro_list.remove(j)
         print(macro_list)
 
-    # rename the copied folders
-    # for i in keep:
-    #    keep_folder = os.path.join(list_track, str("macrophage_" + str(i)))
-    #    keep_copy = os.path.join(list_track, str("macrophage_" + str(i) + "_copy"))
-    #    os.rename(keep_copy, keep_folder)
-    #    print(f"[Renaming] {keep_copy} to {keep_folder}")
-    #
+    # Replacing the copied folders
+    for i in keep:
+        keep_copy = os.path.join(list_track, str("macrophage_" + str(i) + "_copy"))
+        keep_folder = os.path.join(list_track, str("macrophage_" + str(i)))
+        # Copy the contents of the copy folder to the keep folder
+        for file in os.listdir(keep_copy):
+            src = os.path.join(keep_copy, file)
+            dst = os.path.join(keep_folder, file)
+            shutil.copy(src, dst)
+        print(f"[Replacing] {keep_folder} with {keep_copy}")
+        # Remove the copied folder
+        shutil.rmtree(keep_copy)
+        print(f"[Removing] {keep_copy} folder")

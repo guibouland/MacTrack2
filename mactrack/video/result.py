@@ -121,12 +121,12 @@ def result(input_folder):
             cv2.imwrite(output_image_path, image_copy)
 
 
-def video():
+def video(video_name="result_video"):
     """
     Create a video from images in the ``output/result`` and ``output/resultv`` folders.
     """
     result_folder = "output/result"
-    video_output = "output/result_video.mp4"
+    video_output = f"output/{video_name}.mp4"
     images = [img for img in os.listdir(result_folder) if img.endswith(".png")]
     images.sort()
 
@@ -149,7 +149,7 @@ def video():
     print(f"Vidéo créée avec succès : {video_output}")
 
     result_folder = "output/resultv"
-    video_output = "output/result_video_v.mp4"
+    video_output = f"output/{video_name}_v.mp4"
     images = [img for img in os.listdir(result_folder) if img.endswith(".png")]
     images.sort()
 
